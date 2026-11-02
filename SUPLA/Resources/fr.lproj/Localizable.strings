@@ -637,6 +637,7 @@
 "enabling_registration_timeout" = "Le temps d’attente pour activer l'enregistrement a expiré !";
 "add_wizard_step_1_welcome" = "Bienvenue dans l'assistant d'ajout des dispositifs qui vous aidera d'une manière simple et rapide à ajouter un nouveau dispositif au système.";
 "add_wizard_step_1_continue" = "Pour continuer, appuyez sur **Continuer**.";
+"add_wizard_step_1_wifi_required" = "Le Wi-Fi est nécessaire pour ajouter un appareil.\nVous pouvez l'activer dans Réglages.";
 "add_wizard_step_2_message" = "Entrez un nom et un mot de passe du Votre réseau Wi-Fi domestique ou d'entreprise ave laquelle d’appareil pourra se connecter avec le serveur.";
 "add_wizard_network_name" = "Nom du réseau";
 "add_wizard_step_3_message_1" = "Connectez votre appareil à l'alimentation électrique. L'appareil devrait, par défaut, fonctionner en mode de configuration, indiqué par le clignotement de la LED d'état comme suit.";
@@ -655,6 +656,10 @@
 "add_wizard_manual_mode_example_network" = "p. ex. SUPLA-A220A63612B1";
 "add_wizard_manual_mode_step_3_title" = "Revenez dans l’application SUPLA";
 "add_wizard_manual_mode_step_3_message" = "Lorsqu’une coche ✓ apparaît à côté du réseau, revenez ici et touchez **DÉMARRER**.";
+"add_wizard_manual_reconnect_title" = "La connexion Internet a échoué !";
+"add_wizard_manual_reconnect_step_2_title" = "Rétablissez la connexion Internet";
+"add_wizard_manual_reconnect_step_2_message" = "Rétablissez votre connexion Internet à l’aide des données mobiles ou d’un réseau Wi-Fi.";
+"add_wizard_manual_reconnect_step_3_message" = "Lorsque la connexion Internet sera rétablie, revenez ici et appuyez sur **Suivant**.";
 "add_wizard_manual_mode_settings" = "Passez aux paramètres du système";
 "add_wizard_location_service_off" = "Pour que l'Assistant d'ajout d'appareil fonctionne correctement, les services de localisation doivent être activés sur votre appareil. Accédez aux paramètres de votre système et assurez-vous qu'ils sont activés (Paramètres -> Confidentialité et sécurité -> Services de localisation).";
 "add_wizard_missing_location" = "L'application SUPLA nécessite un accès à la localisation pour que l'Assistant d'ajout d'appareil fonctionne correctement. Autorisez l'application SUPLA à accéder à votre position dans les paramètres de votre système.";
@@ -696,7 +701,6 @@
 "add_wizard_password_repeat_label" = "Répéter le mot de passe";
 "add_wizard_password_enter_title" = "Mot de passe de l'appareil";
 "add_wizard_password_instruction" = "Veuillez utiliser le mot de passe utilisé pour l'accès à la page web de configuration locale.\n\nMot de passe oublié ? Vous pouvez le modifier sur Supla Cloud ou réinitialiser l'appareil aux paramètres d'usine.";
-"add_wizard_manual_reconnect_message" = "La connexion Internet a échoué.\n\nAccédez aux paramètres système et sélectionnez un réseau Wi-Fi disposant d'une connexion Internet. Revenez ensuite à l'application et continuez en appuyant sur **Suivant**.";
 "add_device_manual_popup_title" = "Échec de l'ajout de l'appareil";
 "add_device_manual_popup_message" = "La tentative d'ajouter un appareil automatiquement a échoué. Si le problème persiste, nous vous recommandons d'ajouter l'appareil manuellement.";
 "add_device_manual_popup_resign" = "Rester en mode automatique";

@@ -636,6 +636,7 @@
 "enabling_registration_timeout" = "De wachttijd voor het activeren van de registratie is verstreken!";
 "add_wizard_step_1_welcome" = "Welkom bij de wizard voor het toevoegen van apparaten, waarmee u op een snelle en eenvoudige manier een nieuw apparaat aan het systeem kunt toevoegen.";
 "add_wizard_step_1_continue" = "Druk op **Volgende** om door te gaan.";
+"add_wizard_step_1_wifi_required" = "Wifi is vereist om een apparaat toe te voegen.\nJe kunt dit inschakelen in Instellingen.";
 "add_wizard_step_2_message" = "Voer de naam en het wachtwoord in van uw thuis- of bedrijfs WiFi-netwerk waarmee het uitvoerende apparaat verbinding kan maken met de server.";
 "add_wizard_network_name" = "Netwerknaam";
 "add_wizard_step_3_message_1" = "Sluit uw apparaat aan op de stroomvoorziening. Het apparaat zou standaard in de configuratiemodus moeten werken, aangegeven door de status-LED die als volgt knippert.";
@@ -654,6 +655,10 @@
 "add_wizard_manual_mode_example_network" = "bijv. SUPLA-A220A63612B1";
 "add_wizard_manual_mode_step_3_title" = "Ga terug naar de SUPLA-app";
 "add_wizard_manual_mode_step_3_message" = "Zodra er een vinkje ✓ naast het netwerk verschijnt, keert u terug naar dit scherm en tikt u op **OPSTARTEN**.";
+"add_wizard_manual_reconnect_title" = "Internetverbinding mislukt!";
+"add_wizard_manual_reconnect_step_2_title" = "Zorg voor een internetverbinding";
+"add_wizard_manual_reconnect_step_2_message" = "Herstel de internetverbinding via mobiele data of een Wi-Fi-netwerk.";
+"add_wizard_manual_reconnect_step_3_message" = "Ga hierheen terug zodra de internetverbinding is hersteld en druk op **Volgende**.";
 "add_wizard_manual_mode_settings" = "Ga naar systeemvoorkeuren";
 "add_wizard_location_service_off" = "Om de wizard \"Apparaat toevoegen\" correct te laten werken, moeten locatieservices op uw apparaat zijn ingeschakeld. Ga naar uw systeeminstellingen en zorg ervoor dat deze zijn ingeschakeld (Instellingen -> Privacy en beveiliging -> Locatieservices).";
 "add_wizard_missing_location" = "De SUPLA-app vereist locatietoegang om de wizard \"Apparaat toevoegen\" correct te laten werken. Geef de SUPLA-app toegang tot uw locatie in uw systeeminstellingen.";
@@ -695,7 +700,6 @@
 "add_wizard_password_repeat_label" = "Herhaal wachtwoord";
 "add_wizard_password_enter_title" = "Apparaatwachtwoord";
 "add_wizard_password_instruction" = "Gebruik het wachtwoord dat is gebruikt voor toegang tot de lokale configuratie webpagina.\n\nWachtwoord vergeten? Je kunt het wijzigen op Supla Cloud of het apparaat terugzetten naar de fabrieksinstellingen.";
-"add_wizard_manual_reconnect_message" = "Internetverbinding mislukt.\n\nGa naar de systeeminstellingen en selecteer een Wi-Fi-netwerk met een internetverbinding. Keer vervolgens terug naar de app en ga verder door op **Volgende** te drukken.";
 "add_device_manual_popup_title" = "Toevoegen van apparaat mislukt";
 "add_device_manual_popup_message" = "De poging om een apparaat automatisch toe te voegen is mislukt. Als het probleem aanhoudt, raden we aan het apparaat handmatig toe te voegen.";
 "add_device_manual_popup_resign" = "Blijf in automatische modus";

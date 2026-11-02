@@ -679,6 +679,7 @@
 "enabling_registration_timeout" = "A regisztráció engedélyezésének várakozási ideje lejárt!";
 "add_wizard_step_1_welcome" = "Üdvözöljük az eszköz hozzáadása varázslóban, amely segít új eszköz gyors és egyszerű hozzáadásával a rendszerhez.";
 "add_wizard_step_1_continue" = "A folytatáshoz nyomja meg a <b> Következő </b> gombot.";
+"add_wizard_step_1_wifi_required" = "Eszköz hozzáadásához Wi-Fi szükséges.\nA Beállításokban kapcsolhatja be.";
 "add_wizard_step_2_message" = "Írja be annak otthoni vagy vállalati Wi-Fi hálózatának nevét és jelszavát, amelyen keresztül a végrehajtó eszköz képes kapcsolatot létesíteni a szerverrel.";
 "add_wizard_network_name" = "Hálózat neve";
 "add_wizard_step_3_message_1" = "Csatlakoztassa eszközét a tápegységhez. Az eszköznek alapértelmezés szerint konfigurációs módban kell működnie, amit az állapotjelző LED alábbi villogása jelez.";
@@ -697,6 +698,10 @@
 "add_wizard_manual_mode_example_network" = "pl. SUPLA-A220A63612B1";
 "add_wizard_manual_mode_step_3_title" = "Térj vissza a SUPLA alkalmazásba";
 "add_wizard_manual_mode_step_3_message" = "Amint megjelenik egy pipa ✓ a hálózat mellett, térj vissza ide, és koppints a **START** gombra.";
+"add_wizard_manual_reconnect_title" = "Az internetkapcsolat nem sikerült!";
+"add_wizard_manual_reconnect_step_2_title" = "Állítsa helyre az internetkapcsolatot";
+"add_wizard_manual_reconnect_step_2_message" = "Állítsa helyre az internetkapcsolatot mobiladat vagy Wi-Fi-hálózat használatával.";
+"add_wizard_manual_reconnect_step_3_message" = "Az internetkapcsolat helyreállítása után térjen vissza ide, és nyomja meg a **Tovább** gombot.";
 "add_wizard_manual_mode_settings" = "Ugrás a rendszerbeállításokhoz";
 "add_wizard_location_service_off" = "Az Eszköz hozzáadása varázsló megfelelő működéséhez a helymeghatározási szolgáltatásokat engedélyezni kell az eszközön. Menj a rendszerbeállításokba, és győződj meg róla, hogy be van kapcsolva (Beállítások -> Adatvédelem és biztonság -> Helymeghatározás).";
 "add_wizard_missing_location" = "A SUPLA alkalmazásnak helyhozzáférésre van szüksége az Eszköz hozzáadása varázsló megfelelő működéséhez. Engedélyezd a SUPLA alkalmazás számára a helyhozzáférést a rendszerbeállításokban.";
@@ -740,7 +745,6 @@
 "add_wizard_password_repeat_label" = "Jelszó ismétlése";
 "add_wizard_password_enter_title" = "Eszközjelszó";
 "add_wizard_password_instruction" = "Kérjük, használja a helyi konfigurációs weboldal hozzáféréséhez használt jelszót.\n\nElfelejtetted a jelszavad? Megváltoztathatod a Supla Cloudon, vagy visszaállíthatod az eszközt gyári beállításokra.";
-"add_wizard_manual_reconnect_message" = "Internetkapcsolat sikertelen.\n\nLépj a rendszerbeállításokba, és válassz egy olyan Wi-Fi hálózatot, amely rendelkezik internetkapcsolattal. Ezután térj vissza az alkalmazásba, és folytasd a műveletet a **Tovább** gomb megnyomásával.";
 "add_device_manual_popup_title" = "Az eszköz hozzáadása sikertelen";
 "add_device_manual_popup_message" = "Az eszköz automatikus hozzáadása sikertelen volt. Ha a probléma továbbra is fennáll, javasoljuk az eszköz kézi hozzáadását.";
 "add_device_manual_popup_resign" = "Maradás automatikus módban";

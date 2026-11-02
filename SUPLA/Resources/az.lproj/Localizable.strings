@@ -706,6 +706,7 @@
 "enabling_registration_timeout" = "Qeydiyyatın aktivləşdirilməsi üçün vaxt bitdi!";
 "add_wizard_step_1_welcome" = "Yeni I/O cihazını bir neçə sadə addımda sisteminizə əlavə etməyə kömək edəcək Add I/O Device Wizard-a xoş gəlmisiniz.";
 "add_wizard_step_1_continue" = "Davama davam etmək üçün **Növbəti-yə basın**.";
+"add_wizard_step_1_wifi_required" = "Cihaz əlavə etmək üçün Wi-Fi tələb olunur.\nOnu Parametrlərdə aktiv edə bilərsiniz.";
 "add_wizard_step_2_message" = "Yeni I/O cihazı ilə istifadə üçün Wi-Fi şəbəkə adını və şifrəsini daxil edin";
 "add_wizard_network_name" = "Şəbəkə adı";
 "add_wizard_step_3_message_1" = "Cihazınızı enerji mənbəyinə qoşun. Cihaz standart olaraq konfiqurasiya rejimində işləməlidir, vəziyyət LED-i aşağıdakı kimi yanıb-sönəcək.";
@@ -723,6 +724,10 @@
 "add_wizard_manual_mode_example_network" = "məs. SUPLA-A220A63612B1";
 "add_wizard_manual_mode_step_3_title" = "SUPLA tətbiqinə qayıdın";
 "add_wizard_manual_mode_step_3_message" = "Şəbəkənin yanında ✓ işarəsi göründükdə buraya qayıdın və **BAŞLAT** düyməsinə toxunun.";
+"add_wizard_manual_reconnect_title" = "İnternet bağlantısı uğursuz oldu!";
+"add_wizard_manual_reconnect_step_2_title" = "İnternet bağlantısını təmin edin";
+"add_wizard_manual_reconnect_step_2_message" = "Mobil data və ya Wi-Fi şəbəkəsi vasitəsilə internet bağlantısını bərpa edin.";
+"add_wizard_manual_reconnect_step_3_message" = "İnternet bağlantısı bərpa olunduqda buraya qayıdın və **İrəli** düyməsinə basın.";
 "add_wizard_manual_mode_settings" = "Sistem parametrlərinə keçin";
 "add_wizard_location_service_off" = "Cihaz Əlavə Et Ustası düzgün işləməsi üçün cihazınızda yer xidmətləri aktivləşdirilməlidir. Sistem parametrlərinizə keçin və onun aktiv olduğundan əmin olun (Parametrlər -> Məxfilik və Təhlükəsizlik -> Yer Xidmətləri).";
 "add_wizard_missing_location" = "Cihaz Əlavə Et Ustası düzgün işləməsi üçün SUPLA tətbiqinə yerə giriş lazımdır. Sistem parametrlərinizdə SUPLA tətbiqinin yerinizə daxil olmasına icazə verin.";
@@ -764,7 +769,6 @@
 "add_wizard_password_repeat_label" = "Şifrəni təkrarla";
 "add_wizard_password_enter_title" = "Cihaz şifrəsi";
 "add_wizard_password_instruction" = "Zəhmət olmasa, yerli konfiqurasiya veb səhifəsinə daxil olmaq üçün istifadə edilən paroldan istifadə edin.\n\nParolunuzu unutmusunuz? Onu Supla Cloud-da dəyişə bilərsiniz və ya cihazı zavod parametrlərinə sıfırlaya bilərsiniz.";
-"add_wizard_manual_reconnect_message" = "İnternet bağlantısı uğursuz oldu.\n\nSistem parametrlərinə keçin və internet bağlantısı olan bir Wi-Fi şəbəkəsi seçin. Sonra tətbiqə qayıdın və **İrəli** düyməsini basaraq davam edin.";
 "add_device_manual_popup_title" = "Cihazı əlavə etmək uğursuz oldu";
 "add_device_manual_popup_message" = "Cihazı avtomatik əlavə etmək cəhdi uğursuz oldu. Problem davam edərsə, cihazı əl ilə əlavə etməyi tövsiyə edirik.";
 "add_device_manual_popup_resign" = "Avtomatik rejimdə qalın";

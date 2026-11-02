@@ -38,18 +38,18 @@ extension AddWizardFeature {
             ) {
                 AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.manualModeMessage)
                 VStack(alignment: .leading, spacing: Distance.tiny) {
-                    InstructionStep(
+                    AddWizardFeature.InstructionStep(
                         number: 1,
                         title: Strings.AddWizard.manualModeStep1Title,
                         message: Strings.AddWizard.manualModeStep1Message
                     )
-                    InstructionStep(
+                    AddWizardFeature.InstructionStep(
                         number: 2,
                         title: Strings.AddWizard.manualModeStep2Title,
                         message: Strings.AddWizard.manualModeStep2Message,
                         exampleNetwork: Strings.AddWizard.manualModeExampleNetwork
                     )
-                    InstructionStep(
+                    AddWizardFeature.InstructionStep(
                         number: 3,
                         title: Strings.AddWizard.manualModeStep3Title,
                         message: Strings.AddWizard.manualModeStep3Message
@@ -67,49 +67,6 @@ extension AddWizardFeature {
                 }
             }
         }
-    }
-}
-
-private struct InstructionStep: SwiftUI.View {
-    let number: Int
-    let title: String
-    let message: String
-    var exampleNetwork: String? = nil
-
-    var body: some SwiftUI.View {
-        HStack(alignment: .top, spacing: Distance.tiny) {
-            AddWizardFeature.AddWizardStepNumber(number: number)
-
-            VStack(alignment: .leading, spacing: Distance.tiny) {
-                Text(title)
-                    .fontLabelMedium()
-                Text(.init(message))
-                    .fontBodyMedium()
-
-                if let exampleNetwork {
-                    AddWizardFeature.AddWizardWifiNotice(
-                        padding: EdgeInsets(top: 4, leading: Distance.tiny, bottom: 4, trailing: Distance.tiny)
-                    ) {
-                        HStack(spacing: Distance.tiny) {
-                            Image(String.Icons.wifi)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: Dimens.iconSizeSmall, height: Dimens.iconSizeSmall)
-
-                            Text(exampleNetwork)
-                                .fontBodyMedium()
-
-                            Spacer(minLength: 0)
-                        }
-                    }
-                }
-            }
-            .padding(.top, Distance.tiny)
-            .textColor(.Supla.onPrimaryContainer)
-            .multilineTextAlignment(.leading)
-            .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .accessibilityElement(children: .combine)
     }
 }
 

@@ -41,14 +41,8 @@ extension AddWizardFeature {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: Dimens.iconSizeBig, height: Dimens.iconSizeBig)
-
-                        VStack(alignment: .leading, spacing: 0) {
-                            Text(Strings.AddWizard.wifiRequired)
-                                .fontBodyMedium()
-                            Text(Strings.AddWizard.wifiEnableInSettings)
-                                .fontBodyMedium()
-                        }
-
+                        Text(Strings.AddWizard.step1WifiRequired)
+                            .fontBodyMedium()
                         Spacer(minLength: 0)
                     }
                 }

@@ -537,8 +537,7 @@
 "enabling_registration_timeout" = "Timeout for enabling registration has expired!";
 "add_wizard_step_1_welcome" = "Welcome to Add I/O Device Wizard which will help you to add a new device to your system in a few simple steps.";
 "add_wizard_step_1_continue" = "Press **Next** to continue.";
-"add_wizard_wifi_required" = "Wi-Fi is required to add a device.";
-"add_wizard_wifi_enable_in_settings" = "You can enable it in Settings.";
+"add_wizard_step_1_wifi_required" = "Wi-Fi is required to add a device.\nYou can enable it in Settings.";
 "add_wizard_step_2_message" = "Enter Wi-Fi Network name and password to use with new I/O Device";
 "add_wizard_network_name" = "Network name";
 "add_wizard_step_3_message_1" = "Connect your device to the power supply. The device should, by default, operate in configuration mode, indicated by the status LED flashing as follows.";
@@ -557,6 +556,10 @@
 "add_wizard_manual_mode_example_network" = "e.g. SUPLA-A220A63612B1";
 "add_wizard_manual_mode_step_3_title" = "Return to the SUPLA app";
 "add_wizard_manual_mode_step_3_message" = "Once a checkmark ✓ appears next to the network, return here and tap **START**.";
+"add_wizard_manual_reconnect_title" = "Internet connection failed!";
+"add_wizard_manual_reconnect_step_2_title" = "Ensure internet access";
+"add_wizard_manual_reconnect_step_2_message" = "Restore your internet connection using mobile data or a Wi-Fi network.";
+"add_wizard_manual_reconnect_step_3_message" = "When the internet connection is restored, return here and press **Next**.";
 "add_wizard_manual_mode_settings" = "Go to the system settings";
 "add_wizard_location_service_off" = "For the Add Device Wizard to work properly, location services must be enabled on your device. Go to your system settings and make sure it's enabled (Settings -> Privacy & Security -> Location Services).";
 "add_wizard_missing_location" = "The SUPLA app requires location access for the Add Device Wizard to function properly. Allow the SUPLA app to access your location in your system settings.";
@@ -600,7 +603,6 @@
 "add_wizard_password_repeat_label" = "Repeat password";
 "add_wizard_password_enter_title" = "Device Password";
 "add_wizard_password_instruction" = "Please use the password used for local configuration web page access.\n\nForgot your password? You can change it on Supla Cloud or reset the device to factory settings.";
-"add_wizard_manual_reconnect_message" = "Internet connection failed.\n\n Go to system settings and select a Wi-Fi network that has an internet connection. Then return to the app and continue by pressing **Next**.";
 "add_device_manual_popup_title" = "Failed to add device";
 "add_device_manual_popup_message" = "An attempt to add a device automatically failed. If the problem persists, we recommend adding the device manually.";
 "add_device_manual_popup_resign" = "Stay in automatic mode";

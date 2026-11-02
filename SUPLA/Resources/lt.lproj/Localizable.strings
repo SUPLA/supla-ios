@@ -638,6 +638,7 @@
 "enabling_registration_timeout" = "Baigėsi registracijos įjungimo laukimo laikas!";
 "add_wizard_step_1_welcome" = "Sveiki atvykę į įrenginių pridėjimo vedlį, kuris padės Jums lengvai ir greitai pridėti naujus įrenginius prie sistemos.";
 "add_wizard_step_1_continue" = "Norėdami tęsti, paspauskite **Toliau**.";
+"add_wizard_step_1_wifi_required" = "Norint pridėti įrenginį, būtinas „Wi-Fi“ ryšys.\nJį galite įjungti skiltyje „Nustatymai“.";
 "add_wizard_step_2_message" = "Įveskite savo namų ar įmonės Wi-Fi tinklo, kurio pagalba vykdomasis įrenginys galės užmegzti ryšį su serveriu, pavadinimą ir slaptažodį.";
 "add_wizard_network_name" = "Tinklo pavadinimas";
 "add_wizard_step_3_message_1" = "Prijunkite įrenginį prie maitinimo šaltinio. Įrenginys pagal numatytuosius nustatymus turėtų veikti konfigūravimo režimu, kurį rodo šviesos diodo mirksėjimas taip.";
@@ -656,6 +657,10 @@
 "add_wizard_manual_mode_example_network" = "pvz., SUPLA-A220A63612B1";
 "add_wizard_manual_mode_step_3_title" = "Grįžkite į SUPLA programą";
 "add_wizard_manual_mode_step_3_message" = "Kai šalia tinklo pasirodys varnelė ✓, grįžkite čia ir bakstelėkite **STARTAS**.";
+"add_wizard_manual_reconnect_title" = "Nepavyko prisijungti prie interneto!";
+"add_wizard_manual_reconnect_step_2_title" = "Užtikrinkite interneto ryšį";
+"add_wizard_manual_reconnect_step_2_message" = "Atkurkite interneto ryšį naudodami mobiliuosius duomenis arba „Wi-Fi“ tinklą.";
+"add_wizard_manual_reconnect_step_3_message" = "Kai interneto ryšys bus atkurtas, grįžkite čia ir paspauskite **Toliau**.";
 "add_wizard_manual_mode_settings" = "Eikite į iOS sistemos nustatymus";
 "add_wizard_location_service_off" = "Kad įrenginio pridėjimo vediklis veiktų tinkamai, jūsų įrenginyje turi būti įjungtos vietos nustatymo paslaugos. Eikite į sistemos nustatymus ir įsitikinkite, kad jos įjungtos (Nustatymai -> Privatumas ir sauga -> Vietos nustatymo paslaugos).";
 "add_wizard_missing_location" = "Kad įrenginio pridėjimo vediklis veiktų tinkamai, SUPLA programėlei reikalingas vietos nustatymo priėjimas. Leiskite SUPLA programėlei pasiekti jūsų vietą sistemos nustatymuose.";
@@ -697,7 +702,6 @@
 "add_wizard_password_repeat_label" = "Pakartoti slaptažodį";
 "add_wizard_password_enter_title" = "Įrenginio slaptažodis";
 "add_wizard_password_instruction" = "Prašome naudoti slaptažodį, kuris buvo naudojamas vietinės konfigūracijos tinklalapio prieigai.\n\nPamiršote slaptažodį? Galite jį pakeisti Supla Cloud sistemoje arba atkurti gamyklinius įrenginio nustatymus.";
-"add_wizard_manual_reconnect_message" = "Nepavyko prisijungti prie interneto.\n\nEikite į sistemos nustatymus ir pasirinkite „Wi-Fi“ tinklą, kuris turi interneto ryšį. Tada grįžkite į programėlę ir tęskite paspausdami **Toliau**.";
 "add_device_manual_popup_title" = "Nepavyko pridėti įrenginio";
 "add_device_manual_popup_message" = "Bandymas automatiškai pridėti įrenginį nepavyko. Jei problema kartojasi, rekomenduojame įrenginį pridėti rankiniu būdu.";
 "add_device_manual_popup_resign" = "Likti automatiniame režime";

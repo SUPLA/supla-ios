@@ -636,6 +636,7 @@
 "enabling_registration_timeout" = "Vypršel časový limit při čekání na zapnutí registrace!";
 "add_wizard_step_1_welcome" = "Vítejte v Průvodci přidáním zařízení, který vám pomůže rychle a snadno přidat nové zařízení do vašeho systému.";
 "add_wizard_step_1_continue" = "Chcete-li pokračovat, stiskněte tlačítko **Další**.";
+"add_wizard_step_1_wifi_required" = "Pro přidání zařízení je vyžadováno Wi-Fi.\nMůžete ho zapnout v Nastavení.";
 "add_wizard_step_2_message" = "Zadejte jméno a heslo vaší domácí nebo firemní sítě Wi-Fi, pomocí kterého se bude možné připojit k serveru.";
 "add_wizard_network_name" = "Název sítě";
 "add_wizard_step_3_message_1" = "Připojte zařízení k napájení. Zařízení by mělo ve výchozím nastavení fungovat v konfiguračním režimu, indikovaném blikáním stavové LED diody následovně.";
@@ -654,6 +655,10 @@
 "add_wizard_manual_mode_example_network" = "např. SUPLA-A220A63612B1";
 "add_wizard_manual_mode_step_3_title" = "Vraťte se do aplikace SUPLA";
 "add_wizard_manual_mode_step_3_message" = "Jakmile se vedle sítě objeví značka ✓, vraťte se sem a klepněte na **START**.";
+"add_wizard_manual_reconnect_title" = "Připojení k internetu se nezdařilo!";
+"add_wizard_manual_reconnect_step_2_title" = "Zajistěte připojení k internetu";
+"add_wizard_manual_reconnect_step_2_message" = "Obnovte připojení k internetu pomocí mobilních dat nebo sítě Wi-Fi.";
+"add_wizard_manual_reconnect_step_3_message" = "Až se připojení k internetu obnoví, vraťte se sem a stiskněte **Další**.";
 "add_wizard_manual_mode_settings" = "Přejděte do nastavení systému";
 "add_wizard_location_service_off" = "Aby Průvodce přidáním zařízení správně fungoval, musí být na vašem zařízení povoleny služby určování polohy. Přejděte do nastavení systému a ujistěte se, že jsou povoleny (Nastavení -> Soukromí a zabezpečení -> Služby určování polohy).";
 "add_wizard_missing_location" = "Aplikace SUPLA vyžaduje přístup k poloze, aby Průvodce přidáním zařízení správně fungoval. Povolte aplikaci SUPLA přístup k vaší poloze v nastavení systému.";
@@ -695,7 +700,6 @@
 "add_wizard_password_repeat_label" = "Zopakujte heslo";
 "add_wizard_password_enter_title" = "Heslo zařízení";
 "add_wizard_password_instruction" = "Použijte heslo, které bylo použito pro přístup k webové stránce místní konfigurace.\n\nZapomněli jste heslo? Můžete ho změnit na Supla Cloud nebo resetovat zařízení na tovární nastavení.";
-"add_wizard_manual_reconnect_message" = "Připojení k internetu se nezdařilo.\n\nPřejděte do nastavení systému a vyberte síť Wi-Fi, která má připojení k internetu. Poté se vraťte do aplikace a pokračujte stisknutím **Další**.";
 "add_device_manual_popup_title" = "Nepodařilo se přidat zařízení";
 "add_device_manual_popup_message" = "Pokus o automatické přidání zařízení se nezdařil. Pokud problém přetrvává, doporučujeme zařízení přidat ručně.";
 "add_device_manual_popup_resign" = "Zůstat v automatickém režimu";

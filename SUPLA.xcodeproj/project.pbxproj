@@ -539,7 +539,6 @@
 		A54E2AF82E44D4A7003F2926 /* View+onSubmit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2AF72E44D49A003F2926 /* View+onSubmit.swift */; };
 		A54E2AFB2E45E657003F2926 /* ProgressInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2AFA2E45E64F003F2926 /* ProgressInformationView.swift */; };
 		A54E2AFD2E4612AE003F2926 /* AddWizardManualReconnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2AFC2E4612A5003F2926 /* AddWizardManualReconnect.swift */; };
-		A54E2AFF2E4615FF003F2926 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E2AFE2E4615FB003F2926 /* SettingsButton.swift */; };
 		A54E7E8C2DE09BC6002FB0DE /* UIApplication+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54E7E8B2DE09BBD002FB0DE /* UIApplication+Ext.swift */; };
 		A550F2822D520F760011463B /* HistoryMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550F2812D520F6C0011463B /* HistoryMeasurement.swift */; };
 		A550F2852D5211B30011463B /* CurrentMeasurementItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A550F2842D5211A90011463B /* CurrentMeasurementItemRepository.swift */; };
@@ -580,6 +579,7 @@
 		A5552EE42D54FF8A00A3F6A2 /* SACurrentMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552EE32D54FF8500A3F6A2 /* SACurrentMeasurementItem+Ext.swift */; };
 		A5552EE62D55020600A3F6A2 /* PowerActiveMeasurementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552EE52D55020000A3F6A2 /* PowerActiveMeasurementsProvider.swift */; };
 		A5552EE82D5502A400A3F6A2 /* SAPowerActiveMeasurementItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5552EE72D5502A100A3F6A2 /* SAPowerActiveMeasurementItem+Ext.swift */; };
+		A556256430986D3000032CCB /* InstructionStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A556256330986D2A00032CCB /* InstructionStep.swift */; };
 		A558E6BF2FD03CB600FE599E /* RgbAndDimmerDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A558E6BE2FD03CAE00FE599E /* RgbAndDimmerDetailVM.swift */; };
 		A55A8D752BA84D5400C540D4 /* RollerShutterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D742BA84D5400C540D4 /* RollerShutterVM.swift */; };
 		A55A8D772BA84DCE00C540D4 /* RollerShutterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D762BA84DCE00C540D4 /* RollerShutterVC.swift */; };
@@ -2421,7 +2421,6 @@
 		A54E2AF72E44D49A003F2926 /* View+onSubmit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+onSubmit.swift"; sourceTree = "<group>"; };
 		A54E2AFA2E45E64F003F2926 /* ProgressInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressInformationView.swift; sourceTree = "<group>"; };
 		A54E2AFC2E4612A5003F2926 /* AddWizardManualReconnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWizardManualReconnect.swift; sourceTree = "<group>"; };
-		A54E2AFE2E4615FB003F2926 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		A54E7E8B2DE09BBD002FB0DE /* UIApplication+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Ext.swift"; sourceTree = "<group>"; };
 		A54EFE482F449FD5001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
 		A54EFE492F449FE4001C9BA8 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Resources/hu.lproj/SAZWaveConfigurationWizardVC.strings; sourceTree = "<group>"; };
@@ -2471,6 +2470,7 @@
 		A5552EE32D54FF8500A3F6A2 /* SACurrentMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SACurrentMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
 		A5552EE52D55020000A3F6A2 /* PowerActiveMeasurementsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerActiveMeasurementsProvider.swift; sourceTree = "<group>"; };
 		A5552EE72D5502A100A3F6A2 /* SAPowerActiveMeasurementItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAPowerActiveMeasurementItem+Ext.swift"; sourceTree = "<group>"; };
+		A556256330986D2A00032CCB /* InstructionStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionStep.swift; sourceTree = "<group>"; };
 		A558E6BE2FD03CAE00FE599E /* RgbAndDimmerDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgbAndDimmerDetailVM.swift; sourceTree = "<group>"; };
 		A55A8D742BA84D5400C540D4 /* RollerShutterVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerShutterVM.swift; sourceTree = "<group>"; };
 		A55A8D762BA84DCE00C540D4 /* RollerShutterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerShutterVC.swift; sourceTree = "<group>"; };
@@ -5216,7 +5216,7 @@
 		A54E2AF92E45E582003F2926 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				A54E2AFE2E4615FB003F2926 /* SettingsButton.swift */,
+				A556256330986D2A00032CCB /* InstructionStep.swift */,
 				A54E2AFA2E45E64F003F2926 /* ProgressInformationView.swift */,
 			);
 			path = Components;
@@ -8663,6 +8663,7 @@
 				A58316F82B644F75006113F8 /* IntValueParser.swift in Sources */,
 				A57668F52AEAA8410025509D /* TemperatureChartState.swift in Sources */,
 				A5B3CBF32B625DE900F95AC3 /* RainValueProvider.swift in Sources */,
+				A556256430986D3000032CCB /* InstructionStep.swift in Sources */,
 				40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */,
 				A522DB3A2D0B09E600163BA2 /* GetChannelBatteryIconUseCase.swift in Sources */,
 				A563642F2EE1935C00A702C0 /* DimmerDetailFeature.swift in Sources */,
@@ -8774,7 +8775,6 @@
 				A55A8D842BAAD06C00C540D4 /* UpDownControllButton.swift in Sources */,
 				A57668E32AEA4E450025509D /* Date+Ext.swift in Sources */,
 				A5E0DF862CECA1D500362451 /* CounterPhotoFeature.swift in Sources */,
-				A54E2AFF2E4615FF003F2926 /* SettingsButton.swift in Sources */,
 				A5E2000E2F7000000020000E /* CredentialsFeature.swift in Sources */,
 				A5E2000F2F7000000020000F /* CredentialsViewState.swift in Sources */,
 				A5E200102F70000000200010 /* CredentialsView.swift in Sources */,
