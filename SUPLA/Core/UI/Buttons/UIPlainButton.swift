@@ -64,7 +64,7 @@ class UIPlainButton: UIButton {
         translatesAutoresizingMaskIntoConstraints = false
         contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         setTitleColor(getTextColor(), for: .normal)
-        titleLabel?.font = .button
+        titleLabel?.font = .labelLarge
         setupIconPosition()
     }
     

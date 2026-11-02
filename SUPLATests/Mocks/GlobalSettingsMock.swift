@@ -48,20 +48,6 @@ class GlobalSettingsMock: GlobalSettings {
         set { anyAccountRegisteredValues.append(newValue) }
     }
     
-    var newGestureInfoShownReturns: Bool = false
-    var newGestureInfoShownValues: [Bool] = []
-    var newGestureInfoShown: Bool {
-        get { newGestureInfoShownReturns }
-        set { newGestureInfoShownValues.append(newValue) }
-    }
-    
-    var shouldShowNewGestureInfoReturns: Bool = false
-    var shouldShowNewGestureInfoValues: [Bool] = []
-    var shouldShowNewGestureInfo: Bool {
-        get { shouldShowNewGestureInfoReturns }
-        set { shouldShowNewGestureInfoValues.append(newValue) }
-    }
-    
     var shouldShowThermostatScheduleInfoReturns: Bool = false
     var shouldShowThermostatScheduleInfoValues: [Bool] = []
     var shouldShowThermostatScheduleInfo: Bool {
@@ -189,6 +175,16 @@ class GlobalSettingsMock: GlobalSettings {
     var screenRotationEnabled: Bool {
         get { false }
         set { }
+    }
+
+    var rateAppConfigTimeReturns: Int = 0
+    var rateAppConfigTimeValues: [Int] = []
+    var rateAppConfigTime: Int {
+        get { rateAppConfigTimeReturns }
+        set {
+            rateAppConfigTimeReturns = newValue
+            rateAppConfigTimeValues.append(newValue)
+        }
     }
     
     var firstNfcScan: Bool {

@@ -27,17 +27,13 @@ extension GetChannelBaseIconUseCase {
     func invoke(
         channel: SAChannelBase,
         type: IconType = .single,
-        subfunction: ThermostatSubfunction? = nil
     ) -> IconResult {
-        return invoke(iconData: channel.getIconData(type: type, subfunction: subfunction))
+        return invoke(iconData: channel.getIconData(type: type))
     }
 
     func stateIcon(_ channelBase: SAChannelBase, state: ChannelState) -> IconResult {
         if let channel = channelBase as? SAChannel {
-            let subfunction = channel.isHvacThermostat().ifTrue { channel.value?.asThermostatValue().subfunction }
-            let iconData = channel.getIconData(state: state, subfunction: subfunction)
-
-            return invoke(iconData: iconData)
+            return invoke(iconData: channel.getIconData(state: state))
         }
 
         if let group = channelBase as? SAChannelGroup {

@@ -24,7 +24,7 @@ final class EditTextCell: BaseSettingsCell<SATextField> {
         let leftLabel = UILabel()
         leftLabel.text = "<"
         leftLabel.textColor = .gray
-        leftLabel.font = .body2
+        leftLabel.font = .bodyMedium
         leftLabel.textAlignment = .right
         leftLabel.translatesAutoresizingMaskIntoConstraints = false
         leftLabel.widthAnchor.constraint(equalToConstant: 25).isActive = true
@@ -32,7 +32,7 @@ final class EditTextCell: BaseSettingsCell<SATextField> {
         let rightLabel = UILabel()
         rightLabel.text = "%"
         rightLabel.textColor = .gray
-        rightLabel.font = .body2
+        rightLabel.font = .bodyMedium
         rightLabel.textAlignment = .left
         rightLabel.translatesAutoresizingMaskIntoConstraints = false
         rightLabel.widthAnchor.constraint(equalToConstant: 25).isActive = true

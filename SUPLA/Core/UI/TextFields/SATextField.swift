@@ -41,7 +41,7 @@ final class SATextField: UITextField {
         
         rightViewMode = .always
         leftViewMode = .always
-        font = .body1
+        font = .bodyLarge
         layer.borderWidth = 1
         layer.borderColor = UIColor.grayLighter.cgColor
         layer.cornerRadius = Dimens.radiusDefault

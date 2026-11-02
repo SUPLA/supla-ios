@@ -35,7 +35,9 @@ protocol ChannelRepository: RepositoryProtocol, CaptionChangeUseCaseImpl.Updater
     func getAllIcons(for profile: AuthProfileItem) -> Observable<[UserIconData]>
     func getHiddenChannelsSync() -> [SAChannel]
     func findMaxPositionInLocation(_ locationId: Int32) -> Observable<Int32>
+    func updatePositions(locationIds: [Int32], orderedRemoteIds: [Int32]) -> Observable<Void>
     func findChannelsBy(_ profileId: Int32, function: SuplaFunction) async -> [SAChannel]
+    func findZWaveChannelAvailable() async -> Bool
 }
 
 extension ChannelRepository {
@@ -49,6 +51,21 @@ extension ChannelRepository {
 }
 
 class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
+    func updatePositions(locationIds: [Int32], orderedRemoteIds: [Int32]) -> Observable<Void> {
+        let request = SAChannel.fetchRequest()
+            .filtered(by: NSPredicate(format: "profile.isActive = 1 AND location.location_id IN %@", locationIds))
+            .ordered(by: "remote_id")
+
+        return query(request)
+            .flatMapFirst { channels in
+                let positions = orderedRemoteIds.enumerated().reduce(into: [Int32: Int32]()) { result, entry in
+                    result[entry.element] = Int32(entry.offset)
+                }
+                channels.forEach { $0.position = positions[$0.remote_id] ?? 0 }
+                return self.save()
+            }
+    }
+
     func getAllVisibleChannels(forProfile profile: AuthProfileItem, withUnavailable: Bool) -> Observable<[SAChannel]> {
         getAllVisibleChannels(forProfileId: profile.id, withUnavailable: withUnavailable)
     }
@@ -205,6 +222,25 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
                 let errorString = String(describing: error)
                 SALog.error("Could not fetch channels: \(errorString)")
                 return []
+            }
+        }
+    }
+    
+    func findZWaveChannelAvailable() async -> Bool {
+        let context = context
+        
+        return await context.perform {
+            let request = SAChannel.fetchRequest()
+                .filtered(by: NSPredicate(format: "visible > 0 AND type = %i AND (flags & %i) > 0 AND profile.isActive = 1", SUPLA_CHANNELTYPE_BRIDGE, SUPLA_CHANNEL_FLAG_ZWAVE_BRIDGE))
+                
+            request.fetchLimit = 1
+            
+            do {
+                return try context.fetch(request).count == 1
+            } catch {
+                let errorString = String(describing: error)
+                SALog.error("Could not fetch channels: \(errorString)")
+                return false
             }
         }
     }

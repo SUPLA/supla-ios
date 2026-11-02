@@ -19,7 +19,7 @@
 import RxSwift
 
 extension NotificationsLogFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
         @Singleton<NotificationRepository> private var notificationRepository
         @Singleton<ApplicationEventsManager> private var applicationEventsManager
         
@@ -30,11 +30,7 @@ extension NotificationsLogFeature {
             super.init(state: ViewState())
         }
         
-        override func onViewDidLoad() {
-            Task {
-                await reloadList(force: true)
-            }
-            
+        override func onViewCreated() {
             applicationEventsManager.observe(event: .newNotification)
                 .asDriverWithoutError()
                 .drive(
@@ -45,6 +41,12 @@ extension NotificationsLogFeature {
                 .disposed(by: disposeBag)
         }
         
+        override func onViewAppear() {
+            Task {
+                await reloadList(force: true)
+            }
+        }
+
         func delete(notification: NotificationDto) {
             Task {
                 await self.notificationRepository.delete(notification)
@@ -68,7 +70,7 @@ extension NotificationsLogFeature {
             }
         }
         
-        @objc func showDeleteDialog() {
+        func showDeleteDialog() {
             state.showDeleteDialog = true
         }
         

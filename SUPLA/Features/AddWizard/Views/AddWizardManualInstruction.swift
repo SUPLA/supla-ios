@@ -26,7 +26,6 @@ extension AddWizardFeature {
         let onCancel: () -> Void
         let onBack: () -> Void
         let onNext: () -> Void
-        let onSettings: () -> Void
 
         var body: some SwiftUI.View {
             AddWizardFeature.AddWizardScaffold(
@@ -38,6 +37,26 @@ extension AddWizardFeature {
                 processing: processing
             ) {
                 AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.manualModeMessage)
+                VStack(alignment: .leading, spacing: Distance.tiny) {
+                    AddWizardFeature.InstructionStep(
+                        number: 1,
+                        title: Strings.AddWizard.manualModeStep1Title,
+                        message: Strings.AddWizard.manualModeStep1Message
+                    )
+                    AddWizardFeature.InstructionStep(
+                        number: 2,
+                        title: Strings.AddWizard.manualModeStep2Title,
+                        message: Strings.AddWizard.manualModeStep2Message,
+                        exampleNetwork: Strings.AddWizard.manualModeExampleNetwork
+                    )
+                    AddWizardFeature.InstructionStep(
+                        number: 3,
+                        title: Strings.AddWizard.manualModeStep3Title,
+                        message: Strings.AddWizard.manualModeStep3Message
+                    )
+                }
+                .padding(.horizontal, Distance.default)
+                .padding(.top, Distance.small)
                 
                 if (processing) {
                     AddWizardFeature.ProgressInformationView(
@@ -46,12 +65,6 @@ extension AddWizardFeature {
                     )
                     .padding([.top, .bottom], Distance.default)
                 }
-
-                AddWizardFeature.SettingsButton(action: {
-                    if (!processing) {
-                        onSettings()
-                    }
-                })
             }
         }
     }
@@ -65,8 +78,7 @@ extension AddWizardFeature {
             progressLabel: nil,
             onCancel: {},
             onBack: {},
-            onNext: {},
-            onSettings: {}
+            onNext: {}
         )
     }
 }
@@ -79,8 +91,7 @@ extension AddWizardFeature {
             progressLabel: Strings.AddWizard.statePreparing,
             onCancel: {},
             onBack: {},
-            onNext: {},
-            onSettings: {}
+            onNext: {}
         )
     }
 }

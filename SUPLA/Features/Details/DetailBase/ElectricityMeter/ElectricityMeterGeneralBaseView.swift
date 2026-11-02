@@ -451,7 +451,7 @@ private struct SinglePhaseDataValuesView: View {
         self.onItemSelected = onItemSelected
         self.selectedType = selectedType
         
-        let attributes = [NSAttributedString.Key.font: UIFont.body2]
+        let attributes = [NSAttributedString.Key.font: UIFont.bodyMedium]
         self.valueMaxWidth = measurements.map { $0.value ?? "" }.reduce(0.0) { result, item in
             let size = item.size(withAttributes: attributes).width
             return size > result ? size : result

@@ -19,42 +19,92 @@
 import Foundation
 import RxSwift
 
-protocol CreateProfileScenesListUseCase {
-    func invoke() -> Observable<[List]>
+struct CreateProfileScenesList {
+    protocol UseCase {
+        func invoke(filter: String?) -> Observable<[MainListItem]>
+    }
+
+    final class Implementation: UseCase {
+        @Singleton<SceneRepository> private var sceneRepository
+        @Singleton<ProfileRepository> private var profileRepository
+        @Singleton<SceneToMainListItem.UseCase> private var sceneToMainListItemUseCase
+
+        func invoke(filter: String?) -> Observable<[MainListItem]> {
+            return profileRepository
+                .getActiveProfile()
+                .flatMapFirst { self.sceneRepository.getAllVisibleScenes(forProfile: $0) }
+                .map { self.toList($0, filter: filter) }
+        }
+
+        private func toList(_ scenes: [SAScene], filter: String?) -> [MainListItem] {
+            guard !scenes.isEmpty else {
+                return []
+            }
+
+            var items = [MainListItem]()
+            let inSearch = MainListFilter.isSearchable(filter)
+
+            for section in scenes.toLocationSections(
+                locationOf: { $0.location },
+                positionOf: { $0.sortOrder }
+            ) {
+                let visibleScenes = section.items.compactMap { scene -> MainListItem? in
+                    guard
+                        let location = scene.location,
+                        let item = sceneToMainListItemUseCase.invoke(scene)
+                    else {
+                        return nil
+                    }
+
+                    if inSearch && !itemMatches(item, location: location, filter: filter) {
+                        return nil
+                    }
+
+                    return item
+                }
+
+                guard
+                    !visibleScenes.isEmpty,
+                    let location = section.items
+                        .compactMap(\.location)
+                        .min(by: { ($0.sortOrder?.int32Value ?? 0) < ($1.sortOrder?.int32Value ?? 0) })
+                else {
+                    continue
+                }
+
+                items.append(location.sceneListItem(inSearch: inSearch))
+                if inSearch || !location.isCollapsed(flag: .scene) {
+                    items.append(contentsOf: visibleScenes)
+                }
+            }
+
+            return items
+        }
+
+        private func itemMatches(_ item: MainListItem, location: _SALocation, filter: String?) -> Bool {
+            guard let filter else { return true }
+
+            return MainListFilter.matches(item, filter: filter)
+                || MainListFilter.matches(location.caption, filter: filter)
+        }
+    }
 }
 
-final class CreateProfileScenesListUseCaseImpl: CreateProfileScenesListUseCase {
-    
-    @Singleton<SceneRepository> private var sceneRepository
-    @Singleton<ProfileRepository> private var profileRepository
-    
-    func invoke() -> Observable<[List]> {
-        return profileRepository
-            .getActiveProfile()
-            .flatMapFirst { self.sceneRepository.getAllVisibleScenes(forProfile: $0) }
-            .map { self.toList($0) }
+extension CreateProfileScenesList.UseCase {
+    func invoke() -> Observable<[MainListItem]> {
+        invoke(filter: nil)
     }
-    
-    private func toList(_ scenes: [SAScene]) -> [List] {
-        if (scenes.isEmpty) {
-            return [.list(items: [])]
-        }
-        
-        var lastLocation: _SALocation = scenes[0].location!
-        var items = [ListItem]()
-        items.append(.location(location: lastLocation))
-        
-        for scene in scenes {
-            if (lastLocation.caption != scene.location!.caption) {
-                items.append(.location(location: scene.location!))
-                lastLocation = scene.location!
-            }
-            
-            if (!lastLocation.isCollapsed(flag: .scene)) {
-                items.append(.scene(scene: scene))
-            }
-        }
-        
-        return [.list(items: items)]
+}
+
+private extension _SALocation {
+    func sceneListItem(inSearch: Bool) -> MainListItem {
+        .location(
+            LocationListItem(
+                remoteId: location_id?.int32Value ?? 0,
+                profileId: profile.id,
+                userCaption: caption ?? "",
+                collapsed: inSearch ? false : isCollapsed(flag: .scene)
+            )
+        )
     }
 }

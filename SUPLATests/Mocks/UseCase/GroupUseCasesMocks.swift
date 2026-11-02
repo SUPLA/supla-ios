@@ -20,30 +20,36 @@ import RxSwift
 
 @testable import SUPLA
 
-final class CreateProfileGroupsListUseCaseMock: CreateProfileGroupsListUseCase {
-    
-    var observable: Observable<[List]> = Observable.empty()
-    var invokeCounter = 0
-    
-    func invoke() -> Observable<[List]> {
-        invokeCounter += 1
-        return observable
+extension CreateProfileGroupsList {
+    final class Mock: CreateProfileGroupsList.UseCase {
+        var invokeMock: FunctionMock<String?, Observable<[MainListItem]>> = .init()
+
+        func invoke(filter: String?) -> Observable<[MainListItem]> {
+            invokeMock.handle(filter)
+        }
+    }
+}
+
+extension GroupToMainListItem {
+    final class Mock: GroupToMainListItem.UseCase {
+        var invokeMock: FunctionMock<SAChannelGroup, MainListItem?> = .init()
+        var invokeWithLocationMock: FunctionMock<(SAChannelGroup, _SALocation), MainListItem> = .init()
+
+        func invoke(_ group: SAChannelGroup) -> MainListItem? {
+            invokeMock.handle(group)
+        }
+
+        func invoke(_ group: SAChannelGroup, location: _SALocation) -> MainListItem {
+            invokeWithLocationMock.handle((group, location))
+        }
     }
 }
 
 final class SwapGroupPositionsUseCaseMock: SwapGroupPositionsUseCase {
-    
-    var observable: Observable<Void> = Observable.empty()
-    var firstRemoteIdArray: [Int32] = []
-    var secondRemoteIdArray: [Int32] = []
-    var locationCaptionArray: [String] = []
-    
-    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationCaption: String) -> Observable<Void> {
-        firstRemoteIdArray.append(firstRemoteId)
-        secondRemoteIdArray.append(secondRemoteId)
-        locationCaptionArray.append(locationCaption)
-        
-        return observable
+    var invokeMock: FunctionMock<([MainListItem], Int32), Observable<Void>> = .init()
+
+    func invoke(items: [MainListItem], movedItemId: Int32) -> Observable<Void> {
+        invokeMock.handle((items, movedItemId))
     }
 }
 

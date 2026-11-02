@@ -39,7 +39,7 @@ import DGCharts
     private lazy var subtext: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .caption
+        label.font = .bodySmall
         label.textColor = .onBackground
         return label
     }()
@@ -47,7 +47,7 @@ import DGCharts
     private lazy var firstRowTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.StaticSize.caption
+        label.font = UIFont.StaticSize.labelSmall
         label.textColor = .onBackground
         return label
     }()
@@ -55,7 +55,7 @@ import DGCharts
     private lazy var firstRowValue: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.StaticSize.caption
+        label.font = UIFont.StaticSize.labelSmall
         label.textColor = .onBackground
         label.textAlignment = .right
         return label
@@ -64,7 +64,7 @@ import DGCharts
     private lazy var secondRowTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.StaticSize.caption
+        label.font = UIFont.StaticSize.labelSmall
         label.textColor = .onBackground
         return label
     }()
@@ -72,7 +72,7 @@ import DGCharts
     private lazy var secondRowValue: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.StaticSize.caption
+        label.font = UIFont.StaticSize.labelSmall
         label.textColor = .onBackground
         label.textAlignment = .right
         return label

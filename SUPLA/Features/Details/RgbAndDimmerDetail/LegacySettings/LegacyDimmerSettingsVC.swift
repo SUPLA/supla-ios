@@ -89,10 +89,14 @@ class LegacyDimmerSettingsVC: SuplaCore.NavigableBaseViewController {
         super.viewWillDisappear(animated)
         detailView?.detailWillHide()
     }
+
+    func handleBack() {
+        onBack()
+    }
     
     @objc private func onAppDidEnterBackground(_ notification: Notification) {
         // Hide detail view, when application loses foreground context
-        navigationController?.popViewController(animated: false)
+        AppRouterLegacyWrapper.finish()
     }
     
     @objc private func onBack() {

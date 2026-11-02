@@ -41,6 +41,10 @@ extension SAChannelState {
             NSNumber(value: state.BatteryLevel)
         }
         
+        batteryState = state.hasField(SUPLA_CHANNELSTATE_FIELD_BATTERY_STATE).ifTrue {
+            NSNumber(value: state.BatteryState)
+        }
+
         batteryPowered = state.hasField(SUPLA_CHANNELSTATE_FIELD_BATTERYPOWERED).ifTrue {
             NSNumber(booleanLiteral: state.BatteryPowered > 0)
         }

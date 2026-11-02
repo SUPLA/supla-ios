@@ -16,21 +16,91 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import Combine
+import SwiftUI
+
+extension AppRoot {
+    var statusBarStyle: UIStatusBarStyle {
+        switch self {
+        case .status, .unlockApp:
+            .darkContent
+        case .main:
+            .lightContent
+        }
+    }
+}
+
+private final class StatusBarHostingController<Content: View>: UIHostingController<Content> {
+    private let appRouter: AppRouter
+    private var cancellable: AnyCancellable?
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        appRouter.root.statusBarStyle
+    }
+
+    override var childForStatusBarStyle: UIViewController? {
+        nil
+    }
+
+    init(rootView: Content, appRouter: AppRouter) {
+        self.appRouter = appRouter
+        super.init(rootView: rootView)
+        cancellable = appRouter.$root
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.setNeedsStatusBarAppearanceUpdate()
+            }
+    }
+
+    @available(*, unavailable)
+    @MainActor dynamic required init?(coder aDecoder: NSCoder) {
+        nil
+    }
+}
 
 private let BACKGROUND_UNLOCKED_TIME_DEBUG_S: Double = 10
 private let BACKGROUND_UNLOCKED_TIME_S: Double = 120
 
+struct BackgroundDisconnectState {
+    private(set) var isInProgress = false
+    private var pendingActivationEvent: SuplaAppEvent?
+
+    mutating func start() -> Bool {
+        pendingActivationEvent = nil
+
+        guard !isInProgress else { return false }
+
+        isInProgress = true
+        return true
+    }
+
+    mutating func handleActivation(_ event: SuplaAppEvent) -> SuplaAppEvent? {
+        guard isInProgress else { return event }
+
+        pendingActivationEvent = event
+        return nil
+    }
+
+    mutating func finish() -> SuplaAppEvent? {
+        isInProgress = false
+        defer { pendingActivationEvent = nil }
+        return pendingActivationEvent
+    }
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @Singleton private var settings: GlobalSettings
     @Singleton private var dateProvider: DateProvider
-    @Singleton private var coordinator: SuplaAppCoordinator
     @Singleton private var disconnectUseCase: DisconnectUseCase
     @Singleton private var suplaAppStateHolder: SuplaAppStateHolder
+    @Singleton private var appRouter: AppRouter
+    @Singleton private var authorizationCoordinator: AuthorizationCoordinator
 
     var window: UIWindow?
 
     private var wasInBackground = true
+    private var backgroundDisconnectState = BackgroundDisconnectState()
+    private var backgroundTask = UIBackgroundTaskIdentifier.invalid
     private var backgroundUnlockedTime: Double {
         #if DEBUG
         BACKGROUND_UNLOCKED_TIME_DEBUG_S
@@ -49,18 +119,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         #endif
 
-        window = UIWindow(windowScene: windowScene)
-        if let window {
-            window.overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
-            coordinator.attachToWindow(window)
-            coordinator.start(animated: true)
-        }
+        let rootView = AppRootView()
+            .environmentObject(appRouter)
+            .environmentObject(authorizationCoordinator as! AuthorizationCoordinatorImpl)
+
+        let hostingController = StatusBarHostingController(rootView: rootView, appRouter: appRouter)
+        let window = UIWindow(windowScene: windowScene)
+        window.overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
+        window.rootViewController = hostingController
+        window.makeKeyAndVisible()
+        self.window = window
+        appRouter.start()
 
         if let userActivities = connectionOptions.userActivities.first,
            userActivities.activityType == NSUserActivityTypeBrowsingWeb,
            let url = userActivities.webpageURL
         {
-            coordinator.navigateToCallNfcAction(url: url)
+            handleDeepLink(url)
         }
     }
 
@@ -70,7 +145,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         else {
             return
         }
-        coordinator.navigateToCallNfcAction(url: url)
+        handleDeepLink(url)
+    }
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else { return }
+        handleDeepLink(url)
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -81,22 +161,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         #endif
-        
+
         let isPreview = ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
         if (isPreview) {
             return
         }
 
+        let activationEvent: SuplaAppEvent
         if wasInBackground && settings.lockScreenSettings.pinForAppRequired,
            let backgroundEntryTime = settings.backgroundEntryTime,
            dateProvider.currentTimestamp() - backgroundEntryTime > backgroundUnlockedTime
         {
-            suplaAppStateHolder.handle(event: .lock)
+            activationEvent = .lock
         } else {
-            suplaAppStateHolder.handle(event: .onStart)
+            activationEvent = .onStart
         }
 
         wasInBackground = false
+
+        if let event = backgroundDisconnectState.handleActivation(activationEvent) {
+            suplaAppStateHolder.handle(event: event)
+        }
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
@@ -105,11 +190,48 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if (isPreview) {
             return
         }
-        
+
         wasInBackground = true
 
         settings.backgroundEntryTime = dateProvider.currentTimestamp()
 
-        disconnectUseCase.invokeSynchronous(reason: .appInBackground)
+        disconnectInBackground(reason: .appInBackground)
+    }
+
+    private func disconnectInBackground(reason: SuplaAppState.Reason) {
+        guard backgroundDisconnectState.start() else { return }
+
+        backgroundTask = UIApplication.shared.beginBackgroundTask(withName: "Disconnect") { [weak self] in
+            self?.endBackgroundTask()
+        }
+
+        let disconnectUseCase = disconnectUseCase
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            disconnectUseCase.invokeSynchronous(reason: reason)
+
+            DispatchQueue.main.async {
+                self?.backgroundDisconnectDidFinish()
+            }
+        }
+    }
+
+    private func backgroundDisconnectDidFinish() {
+        let activationEvent = backgroundDisconnectState.finish()
+        endBackgroundTask()
+
+        if let activationEvent {
+            suplaAppStateHolder.handle(event: activationEvent)
+        }
+    }
+
+    private func endBackgroundTask() {
+        guard backgroundTask != .invalid else { return }
+
+        UIApplication.shared.endBackgroundTask(backgroundTask)
+        backgroundTask = .invalid
+    }
+
+    private func handleDeepLink(_ url: URL) {
+        appRouter.handleDeepLink(url)
     }
 }

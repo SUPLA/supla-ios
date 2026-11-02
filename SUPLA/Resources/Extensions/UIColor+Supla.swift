@@ -102,7 +102,6 @@ extension UIColor {
     static let chartPie24 = UIColor(named: "Colors/pie_24")!
     
     @objc static let separator = UIColor(named: "Colors/separator")!
-    static let separatorLight = UIColor(named: "Colors/separator_light")!
     
     static let loadingScrim = UIColor(named: "Colors/loading_scrim")!
     static let dialogScrim = UIColor(named: "Colors/dialog_scrim")!
@@ -252,4 +251,3 @@ extension UIColor {
         return String(format: "#%02X%02X%02X", ri, gi, bi)
     }
 }
-

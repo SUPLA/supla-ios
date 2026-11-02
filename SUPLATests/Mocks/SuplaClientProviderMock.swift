@@ -171,4 +171,9 @@ class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
     func setRegistrationEnabled(ioDeviceRegTimeSec: Int32, clientRegTimeSec: Int32) -> Bool {
         true
     }
+
+    var setLightsourceLifespanMock: FunctionMock<(Int32, Bool, Bool, UInt16), Void> = .init()
+    func setLightsourceLifespanWithChannelId(_ channelId: Int32, resetCounter reset: Bool, setTime: Bool, lifespan: UInt16) {
+        setLightsourceLifespanMock.set((channelId, reset, setTime, lifespan))
+    }
 }

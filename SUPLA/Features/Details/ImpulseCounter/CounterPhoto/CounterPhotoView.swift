@@ -19,12 +19,16 @@
 import SwiftUI
 
 extension CounterPhotoFeature {
+    protocol ViewDelegate {
+        func onUrlClick(_ url: String)
+        func onRefresh() async
+        func loadData()
+    }
+
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
 
-        var onUrlClick: (String) -> Void = { _ in }
-        var onRefresh: @Sendable () async -> Void = {}
-        var onRetry: () -> Void = {}
+        var delegate: ViewDelegate?
 
         var body: some SwiftUI.View {
             BackgroundStack(alignment: .topLeading) {
@@ -33,18 +37,17 @@ extension CounterPhotoFeature {
                 } else if (viewState.loadingError) {
                     ErrorView(
                         configurationAddress: viewState.configurationAddress,
-                        onUrlClick: onUrlClick,
-                        onRetry: onRetry
+                        delegate: delegate
                     )
                 } else {
                     DataView(
                         latestPhoto: viewState.latestPhoto,
                         photos: viewState.photos,
                         configurationAddress: viewState.configurationAddress,
-                        onUrlClick: onUrlClick
+                        delegate: delegate
                     )
                     .onRefresh {
-                        await onRefresh()
+                        await delegate?.onRefresh()
                     }
                 }
             }
@@ -56,7 +59,7 @@ extension CounterPhotoFeature {
         let photos: [OcrPhoto]?
         let configurationAddress: String?
 
-        var onUrlClick: (String) -> Void = { _ in }
+        var delegate: ViewDelegate?
 
         var body: some SwiftUI.View {
             ScrollView {
@@ -90,7 +93,7 @@ extension CounterPhotoFeature {
                     if let url = configurationAddress {
                         HStack {
                             Spacer()
-                            TitleButton(title: Strings.CounterPhoto.settings) { onUrlClick(url) }
+                            TitleButton(title: Strings.CounterPhoto.settings) { delegate?.onUrlClick(url) }
                                 .borderedButtonStyle()
                             Spacer()
                         }
@@ -104,8 +107,7 @@ extension CounterPhotoFeature {
     private struct ErrorView: SwiftUI.View {
         let configurationAddress: String?
         
-        var onUrlClick: (String) -> Void = { _ in }
-        var onRetry: () -> Void = {}
+        var delegate: ViewDelegate?
         
         var body: some SwiftUI.View {
             VStack(alignment: .center, spacing: Distance.default) {
@@ -119,13 +121,13 @@ extension CounterPhotoFeature {
                     .font(.Supla.bodyLarge)
                 TitleButton(
                     title: Strings.Status.tryAgain,
-                    action: onRetry
+                    action: { delegate?.loadData() }
                 )
                 .textButtonStyle(colors: .link)
                 if let url = configurationAddress {
                     HStack {
                         Spacer()
-                        TitleButton(title: Strings.CounterPhoto.settings) { onUrlClick(url) }
+                        TitleButton(title: Strings.CounterPhoto.settings) { delegate?.onUrlClick(url) }
                             .borderedButtonStyle()
                         Spacer()
                     }

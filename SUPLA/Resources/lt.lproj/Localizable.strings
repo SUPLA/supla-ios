@@ -51,10 +51,6 @@
 "Dimmer" = "Dimmer";
 "Distance sensor" = "Atstumo jutiklis";
 "Depth sensor" = "Gilio jutiklis";
-"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Ar žinote, kad Supla tai atviras ir nemokamas projektas, kurį vysto bendruomenė? Jei Jums patinka ši programėlė, skirkite šiek tiek laiko ir įvertinkite ją. Ačiū už Jūsų palaikymą!";
-"Rate Now" = "Įvertinti dabar";
-"Later" = "Vėliau";
-"No thanks" = "Ne, ačiū";
 "Mail sensor" = "Pašto jutiklis";
 "Window opening sensor" = "Lango atidarymo jutiklis";
 "Add I/O device" = "Pridėti įrenginį";
@@ -292,12 +288,19 @@
 "channel_caption_flood_sensor" = "Potvynio jutiklis";
 "channel_caption_motion_sensor" = "Judesio jutiklis";
 "channel_caption_binary_sensor" = "Dvejetainis jutiklis";
+"channel_caption_smoke_sensor" = "Dūmų jutiklis";
+"channel_caption_carbon_monoxide_sensor" = "Anglies monoksido jutiklis";
+"channel_caption_gas_sensor" = "Dujų jutiklis";
 "channel_caption_container" = "Konteineris";
 "channel_caption_septic_tank" = "Septikas";
 "channel_caption_invisible" = "Paslėptas";
 "channel_offline" = "Kanalas yra offline";
 "channel_battery_level" = "Baterijos lygis: %d%%";
 "channel_battery_level_with_info" = "Baterijos lygis (%d - %@): %d%%";
+"channel_battery_low" = "Žemas baterijos lygis";
+"channel_battery_low_with_info" = "Žemas baterijos lygis (%d - %@)";
+"channel_battery_state_low_value" = "žema";
+"channel_battery_state_normal_value" = "normali";
 "channel_uv_warning" = "UV spinduolio tarnavimo laikas tai %.01f%%. Suplanuoti jo pakeitimą.";
 "channel_uv_error" = "UV spinduolio tarnavimo laikas tai %.01f%%. Pakeisti spinduolį.";
 "channel_lightsource_warning" = "Šviesos šaltinio tarnavimo laikas tai %.01f%%.";
@@ -568,6 +571,7 @@
 /* State */
 "state_channel_id" = "Kanalo ID";
 "state_battery_level" = "Baterijos lygis";
+"battery_state" = "Baterijos būsena";
 "state_power_supply" = "Maitinimas";
 "channel_state_battery_powered" = "iš baterijų";
 "channel_state_main_powered" = "iš tinklo";
@@ -634,6 +638,7 @@
 "enabling_registration_timeout" = "Baigėsi registracijos įjungimo laukimo laikas!";
 "add_wizard_step_1_welcome" = "Sveiki atvykę į įrenginių pridėjimo vedlį, kuris padės Jums lengvai ir greitai pridėti naujus įrenginius prie sistemos.";
 "add_wizard_step_1_continue" = "Norėdami tęsti, paspauskite **Toliau**.";
+"add_wizard_step_1_wifi_required" = "Norint pridėti įrenginį, būtinas „Wi-Fi“ ryšys.\nJį galite įjungti skiltyje „Nustatymai“.";
 "add_wizard_step_2_message" = "Įveskite savo namų ar įmonės Wi-Fi tinklo, kurio pagalba vykdomasis įrenginys galės užmegzti ryšį su serveriu, pavadinimą ir slaptažodį.";
 "add_wizard_network_name" = "Tinklo pavadinimas";
 "add_wizard_step_3_message_1" = "Prijunkite įrenginį prie maitinimo šaltinio. Įrenginys pagal numatytuosius nustatymus turėtų veikti konfigūravimo režimu, kurį rodo šviesos diodo mirksėjimas taip.";
@@ -644,7 +649,18 @@
 "add_wizard_is_not_available" = "Pridėjimo vedlys prieinamas tik tada, kai pagal įvestą el. pašto adresą užmegztas ryšys su serveriu! (Savo paskyros konfigūracijoje išjunkite išplėstines parinktis)";
 "add_wizard_remember_passwd" = "Išsaugoti slaptažodį";
 "add_wizard_auto_mode" = "Automatinis režimas";
-"add_wizard_manual_mode_message" = "Norėdami pasirinkti I/O įrenginio „Wi-Fi“ ryšį konfigūravimui, pvz., SUPLA-A220A63612B1, naudokite nuorodą į sistemos nustatymus, esančią žemiau.\n\nKonfigūracijos „Wi-Fi“ pavadinime paprastai būna gamintojo pavadinimas, pvz., SUPLA, ZAMEL, NICE, HEATPOL ir t. t.\n\nKai ryšys bus nustatytas, grįžkite į programą ir tęskite pridėjimo procedūrą paspausdami mygtuką **STARTAS**.";
+"add_wizard_manual_mode_message" = "Laikinai prijunkite telefoną prie pridedamo įrenginio „Wi-Fi“ tinklo.";
+"add_wizard_manual_mode_step_1_title" = "Atidarykite „iPhone“ nustatymus";
+"add_wizard_manual_mode_step_1_message" = "Tada pasirinkite **Wi-Fi**.";
+"add_wizard_manual_mode_step_2_title" = "Pasirinkite įrenginio tinklą";
+"add_wizard_manual_mode_step_2_message" = "Jo pavadinime paprastai būna SUPLA, ZAMEL, NICE arba HEATPOL.";
+"add_wizard_manual_mode_example_network" = "pvz., SUPLA-A220A63612B1";
+"add_wizard_manual_mode_step_3_title" = "Grįžkite į SUPLA programą";
+"add_wizard_manual_mode_step_3_message" = "Kai šalia tinklo pasirodys varnelė ✓, grįžkite čia ir bakstelėkite **STARTAS**.";
+"add_wizard_manual_reconnect_title" = "Nepavyko prisijungti prie interneto!";
+"add_wizard_manual_reconnect_step_2_title" = "Užtikrinkite interneto ryšį";
+"add_wizard_manual_reconnect_step_2_message" = "Atkurkite interneto ryšį naudodami mobiliuosius duomenis arba „Wi-Fi“ tinklą.";
+"add_wizard_manual_reconnect_step_3_message" = "Kai interneto ryšys bus atkurtas, grįžkite čia ir paspauskite **Toliau**.";
 "add_wizard_manual_mode_settings" = "Eikite į iOS sistemos nustatymus";
 "add_wizard_location_service_off" = "Kad įrenginio pridėjimo vediklis veiktų tinkamai, jūsų įrenginyje turi būti įjungtos vietos nustatymo paslaugos. Eikite į sistemos nustatymus ir įsitikinkite, kad jos įjungtos (Nustatymai -> Privatumas ir sauga -> Vietos nustatymo paslaugos).";
 "add_wizard_missing_location" = "Kad įrenginio pridėjimo vediklis veiktų tinkamai, SUPLA programėlei reikalingas vietos nustatymo priėjimas. Leiskite SUPLA programėlei pasiekti jūsų vietą sistemos nustatymuose.";
@@ -656,9 +672,17 @@
 "wizard_result_compat_error" = "Įrenginys, su kuriuo užmegztas ryšys nėra suderinamas su šiuo vedliu!";
 "wizard_result_conn_error" = "Negalima užmegzti ryšio su įrenginiu!";
 "wizard_result_failed" = "Nepavyko sėkmingai baigti konfigūravimo!";
+"wizard_result_certificate_untrusted" = "Įrenginio sertifikatas nėra patikimas. Įsitikinkite, kad jungiatės prie tinkamo įrenginio ir kad jo programinė įranga yra atnaujinta.";
+"wizard_result_certificate_expired" = "Įrenginio sertifikato galiojimas baigėsi. Atnaujinkite įrenginio programinę įrangą arba susisiekite su pagalba. Taip pat patikrinkite, ar telefone teisinga data ir laikas.";
+"wizard_result_certificate_not_yet_valid" = "Įrenginio sertifikatas dar negalioja. Patikrinkite datą ir laiką telefone bei įrenginyje, tada bandykite dar kartą.";
+"wizard_result_certificate_revoked" = "Įrenginio sertifikatas buvo atšauktas. Saugumo sumetimais ryšio užmegzti negalima. Atnaujinkite įrenginio programinę įrangą arba susisiekite su pagalba.";
+"wizard_result_certificate_host_mismatch" = "Sertifikatas neatitinka šio įrenginio. Įsitikinkite, kad programa jungiasi prie tinkamo įrenginio.";
+"wizard_result_certificate_pin_mismatch" = "Įrenginio sertifikatas skiriasi nuo tikėtino. Atnaujinkite programą ir įrenginio programinę įrangą, tada bandykite dar kartą.";
+"wizard_result_certificate_unsupported_security" = "Įrenginys naudoja nepalaikomus saugumo nustatymus. Atnaujinkite įrenginio programinę įrangą ir bandykite dar kartą.";
+"wizard_result_certificate_different_names" = "Įrenginio sertifikatas neteisingas - pavadinimai nesutampa (sertifikatas: %1$@, įrenginys: %2$@)";
 "wizard_reconnect_timeout" = "Viršytas grįžimo prie pagrindinio Wi-Fi tinklo laukimo laikas!";
 "wizard_done" = "Įrenginio konfigūravimas baigtas sėkmingai :)";
-"wizard_done_explanations" = "Jei įrenginys nebus matomas programoje, pakartokite šią pridėjimo procedūrą dar kartą ir nuskaitykite žemiau matomą „Ankstesnį statusą“. Jame yra informacija, kuri leidžia nustatyti, kodėl įrenginys neprisijungė prie serverio. Pranešimas “SSID not found“ reiškia, kad įvestas Wi-Fi 2,4 GHz tinklo pavadinimas nebuvo rastas arba tinklas neprieinamas.";
+"wizard_done_explanations" = "Jei įrenginys programoje nerodomas, dar kartą paleiskite įrenginio pridėjimo vedlį ir perskaitykite aukščiau rodomą „Ankstesnę būseną“. Joje pateikta informacija padeda nustatyti, kodėl įrenginiui nepavyko prisijungti prie serverio. Pranešimas „SSID not found“ reiškia, kad pasirinktas 2,4 GHz Wi-Fi tinklas yra už ryšio zonos ribų arba jo pavadinimas neteisingas.";
 "wizard_iodev_data" = "Įrenginio duomenys";
 "wizard_iodev_name" = "Pavadinimas";
 "wizard_iodev_laststate" = "Ankstesnis statusas";
@@ -678,7 +702,6 @@
 "add_wizard_password_repeat_label" = "Pakartoti slaptažodį";
 "add_wizard_password_enter_title" = "Įrenginio slaptažodis";
 "add_wizard_password_instruction" = "Prašome naudoti slaptažodį, kuris buvo naudojamas vietinės konfigūracijos tinklalapio prieigai.\n\nPamiršote slaptažodį? Galite jį pakeisti Supla Cloud sistemoje arba atkurti gamyklinius įrenginio nustatymus.";
-"add_wizard_manual_reconnect_message" = "Nepavyko prisijungti prie interneto.\n\nEikite į sistemos nustatymus ir pasirinkite „Wi-Fi“ tinklą, kuris turi interneto ryšį. Tada grįžkite į programėlę ir tęskite paspausdami **Toliau**.";
 "add_device_manual_popup_title" = "Nepavyko pridėti įrenginio";
 "add_device_manual_popup_message" = "Bandymas automatiškai pridėti įrenginį nepavyko. Jei problema kartojasi, rekomenduojame įrenginį pridėti rankiniu būdu.";
 "add_device_manual_popup_resign" = "Likti automatiniame režime";
@@ -769,3 +792,13 @@
 "nfc_timeout_dialog_title" = "Laikas baigėsi!";
 "nfc_timeout_dialog_message" = "Nepavyko susieti žymos su įrenginiu. Ar norite bandyti dar kartą?";
 "toolbar_search_hint" = "Įveskite bent 2 simbolius...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "Šviesos šaltinio eksploatavimo laikas (valandos)";
+"light_source_lifespan_settings_reset_counter" = "Atkurti šviesis šaltinio sunaudojimo skaitiklį";
+
+/* App Rate */
+"rate_app_message" = "Ar žinote, kad Supla tai atviras ir nemokamas projektas, kurį vysto bendruomenė? Jei Jums patinka ši programėlė, skirkite šiek tiek laiko ir įvertinkite ją. Ačiū už Jūsų palaikymą!";
+"rate_app_rate_now" = "Įvertinti dabar";
+"rate_app_later" = "Vėliau";
+"rate_app_no_thanks" = "Ne, ačiū";

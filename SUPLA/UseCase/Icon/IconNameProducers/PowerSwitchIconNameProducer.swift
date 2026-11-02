@@ -34,6 +34,7 @@ final class PowerSwitchIconNameProducer: IconNameProducer {
         case 5: return "fnc_binary_sensor_1"
         case 6: return "fnc_binary_sensor_2"
         case 7: return "fnc_switch_5"
+        case 8: return "fnc_switch_6"
         default: return "fnc_switch"
         }
     }

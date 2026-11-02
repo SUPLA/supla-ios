@@ -30,10 +30,31 @@ extension AddWizardFeature {
                 onCancel: onCancel,
                 onNext: onNext,
             ) {
-                AddWizardFeature.AddWizardContentText(text: Strings.AddWizard.manualReconnectMessage)
+                Text(Strings.AddWizard.manualReconnectTitle)
+                    .fontLabelLarge()
+                    .textColor(.Supla.onPrimaryContainer)
+                    .padding(.horizontal, Distance.default)
+                    .multilineTextAlignment(.center)
                 
-                AddWizardFeature.SettingsButton { onSettings() }
-                    .padding(.top, Distance.default)
+                VStack(alignment: .leading, spacing: Distance.tiny) {
+                    AddWizardFeature.InstructionStep(
+                        number: 1,
+                        title: Strings.AddWizard.manualModeStep1Title,
+                        message: Strings.AddWizard.manualModeStep1Message
+                    )
+                    AddWizardFeature.InstructionStep(
+                        number: 2,
+                        title: Strings.AddWizard.manualReconnectStep2Title,
+                        message: Strings.AddWizard.manualReconnectStep2Message
+                    )
+                    AddWizardFeature.InstructionStep(
+                        number: 3,
+                        title: Strings.AddWizard.manualModeStep3Title,
+                        message: Strings.AddWizard.manualReconnectStep3Message
+                    )
+                }
+                .padding(.horizontal, Distance.default)
+                .padding(.top, Distance.small)
             }
         }
     }

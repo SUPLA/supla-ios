@@ -74,6 +74,7 @@ extension String {
         static let dimmerLinearSelector = "icon_dimmer_linear_selector"
         static let lock = "icon_lock"
         static let search = "icon_search"
+        static let menu = "icon_menu"
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"
@@ -114,6 +115,7 @@ extension String {
         static let noPhoto = "icon_no_photo"
         static let moveHandle = "order"
         static let findWifi = "icon_find_wifi"
+        static let wifi = "icon_wifi"
         static let replay = "icon_replay"
         static let wifiSettings = "icon_wifi_settings"
         static let locationProblem = "icon_location_problem"
@@ -183,6 +185,7 @@ extension String {
         static let fncGpmCo3 = "fnc_gpm_co_3"
         static let fncGpmCash1 = "fnc_gpm_cash_1"
         static let fncGpmCash2 = "fnc_gpm_cash_2"
+        static let fncGpmCar1 = "fnc_gpm_car_1"
         // Heatmeter
         static let fncHeatmeter = "fnc_heatmeter"
         // Waterneter

@@ -49,10 +49,6 @@
 "Dimmer" = "Stmievač";
 "Distance sensor" = "Snímač vzdialenosti";
 "Depth sensor" = "Snímač hĺbky";
-"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Viete, že Supla je otvorený a bezplatný projekt, rozvíjaný komunitou? Ak sa Ti táto aplikácia páči, venuj chvíľu jej ohodnoteniu. Ďakujeme za Tvoju podporu!";
-"Rate Now" = "Ohodnotiť teraz";
-"Later" = "Neskôr";
-"No thanks" = "Nie, ďakujem";
 "Mail sensor" = "Snímač pošty";
 "Window opening sensor" = "Snímač otvorenia okna";
 "Add I/O device" = "Pridať zariadenie";
@@ -290,12 +286,19 @@
 "channel_caption_flood_sensor" = "Senzor zaplavenia";
 "channel_caption_motion_sensor" = "Senzor pohybu";
 "channel_caption_binary_sensor" = "Binárny senzor";
+"channel_caption_smoke_sensor" = "Snímač dymu";
+"channel_caption_carbon_monoxide_sensor" = "Snímač oxidu uhoľnatého";
+"channel_caption_gas_sensor" = "Snímač plynu";
 "channel_caption_container" = "Kontajner";
 "channel_caption_septic_tank" = "Septik";
 "channel_caption_invisible" = "Skrytý";
 "channel_offline" = "Kanál je v režime offline";
 "channel_battery_level" = "Úroveň batérie: %d%%";
 "channel_battery_level_with_info" = "Úroveň batérie (%d - %@): %d%%";
+"channel_battery_low" = "Nízka úroveň batérie";
+"channel_battery_low_with_info" = "Nízka úroveň batérie (%d - %@)";
+"channel_battery_state_low_value" = "nízka";
+"channel_battery_state_normal_value" = "normálna";
 "channel_uv_warning" = "Životnosť UV žiariča je %.01f%%. Naplánujte jeho výmenu.";
 "channel_uv_error" = "Životnosť UV žiariča je %.01f%%. Vymeň žiarič.";
 "channel_lightsource_warning" = "Životnosť svetelného zdroja je %.01f%%.";
@@ -565,6 +568,7 @@
 /* State */
 "state_channel_id" = "ID kanála";
 "state_battery_level" = "Úroveň batérie";
+"battery_state" = "Stav batérie";
 "state_power_supply" = "Napájanie";
 "channel_state_battery_powered" = "batériové";
 "channel_state_main_powered" = "sieťové";
@@ -631,6 +635,7 @@
 "enabling_registration_timeout" = "Časový limit na aktiváciu registrácie vypršal!";
 "add_wizard_step_1_welcome" = "Vitajte v sprievodcovi pridaním zariadenia, ktorý vám pomôže rýchlo a jednoducho pridať nové zariadenie do systému.";
 "add_wizard_step_1_continue" = "Pokračujte stlačením **Ďalej**.";
+"add_wizard_step_1_wifi_required" = "Na pridanie zariadenia je potrebné Wi-Fi.\nMôžete ho zapnúť v Nastaveniach.";
 "add_wizard_step_2_message" = "Zadajte názov a heslo vašej domácej alebo obchodnej Wi-Fi siete, prostredníctvom ktorej sa bude môcť výkonné zariadenie pripojiť k serveru.";
 "add_wizard_network_name" = "Názov siete";
 "add_wizard_step_3_message_1" = "Pripojte zariadenie k napájaniu. Zariadenie by malo štandardne fungovať v konfiguračnom režime, indikovanom blikaním stavovej LED diódy nasledovne.";
@@ -641,7 +646,18 @@
 "add_wizard_is_not_available" = "Sprievodca pridávaním je dostupný len po nadviazaní spojenia so serverom na základe zadanej e-mailovej adresy! (Vypnite pokročilé možnosti v nastavení svojho účtu)";
 "add_wizard_remember_passwd" = "Zapamätať si heslo";
 "add_wizard_auto_mode" = "Automatický režim";
-"add_wizard_manual_mode_message" = "Použite, prosím, skratku Systémové nastavenia nižšie na výber Wi-Fi vášho I/O Zariadenia pre konfiguráciu, napríklad SUPLA-A220A63612B1.\n\nNázov konfiguračnej Wi-Fi zvyčajne obsahuje názov výrobcu, napr. SUPLA, ZAMEL, NICE, HEATPOL atď.\n\nKeď je pripojenie nastavené, vráťte sa späť do aplikácie a pokračujte v postupe pridávania stlačením tlačidla **ŠTART**.";
+"add_wizard_manual_mode_message" = "Dočasne pripojte telefón k sieti Wi-Fi zariadenia, ktoré pridávate.";
+"add_wizard_manual_mode_step_1_title" = "Otvorte Nastavenia na iPhone";
+"add_wizard_manual_mode_step_1_message" = "Potom vyberte **Wi-Fi**.";
+"add_wizard_manual_mode_step_2_title" = "Vyberte sieť zariadenia";
+"add_wizard_manual_mode_step_2_message" = "Jej názov zvyčajne obsahuje SUPLA, ZAMEL, NICE alebo HEATPOL.";
+"add_wizard_manual_mode_example_network" = "napr. SUPLA-A220A63612B1";
+"add_wizard_manual_mode_step_3_title" = "Vráťte sa do aplikácie SUPLA";
+"add_wizard_manual_mode_step_3_message" = "Keď sa vedľa siete zobrazí značka ✓, vráťte sa sem a ťuknite na **ŠTART**.";
+"add_wizard_manual_reconnect_title" = "Pripojenie na internet zlyhalo!";
+"add_wizard_manual_reconnect_step_2_title" = "Zabezpečte pripojenie na internet";
+"add_wizard_manual_reconnect_step_2_message" = "Obnovte pripojenie na internet pomocou mobilných dát alebo siete Wi-Fi.";
+"add_wizard_manual_reconnect_step_3_message" = "Keď sa pripojenie na internet obnoví, vráťte sa sem a stlačte **Ďalej**.";
 "add_wizard_manual_mode_settings" = "Prejdite na nastavenia systému";
 "add_wizard_location_service_off" = "Aby Sprievodca pridaním zariadenia fungoval správne, musia byť na vašom zariadení povolené služby určovania polohy. Prejdite do nastavení systému a uistite sa, že sú povolené (Nastavenia -> Súkromie a zabezpečenie -> Služby určovania polohy).";
 "add_wizard_missing_location" = "Aplikácia SUPLA vyžaduje prístup k polohe, aby Sprievodca pridaním zariadenia fungoval správne. Povoľte aplikácii SUPLA prístup k vašej polohe v nastaveniach systému.";
@@ -653,9 +669,17 @@
 "wizard_result_compat_error" = "Pripojené zariadenie nie je kompatibilné s týmto sprievodcom!";
 "wizard_result_conn_error" = "Nedá sa pripojiť k zariadeniu!";
 "wizard_result_failed" = "Konfigurácia zlyhala!";
+"wizard_result_certificate_untrusted" = "Certifikát zariadenia nie je dôveryhodný. Uistite sa, že sa pripájate k správnemu zariadeniu a že jeho softvér je aktuálny.";
+"wizard_result_certificate_expired" = "Platnosť certifikátu zariadenia vypršala. Aktualizujte softvér zariadenia alebo kontaktujte podporu. Skontrolujte tiež, či je v telefóne správny dátum a čas.";
+"wizard_result_certificate_not_yet_valid" = "Certifikát zariadenia ešte nie je platný. Skontrolujte dátum a čas v telefóne a zariadení a skúste to znova.";
+"wizard_result_certificate_revoked" = "Certifikát zariadenia bol odvolaný. Z bezpečnostných dôvodov nie je možné nadviazať spojenie. Aktualizujte softvér zariadenia alebo kontaktujte podporu.";
+"wizard_result_certificate_host_mismatch" = "Certifikát nezodpovedá tomuto zariadeniu. Uistite sa, že sa aplikácia pripája k správnemu zariadeniu.";
+"wizard_result_certificate_pin_mismatch" = "Certifikát zariadenia sa líši od očakávaného. Aktualizujte aplikáciu aj softvér zariadenia a skúste to znova.";
+"wizard_result_certificate_unsupported_security" = "Zariadenie používa nepodporované nastavenia zabezpečenia. Aktualizujte softvér zariadenia a skúste to znova.";
+"wizard_result_certificate_different_names" = "Zariadenie má nesprávny certifikát - názvy sa nezhodujú (certifikát: %1$@, zariadenie: %2$@)";
 "wizard_reconnect_timeout" = "Bola prekročená lehota čakania na návrat do základnej Wi-Fi siete!";
-"wizard_done" = "Konfigurácia zariadenia bola úspešne dokončená :)";
-"wizard_done_explanations" = "Ak sa zariadenie v aplikácii nezobrazí, zopakujte postup pridávania znova a prečítajte si „Predchádzajúci status” zobrazený vyššie. Obsahuje informácie, na základe ktorých vieme určiť, prečo sa zariadeniu nepodarilo pripojiť k serveru. Hlásenie “SSID Not Found” znamená, že zadaný názov Wi-Fi siete 2,4 GHz nebol nájdený alebo je sieť mimo dosahu.";
+"wizard_done" = "Nastavenia boli prenesené do zariadenia I/O.";
+"wizard_done_explanations" = "Ak sa zariadenie v aplikácii nezobrazí, znova spustite sprievodcu pridaním zariadenia a prečítajte si vyššie zobrazený „Predchádzajúci stav“. Obsahuje informácie, ktoré pomáhajú zistiť, prečo sa zariadenie nemohlo pripojiť k serveru. Hlásenie „SSID not found“ znamená, že vybraná Wi-Fi sieť 2,4 GHz je mimo dosahu alebo je jej názov nesprávny.";
 "wizard_iodev_data" = "Údaje zariadenia";
 "wizard_iodev_name" = "Názov";
 "wizard_iodev_laststate" = "Predchádzajúci status";
@@ -675,7 +699,6 @@
 "add_wizard_password_repeat_label" = "Zopakovať heslo";
 "add_wizard_password_enter_title" = "Heslo zariadenia";
 "add_wizard_password_instruction" = "Použite heslo, ktoré bolo použité pre prístup k webovej stránke lokálnej konfigurácie.\n\nZabudli ste heslo? Môžete ho zmeniť na Supla Cloud alebo resetovať zariadenie na výrobné nastavenia.";
-"add_wizard_manual_reconnect_message" = "Pripojenie na internet zlyhalo.\n\nPrejdite do systémových nastavení a vyberte sieť Wi-Fi, ktorá má pripojenie na internet. Potom sa vráťte do aplikácie a pokračujte stlačením **Ďalej**.";
 "add_device_manual_popup_title" = "Nepodarilo sa pridať zariadenie";
 "add_device_manual_popup_message" = "Pokus o automatické pridanie zariadenia zlyhal. Ak problém pretrváva, odporúčame pridať zariadenie manuálne.";
 "add_device_manual_popup_resign" = "Zostať v automatickom režime";
@@ -766,3 +789,13 @@
 "nfc_timeout_dialog_title" = "Čas vypršal!";
 "nfc_timeout_dialog_message" = "Nepodarilo sa prepojiť tag so zariadením. Chcete to skúsiť znova?";
 "toolbar_search_hint" = "Zadajte aspoň 2 znaky...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "Životnosť svetelného zdroja (hodiny)";
+"light_source_lifespan_settings_reset_counter" = "Resetovať počítadlo spotreby svetelného zdroja";
+
+/* App Rate */
+"rate_app_message" = "Viete, že Supla je otvorený a bezplatný projekt, rozvíjaný komunitou? Ak sa Ti táto aplikácia páči, venuj chvíľu jej ohodnoteniu. Ďakujeme za Tvoju podporu!";
+"rate_app_rate_now" = "Ohodnotiť teraz";
+"rate_app_later" = "Neskôr";
+"rate_app_no_thanks" = "Nie, ďakujem";

@@ -140,6 +140,9 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
         SepticTankIconNameProducer(),
         WaterTankIconNameProducer(),
         MotionSensorIconNameProducer(),
-        BinarySensorIconNameProducer()
+        BinarySensorIconNameProducer(),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_SMOKE_SENSOR, name: .Icons.fncBinarySensor7),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_CARBON_MONOXIDE_SENSOR, name: .Icons.fncBinarySensor6),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_GAS_SENSOR, name: .Icons.fncBinarySensor5)
     ]
 }

@@ -25,8 +25,6 @@ import RxSwift
  */
 protocol RuntimeConfig {
     
-    var activeProfileId: ProfileID? { get set }
-    
     func preferencesObservable() -> Observable<RuntimePreferences>
     func emitPreferenceChange(scaleFactor: Float, showChannelInfo: Bool)
     
@@ -44,7 +42,6 @@ class RuntimeConfigImpl: RuntimeConfig {
     var detailOpenedPageMap: [Int32: Int] = [:]
     var lastTimerValueMap: [Int32: Int] = [:]
     
-    var activeProfileId: ProfileID?
     lazy var configRelay: BehaviorRelay<RuntimePreferences> = {
         BehaviorRelay(value: RuntimePreferences(
             scaleFactor: settings.channelHeight.factor(),

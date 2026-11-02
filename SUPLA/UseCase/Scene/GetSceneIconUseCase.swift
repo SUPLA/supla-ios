@@ -26,19 +26,15 @@ final class GetSceneIconUseCaseImpl: GetSceneIconUseCase {
 
     func invoke(_ scene: SAScene) -> IconResult {
         if scene.usericon_id != 0, let profileId = scene.profile?.id {
-            let darkMode = settings.darkMode == .always || (settings.darkMode == .auto && UITraitCollection.current.userInterfaceStyle == .dark)
-
-            if (scene.usericon_id != 0),
-               let profileId = scene.profile?.id
-            {
+            if (scene.usericon_id != 0) {
                 return .userIcon(profileId: profileId, iconId: scene.usericon_id, type: .icon1, defaultName: "scene_0")
             } else {
-                return .suplaIcon(name: "scene_0")
+                return .originalSuplaIcon(name: "scene_0")
             }
         } else if scene.alticon < 20 {
-            return .suplaIcon(name: "scene_\(scene.alticon)")
+            return .originalSuplaIcon(name: "scene_\(scene.alticon)")
         } else {
-            return .suplaIcon(name: "scene_0")
+            return .originalSuplaIcon(name: "scene_0")
         }
     }
 }

@@ -49,10 +49,6 @@
 "Dimmer" = "Dimmer";
 "Distance sensor" = "Afstandssensor";
 "Depth sensor" = "Dieptesensor";
-"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Wist u dat Supla een open en gratis project is, ontwikkeld door de gemeenschap? Als deze app je bevalt, neem dan even de tijd om haar te beoordelen. Dank u voor uw steun!";
-"Rate Now" = "Beoordeel het nu";
-"Later" = "Later";
-"No thanks" = "Nee, dank je";
 "Mail sensor" = "Postsensor";
 "Window opening sensor" = "Raamopeningssensor";
 "Add I/O device" = "Apparaat toevoegen";
@@ -290,12 +286,19 @@
 "channel_caption_flood_sensor" = "Vloedsensor";
 "channel_caption_motion_sensor" = "Bewegingssensor";
 "channel_caption_binary_sensor" = "Binaire sensor";
+"channel_caption_smoke_sensor" = "Rooksensor";
+"channel_caption_carbon_monoxide_sensor" = "Koolmonoxidesensor";
+"channel_caption_gas_sensor" = "Gassensor";
 "channel_caption_container" = "Container";
 "channel_caption_septic_tank" = "Septic tank";
 "channel_caption_invisible" = "Verborgen";
 "channel_offline" = "Het kanaal is offline";
 "channel_battery_level" = "Batterijniveau: %d%%";
 "channel_battery_level_with_info" = "Batterijniveau (%d - %@): %d%%";
+"channel_battery_low" = "Batterijniveau laag";
+"channel_battery_low_with_info" = "Batterijniveau laag (%d - %@)";
+"channel_battery_state_low_value" = "laag";
+"channel_battery_state_normal_value" = "normaal";
 "channel_uv_warning" = "De levensduur van de uv-straal is %.01f%%. Plan zijn vervanging.";
 "channel_uv_error" = "De levensduur van het uv-belichtingstoestel bedraagt %.01f%%. Vervang de stralingsbuis.";
 "channel_lightsource_warning" = "De levensduur van de lichtbron is %.01f%%.";
@@ -566,6 +569,7 @@
 /* State */
 "state_channel_id" = "Kanaal id";
 "state_battery_level" = "Batterijniveau";
+"battery_state" = "Batterijstatus";
 "state_power_supply" = "Voeding";
 "channel_state_battery_powered" = "batterij";
 "channel_state_main_powered" = "netstroom";
@@ -632,6 +636,7 @@
 "enabling_registration_timeout" = "De wachttijd voor het activeren van de registratie is verstreken!";
 "add_wizard_step_1_welcome" = "Welkom bij de wizard voor het toevoegen van apparaten, waarmee u op een snelle en eenvoudige manier een nieuw apparaat aan het systeem kunt toevoegen.";
 "add_wizard_step_1_continue" = "Druk op **Volgende** om door te gaan.";
+"add_wizard_step_1_wifi_required" = "Wifi is vereist om een apparaat toe te voegen.\nJe kunt dit inschakelen in Instellingen.";
 "add_wizard_step_2_message" = "Voer de naam en het wachtwoord in van uw thuis- of bedrijfs WiFi-netwerk waarmee het uitvoerende apparaat verbinding kan maken met de server.";
 "add_wizard_network_name" = "Netwerknaam";
 "add_wizard_step_3_message_1" = "Sluit uw apparaat aan op de stroomvoorziening. Het apparaat zou standaard in de configuratiemodus moeten werken, aangegeven door de status-LED die als volgt knippert.";
@@ -642,7 +647,18 @@
 "add_wizard_is_not_available" = "De Toevoegen-Wizard is alleen beschikbaar als er op basis van het ingevoerde e-mailadres! een verbinding met de server tot stand is gebracht (Schakel geavanceerde opties in uw accountconfiguratie uit)";
 "add_wizard_remember_passwd" = "Wachtwoord onthouden";
 "add_wizard_auto_mode" = "Automatische modus";
-"add_wizard_manual_mode_message" = "Gebruik de snelkoppeling Systeeminstellingen hieronder om uw I/O-apparaat-Wi-Fi te selecteren voor configuratie, zoals SUPLA-A220A63612B1.\n\nDe naam van het configuratie-Wi-Fi bevat meestal de naam van de fabrikant, bijv. SUPLA, ZAMEL, NICE, HEATPOL enz.\n\nWanneer de verbinding tot stand is gebracht, ga terug naar de applicatie en vervolg de toevoegingsprocedure door op de knop **STARTEN** te drukken.";
+"add_wizard_manual_mode_message" = "Verbind uw telefoon tijdelijk met het Wi-Fi-netwerk van het apparaat dat u toevoegt.";
+"add_wizard_manual_mode_step_1_title" = "Open Instellingen op uw iPhone";
+"add_wizard_manual_mode_step_1_message" = "Selecteer vervolgens **Wi-Fi**.";
+"add_wizard_manual_mode_step_2_title" = "Selecteer het netwerk van uw apparaat";
+"add_wizard_manual_mode_step_2_message" = "De naam bevat meestal SUPLA, ZAMEL, NICE of HEATPOL.";
+"add_wizard_manual_mode_example_network" = "bijv. SUPLA-A220A63612B1";
+"add_wizard_manual_mode_step_3_title" = "Ga terug naar de SUPLA-app";
+"add_wizard_manual_mode_step_3_message" = "Zodra er een vinkje ✓ naast het netwerk verschijnt, keert u terug naar dit scherm en tikt u op **OPSTARTEN**.";
+"add_wizard_manual_reconnect_title" = "Internetverbinding mislukt!";
+"add_wizard_manual_reconnect_step_2_title" = "Zorg voor een internetverbinding";
+"add_wizard_manual_reconnect_step_2_message" = "Herstel de internetverbinding via mobiele data of een Wi-Fi-netwerk.";
+"add_wizard_manual_reconnect_step_3_message" = "Ga hierheen terug zodra de internetverbinding is hersteld en druk op **Volgende**.";
 "add_wizard_manual_mode_settings" = "Ga naar systeemvoorkeuren";
 "add_wizard_location_service_off" = "Om de wizard \"Apparaat toevoegen\" correct te laten werken, moeten locatieservices op uw apparaat zijn ingeschakeld. Ga naar uw systeeminstellingen en zorg ervoor dat deze zijn ingeschakeld (Instellingen -> Privacy en beveiliging -> Locatieservices).";
 "add_wizard_missing_location" = "De SUPLA-app vereist locatietoegang om de wizard \"Apparaat toevoegen\" correct te laten werken. Geef de SUPLA-app toegang tot uw locatie in uw systeeminstellingen.";
@@ -654,9 +670,17 @@
 "wizard_result_compat_error" = "Het apparaat waarmee u verbonden bent, is niet compatibel met deze wizard!";
 "wizard_result_conn_error" = "U kunt geen verbinding maken met het apparaat!";
 "wizard_result_failed" = "Configuratie mislukt!";
+"wizard_result_certificate_untrusted" = "Het certificaat van het apparaat wordt niet vertrouwd. Controleer of u verbinding maakt met het juiste apparaat en of de software up-to-date is.";
+"wizard_result_certificate_expired" = "Het certificaat van het apparaat is verlopen. Werk de apparaatsoftware bij of neem contact op met ondersteuning. Controleer ook of de datum en tijd op de telefoon juist zijn.";
+"wizard_result_certificate_not_yet_valid" = "Het certificaat van het apparaat is nog niet geldig. Controleer de datum en tijd op de telefoon en het apparaat en probeer het opnieuw.";
+"wizard_result_certificate_revoked" = "Het certificaat van het apparaat is ingetrokken. Om veiligheidsredenen kan de verbinding niet worden gemaakt. Werk de apparaatsoftware bij of neem contact op met ondersteuning.";
+"wizard_result_certificate_host_mismatch" = "Het certificaat komt niet overeen met dit apparaat. Controleer of de app verbinding maakt met het juiste apparaat.";
+"wizard_result_certificate_pin_mismatch" = "Het certificaat van het apparaat wijkt af van het verwachte certificaat. Werk de app en de apparaatsoftware bij en probeer het opnieuw.";
+"wizard_result_certificate_unsupported_security" = "Het apparaat gebruikt beveiligingsinstellingen die niet worden ondersteund. Werk de apparaatsoftware bij en probeer het opnieuw.";
+"wizard_result_certificate_different_names" = "Het apparaat heeft een onjuist certificaat - de namen komen niet overeen (certificaat: %1$@, apparaat: %2$@)";
 "wizard_reconnect_timeout" = "Wachttijd voor terugkeer naar primair WiFi-netwerk overschreden!";
-"wizard_done" = "De apparaatconfiguratie is geslaagd :)";
-"wizard_done_explanations" = "Als het toestel niet in de toepassing verschijnt, herhaalt u deze toevoegingsprocedure nogmaals en leest u de hierboven getoonde \"Vorige status\". Dit bevat informatie om te bepalen waarom het toestel geen verbinding maakte met de server. De melding \"SSID niet gevonden\" betekent dat de ingevoerde 2,4 GHz WiFi-netwerknaam niet is gevonden of dat het netwerk buiten bereik is.";
+"wizard_done" = "De instellingen zijn naar het I/O-apparaat overgebracht.";
+"wizard_done_explanations" = "Als het apparaat niet in de app verschijnt, start u de wizard voor het toevoegen van een apparaat opnieuw en leest u de hierboven weergegeven ‘Vorige status’. Deze bevat informatie die helpt vaststellen waarom het apparaat geen verbinding met de server kon maken. De melding ‘SSID not found’ betekent dat het geselecteerde 2,4GHz-wifi-netwerk buiten bereik is of dat de netwerknaam onjuist is.";
 "wizard_iodev_data" = "Apparaatgegevens";
 "wizard_iodev_name" = "Naam";
 "wizard_iodev_laststate" = "Vorige status";
@@ -676,7 +700,6 @@
 "add_wizard_password_repeat_label" = "Herhaal wachtwoord";
 "add_wizard_password_enter_title" = "Apparaatwachtwoord";
 "add_wizard_password_instruction" = "Gebruik het wachtwoord dat is gebruikt voor toegang tot de lokale configuratie webpagina.\n\nWachtwoord vergeten? Je kunt het wijzigen op Supla Cloud of het apparaat terugzetten naar de fabrieksinstellingen.";
-"add_wizard_manual_reconnect_message" = "Internetverbinding mislukt.\n\nGa naar de systeeminstellingen en selecteer een Wi-Fi-netwerk met een internetverbinding. Keer vervolgens terug naar de app en ga verder door op **Volgende** te drukken.";
 "add_device_manual_popup_title" = "Toevoegen van apparaat mislukt";
 "add_device_manual_popup_message" = "De poging om een apparaat automatisch toe te voegen is mislukt. Als het probleem aanhoudt, raden we aan het apparaat handmatig toe te voegen.";
 "add_device_manual_popup_resign" = "Blijf in automatische modus";
@@ -767,3 +790,13 @@
 "nfc_timeout_dialog_title" = "Tijd verstreken!";
 "nfc_timeout_dialog_message" = "De tag kon niet met het apparaat worden gekoppeld. Wil je het opnieuw proberen?";
 "toolbar_search_hint" = "Voer minimaal 2 tekens in...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "Levensduur lichtbron (uren)";
+"light_source_lifespan_settings_reset_counter" = "Gebruiksteller lichtbron resetten";
+
+/* App Rate */
+"rate_app_message" = "Wist u dat Supla een open en gratis project is, ontwikkeld door de gemeenschap? Als deze app je bevalt, neem dan even de tijd om haar te beoordelen. Dank u voor uw steun!";
+"rate_app_rate_now" = "Beoordeel het nu";
+"rate_app_later" = "Later";
+"rate_app_no_thanks" = "Nee, dank je";

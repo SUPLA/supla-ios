@@ -23,7 +23,7 @@ import SwiftUI
 private let REFRESH_DELAY_S: Double = 3
 
 extension ThermostatScheduleDetailFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
         @Singleton<DelayedWeeklyScheduleConfigSubject> private var dealyedWeeklyScheduleConfigSubject
         @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
         @Singleton<ChannelConfigEventsManager> private var channelConfigEventsManager
@@ -42,8 +42,9 @@ extension ThermostatScheduleDetailFeature {
             super.init(state: ViewState())
         }
         
-        override func onViewDidLoad() {
+        override func onViewCreated() {
             state.showHelp = globalSettings.shouldShowThermostatScheduleInfo
+            observeConfig()
         }
         
         func onProgramTap(_ program: ScheduleDetailProgram) {

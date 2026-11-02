@@ -18,8 +18,8 @@
     
 
 extension AboutFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
-        @Singleton private var coordinator: SuplaAppCoordinator
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
+        @Singleton private var router: AppRouter
         @Singleton private var buildInfo: BuildInfo
         @Singleton private var formatter: ValuesFormatter
         @Singleton private var settings: GlobalSettings
@@ -30,13 +30,13 @@ extension AboutFeature {
             super.init(state: ViewState())
         }
         
-        override func onViewDidLoad() {
+        override func onViewCreated() {
             state.version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "unknown"
             state.buildTime = formatter.getFullDateString(date: buildInfo.compileDate())
         }
         
         func onHomePageClicked() {
-            coordinator.openUrl(url: "https://\(Strings.About.address)")
+            router.openUrl(url: "https://\(Strings.About.address)")
         }
         
         func onBuildTimeClicked() {

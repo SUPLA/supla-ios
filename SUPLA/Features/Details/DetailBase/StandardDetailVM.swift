@@ -16,19 +16,16 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-class StandardDetailVM: BaseDetailVM<StandardDetailViewState, StandardDetailViewEvent> {
+class StandardDetailVM: BaseDetailVM<StandardDetailViewState> {
+    @Singleton<GetCaptionUseCase> private var getCaptionUseCase
+    @Singleton<ChannelRepository> private var channelRepository
+    @Singleton<GroupRepository> private var groupRepository
     
-    override func defaultViewState() -> StandardDetailViewState { StandardDetailViewState() }
-    
-    override func setTitle(_ title: String) {
-        updateView { $0.changing(path: \.title, to: title) }
+    init(item: ItemBundle) {
+        super.init(item: item, state: StandardDetailViewState())
     }
 }
 
-enum StandardDetailViewEvent: ViewEvent {
+final class StandardDetailViewState: DetailViewState {
+    @Published var title: String? = nil
 }
-
-struct StandardDetailViewState: ViewState {
-    var title: String? = nil
-}
-

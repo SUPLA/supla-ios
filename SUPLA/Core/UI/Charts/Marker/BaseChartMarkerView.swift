@@ -24,7 +24,7 @@ import DGCharts
     lazy var title: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .caption
+        label.font = .bodySmall
         label.textColor = .onBackground
         return label
     }()

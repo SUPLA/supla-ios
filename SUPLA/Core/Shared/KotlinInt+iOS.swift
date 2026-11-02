@@ -34,4 +34,12 @@ extension KotlinInt {
             nil
         }
     }
+    
+    static func from(_ number: UInt8?) -> KotlinInt? {
+        return if let number {
+            KotlinInt(int: Int32(number))
+        } else {
+            nil
+        }
+    }
 }

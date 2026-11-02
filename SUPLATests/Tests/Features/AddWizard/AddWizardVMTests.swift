@@ -100,4 +100,11 @@ final class AddWizardVMTests: XCTestCase {
         // then
         XCTAssertEqual(checkRegistrationUseCaseMock.invokeMock.parameters.count, 2)
     }
+
+    func test_shouldRemapEspConfigurationProgressToUnitInterval() {
+        XCTAssertEqual(IosEspConfigurationStateHolder.remappedProgress(for: 0), 0)
+        XCTAssertEqual(IosEspConfigurationStateHolder.remappedProgress(for: 0.5), 0.25)
+        XCTAssertEqual(IosEspConfigurationStateHolder.remappedProgress(for: 0.75), 0.875)
+        XCTAssertEqual(IosEspConfigurationStateHolder.remappedProgress(for: 1), 1)
+    }
 }

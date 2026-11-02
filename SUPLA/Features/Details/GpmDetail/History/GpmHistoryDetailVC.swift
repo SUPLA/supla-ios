@@ -18,8 +18,8 @@
 
 final class GpmHistoryDetailVC: BaseHistoryDetailVC {
 
-    init(remoteId: Int32, navigationItemProvider: NavigationItemProvider) {
-        super.init(remoteId: remoteId, navigationItemProvider: navigationItemProvider, viewModel: GpmHistoryDetailVM())
+    init(remoteId: Int32) {
+        super.init(remoteId: remoteId, viewModel: GpmHistoryDetailVM())
     }
 
     @available(*, unavailable)

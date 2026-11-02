@@ -17,14 +17,14 @@
  */
     
 extension DeveloperInfoFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
         @Singleton var settings: GlobalSettings
         
         init() {
             super.init(state: ViewState())
         }
         
-        override func onViewWillAppear() {
+        override func onViewAppear() {
             state.screenRotationEnabled = settings.screenRotationEnabled
             state.developerInfoEnabled = settings.devModeActive
         }

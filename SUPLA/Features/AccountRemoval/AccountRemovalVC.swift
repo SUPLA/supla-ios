@@ -21,7 +21,7 @@ import WebKit
 
 class AccountRemovalVC: WebContentVC<AccountRemovalViewState, AccountRemovalViewEvent, AccountRemovalVM> {
     
-    @Singleton<SuplaAppCoordinator> private var coordinator
+    @Singleton<AppRouter> private var router
     
     init(needsRestart: Bool, serverAddress: String?) {
         super.init(viewModel: AccountRemovalVM(needsRestart: needsRestart, serverAddress: serverAddress))
@@ -30,9 +30,9 @@ class AccountRemovalVC: WebContentVC<AccountRemovalViewState, AccountRemovalView
     override func handle(event: AccountRemovalViewEvent) {
         switch (event) {
         case .finishAndRestart:
-            coordinator.popToStatus()
+            router.setRoot(.status)
         case .finish:
-            coordinator.popViewController()
+            router.back()
         }
     }
 }

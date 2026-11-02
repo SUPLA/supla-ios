@@ -21,18 +21,18 @@ import RxSwift
 final class SAAlertDialogVC: SACustomDialogVC<SAAlertDialogViewState, SAAlertDialogViewEvent, SAAlertDialogVM> {
     private lazy var titleLabel: UILabel = SADialogTitleLabel()
 
-    private lazy var topSeparatorView: SeparatorView = .init()
+    private lazy var topSeparatorView: SeparatorUIView = .init()
     
     private lazy var messageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body2
+        label.font = .bodyMedium
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
     }()
     
-    private lazy var bottomSeparatorView: SeparatorView = .init()
+    private lazy var bottomSeparatorView: SeparatorUIView = .init()
     
     fileprivate lazy var negativeButton: SADialogNegativeButton = .init()
     

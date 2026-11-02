@@ -34,6 +34,7 @@
 -(BOOL) isClientRegistered;
 -(BOOL) isClientWorking;
 -(BOOL) isClientAuthorized;
+-(SASuplaClient *_Nullable) optionalSuplaClient;
 
 @end
 
@@ -60,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(void) revokeOAuthToken;
 
 -(bool) isClientWorking;
--(SASuplaClient *) optionalSuplaClient;
+-(SASuplaClient *_Nullable) optionalSuplaClient;
 @end
 
 extern NSString *kSADataChangedNotification;

@@ -41,6 +41,7 @@ extension LockScreenFeature {
                     if (viewState.unlockAction?.showLogo == true) {
                         LogoWithSentence()
                             .padding(.bottom, Distance.default)
+                            .layoutPriority(1)
                     }
                     if let message = viewState.unlockAction?.message {
                         Text(message).fontHeadlineSmall()
@@ -58,7 +59,8 @@ extension LockScreenFeature {
                         )
                     }
                     
-                    Spacer().frame(maxHeight: Dimens.buttonHeight)
+                    Spacer(minLength: 0)
+                        .frame(maxHeight: Dimens.buttonHeight)
                     TitleButton(title: Strings.LockScreen.forgottenCode, action: onPinForgotten)
                         .textButtonStyle(colors: .primary)
                     Spacer()

@@ -17,17 +17,17 @@
  */
     
 extension ProfilesListFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
         @Singleton<UpdateProfilesOrder.UseCase> private var updateProfilesOrderUseCase
-        @Singleton<ActivateProfileUseCase> private var activateProfileUseCase
+        @Singleton<ProfileSessionManager> private var profileSessionManager
         @Singleton<ProfileRepository> private var profileRepository
-        @Singleton<SuplaAppCoordinator> private var coordinator
+        @Singleton<AppRouter> private var router
         
-        init() {
-            super.init(state: ViewState())
+        init(state: ViewState = ViewState()) {
+            super.init(state: state)
         }
         
-        override func onViewWillAppear() {
+        override func onViewAppear() {
             profileRepository.getAllProfiles()
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] profiles in
@@ -37,22 +37,16 @@ extension ProfilesListFeature {
         }
         
         func onNewProfile() {
-            coordinator.navigateToProfile(profileId: ProfileDto.INVALID_ID)
+            router.navigate(to: .profile(profileId: ProfileDto.INVALID_ID, withLockCheck: true))
         }
         
         func onEditProfile(_ profile: ProfileDto) {
-            coordinator.navigateToProfile(profileId: profile.id)
+            router.navigate(to: .profile(profileId: profile.id, withLockCheck: true))
         }
         
         func onActivateProfile(_ profile: ProfileDto) {
-            activateProfileUseCase.invoke(profileId: profile.id, force: true)
-                .asDriverWithoutError()
-                .drive(
-                    onCompleted: { [weak self] in
-                        self?.coordinator.popToStatus()
-                    }
-                )
-                .disposed(by: disposeBag)
+            router.setRoot(.status)
+            profileSessionManager.activateProfile(profileId: profile.id, force: true)
         }
         
         func onMoved(_ from: IndexSet, _ to: Int) {
@@ -69,7 +63,7 @@ extension ProfilesListFeature {
             .asDriverWithoutError()
             .drive(
                 onNext: { [weak self] _ in
-                    self?.onViewWillAppear()
+                    self?.onViewAppear()
                 }
             )
             .disposed(by: disposeBag)

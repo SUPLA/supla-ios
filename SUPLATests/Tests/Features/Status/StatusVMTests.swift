@@ -23,7 +23,9 @@ import XCTest
 
 final class StatusVMTests: XCTestCase {
     private lazy var stateHolder: SuplaAppStateHolderMock! = SuplaAppStateHolderMock()
-    private lazy var coordinator: SuplaAppCoordinatorMock! = SuplaAppCoordinatorMock()
+    private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
+    private lazy var appRouter: AppRouter! = AppRouter()
+    private lazy var authorizationCoordinator: AuthorizationCoordinatorImpl! = AuthorizationCoordinatorImpl()
     private lazy var disconnectUseCase: DisconnectUseCaseMock! = DisconnectUseCaseMock()
     private lazy var schedulers: SuplaSchedulersMock! = SuplaSchedulersMock()
     
@@ -31,14 +33,18 @@ final class StatusVMTests: XCTestCase {
     
     override func setUp() {
         DiContainer.shared.register(type: SuplaAppStateHolder.self, stateHolder!)
-        DiContainer.shared.register(type: SuplaAppCoordinator.self, coordinator!)
+        DiContainer.shared.register(type: GlobalSettings.self, settings!)
+        DiContainer.shared.register(type: AppRouter.self, appRouter!)
+        DiContainer.shared.register(type: AuthorizationCoordinator.self, authorizationCoordinator!)
         DiContainer.shared.register(type: DisconnectUseCase.self, disconnectUseCase!)
         DiContainer.shared.register(type: SuplaSchedulers.self, schedulers!)
     }
     
     override func tearDown() {
         stateHolder = nil
-        coordinator = nil
+        settings = nil
+        appRouter = nil
+        authorizationCoordinator = nil
         disconnectUseCase = nil
         schedulers = nil
         
@@ -50,10 +56,10 @@ final class StatusVMTests: XCTestCase {
         stateHolder.stateReturns = .just(.connected)
         
         // when
-        viewModel.onViewAppeared()
+        viewModel.onViewAppear()
         
         // then
-        XCTAssertEqual(coordinator.navigateToMainMock.parameters.count, 1)
+        XCTAssertEqual(appRouter.root, .main)
     }
     
     func test_shouldNavigateToProfile_whenFirstProfileCreation() {
@@ -61,10 +67,22 @@ final class StatusVMTests: XCTestCase {
         stateHolder.stateReturns = .just(.firstProfileCreation)
         
         // when
-        viewModel.onViewAppeared()
+        viewModel.onViewAppear()
         
         // then
-        XCTAssertEqual(coordinator.navigateToProfileMock.parameters, [ProfileDto.INVALID_ID])
+        XCTAssertEqual(appRouter.path, [.profile(profileId: ProfileDto.INVALID_ID, withLockCheck: true)])
+    }
+
+    func test_shouldNavigateToLockScreen_whenFirstProfileCreationAndAccountsLocked() {
+        // given
+        settings.lockScreenSettingsReturns = LockScreenSettings(scope: .accounts, pinSum: "1234", biometricAllowed: false)
+        stateHolder.stateReturns = .just(.firstProfileCreation)
+
+        // when
+        viewModel.onViewAppear()
+
+        // then
+        XCTAssertEqual(appRouter.path, [.lockScreen(action: .authorizeAccountsCreate)])
     }
     
     func test_shouldShowInitialization() {
@@ -72,7 +90,7 @@ final class StatusVMTests: XCTestCase {
         stateHolder.stateReturns = .just(.initialization)
         
         // when
-        viewModel.onViewAppeared()
+        viewModel.onViewAppear()
         
         // then
         XCTAssertEqual(viewModel.state.viewType, .connecting)
@@ -84,7 +102,7 @@ final class StatusVMTests: XCTestCase {
         stateHolder.stateReturns = .just(.connecting(reason: nil))
         
         // when
-        viewModel.onViewAppeared()
+        viewModel.onViewAppear()
         
         // then
         XCTAssertEqual(viewModel.state.viewType, .connecting)
@@ -96,7 +114,7 @@ final class StatusVMTests: XCTestCase {
         stateHolder.stateReturns = .just(.disconnecting())
         
         // when
-        viewModel.onViewAppeared()
+        viewModel.onViewAppear()
         
         // then
         XCTAssertEqual(viewModel.state.viewType, .connecting)
@@ -108,11 +126,24 @@ final class StatusVMTests: XCTestCase {
         stateHolder.stateReturns = .just(.locking)
         
         // when
-        viewModel.onViewAppeared()
+        viewModel.onViewAppear()
         
         // then
         XCTAssertEqual(viewModel.state.viewType, .connecting)
         XCTAssertEqual(viewModel.state.stateText, .disconnecting)
+    }
+
+    func test_shouldShowApplicationLockAsRoot_whenLocked() {
+        // given
+        appRouter.navigate(to: .settings)
+        stateHolder.stateReturns = .just(.locked)
+
+        // when
+        viewModel.onViewAppear()
+
+        // then
+        XCTAssertEqual(appRouter.root, .unlockApp(action: .authorizeApplication))
+        XCTAssertEqual(appRouter.path, [])
     }
     
     func test_shouldDisconnectAndGoToProfile() {
@@ -125,19 +156,26 @@ final class StatusVMTests: XCTestCase {
         
         // then
         XCTAssertEqual(disconnectUseCase.invokeCounter, 1)
-        coordinator.navigateToProfilesMock.verifyCalls(1)
+        XCTAssertEqual(appRouter.path, [.profiles])
         
     }
     
-    func test_handleError_authorizationNeeded() {
+    func test_handleError_authorizationNeeded() async {
         // given
         stateHolder.stateReturns = .just(.finished(reason: .registerError(code: SUPLA_RESULTCODE_REGISTRATION_DISABLED)))
         
         // when
-        viewModel.onViewAppeared()
+        await MainActor.run {
+            viewModel.onViewAppear()
+        }
+        let authorizationRequest = await waitForAuthorizationRequest()
         
         // then
-        coordinator.showLoginMock.verifyCalls(1)
+        XCTAssertNotNil(authorizationRequest)
+        if case .login = authorizationRequest?.requestType {
+        } else {
+            XCTFail("Expected authorization request")
+        }
         XCTAssertEqual(viewModel.state.viewType, .error)
         XCTAssertEqual(viewModel.state.errorDescription, Strings.Status.errorRegistrationDisabled)
     }
@@ -147,11 +185,28 @@ final class StatusVMTests: XCTestCase {
         stateHolder.stateReturns = .just(.finished(reason: .appInBackground))
         
         // when
-        viewModel.onViewAppeared()
+        viewModel.onViewAppear()
         
         // then
-        coordinator.showLoginMock.verifyCalls(0)
+        XCTAssertNil(authorizationCoordinator.request)
         XCTAssertEqual(viewModel.state.viewType, .connecting)
         XCTAssertEqual(viewModel.state.stateText, .initializing)
+    }
+
+    private func waitForAuthorizationRequest() async -> AuthorizationCoordinatorImpl.Request? {
+        let stepNanoseconds: UInt64 = 10_000_000
+        let timeoutNanoseconds: UInt64 = 1_000_000_000
+        var elapsedNanoseconds: UInt64 = 0
+
+        while elapsedNanoseconds < timeoutNanoseconds {
+            if let request = await MainActor.run(body: { authorizationCoordinator.request }) {
+                return request
+            }
+
+            try? await Task.sleep(nanoseconds: stepNanoseconds)
+            elapsedNanoseconds += stepNanoseconds
+        }
+
+        return await MainActor.run(body: { authorizationCoordinator.request })
     }
 }

@@ -175,7 +175,3 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
     }
     
 }
-
-extension AppSettingsVC: NavigationSubcontroller {
-    func screenTakeoverAllowed() -> Bool { false }
-}

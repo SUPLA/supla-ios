@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-public enum SubjectType: Int32, Equatable, CaseIterable, Identifiable, Codable, Sendable, ScopeFunctions, PickerItem {
+public enum SubjectType: Int32, Equatable, Hashable, CaseIterable, Identifiable, Codable, Sendable, ScopeFunctions, PickerItem {
     typealias T = SubjectType
     
     case channel = 1

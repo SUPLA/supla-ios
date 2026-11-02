@@ -46,6 +46,7 @@
 - (void) setSceneCaption:(int)sceneId caption:(NSString*)caption;
 - (void) setChannelGroupCaption:(int)channelGroupId caption:(NSString*)caption;
 - (void) setLocationCaption:(int)locationId caption:(NSString*)caption;
+- (void) setLightsourceLifespanWithChannelId: (int)channelId resetCounter:(BOOL)reset setTime:(BOOL)setTime lifespan:(unsigned short)lifespan;
 
 @end
 
@@ -109,7 +110,6 @@
 - (void) zwaveGetWakeUpSettingsForChannelId:(int)channelId;
 - (void) zwaveSetWakeUpTime:(int)time forChannelId:(int)channelId;
 - (BOOL) turnOn:(BOOL)on remoteId:(int)remoteId group:(BOOL)group channelFunc:(int)channelFunc vibrate:(BOOL)vibrate;
-- (void) registerPushNotificationClientToken:(NSData *)token;
 
 @property (nonatomic, weak) id<SASuplaClientDelegate> delegate;
 @end

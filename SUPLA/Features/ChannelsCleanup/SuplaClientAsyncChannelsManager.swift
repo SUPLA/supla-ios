@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import Dispatch
+
 protocol SuplaClientAsyncChannelsManager {
     func start()
     func kill()
@@ -26,9 +28,14 @@ class SuplaClientAsyncChannelsManagerImpl: SuplaClientAsyncChannelsManager {
     @Singleton<RemoveHiddenChannelsUseCase> private var removeHiddenChannelsUseCase
     
     private var task: Task<Void, Never>?
+    private var taskCompletion: DispatchSemaphore?
     
     func start() {
+        let completion = DispatchSemaphore(value: 0)
+        taskCompletion = completion
         task = Task(priority: .low) {
+            defer { completion.signal() }
+
             SALog.info("Starting hidden channels removal manager")
             removeHiddenChannelsUseCase.invoke()
             SALog.info("Finishing hidden channels removal manager")
@@ -41,6 +48,9 @@ class SuplaClientAsyncChannelsManagerImpl: SuplaClientAsyncChannelsManager {
     func kill() {
         SALog.info("Killing hidden channels removal manager")
         task?.cancel()
+        taskCompletion?.wait()
+        task = nil
+        taskCompletion = nil
     }
     
     @available(iOS 17.0, *)

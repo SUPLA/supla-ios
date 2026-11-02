@@ -130,7 +130,7 @@ public class LinkedList<Value> {
     }
     
     func map<T>(_ transform: (Value) -> T) -> LinkedList<T> {
-        var result = LinkedList<T>()
+        let result = LinkedList<T>()
         
         var item = head
         while (item != nil) {

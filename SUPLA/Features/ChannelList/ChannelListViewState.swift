@@ -18,8 +18,15 @@
 
 import SwiftUI
 
-class ChannelListViewState: ObservableObject {
-    @Published var alertDialogState: ChannelListAlertDialogState? = nil
+extension ChannelListFeature {
+    class ViewState: ObservableObject {
+        @Published var items: [MainListItem] = []
+        @Published var loading: Bool = true
+        @Published var listLoaded: Bool = false
+        @Published var searchText: String = ""
+        @Published var filterActive: Bool = false
+        @Published var alertDialogState: ChannelListAlertDialogState? = nil
+    }
 }
 
 struct ChannelListAlertDialogState {
@@ -28,7 +35,7 @@ struct ChannelListAlertDialogState {
     let negativeButtonText: String?
     let remoteId: Int32?
     let action: ActionId?
-    
+
     init(
         message: String,
         remoteId: Int32? = nil,

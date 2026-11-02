@@ -20,12 +20,17 @@ import SharedCore
 import SwiftUI
 
 extension ThermostatSlavesFeature {
+    protocol ViewDelegate: AnyObject {
+        func onInfoAction(_ issueMessage: String)
+        func onAlertDismissed()
+    }
+
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
         @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
         @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
 
-        let onInfoAction: (String) -> Void
+        let delegate: ViewDelegate?
         let onStatusAction: (Int32) -> Void
 
         let onCaptionLongPress: (ThermostatData) -> Void
@@ -39,7 +44,7 @@ extension ThermostatSlavesFeature {
                             .padding([.bottom], Distance.tiny)
                         ThermostatRow(
                             data: master,
-                            onInfoAction: onInfoAction,
+                            onInfoAction: { delegate?.onInfoAction($0) },
                             onStatusAction: onStatusAction,
                             onCaptionLongPress: onCaptionLongPress,
                             onSlaveClick: { _ in }
@@ -51,7 +56,7 @@ extension ThermostatSlavesFeature {
                     LazyList(items: viewState.slaves) {
                         ThermostatRow(
                             data: $0,
-                            onInfoAction: onInfoAction,
+                            onInfoAction: { delegate?.onInfoAction($0) },
                             onStatusAction: onStatusAction,
                             onCaptionLongPress: onCaptionLongPress,
                             onSlaveClick: onSlaveClick
@@ -65,6 +70,14 @@ extension ThermostatSlavesFeature {
 
                 if captionChangeDialogViewModel.present {
                     CaptionChangeDialogFeature.Dialog(viewModel: captionChangeDialogViewModel)
+                }
+
+                if let alertDialogState = viewState.alertDialogState {
+                    SuplaCore.AlertDialog(
+                        state: alertDialogState,
+                        onDismiss: { delegate?.onAlertDismissed() },
+                        onPrimaryButtonClick: { delegate?.onAlertDismissed() }
+                    )
                 }
             }.environment(\.scaleFactor, viewState.scale)
         }
@@ -99,21 +112,23 @@ extension ThermostatSlavesFeature {
                     }.padding([.leading], Dimens.distanceSmall)
                     VStack(alignment: .leading, spacing: scaleFactor.scale(Dimens.distanceSmall)) {
                         HStack {
-                            CellValue(text: data.value)
+                            ListItemValue(value: data.value)
                             if (data.indicatorIcon == .off) {
                                 Text("Off").fontBodyMedium()
                             } else {
-                                SetpointIndicator(icon: data.indicatorIcon)
+                                SetpointIndicator(data.indicatorIcon)
                                 if let subValue = data.subValue {
-                                    Text(subValue).fontBodyMedium()
+                                    SetpointText(subValue)
                                 }
                             }
                             ChildChannelIcon(icon: data.pumpSwitchIcon)
                             ChildChannelIcon(icon: data.sourceSwitchIcon)
                         }
-                        CellCaption(text: data.caption)
-                            .padding([.trailing], Dimens.distanceSmall)
-                            .onLongPressGesture { onCaptionLongPress(data) }
+                        ListItemTitle(
+                            text: data.caption,
+                            onLongClick: { onCaptionLongPress(data) }
+                        )
+                        .padding([.trailing], Dimens.distanceSmall)
                     }
                     Spacer()
                 }
@@ -139,19 +154,6 @@ extension ThermostatSlavesFeature {
             .padding([.top, .bottom], Dimens.distanceTiny)
             .background(Color.Supla.surface)
             .onTapGesture { onSlaveClick(data) }
-        }
-    }
-
-    struct SetpointIndicator: SwiftUI.View {
-        let icon: ThermostatIndicatorIcon?
-
-        var body: some SwiftUI.View {
-            if let iconResource = icon?.resourceName {
-                Image(iconResource)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 12, height: 12)
-            }
         }
     }
 
@@ -234,7 +236,7 @@ extension ThermostatSlavesFeature {
         viewState: viewState,
         stateDialogViewModel: stateDialogViewModel,
         captionChangeDialogViewModel: captionChangeDialogViewModel,
-        onInfoAction: { _ in },
+        delegate: nil,
         onStatusAction: { _ in },
         onCaptionLongPress: { _ in },
         onSlaveClick: { _ in }

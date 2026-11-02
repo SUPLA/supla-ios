@@ -18,7 +18,7 @@
 
 import SharedCore
 
-enum ListOnlineState {
+enum ListOnlineState: Equatable {
     case online, partiallyOnline, updating, offline, unknown
 
     var online: Bool {

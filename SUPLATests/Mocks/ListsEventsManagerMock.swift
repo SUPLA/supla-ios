@@ -74,6 +74,21 @@ final class UpdateEventsManagerMock: UpdateEventsManager {
     func observeScenesUpdate() -> Observable<Void> {
         return observeSceneUpdatesObservable
     }
+
+    var observeAllChannelsMock: FunctionMock<Void, Observable<Int32>> = .init()
+    func observeAllChannels() -> Observable<Int32> {
+        observeAllChannelsMock.handle(())
+    }
+
+    var observeAllGroupsMock: FunctionMock<Void, Observable<Int32>> = .init()
+    func observeAllGroups() -> Observable<Int32> {
+        observeAllGroupsMock.handle(())
+    }
+
+    var observeAllScenesMock: FunctionMock<Void, Observable<Int32>> = .init()
+    func observeAllScenes() -> Observable<Int32> {
+        observeAllScenesMock.handle(())
+    }
     
     var emitSceneChangeSceneIdArray: [Int] = []
     func emitSceneUpdate(sceneId: Int) {

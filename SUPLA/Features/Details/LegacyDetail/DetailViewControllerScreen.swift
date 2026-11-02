@@ -1,0 +1,69 @@
+/*
+ Copyright (C) AC SOFTWARE SP. Z O.O.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+    
+import SwiftUI
+
+struct DetailViewControllerScreen: SwiftUI.View {
+    @EnvironmentObject private var router: AppRouter
+    @StateObject private var holder: ControllerHolder
+
+    private let showsTopBar: Bool
+
+    init(itemBundle: ItemBundle, detailViewType: LegacyDetailType, showsTopBar: Bool = false) {
+        _holder = StateObject(
+            wrappedValue: ControllerHolder(itemBundle: itemBundle, detailViewType: detailViewType)
+        )
+        self.showsTopBar = showsTopBar
+    }
+
+    var body: some SwiftUI.View {
+        if (showsTopBar) {
+            SuplaCore.TopBarContainer {
+                SuplaCore.TopBar(
+                    navigationIcon: .back,
+                    title: holder.viewController.detailTitle,
+                    onNavigationIconTap: router.back
+                )
+            } content: {
+                content
+            }
+        } else {
+            content
+        }
+    }
+
+    private var content: some SwiftUI.View {
+        SuplaCore.ViewControllerHost {
+            holder.viewController
+        }
+    }
+}
+
+private extension DetailViewControllerScreen {
+    final class ControllerHolder: ObservableObject {
+        let viewController: DetailViewController
+
+        init(itemBundle: ItemBundle, detailViewType: LegacyDetailType) {
+            viewController = DetailViewController(
+                detailViewType: detailViewType,
+                remoteId: itemBundle.remoteId,
+                subjectType: itemBundle.subjectType
+            )
+        }
+    }
+}

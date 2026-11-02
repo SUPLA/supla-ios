@@ -74,9 +74,6 @@ class BaseDetailTypeProviderUseCase {
         case SUPLA_CHANNELFNC_HUMIDITY:
             return .standardDetail(pages: [.humidityHistory])
         case
-            SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
-            return .legacy(type: .thermostat_hp)
-        case
             SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL,
             SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
             return .legacy(type: .digiglass)
@@ -95,6 +92,8 @@ class BaseDetailTypeProviderUseCase {
             SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
             SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
             return .standardDetail(pages: [.gateGeneral])
+        case SUPLA_CHANNELFNC_HVAC_HRV:
+            return .standardDetail(pages: [.recuperatorGeneral])
         default:
             return nil
         }
@@ -108,11 +107,11 @@ enum DetailType: Equatable {
     case rgbwDetail(pages: [DetailPage])
 }
 
-enum LegacyDetailType {
+enum LegacyDetailType: Hashable {
     case thermostat_hp, digiglass
 }
 
-enum DetailPage {
+enum DetailPage: Hashable {
     // Switches
     case switchGeneral
     case switchTimer
@@ -164,6 +163,9 @@ enum DetailPage {
     
     // Gate
     case gateGeneral
+    
+    // HRV
+    case recuperatorGeneral
     
     // RGBW
     case rgb

@@ -21,6 +21,11 @@ import RxSwift
 @testable import SUPLA
 
 final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelRepository {
+    var updatePositionsMock: FunctionMock<([Int32], [Int32]), Observable<Void>> = .init()
+    func updatePositions(locationIds: [Int32], orderedRemoteIds: [Int32]) -> Observable<Void> {
+        updatePositionsMock.handle((locationIds, orderedRemoteIds))
+    }
+
     var allVisibleChannelsMock: FunctionMock<(AuthProfileItem, Bool), Observable<[SAChannel]>> = .init()
     func getAllVisibleChannels(forProfile profile: AuthProfileItem, withUnavailable: Bool) -> Observable<[SAChannel]> {
         return allVisibleChannelsMock.handle((profile, withUnavailable))
@@ -107,5 +112,10 @@ final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelReposit
     var findChannelsByMock: FunctionMock<(Int32, SharedCore.SuplaFunction), [SAChannel]> = .init()
     func findChannelsBy(_ profileId: Int32, function: SharedCore.SuplaFunction) async -> [SAChannel] {
         findChannelsByMock.handle((profileId, function))
+    }
+    
+    var findZWaveChannelAvailableMock: FunctionMock<Void, Bool> = .init()
+    func findZWaveChannelAvailable() async -> Bool {
+        findZWaveChannelAvailableMock.handle(())
     }
 }

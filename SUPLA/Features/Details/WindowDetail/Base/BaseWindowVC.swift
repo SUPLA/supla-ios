@@ -85,15 +85,10 @@ class BaseWindowVC<WS: WindowState, WV: BaseWindowView<WS>, S: BaseWindowViewSta
             )
             viewModel.bind(dialog.rx.positiveTap) { [weak self, unowned dialog] in
                 dialog.dismiss(animated: true)
-                self?.viewModel.showAuthorizationDialog()
+                guard let self else { return }
+                self.viewModel.authorizeAndStartCalibration(self.itemBundle.remoteId, self.itemBundle.subjectType)
             }
             present(dialog, animated: true)
-        case .showAuthorizationDialog:
-            let dialog = SAAuthorizationDialogVC { [weak self] in
-                guard let self = self else { return }
-                self.viewModel.startCalibration(self.itemBundle.remoteId, self.itemBundle.subjectType)
-            }
-            dialog.showAuthorization(self)
         }
     }
     
@@ -299,7 +294,7 @@ class BlindsTopView: TopView {
     private lazy var leftTopLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body2
+        label.font = .bodyMedium
         label.textColor = .gray
         return label
     }()
@@ -307,7 +302,7 @@ class BlindsTopView: TopView {
     private lazy var leftTopValueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body2Bold
+        label.font = .bodyMediumBold
         label.textColor = .onBackground
         return label
     }()
@@ -315,7 +310,7 @@ class BlindsTopView: TopView {
     private lazy var leftBottomLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body2
+        label.font = .bodyMedium
         label.textColor = .gray
         label.text = Strings.FacadeBlindsDetail.slatTilt.uppercased()
         return label
@@ -324,7 +319,7 @@ class BlindsTopView: TopView {
     private lazy var leftBottomValueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body2Bold
+        label.font = .bodyMediumBold
         label.textColor = .onBackground
         return label
     }()
@@ -332,7 +327,7 @@ class BlindsTopView: TopView {
     private lazy var rightLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body2
+        label.font = .bodyMedium
         label.textColor = .gray
         label.text = "ONLINE:"
         return label
@@ -341,7 +336,7 @@ class BlindsTopView: TopView {
     private lazy var rightValueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body2Bold
+        label.font = .bodyMediumBold
         label.textColor = .onBackground
         return label
     }()
@@ -360,7 +355,7 @@ class BlindsTopView: TopView {
         icon.constrainHeight(Dimens.iconSize)
         
         let label = UILabel()
-        label.font = .body2
+        label.font = .bodyMedium
         label.textColor = .gray
         label.text = "OFFLINE"
         

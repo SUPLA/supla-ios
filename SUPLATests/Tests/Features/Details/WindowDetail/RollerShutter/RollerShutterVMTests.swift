@@ -36,6 +36,8 @@ final class RollerShutterVMTests: ViewModelTest<RollerShutterViewState, BaseWind
     
     private lazy var executeRollerShutterActionUseCase: ExecuteRollerShutterActionUseCaseMock! = ExecuteRollerShutterActionUseCaseMock()
     
+    private lazy var authorizationCoordinator: AuthorizationCoordinatorMock! = AuthorizationCoordinatorMock()
+
     private lazy var viewModel: RollerShutterVM! = RollerShutterVM()
     
     override func setUp() {
@@ -45,6 +47,7 @@ final class RollerShutterVMTests: ViewModelTest<RollerShutterViewState, BaseWind
         DiContainer.register(ExecuteSimpleAction.UseCase.self, executeSimpleActionUseCase!)
         DiContainer.register(CallSuplaClientOperationUseCase.self, callSuplaClientOperationUseCase!)
         DiContainer.register(ExecuteRollerShutterActionUseCase.self, executeRollerShutterActionUseCase!)
+        DiContainer.register(AuthorizationCoordinator.self, authorizationCoordinator!)
         DiContainer.register(GlobalSettings.self, settings!)
     }
     
@@ -57,6 +60,7 @@ final class RollerShutterVMTests: ViewModelTest<RollerShutterViewState, BaseWind
         executeSimpleActionUseCase = nil
         callSuplaClientOperationUseCase = nil
         executeRollerShutterActionUseCase = nil
+        authorizationCoordinator = nil
         settings = nil
         viewModel = nil
     }
@@ -246,13 +250,14 @@ final class RollerShutterVMTests: ViewModelTest<RollerShutterViewState, BaseWind
     func test_shouldStartCalibration() {
         // when
         observe(viewModel)
-        viewModel.startCalibration(222, .channel)
+        viewModel.authorizeAndStartCalibration(222, .channel)
         
         // then
         assertStates(expected: [
             RollerShutterViewState()
         ])
         assertEvents(expected: [])
+        XCTAssertEqual(authorizationCoordinator.authorizeCalls, 1)
         XCTAssertTuples(callSuplaClientOperationUseCase.parameters, [
             (Int32(222), SubjectType.channel, SuplaClientOperation.recalibrate)
         ])

@@ -17,7 +17,7 @@
  */
     
 extension GateGeneralFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate, ChannelUpdatesObserver, GroupUpdatesObserver {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate, ChannelUpdatesObserver, GroupUpdatesObserver {
         @Singleton private var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCase
         @Singleton private var readGroupWithChannelsUseCase: ReadGroupWithChannels.UseCase
         @Singleton private var getAllChannelIssuesUseCase: GetAllChannelIssuesUseCase
@@ -25,20 +25,32 @@ extension GateGeneralFeature {
         @Singleton private var executeSimpleActionUseCase: ExecuteSimpleAction.UseCase
         @Singleton private var getChannelBaseIconUseCase: GetChannelBaseIconUseCase
         
-        private var remoteId: Int32? = nil
-        private var type: SubjectType? = nil
-        
-        init() {
+        private let itemBundle: ItemBundle
+
+        init(itemBundle: ItemBundle) {
+            self.itemBundle = itemBundle
             super.init(state: ViewState())
         }
-        
-        func loadData(remoteId: Int32, type: SubjectType) {
-            self.remoteId = remoteId
-            self.type = type
-            
-            switch (type) {
-            case .channel: loadChannel(remoteId)
-            case .group: loadGroup(remoteId)
+
+        override func onViewCreated() {
+            switch (itemBundle.subjectType) {
+            case .channel:
+                observeChannel(remoteId: Int(itemBundle.remoteId))
+            case .group:
+                observeGroup(remoteId: itemBundle.remoteId)
+            case .scene:
+                break
+            }
+        }
+
+        override func onViewAppear() {
+            loadData()
+        }
+
+        private func loadData() {
+            switch (itemBundle.subjectType) {
+            case .channel: loadChannel(itemBundle.remoteId)
+            case .group: loadGroup(itemBundle.remoteId)
             case .scene: break
             }
         }
@@ -166,8 +178,8 @@ extension GateGeneralFeature {
         }
         
         private func triggerAction(_ action: ActionId) {
-            if let remoteId, let type {
-                executeSimpleActionUseCase.invoke(action: action, type: type, remoteId: remoteId)
+            if (itemBundle.subjectType != .scene) {
+                executeSimpleActionUseCase.invoke(action: action, type: itemBundle.subjectType, remoteId: itemBundle.remoteId)
                     .asDriverWithoutError()
                     .drive()
                     .disposed(by: disposeBag)

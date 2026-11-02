@@ -30,14 +30,40 @@ extension ObservableType {
         return asDriver { error in
             SALog.error("Driver got error: \(error.localizedDescription)")
             SALog.error(String(describing: error))
-            
+
             return Driver.empty()
         }
     }
-    
+
     func asDriver() -> Driver<DriverResult<Element>> {
         map { DriverResult.success(value: $0) }
             .asDriver { Driver.just(DriverResult.error(error: $0)) }
+    }
+
+    func flatMapWeak<Owner: AnyObject, Result>(
+        with owner: Owner,
+        _ transform: @escaping (Owner, Self.Element) -> Observable<Result>
+    ) -> Observable<Result> {
+        flatMap { [weak owner] element in
+            guard let owner else {
+                return Observable<Result>.empty()
+            }
+
+            return transform(owner, element)
+        }
+    }
+
+    func flatMapFirstWeak<Owner: AnyObject, Result>(
+        with owner: Owner,
+        _ transform: @escaping (Owner, Self.Element) -> Observable<Result>
+    ) -> Observable<Result> {
+        flatMapFirst { [weak owner] element in
+            guard let owner else {
+                return Observable<Result>.empty()
+            }
+
+            return transform(owner, element)
+        }
     }
 }
 
@@ -46,7 +72,7 @@ extension Single {
         return asDriver { error in
             SALog.error("Driver got error: \(error.localizedDescription)")
             SALog.error(String(describing: error))
-            
+
             return Driver.empty()
         }
     }
@@ -86,24 +112,24 @@ extension Observable {
         let subscriber = SynchronousSubscriber(observable: self)
         return try subscriber.subscribeAndWait()
     }
-    
+
     func subscribeSynchronous(defaultValue: Element) -> Element {
         let subscriber = SynchronousSubscriber(observable: self)
-        
+
         do {
             return try subscriber.subscribeAndWait() ?? defaultValue
         } catch {
             return defaultValue
         }
     }
-    
+
     func modify(_ modifier: @escaping (Element) -> Void) -> Observable<Element> {
         map { element in
             modifier(element)
             return element
         }
     }
-    
+
     func flatMapCompletable(_ selector: @escaping (Element) throws -> Completable) -> Completable {
         flatMap {
             try selector($0).asObservable()
@@ -116,14 +142,14 @@ final class SynchronousSubscriber<T> {
     let semaphore = DispatchSemaphore(value: 0)
     weak var observable: Observable<T>?
     let disposeBag = DisposeBag()
-    
+
     var value: T?
     var error: Swift.Error?
-    
+
     init(observable: Observable<T>) {
         self.observable = observable
     }
-    
+
     func subscribeAndWait() throws -> T? {
         observable?.subscribe(
             onNext: { value in self.value = value },
@@ -134,13 +160,13 @@ final class SynchronousSubscriber<T> {
             onCompleted: { self.semaphore.signal() }
         )
         .disposed(by: disposeBag)
-        
+
         semaphore.wait()
-        
+
         if (error != nil) {
             throw error!
         }
-        
+
         return value
     }
 }

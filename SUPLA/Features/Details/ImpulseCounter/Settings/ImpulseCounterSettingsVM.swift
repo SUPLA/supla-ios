@@ -17,7 +17,7 @@
  */
 
 extension ImpulseCounterSettingsFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
         @Singleton<RefreshImpulseCounterAggregatedValue.UseCase> private var refreshImpulseCounterAggregatedValueUseCase
         @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
         @Singleton<GetCaptionUseCase> private var getCaptionUseCase
@@ -25,9 +25,13 @@ extension ImpulseCounterSettingsFeature {
 
         private let item: ItemBundle
 
-        init(_ item: ItemBundle) {
+        init(item: ItemBundle) {
             self.item = item
             super.init(state: ViewState())
+        }
+
+        override func onViewAppear() {
+            loadData()
         }
 
         func onListValueAggregationChanged(_ newValue: ListValueAggregation?) {
@@ -45,7 +49,7 @@ extension ImpulseCounterSettingsFeature {
             }
         }
 
-        func loadData() {
+        private func loadData() {
             readChannelByRemoteIdUseCase.invoke(remoteId: item.remoteId)
                 .asDriverWithoutError()
                 .drive(

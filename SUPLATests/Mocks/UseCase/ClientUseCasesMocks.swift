@@ -31,6 +31,15 @@ extension ExecuteSimpleAction {
     }
 }
 
+extension TriggerLogHistoryDownload {
+    final class Mock: TriggerLogHistoryDownload.UseCase {
+        var invokeMock: FunctionMock<Void, Void> = .void()
+
+        func invoke() async {
+            invokeMock.handle(())
+        }
+    }
+}
 
 final class ExecuteThermostatActionUseCaseMock: ExecuteThermostatActionUseCase {
     var parameters: [(SUPLA.SubjectType, Int32, SuplaHvacMode?, Float?, Float?, Int32?)] = []
@@ -106,5 +115,10 @@ final class ReconnectUseCaseMock: ReconnectUseCase {
     func invoke() -> Completable {
         invokeCounter += 1
         return returns
+    }
+
+    func invoke(afterDisconnect action: Completable) -> Completable {
+        invokeCounter += 1
+        return action.andThen(returns)
     }
 }

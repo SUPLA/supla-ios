@@ -20,19 +20,21 @@ import SharedCore
 import SwiftUI
 
 extension ValveGeneralFeature {
+    protocol ViewDelegate {
+        func onOpenClick()
+        func onCloseClick()
+        func onWarningDialogDismiss()
+        func onForceAction(_ action: ActionId)
+    }
+
     struct View: SwiftUI.View {
         @ObservedObject var viewState: ViewState
         @ObservedObject var stateDialogViewModel: StateDialogFeature.ViewModel
         @ObservedObject var captionChangeDialogViewModel: CaptionChangeDialogFeature.ViewModel
+        var delegate: ViewDelegate?
         
         let onInfoClick: (RelatedChannelData) -> Void
         let onCaptionLongPress: (RelatedChannelData) -> Void
-        
-        let onOpenClick: () -> Void
-        let onCloseClick: () -> Void
-        
-        let onWarningDialogDismiss: () -> Void
-        let onForceAction: (ActionId) -> Void
         
         var body: some SwiftUI.View {
             BackgroundStack {
@@ -63,8 +65,8 @@ extension ValveGeneralFeature {
                             type: .positive
                         ),
                         enabled: !viewState.offline,
-                        onLeftButtonClick: onCloseClick,
-                        onRightButtonClick: onOpenClick
+                        onLeftButtonClick: { delegate?.onCloseClick() },
+                        onRightButtonClick: { delegate?.onOpenClick() }
                     )
                 }
                 
@@ -80,11 +82,11 @@ extension ValveGeneralFeature {
                     SuplaCore.AlertDialog(
                         header: Strings.General.warning,
                         message: alertDialog.message,
-                        onDismiss: onWarningDialogDismiss,
+                        onDismiss: { delegate?.onWarningDialogDismiss() },
                         primaryButtonData: .optional(alertDialog.positiveButtonText),
                         secondaryButtonText: alertDialog.negativeButtonText,
-                        onPrimaryButtonClick: { if let action = alertDialog.action { onForceAction(action) } },
-                        onSecondaryButtonClick: onWarningDialogDismiss
+                        onPrimaryButtonClick: { if let action = alertDialog.action { delegate?.onForceAction(action) } },
+                        onSecondaryButtonClick: { delegate?.onWarningDialogDismiss() }
                     )
                 }
             }
@@ -182,11 +184,8 @@ extension ValveGeneralFeature {
         viewState: state,
         stateDialogViewModel: stateDialogViewModel,
         captionChangeDialogViewModel: captionChangeDialogViewModel,
+        delegate: nil,
         onInfoClick: { _ in },
-        onCaptionLongPress: { _ in },
-        onOpenClick: {},
-        onCloseClick: {},
-        onWarningDialogDismiss: {},
-        onForceAction: { _ in }
+        onCaptionLongPress: { _ in }
     )
 }

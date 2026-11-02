@@ -29,6 +29,7 @@ class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent
     @Singleton<ExecuteRollerShutterActionUseCase> private var executeRollerShutterActionUseCase
     @Singleton<GetGroupOnlineSummaryUseCase> private var getGroupOnlineSummaryUseCase
     @Singleton<DateProvider> private var dateProvider
+    @Singleton<AuthorizationCoordinator> private var authorizationCoordinator
     
     var positionTextFormat: WindowGroupedValueFormat {
         if (settings.showOpeningPercent) {
@@ -90,11 +91,15 @@ class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent
         }
     }
     
-    func showAuthorizationDialog() {
-        send(event: .showAuthorizationDialog)
+    func authorizeAndStartCalibration(_ remoteId: Int32, _ type: SubjectType) {
+        authorizationCoordinator.authorize(
+            onAuthorized: { [weak self] in
+                self?.startCalibration(remoteId, type)
+            }
+        )
     }
-    
-    func startCalibration(_ remoteId: Int32, _ type: SubjectType) {
+
+    private func startCalibration(_ remoteId: Int32, _ type: SubjectType) {
         callSuplaClientOperationUseCase.invoke(remoteId: remoteId, type: type, operation: .recalibrate).run(self)
     }
     
@@ -246,7 +251,6 @@ enum ShadingSystemOrientation {
 
 enum BaseWindowViewEvent: ViewEvent {
     case showCalibrationDialog
-    case showAuthorizationDialog
 }
 
 protocol BaseWindowViewState: ViewState {

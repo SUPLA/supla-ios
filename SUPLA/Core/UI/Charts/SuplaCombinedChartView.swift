@@ -158,7 +158,7 @@ class SuplaCombinedChartView: UIView {
         view.chartDescription.enabled = false
         view.delegate = self
         view.noDataTextColor = .onBackground
-        view.noDataFont = .body2
+        view.noDataFont = .bodyMedium
         view.drawMarkers = true
         view.highlightFullBarEnabled = false
         view.pinchZoomEnabled = ProcessInfo.processInfo.isiOSAppOnMac

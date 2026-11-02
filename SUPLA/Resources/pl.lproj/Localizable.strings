@@ -49,10 +49,6 @@
 "Dimmer" = "Ściemniacz";
 "Distance sensor" = "Czujnik odległości";
 "Depth sensor" = "Czujnik głębokości";
-"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Czy wiesz, że Supla to otwarty i bezpłatny projekt rozwijany przez społeczność? Jeśli podoba Ci się ta aplikacja to poświęć moment aby ją ocenić. Dziękujemy za Twoje wsparcie!";
-"Rate Now" = "Oceń teraz";
-"Later" = "Później";
-"No thanks" = "Nie, dziękuję";
 "Mail sensor" = "Czujnik poczty";
 "Window opening sensor" = "Czujnik otwarcia okna";
 "Add I/O device" = "Dodaj urządzenie";
@@ -301,12 +297,19 @@
 "channel_caption_flood_sensor" = "Czujnik zalania";
 "channel_caption_motion_sensor" = "Czujnik ruchu";
 "channel_caption_binary_sensor" = "Czujnik binarny";
+"channel_caption_smoke_sensor" = "Czujnik dymu";
+"channel_caption_carbon_monoxide_sensor" = "Czujnik tlenku węgla";
+"channel_caption_gas_sensor" = "Czujnik gazu";
 "channel_caption_invisible" = "Ukryty";
 "channel_offline" = "Kanał jest offline";
 "channel_not_found" = "Kanał nie istnieje";
 "scene_inactive" = "Scena jest nieaktywna";
 "channel_battery_level" = "Poziom baterii: %d%%";
 "channel_battery_level_with_info" = "Poziom baterii (%d - %@): %d%%";
+"channel_battery_low" = "Niski poziom baterii";
+"channel_battery_low_with_info" = "Niski poziom baterii (%d - %@)";
+"channel_battery_state_low_value" = "niski";
+"channel_battery_state_normal_value" = "normalny";
 "channel_uv_warning1" = "Żywotność promiennika uv wynosi %.01f%%. Zaplanuj jego wymianę.";
 "channel_uv_warning2" = "Żywotność promiennika uv wynosi %.01f%%. Wymień promiennik.";
 "channel_lightsource_warning" = "Żywotność źródła światła wynosi %.01f%%.";
@@ -537,7 +540,7 @@
 "lock_screen_pin_locked" = "Zbyt wiele błędnych prób. Pin został zablokowany na %@.";
 
 /* Device Catalog */
-"device_list_url" = "https://www.supla.org/pl/devices";
+"device_list_url" = "https://supla.org/pl/devices";
 
 /* About */
 "about_version" = "wersja %@";
@@ -632,6 +635,7 @@
 /* State */
 "state_channel_id" = "Id kanału";
 "state_battery_level" = "Poziom baterii";
+"battery_state" = "Stan baterii";
 "state_power_supply" = "Zasilanie";
 "channel_state_battery_powered" = "bateryjne";
 "channel_state_main_powered" = "sieciowe";
@@ -706,6 +710,7 @@
 "enabling_registration_timeout" = "Upłynął czas oczekiwania na włączenie rejestracji!";
 "add_wizard_step_1_welcome" = "Witaj w kreatorze dodawania urządzeń, który pomoże Ci w prosty i szybki sposób dodać nowe urządzenie do systemu.";
 "add_wizard_step_1_continue" = "Aby kontynuować naciśnij **Dalej**.";
+"add_wizard_step_1_wifi_required" = "Do dodania urządzenia wymagane jest połączenie Wi-Fi.\nMożesz je włączyć w Ustawieniach.";
 "add_wizard_step_2_message" = "Wprowadź nazwę oraz hasło Twojej domowej lub firmowej sieci Wi-Fi za pośrednictwem której urządzenie wykonawcze będzie mogło nawiązać połączenie z serwerem.";
 "add_wizard_network_name" = "Nazwa sieci";
 "add_wizard_step_3_message_1" = "Podłącz Twoje urządzenie wykonawcze do zasilania. Urządzenie powinno domyślnie pracować w trybie konfiguracji, sygnalizując to miganie diody statusu w następujący sposób.";
@@ -715,7 +720,18 @@
 "add_wizard_repeat" = "Spróbuj ponownie";
 "add_wizard_remember_passwd" = "Zapamiętaj hasło";
 "add_wizard_auto_mode" = "Tryb automatyczny";
-"add_wizard_manual_mode_message" = "Użyj poniższego skrótu do Ustawień systemowych, aby wybrać urządzenie Wi-Fi do konfiguracji, np. SUPLA-A220A63612B1.\n\nNazwa sieci Wi-Fi zazwyczaj zawiera nazwę producenta, np. SUPLA, ZAMEL, NICE, HEATPOL itp.\n\nPo nawiązaniu połączenia wróć do aplikacji i kontynuuj procedurę dodawania, naciskając przycisk **START**.";
+"add_wizard_manual_mode_message" = "Połącz tymczasowo telefon z siecią Wi-Fi urządzenia, które dodajesz";
+"add_wizard_manual_mode_step_1_title" = "Otwórz Ustawienia na iPhonie";
+"add_wizard_manual_mode_step_1_message" = "Następnie wybierz **Wi-Fi**.";
+"add_wizard_manual_mode_step_2_title" = "Wybierz sieć urządzenia";
+"add_wizard_manual_mode_step_2_message" = "Jej nazwa zwykle zawiera SUPLA, ZAMEL, NICE lub HEATPOL.";
+"add_wizard_manual_mode_example_network" = "np. SUPLA-A220A63612B1";
+"add_wizard_manual_mode_step_3_title" = "Wróć do aplikacji SUPLA";
+"add_wizard_manual_mode_step_3_message" = "Gdy obok sieci pojawi się znacznik ✓, wróć tutaj i naciśnij **START**.";
+"add_wizard_manual_reconnect_title" = "Nie udało się połączyć z internetem!";
+"add_wizard_manual_reconnect_step_2_title" = "Zapewnij dostęp do internetu";
+"add_wizard_manual_reconnect_step_2_message" = "Przywróć połączenie z internetem przez dane mobilne lub sieć Wi-Fi.";
+"add_wizard_manual_reconnect_step_3_message" = "Gdy połączenie z internetem zostanie przywrócone, wróć tutaj i naciśnij **Dalej**.";
 "add_wizard_manual_mode_settings" = "Przejdź do ustawień systemowych";
 "add_wizard_location_service_off" = "Aby Kreator dodawania urządzenia działał poprawnie, usługa lokalizacji musi być włączona na tym urządzeniu. Przejdź do ustawień systemowych i upewnij się, że jest włączona (Ustawienia -> Prywatność i ochrona -> Usługi lokalizacji).";
 "add_wizard_missing_location" = "Aplikacja SUPLA wymaga dostępu do lokalizacji, aby kreator dodawania urządzenia działał poprawnie. Zezwól aplikacji SUPLA na dostęp do lokalizacji w ustawieniach systemowych.";
@@ -727,9 +743,17 @@
 "wizard_result_compat_error" = "Urządzenie z którym nawiązano połączenie nie jest kompatybilne z tym kreatorem!";
 "wizard_result_conn_error" = "Nie można nawiązać połączenia z urządzeniem!";
 "wizard_result_failed" = "Konfiguracja zakończona niepowodzeniem!";
+"wizard_result_certificate_untrusted" = "Certyfikat urządzenia nie jest zaufany. Upewnij się, że łączysz się z właściwym urządzeniem i że jego oprogramowanie jest aktualne.";
+"wizard_result_certificate_expired" = "Certyfikat urządzenia wygasł. Zaktualizuj oprogramowanie urządzenia lub skontaktuj się z pomocą techniczną. Sprawdź też, czy data i godzina w telefonie są prawidłowe.";
+"wizard_result_certificate_not_yet_valid" = "Certyfikat urządzenia nie jest jeszcze ważny. Sprawdź datę i godzinę w telefonie oraz urządzeniu, a następnie spróbuj ponownie.";
+"wizard_result_certificate_revoked" = "Certyfikat urządzenia został unieważniony. Ze względów bezpieczeństwa nie można nawiązać połączenia. Zaktualizuj oprogramowanie urządzenia lub skontaktuj się z pomocą techniczną.";
+"wizard_result_certificate_host_mismatch" = "Certyfikat nie pasuje do tego urządzenia. Upewnij się, że aplikacja łączy się z właściwym urządzeniem.";
+"wizard_result_certificate_pin_mismatch" = "Certyfikat urządzenia różni się od oczekiwanego. Zaktualizuj aplikację i oprogramowanie urządzenia, a następnie spróbuj ponownie.";
+"wizard_result_certificate_unsupported_security" = "Urządzenie używa nieobsługiwanych zabezpieczeń. Zaktualizuj oprogramowanie urządzenia i spróbuj ponownie.";
+"wizard_result_certificate_different_names" = "Urządzenie ma nieprawidłowy certyfikat — nazwa jest nieprawidłowa (certyfikat: %1$@, urządzenie: %2$@)";
 "wizard_reconnect_timeout" = "Przekroczono czas oczekiwania na powrót do podstawowej sieci Wi-Fi!";
 "wizard_done" = "Ustawienia zostały przesłane do urządzenia.";
-"wizard_done_explanations" = "Jeśli urządzenie nie pojawi się w aplikacji, powtórz niniejszą procedurę dodawania jeszcze raz i odczytaj „Poprzedni status” widoczny powyżej. Zawiera on informację umożliwiającą ustalenie dlaczego urządzenie nie połączyło się z serwerem. Komunikat \"SSID not found\" oznacza, że wprowadzona nazwa sieci Wi-Fi 2,4 GHz nie została odnaleziona lub sieć ta jest poza zasięgiem.";
+"wizard_done_explanations" = "Jeśli urządzenie nie pojawi się w aplikacji, ponownie uruchom kreator dodawania urządzenia i odczytaj „Poprzedni status” widoczny powyżej. Zawiera on informacje pomagające ustalić, dlaczego urządzenie nie połączyło się z serwerem. Komunikat „SSID not found” oznacza, że wybrana sieć Wi-Fi 2,4 GHz jest poza zasięgiem lub jej nazwa jest nieprawidłowa.";
 "wizard_iodev_data" = "Dane urządzenia";
 "wizard_iodev_name" = "Nazwa";
 "wizard_iodev_laststate" = "Poprzedni status";
@@ -749,7 +773,6 @@
 "add_wizard_password_repeat_label" = "Powtórz hasło";
 "add_wizard_password_enter_title" = "Hasło do urządzenia";
 "add_wizard_password_instruction" = "Zastosuj hasło dostępu używane do lokalnej strony konfiguracyjnej.\n\nZapomniałeś hasła? Możesz je zmienić w Supla Cloud lub zresetować urządzenie do ustawień fabrycznych.";
-"add_wizard_manual_reconnect_message" = "Nawiązanie połączenie z internetem nie powiodło się.\n\n Przejdź do ustawień systemowych i wybierz sieć Wi-Fi, która posiada połączenie z internetem. Następnie wróć do aplikacji i kontynuuj naciskająć przycisk Dalej";
 "add_device_manual_popup_title" = "Nie udało się dodać urządzenia";
 "add_device_manual_popup_message" = "Próba dodania urządzenia w trybie automatycznym się nie powiodła. Jeśli problem się powtarza, zalecamy dodanie urządzenia w trybie ręcznym.";
 "add_device_manual_popup_resign" = "Pozostań w trybie automatycznym";
@@ -840,3 +863,13 @@
 "nfc_timeout_dialog_title" = "Czas upłynął!";
 "nfc_timeout_dialog_message" = "Nie udało się powiązać taga z urządzeniem. Czy chcesz spróbować ponownie?";
 "toolbar_search_hint" = "Wpisz 2 znaki, aby wyszukać...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "Żywotność źródła światła (godziny)";
+"light_source_lifespan_settings_reset_counter" = "Resetuj licznik zużycia źródła światła";
+
+/* App Rate */
+"rate_app_message" = "Czy wiesz, że Supla to otwarty i bezpłatny projekt rozwijany przez społeczność? Jeśli podoba Ci się ta aplikacja to poświęć moment aby ją ocenić. Dziękujemy za Twoje wsparcie!";
+"rate_app_rate_now" = "Oceń teraz";
+"rate_app_later" = "Później";
+"rate_app_no_thanks" = "Nie, dziękuję";

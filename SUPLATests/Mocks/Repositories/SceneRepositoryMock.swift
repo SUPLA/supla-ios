@@ -21,6 +21,11 @@ import RxSwift
 @testable import SUPLA
 
 final class SceneRepositoryMock: BaseRepositoryMock<SAScene>, SceneRepository {
+    var updatePositionsMock: FunctionMock<([Int32], [Int32]), Observable<Void>> = .init()
+    func updatePositions(locationIds: [Int32], orderedRemoteIds: [Int32]) -> Observable<Void> {
+        updatePositionsMock.handle((locationIds, orderedRemoteIds))
+    }
+
     
     var allVisibleScenesObservable: Observable<[SAScene]> = Observable.empty()
     func getAllVisibleScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]> {
@@ -74,4 +79,3 @@ final class SceneRepositoryMock: BaseRepositoryMock<SAScene>, SceneRepository {
         .empty()
     }
 }
-

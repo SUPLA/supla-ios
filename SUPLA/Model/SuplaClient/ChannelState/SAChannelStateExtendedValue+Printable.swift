@@ -46,6 +46,12 @@ extension SAChannelStateExtendedValue : SharedCore.SuplaChannelStatePrintable {
         }
     }
     
+    public var batteryStateForPrintable: SharedCore.BatteryState? {
+        hasField(SUPLA_CHANNELSTATE_FIELD_BATTERY_STATE) {
+            SharedCore.BatteryState.companion.from(value: KotlinInt.from($0.BatteryState))
+        }
+    }
+    
     public var batteryPoweredForPrintable: KotlinBoolean? {
         hasField(SUPLA_CHANNELSTATE_FIELD_BATTERYPOWERED) {
             KotlinBoolean(bool: $0.BatteryPowered > 0)
@@ -121,7 +127,7 @@ extension SAChannelStateExtendedValue : SharedCore.SuplaChannelStatePrintable {
         }
     }
     
-    private func hasField<T>(_ field: Int32, _ callback: (TDSC_ChannelState) -> T) -> T? {
+    private func hasField<T>(_ field: Int32, _ callback: (TDSC_ChannelState) -> T?) -> T? {
         let state = state()
         if (state.Fields & field > 0) {
             return callback(state)

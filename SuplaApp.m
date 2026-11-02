@@ -20,7 +20,6 @@
 #import "SuplaApp.h"
 #import "Database.h"
 #import "NSData+AES.h"
-#import "SASuperuserAuthorizationDialog.h"
 #import "NSNumber+SUPLA.h"
 #import "SUPLA-Swift.h"
 #import "AuthProfileItem+CoreDataClass.h"
@@ -266,13 +265,15 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
 }
 
 -(SASuplaClient *) optionalSuplaClient {
+    SASuplaClient *result = nil;
+    
     @synchronized(self) {
         if ( _SuplaClient != nil) {
-            return _SuplaClient;
+            result = _SuplaClient;
         }
     }
     
-    return nil;
+    return result;
     
 }
 

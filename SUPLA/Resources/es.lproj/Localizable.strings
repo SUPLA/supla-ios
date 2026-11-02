@@ -50,10 +50,6 @@
 "Dimmer" = "Atenuador";
 "Distance sensor" = "Sensor de distancia";
 "Depth sensor" = "Sensor de profundidad";
-"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "¿Sabías que Supla es un proyecto comunitario abierto y gratuito? Si te gusta esta aplicación, toma un momento para calificarla. ¡Gracias por tu apoyo!";
-"Rate Now" = "Evalúa ahora";
-"Later" = "Más tarde";
-"No thanks" = "No, gracias";
 "Mail sensor" = "Sensor de correo";
 "Window opening sensor" = "Sensor de apertura de ventanas";
 "Add I/O device" = "Añadir dispositivo";
@@ -293,10 +289,17 @@
 "channel_caption_flood_sensor" = "Sensor de inundación";
 "channel_caption_motion_sensor" = "Sensor de movimiento";
 "channel_caption_binary_sensor" = "Sensor binario";
+"channel_caption_smoke_sensor" = "Sensor de humo";
+"channel_caption_carbon_monoxide_sensor" = "Sensor de monóxido de carbono";
+"channel_caption_gas_sensor" = "Sensor de gas";
 "channel_caption_invisible" = "Oculto";
 "channel_offline" = "El canal está offline";
 "channel_battery_level" = "Nivel de batería: %d%%";
 "channel_battery_level_with_info" = "Nivel de batería (%d - %@): %d%%";
+"channel_battery_low" = "Nivel de batería bajo";
+"channel_battery_low_with_info" = "Nivel de batería bajo (%d - %@)";
+"channel_battery_state_low_value" = "bajo";
+"channel_battery_state_normal_value" = "normal";
 "channel_uv_warning" = "La vida útil de la lámpara ultravioleta es %.01f %%. Planee su reemplazo.";
 "channel_uv_error" = "La vida útil de la lámpara ultravioleta es %.01f %%. Reemplácela.";
 "channel_lightsource_warning" = "La vida útil de la fuente de luz es %.01f %%.";
@@ -566,6 +569,7 @@
 /* State */
 "state_channel_id" = "ID del Canal";
 "state_battery_level" = "Nivel de batería";
+"battery_state" = "Estado de la batería";
 "state_power_supply" = "Alimentación";
 "channel_state_battery_powered" = "a pilas";
 "channel_state_main_powered" = "de red";
@@ -632,6 +636,7 @@
 "enabling_registration_timeout" = "¡Se ha superado el tiempo de espera de inicialización del registro!";
 "add_wizard_step_1_welcome" = "Bienvenido al asistente de adición de dispositivos, que le ayudará a añadir nuevos dispositivos al sistema de forma sencilla y rápida.";
 "add_wizard_step_1_continue" = "Para continuar presiona **Siguiente**.";
+"add_wizard_step_1_wifi_required" = "Se requiere Wi-Fi para añadir un dispositivo.\nPuedes activarlo en Ajustes.";
 "add_wizard_step_2_message" = "Introduzca el nombre y la contraseña de su red Wi-Fi (individual o empresarial) que permita al dispositivo establecer la conexión con el servidor.";
 "add_wizard_network_name" = "Nombre de la red";
 "add_wizard_step_3_message_1" = "Conecte su dispositivo a la fuente de alimentación. El dispositivo debería, por defecto, operar en modo de configuración, indicado por el parpadeo del LED de estado de la siguiente manera.";
@@ -642,7 +647,18 @@
 "add_wizard_is_not_available" = "¡El Asistente para agregar solo está disponible cuando se ha establecido la conexión con el servidor usando una cuenta de correo electrónico! (Desactiva las opciones avanzadas en la configuración de tu cuenta)";
 "add_wizard_remember_passwd" = "Recordar la contraseña";
 "add_wizard_auto_mode" = "Modo automático";
-"add_wizard_manual_mode_message" = "Por favor, utiliza el acceso directo de Configuración del sistema a continuación para seleccionar el Wi-Fi de tu dispositivo de E/S para la configuración, como SUPLA-A220A63612B1.\n\nEl nombre del Wi-Fi de configuración generalmente contiene el nombre del fabricante, por ejemplo, SUPLA, ZAMEL, NICE, HEATPOL, etc.\n\nCuando la conexión se haya establecido, regresa a la aplicación y continúa el procedimiento de adición presionando el botón **START**.";
+"add_wizard_manual_mode_message" = "Conecta temporalmente tu teléfono a la red Wi-Fi del dispositivo que estás añadiendo.";
+"add_wizard_manual_mode_step_1_title" = "Abre Ajustes en tu iPhone";
+"add_wizard_manual_mode_step_1_message" = "Después, selecciona **Wi-Fi**.";
+"add_wizard_manual_mode_step_2_title" = "Selecciona la red de tu dispositivo";
+"add_wizard_manual_mode_step_2_message" = "Su nombre suele incluir SUPLA, ZAMEL, NICE o HEATPOL.";
+"add_wizard_manual_mode_example_network" = "p. ej. SUPLA-A220A63612B1";
+"add_wizard_manual_mode_step_3_title" = "Vuelve a la aplicación SUPLA";
+"add_wizard_manual_mode_step_3_message" = "Cuando aparezca una marca de verificación ✓ junto a la red, vuelve aquí y pulsa **START**.";
+"add_wizard_manual_reconnect_title" = "¡La conexión a Internet falló!";
+"add_wizard_manual_reconnect_step_2_title" = "Asegura la conexión a Internet";
+"add_wizard_manual_reconnect_step_2_message" = "Restablece la conexión a Internet mediante datos móviles o una red Wi-Fi.";
+"add_wizard_manual_reconnect_step_3_message" = "Cuando se restablezca la conexión a Internet, vuelve aquí y pulsa **Siguiente**.";
 "add_wizard_manual_mode_settings" = "Proceda a los ajustes del sistema";
 "add_wizard_location_service_off" = "Para que el Asistente para agregar dispositivo funcione correctamente, los servicios de ubicación deben estar habilitados en su dispositivo. Vaya a la configuración de su sistema y asegúrese de que estén habilitados (Configuración -> Privacidad y seguridad -> Servicios de ubicación).";
 "add_wizard_missing_location" = "La aplicación SUPLA requiere acceso a la ubicación para que el Asistente para agregar dispositivo funcione correctamente. Permita que la aplicación SUPLA acceda a su ubicación en la configuración del sistema.";
@@ -654,9 +670,17 @@
 "wizard_result_compat_error" = "¡El dispositivo con el que se ha establecido la conexión no es compatible con este asistente!";
 "wizard_result_conn_error" = "¡No se puede establecer una conexión con el dispositivo!";
 "wizard_result_failed" = "¡Configuración no completada con éxito!";
+"wizard_result_certificate_untrusted" = "El certificado del dispositivo no es de confianza. Asegúrese de conectarse al dispositivo correcto y de que su software esté actualizado.";
+"wizard_result_certificate_expired" = "El certificado del dispositivo ha caducado. Actualice el software del dispositivo o contacte con soporte. Compruebe también que la fecha y la hora del teléfono sean correctas.";
+"wizard_result_certificate_not_yet_valid" = "El certificado del dispositivo aún no es válido. Compruebe la fecha y la hora del teléfono y del dispositivo, y vuelva a intentarlo.";
+"wizard_result_certificate_revoked" = "El certificado del dispositivo ha sido revocado. Por motivos de seguridad, no se puede establecer la conexión. Actualice el software del dispositivo o contacte con soporte.";
+"wizard_result_certificate_host_mismatch" = "El certificado no coincide con este dispositivo. Asegúrese de que la aplicación se conecta al dispositivo correcto.";
+"wizard_result_certificate_pin_mismatch" = "El certificado del dispositivo difiere del esperado. Actualice la aplicación y el software del dispositivo, y vuelva a intentarlo.";
+"wizard_result_certificate_unsupported_security" = "El dispositivo usa ajustes de seguridad no compatibles. Actualice el software del dispositivo y vuelva a intentarlo.";
+"wizard_result_certificate_different_names" = "El dispositivo tiene un certificado incorrecto - los nombres no coinciden (certificado: %1$@, dispositivo: %2$@)";
 "wizard_reconnect_timeout" = "¡Se ha superado el tiempo de espera para reconectar a la red Wi-Fi Base!";
-"wizard_done" = "Configuración del dispositivo completada con éxito :)";
-"wizard_done_explanations" = "Si el dispositivo no aparece en la aplicación, repite este procedimiento de adición nuevamente y lee el \"Estado anterior\" que se muestra arriba. Contiene información que permite determinar por qué el dispositivo no pudo conectarse al servidor. El mensaje \"SSID no encontrado\" significa que no se encontró el nombre ingresado de la red Wi-Fi de 2,4 GHz o que la red está fuera del alcance.";
+"wizard_done" = "La configuración se ha transferido al dispositivo de E/S.";
+"wizard_done_explanations" = "Si el dispositivo no aparece en la aplicación, vuelve a ejecutar el asistente para añadir dispositivos y consulta el «Estado anterior» que se muestra arriba. Contiene información que ayuda a determinar por qué el dispositivo no pudo conectarse al servidor. El mensaje «SSID no encontrado» significa que la red Wi-Fi de 2,4 GHz seleccionada está fuera de alcance o que el nombre de la red es incorrecto.";
 "wizard_iodev_data" = "Datos del dispositivo";
 "wizard_iodev_name" = "Nombre";
 "wizard_iodev_laststate" = "Estado anterior";
@@ -676,7 +700,6 @@
 "add_wizard_password_repeat_label" = "Repetir contraseña";
 "add_wizard_password_enter_title" = "Contraseña del dispositivo";
 "add_wizard_password_instruction" = "Por favor, use la contraseña utilizada para el acceso a la página web de configuración local.\n\n¿Olvidaste tu contraseña? Puedes cambiarla en Supla Cloud o restablecer el dispositivo a la configuración de fábrica.";
-"add_wizard_manual_reconnect_message" = "La conexión a Internet falló.\n\nVe a la configuración del sistema y selecciona una red Wi-Fi que tenga conexión a Internet. Luego, vuelve a la aplicación y continúa presionando **Siguiente**.";
 "add_device_manual_popup_title" = "Fallo al añadir dispositivo";
 "add_device_manual_popup_message" = "El intento de añadir un dispositivo automáticamente ha fallado. Si el problema persiste, recomendamos añadir el dispositivo de forma manual";
 "add_device_manual_popup_resign" = "Permanecer en modo automático";
@@ -768,3 +791,13 @@
 "nfc_timeout_dialog_title" = "¡Tiempo agotado!";
 "nfc_timeout_dialog_message" = "No se pudo vincular la etiqueta con el dispositivo. ¿Quieres intentarlo de nuevo?";
 "toolbar_search_hint" = "Introduce al menos 2 caracteres...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "Durción de la luz (horas)";
+"light_source_lifespan_settings_reset_counter" = "Resetear el contador de uso de la fuente de luz";
+
+/* App Rate */
+"rate_app_message" = "¿Sabías que Supla es un proyecto comunitario abierto y gratuito? Si te gusta esta aplicación, toma un momento para calificarla. ¡Gracias por tu apoyo!";
+"rate_app_rate_now" = "Evalúa ahora";
+"rate_app_later" = "Más tarde";
+"rate_app_no_thanks" = "No, gracias";

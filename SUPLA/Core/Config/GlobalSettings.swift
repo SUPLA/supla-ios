@@ -20,8 +20,6 @@ import SharedCore
 
 protocol GlobalSettings: SharedCore.ApplicationPreferences {
     var anyAccountRegistered: Bool { get set }
-    var newGestureInfoShown: Bool { get set }
-    var shouldShowNewGestureInfo: Bool { get set }
     var shouldShowThermostatScheduleInfo: Bool { get set }
     var pushToken: Data? { get set }
     var pushTokenLastUpdate: Double { get set }
@@ -44,6 +42,7 @@ protocol GlobalSettings: SharedCore.ApplicationPreferences {
     var migratedForAppGroups: Bool { get set }
     var devModeActive: Bool { get set }
     var screenRotationEnabled: Bool { get set }
+    var rateAppConfigTime: Int { get set }
 }
 
 class GlobalSettingsImpl: GlobalSettings {
@@ -55,7 +54,6 @@ class GlobalSettingsImpl: GlobalSettings {
     init() {
         defaults.register(defaults: [
             showChannelInfoKey: true,
-            shouldShowNewGestureInfoKey: false,
             showBottomLabelsKey: true
         ])
     }
@@ -75,19 +73,7 @@ class GlobalSettingsImpl: GlobalSettings {
         get { defaults.bool(forKey: anyAccountRegisteredKey) }
         set { defaults.set(newValue, forKey: anyAccountRegisteredKey) }
     }
-    
-    private let newGestureInfoShownKey = "GlobalSettings.newGestureInfoShownKey"
-    var newGestureInfoShown: Bool {
-        get { defaults.bool(forKey: newGestureInfoShownKey) }
-        set { defaults.set(newValue, forKey: newGestureInfoShownKey) }
-    }
-    
-    private let shouldShowNewGestureInfoKey = "GlobalSettings.shouldShowNewGestureInfo"
-    var shouldShowNewGestureInfo: Bool {
-        get { defaults.bool(forKey: shouldShowNewGestureInfoKey) }
-        set { defaults.set(newValue, forKey: shouldShowNewGestureInfoKey) }
-    }
-    
+
     private let shouldShowThermostatScheduleInfoKey = "GlobalSettings.shouldShowThermostatScheduleInfo"
     var shouldShowThermostatScheduleInfo: Bool {
         get {
@@ -302,6 +288,12 @@ class GlobalSettingsImpl: GlobalSettings {
         set {
             defaults.set(newValue, forKey: screenRotationKey)
         }
+    }
+
+    private let rateAppConfigTimeKey = "rate_time"
+    var rateAppConfigTime: Int {
+        get { defaults.integer(forKey: rateAppConfigTimeKey) }
+        set { defaults.set(newValue, forKey: rateAppConfigTimeKey) }
     }
     
     private func exists(_ key: String) -> Bool {

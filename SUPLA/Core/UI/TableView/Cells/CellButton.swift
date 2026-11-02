@@ -32,7 +32,7 @@ class CellButton: MGSwipeButton {
     
     private func setupView() {
         buttonWidth = Dimens.ListItem.buttonWidth
-        titleLabel?.font = .suplaSubtitleFont
+        titleLabel?.font = .labelLarge
     }
 }
 

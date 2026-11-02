@@ -17,7 +17,7 @@
  */
     
 
-enum LockScreenScope: Int, CaseIterable {
+enum LockScreenScope: Int, CaseIterable, Hashable {
     case none = 0
     case application = 1
     case accounts = 2

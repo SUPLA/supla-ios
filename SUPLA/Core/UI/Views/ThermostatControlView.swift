@@ -186,21 +186,21 @@ final class ThermostatControlView: UIView {
     
     private lazy var minTemperatureView: UILabel = {
         let label = UILabel()
-        label.font = .body2
+        label.font = .bodyMedium
         label.textColor = .onBackground
         return label
     }()
     
     private lazy var maxTemperatureView: UILabel = {
         let label = UILabel()
-        label.font = .body2
+        label.font = .bodyMedium
         label.textColor = .onBackground
         return label
     }()
     
     private lazy var currentPowerLabel: UILabel = {
         let label = UILabel()
-        label.font = .body2
+        label.font = .bodyMedium
         label.textColor = .onBackground
         return label
     }()
@@ -806,4 +806,9 @@ private class SetpointLayers: LayerGroup {
     func sublayers() -> [CALayer] {
         [shadowShape, backgroundShape, iconShape]
     }
+}
+
+private extension UIFont {
+    static let thermostatControlBigTemperature = UIFont(name: FontName.OpenSans.Medium, size: 48)
+    static let thermostatControlSmallTemperature = UIFont(name: FontName.OpenSans.Medium, size: 32)
 }

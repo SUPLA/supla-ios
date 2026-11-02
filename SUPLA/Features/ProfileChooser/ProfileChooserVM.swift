@@ -17,17 +17,18 @@
  */
     
 extension ProfileChooserFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
-        @Singleton var coordinator: SuplaAppCoordinator
-        @Singleton var activateProfileUseCase: ActivateProfileUseCase
-        
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
+        @Singleton<ProfileSessionManager> private var profileSessionManager
         @Singleton<ProfileRepository> var profileRepository
+
+        private let onDismissed: () -> Void
         
-        init() {
+        init(onDismissed: @escaping () -> Void) {
+            self.onDismissed = onDismissed
             super.init(state: ViewState())
         }
         
-        override func onViewDidLoad() {
+        override func onViewAppear() {
             Task {
                 let profiles = await profileRepository.getAllProfiles()
                 await MainActor.run { state.profiles = profiles }
@@ -35,16 +36,13 @@ extension ProfileChooserFeature {
         }
         
         func onDismiss() {
-            coordinator.dismiss(animated: true)
+            onDismissed()
         }
         
         func onProfileSelected(_ profile: ProfileDto) {
-            activateProfileUseCase.invoke(profileId: profile.id, force: false)
-                .asDriverWithoutError()
-                .drive(
-                    onCompleted: { [weak self] in self?.coordinator.dismiss(animated: true) }
-                )
-                .disposed(by: disposeBag)
+            SALog.info("Profile selected: \(profile.name)")
+            onDismissed()
+            profileSessionManager.activateProfile(profileId: profile.id, force: false)
         }
     }
 }

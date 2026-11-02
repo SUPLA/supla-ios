@@ -17,40 +17,33 @@
  */
 
 extension UIFont {
-    static let h1 = openSansLight(style: .largeTitle, size: 96)
-    static let h2 = openSansLight(style: .title1, size: 60)
-    static let h3 = openSansRegular(style: .title2, size: 48)
-    static let h4 = openSansRegular(style: .title3, size: 34)
-    static let h5 = openSansRegular(style: .title3, size: 24)
-    static let h6 = openSansSemiBold(style: .title3, size: 17)
-    static let subtitle1 = openSansRegular(style: .subheadline, size: 16)
-    static let subtitle2 = openSansMedium(style: .subheadline, size: 14)
-    static let body1 = openSansRegular(style: .body, size: 16)
-    @objc static let body2 = openSansRegular(style: .body, size: 14)
-    static let button = openSansMedium(style: .caption1, size: 17)
-    static let caption = openSansRegular(style: .caption2, size: 12)
-    static let captionSemiBold = openSansSemiBold(style: .caption2, size: 12)
-    
-    // custom variation
-    static let body2Bold = openSansBold(style: .body, size: 14)
+    static let displayLarge = openSansLight(style: .title1, size: FontSize.displayLarge)
+    static let displayMedium = openSansRegular(style: .title2, size: FontSize.displayMedium)
+    static let displaySmall = openSansRegular(style: .title3, size: FontSize.displaySmall)
+
+    static let headlineLarge = openSansRegular(style: .title1, size: FontSize.headlineLarge)
+    static let headlineMedium = openSansRegular(style: .title2, size: FontSize.headlineMedium)
+    static let headlineSmall = openSansRegular(style: .title3, size: FontSize.headlineSmall)
+
+    static let titleLarge = openSansSemiBold(style: .title1, size: FontSize.titleLarge)
+    static let titleMedium = openSansSemiBold(style: .title2, size: FontSize.titleMedium)
+    static let titleSmall = openSansSemiBold(style: .title3, size: FontSize.titleSmall)
+
+    static let bodyLarge = openSansRegular(style: .body, size: FontSize.bodyLarge)
+    @objc static let bodyMedium = openSansRegular(style: .body, size: FontSize.bodyMedium)
+    static let bodyMediumBold = openSansBold(style: .body, size: FontSize.bodyMedium)
+    static let bodySmall = openSansRegular(style: .body, size: FontSize.bodySmall)
+
+    static let labelLarge = openSansMedium(style: .caption1, size: FontSize.labelLarge)
+    static let labelMedium = openSansSemiBold(style: .caption1, size: FontSize.labelMedium)
+    static let labelSmall = openSansSemiBold(style: .caption2, size: FontSize.labelSmall)
     
     @objc
     class StaticSize: NSObject {
-        static let h1 = UIFont(name: "OpenSans-Light", size: 96)!
-        static let h2 = UIFont(name: "OpenSans-Light", size: 60)!
-        static let h3 = UIFont(name: "OpenSans", size: 48)!
-        static let h4 = UIFont(name: "OpenSans", size: 34)!
-        static let h5 = UIFont(name: "OpenSans", size: 24)!
-        static let h6 = UIFont(name: "OpenSans-SemiBold", size: 17)!
-        static let subtitle1 = UIFont(name: "OpenSans", size: 16)!
-        static let subtitle2 = UIFont(name: "OpenSans-Medium", size: 14)!
-        static let body1 = UIFont(name: "OpenSans", size: 16)!
-        @objc static let body2 = UIFont(name: "OpenSans", size: 14)!
-        static let button = UIFont(name: "OpenSans-Medium", size: 17)!
-        static let caption = UIFont(name: "OpenSans-Medium", size: 10)!
+        static let labelSmall = UIFont(name: FontName.OpenSans.SemiBold, size: FontSize.labelSmall)
         
-        static let marker = UIFont(name: "OpenSans", size: 11)!
-        static let markerBold = UIFont(name: "OpenSans-Bold", size: 11)!
+        static let marker = UIFont(name: FontName.OpenSans.Regular, size: 11)!
+        static let markerBold = UIFont(name: FontName.OpenSans.Bold, size: 11)!
     }
     
     static func openSansLight(style: UIFont.TextStyle, size: CGFloat) -> UIFont {
@@ -108,18 +101,9 @@ extension UIFont {
         return metrics.scaledFont(for: self)
     }
     
-    static let thermostatControlBigTemperature = UIFont(name: "OpenSans-Medium", size: 48)
-    static let thermostatControlSmallTemperature = UIFont(name: "OpenSans-Medium", size: 32)
-    static let thermostatTimerTime = UIFont(name: "OpenSans-Bold", size: 24)
-    
-    static let scheduleDetailButton = UIFont(name: "OpenSans-Bold", size: 14)
-    
     // TODO: Replace with system fonts
     
-    @objc static let suplaTitleBarFont = UIFont(name: "Quicksand-Regular", size: 27)!
-    @objc static let suplaSubtitleFont = UIFont(name: "Quicksand-Regular", size: 16)!
-
-    static let formLabelFont = UIFont(name: "OpenSans", size: Dimens.Fonts.label)!
+    static let formLabelFont = UIFont(name: "OpenSans", size: 14)!
     
     @objc static let cellCaptionFont = UIFont(name: "OpenSans-Bold", size: Dimens.Fonts.caption)!
     @objc static let cellValueFont = UIFont(name: "OpenSans", size: Dimens.Fonts.value)!

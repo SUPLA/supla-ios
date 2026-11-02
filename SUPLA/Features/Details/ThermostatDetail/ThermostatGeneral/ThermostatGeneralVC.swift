@@ -447,7 +447,7 @@ private class ProgramView: UIView {
     private lazy var infoTypeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body2
+        label.font = .bodyMedium
         label.textColor = .gray
         return label
     }()
@@ -470,7 +470,7 @@ private class ProgramView: UIView {
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body2
+        label.font = .bodyMedium
         label.textColor = .onBackground
         return label
     }()
@@ -588,7 +588,7 @@ private class SensorIssueView: UIView {
     private lazy var messageView: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body2
+        label.font = .bodyMedium
         label.textColor = .onBackground
         return label
     }()

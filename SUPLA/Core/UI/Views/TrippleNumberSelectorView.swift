@@ -181,7 +181,7 @@ extension TrippleNumberSelectorView: UIPickerViewDelegate {
         let label: UILabel
         if (view == nil) {
             label = UILabel()
-            label.font = .button
+            label.font = .labelLarge
             label.textAlignment = .center
         } else {
             label = view as! UILabel

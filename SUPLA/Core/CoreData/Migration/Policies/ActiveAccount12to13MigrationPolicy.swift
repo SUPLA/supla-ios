@@ -24,8 +24,6 @@ final class ActiveAccount12to13MigrationPolicy: NSEntityMigrationPolicy {
     @Singleton<GlobalSettings> var settings
     
     override func end(_ mapping: NSEntityMapping, manager: NSMigrationManager) throws {
-        settings.shouldShowNewGestureInfo = true
-        
         let context = manager.destinationContext
         
         let request = NSFetchRequest<NSManagedObject>(entityName: mapping.destinationEntityName!)

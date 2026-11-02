@@ -19,7 +19,7 @@
 import RxSwift
 
 extension ElectricityMeterGeneralFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState> {
+    class ViewModel: SuplaCore.ViewModel<ViewState> {
         @Singleton private var settings: GlobalSettings
         @Singleton private var dateProvider: DateProvider
         @Singleton private var downloadEventsManager: DownloadEventsManager
@@ -28,21 +28,46 @@ extension ElectricityMeterGeneralFeature {
         @Singleton private var electricityMeterGeneralStateHandler: ElectricityMeterGeneralStateHandler
         @Singleton private var loadElectricityMeterMeasurementsUseCase: LoadElectricityMeterMeasurementsUseCase
         
-        init() {
-            super.init(state: ViewState())
+        private let item: ItemBundle
+
+        init(item: ItemBundle) {
+            self.item = item
+            super.init(
+                state: ViewState(),
+                eventSelector: #selector(handleValueChange(notification:)),
+                eventName: NSNotification.Name.saChannelValueChanged
+            )
         }
-        
-        func observerDownload(_ remoteId: Int32) {
-            downloadEventsManager.observeProgress(remoteId: remoteId)
+
+        override func onViewCreated() {
+            downloadEventsManager.observeProgress(remoteId: item.remoteId)
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] in self?.handleDownloadEvents(downloadState: $0) })
                 .disposed(by: disposeBag)
         }
+
+        override func onViewAppear() {
+            loadData()
+        }
         
-        func loadData(_ remoteId: Int32, downloadingFinished: Bool = false) {
+        @objc
+        private func handleValueChange(notification: Notification) {
+            if let isGroup = notification.userInfo?["isGroup"] as? NSNumber,
+               let remoteId = notification.userInfo?["remoteId"] as? NSNumber,
+               !isGroup.boolValue,
+               remoteId.int32Value == item.remoteId
+            {
+                loadData()
+            }
+        }
+
+        private func loadData(downloadingFinished: Bool = false) {
             Observable.zip(
-                readChannelWithChildrenUseCase.invoke(remoteId: remoteId),
-                loadElectricityMeterMeasurementsUseCase.invoke(remoteId: remoteId, startDate: dateProvider.currentDate().monthStart())
+                readChannelWithChildrenUseCase.invoke(remoteId: item.remoteId),
+                loadElectricityMeterMeasurementsUseCase.invoke(
+                    remoteId: item.remoteId,
+                    startDate: dateProvider.currentDate().monthStart()
+                )
             ) { channel, measurements in (channel, measurements) }
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] channel, measurements in
@@ -76,8 +101,8 @@ extension ElectricityMeterGeneralFeature {
             case .inProgress(_), .started:
                 state.currentMonthDownloading = true
             default:
-                if let remoteId = state.remoteId {
-                    loadData(remoteId, downloadingFinished: true)
+                if (state.remoteId != nil) {
+                    loadData(downloadingFinished: true)
                 }
             }
         }

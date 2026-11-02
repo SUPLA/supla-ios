@@ -46,16 +46,23 @@ extension ProfileChooserFeature {
         }
 
         private func ProfilesList() -> some SwiftUI.View {
-            VStack(alignment: .leading, spacing: 1) {
-                ForEach(state.profiles) { profile in
+            VStack(alignment: .leading, spacing: 0) {
+                ForEach(state.profiles.indices, id: \.self) { index in
+                    let profile = state.profiles[index]
+                    
                     ProfileRow(profile)
                         .contentShape(Rectangle())
                         .onTapGesture { delegate?.onProfileSelected(profile) }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding([.top, .bottom], Distance.tiny)
+                        .padding([.leading, .trailing], Distance.default)
+                        .background(Color.Supla.surface)
+                        .overlay(alignment: .bottom) {
+                            if (index < state.profiles.count - 1) {
+                                SeparatorView(style: .list)
+                            }
+                        }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding([.leading, .trailing], Distance.default)
-                .padding([.top, .bottom], Distance.tiny)
-                .background(Color.Supla.surface)
             }
             .background(Color.Supla.background)
         }

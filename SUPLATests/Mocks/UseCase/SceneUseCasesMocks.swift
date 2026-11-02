@@ -20,29 +20,45 @@ import RxSwift
 
 @testable import SUPLA
 
-final class CreateProfileScenesListUseCaseMock: CreateProfileScenesListUseCase {
-    
-    var observable: Observable<[List]> = Observable.empty()
-    var invokeCounter = 0
-    
-    func invoke() -> Observable<[List]> {
-        invokeCounter += 1
-        return observable
+extension CreateProfileScenesList {
+    final class Mock: CreateProfileScenesList.UseCase {
+        var invokeMock: FunctionMock<String?, Observable<[MainListItem]>> = .init()
+
+        func invoke(filter: String?) -> Observable<[MainListItem]> {
+            invokeMock.handle(filter)
+        }
+    }
+}
+
+extension SceneToMainListItem {
+    final class Mock: SceneToMainListItem.UseCase {
+        var invokeMock: FunctionMock<SAScene, MainListItem?> = .init()
+        var invokeWithLocationMock: FunctionMock<(SAScene, _SALocation), MainListItem> = .init()
+
+        func invoke(_ scene: SAScene) -> MainListItem? {
+            invokeMock.handle(scene)
+        }
+
+        func invoke(_ scene: SAScene, location: _SALocation) -> MainListItem {
+            invokeWithLocationMock.handle((scene, location))
+        }
     }
 }
 
 final class SwapScenePositionsUseCaseMock: SwapScenePositionsUseCase {
-    
-    var observable: Observable<Void> = Observable.empty()
-    var firstRemoteIdArray: [Int32] = []
-    var secondRemoteIdArray: [Int32] = []
-    var locationCaptionArray: [String] = []
-    
-    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationCaption: String) -> Observable<Void> {
-        firstRemoteIdArray.append(firstRemoteId)
-        secondRemoteIdArray.append(secondRemoteId)
-        locationCaptionArray.append(locationCaption)
-        
-        return observable
+    var invokeMock: FunctionMock<([MainListItem], Int32), Observable<Void>> = .init()
+
+    func invoke(items: [MainListItem], movedItemId: Int32) -> Observable<Void> {
+        invokeMock.handle((items, movedItemId))
+    }
+}
+
+final class ReadSceneByRemoteIdUseCaseMock: ReadSceneByRemoteIdUseCase {
+    var returns: Observable<SAScene> = Observable.empty()
+    var parameters: [Int32] = []
+
+    func invoke(remoteId: Int32) -> Observable<SAScene> {
+        parameters.append(remoteId)
+        return returns
     }
 }

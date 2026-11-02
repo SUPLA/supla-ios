@@ -17,7 +17,7 @@
  */
     
 extension CarPlayListFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState> {
+    class ViewModel: SuplaCore.ViewModel<ViewState> {
         @Singleton<UpdateCarPlayOrder.UseCase> private var updateCarPlayOrderUseCase
         @Singleton<ReadCarPlayItems.UseCase> private var readCarPlayItemsUseCase
         @Singleton<CarPlayRefresh.UseCase> private var carPlayRefreshUseCase
@@ -27,7 +27,7 @@ extension CarPlayListFeature {
             super.init(state: ViewState())
         }
         
-        override func onViewWillAppear() {
+        override func onViewAppear() {
             state.playMessages = settings.carPlayVoiceMessages
             readCarPlayItemsUseCase.invoke()
                 .asDriverWithoutError()
@@ -55,9 +55,9 @@ extension CarPlayListFeature {
                 }
             )
             .asDriverWithoutError()
-            .drive(
-                onNext: { [weak self] _ in
-                    self?.onViewWillAppear()
+                .drive(
+                    onNext: { [weak self] _ in
+                    self?.onViewAppear()
                     self?.carPlayRefreshUseCase.post(.refresh)
                 }
             )

@@ -36,8 +36,10 @@ class SuplaAppProviderMock: SuplaAppProvider {
     }
     
     var initSuplaClientCalls = 0
+    var onInitSuplaClient: (() -> Void)?
     func initSuplaClient() {
         initSuplaClientCalls += 1
+        onInitSuplaClient?()
     }
     
     
@@ -64,6 +66,13 @@ class SuplaAppApiMock: NSObject, SuplaAppApi {
     func isClientAuthorized() -> Bool {
         isClientAuthorizedCalls += 1
         return isClientAuthroziedReturns
+    }
+    
+    var optionalSuplaClientCalls = 0
+    var optionalSuplaClientReturns: SASuplaClient?
+    func optionalSuplaClient() -> SASuplaClient? {
+        optionalSuplaClientCalls += 1
+        return optionalSuplaClientReturns
     }
     
 }

@@ -23,12 +23,11 @@ import RxCocoa
 
 final class ThermostatHistoryDetailVC: BaseHistoryDetailVC {
     
-    init(remoteId: Int32, navigationItemProvider: NavigationItemProvider) {
-        super.init(remoteId: remoteId, navigationItemProvider: navigationItemProvider, viewModel: ThermostatHistoryDetailVM())
+    init(remoteId: Int32) {
+        super.init(remoteId: remoteId, viewModel: ThermostatHistoryDetailVM())
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
-

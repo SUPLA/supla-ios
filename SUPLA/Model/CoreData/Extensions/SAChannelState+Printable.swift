@@ -31,6 +31,10 @@ extension SAChannelState : SharedCore.SuplaChannelStatePrintable {
         KotlinInt.from(batteryLevel)
     }
     
+    public var batteryStateForPrintable: SharedCore.BatteryState? {
+        SharedCore.BatteryState.companion.from(value: KotlinInt.from(batteryState))
+    }
+    
     public var batteryPoweredForPrintable: KotlinBoolean? {
         KotlinBoolean.from(batteryPowered?.boolValue)
     }

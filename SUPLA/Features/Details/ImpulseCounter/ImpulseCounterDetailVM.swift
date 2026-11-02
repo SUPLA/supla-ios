@@ -16,48 +16,34 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-class ImpulseCounterDetailVM: BaseDetailVM<ImpulseCounterDetailViewState, ImpulseCounterDetailViewEvent> {
+class ImpulseCounterDetailVM: BaseDetailVM<ImpulseCounterDetailViewState> {
     @Singleton<CheckOcrPhotoExistsUseCase> var checkOcrPhotoExistsUseCase
     @Singleton<DownloadOcrPhotoUseCase> var downloadOcrPhotoUseCase
     @Singleton<SuplaSchedulers> var schedulers
     
-    var hasPhoto: Bool { currentState()?.hasPhoto ?? false }
-    
-    override func defaultViewState() -> ImpulseCounterDetailViewState { ImpulseCounterDetailViewState() }
-    
-    override func setTitle(_ title: String) {
-        updateView { $0.changing(path: \.title, to: title) }
+    init(item: ItemBundle) {
+        super.init(item: item, state: ImpulseCounterDetailViewState())
     }
     
     override func handleChannel(_ channel: SAChannel) {
         super.handleChannel(channel)
         
         if (channel.flags & Int64(SUPLA_CHANNEL_FLAG_OCR) == 0) {
-            updateView {
-                let hasPhoto = checkOcrPhotoExistsUseCase.invoke(profileId: Int64(channel.profile.id), remoteId: channel.remote_id)
-                
-                if ($0.photoDownloaded) {
-                    return $0.changing(path: \.hasPhoto, to: hasPhoto)
-                } else {
-                    triggerPhotoDownload(channel: channel)
-                    
-                    return $0.changing(path: \.photoDownloaded, to: true)
-                        .changing(path: \.hasPhoto, to: hasPhoto)
-                        .changing(path: \.channelId, to: channel.remote_id)
-                        .changing(path: \.profileId, to: channel.profile.id)
-                }
+            let hasPhoto = checkOcrPhotoExistsUseCase.invoke(profileId: Int64(channel.profile.id), remoteId: channel.remote_id)
+
+            if (state.photoDownloaded) {
+                state.hasPhoto = hasPhoto
+            } else {
+                triggerPhotoDownload(channel: channel)
+
+                state.photoDownloaded = true
+                state.hasPhoto = hasPhoto
+                state.channelId = channel.remote_id
+                state.profileId = channel.profile.id
             }
         }
     }
-    
-    @objc
-    func onPhotoButtonClick() {
-        if let profileId = currentState()?.profileId,
-           let remoteId = currentState()?.channelId {
-            send(event: .openOcrPhoto(profileId: profileId, remoteId: remoteId))
-        }
-    }
-    
+
     private func triggerPhotoDownload(channel: SAChannel) {
         downloadOcrPhotoUseCase.invoke(remoteId: channel.remote_id)
             .subscribe(on: schedulers.background)
@@ -67,18 +53,14 @@ class ImpulseCounterDetailVM: BaseDetailVM<ImpulseCounterDetailViewState, Impuls
                     self?.handleChannel(channel)
                 }
             )
-            .disposed(by: self)
+            .disposed(by: disposeBag)
     }
 }
-    
-enum ImpulseCounterDetailViewEvent: ViewEvent {
-    case openOcrPhoto(profileId: Int32, remoteId: Int32)
-}
 
-struct ImpulseCounterDetailViewState: ViewState {
-    var title: String? = nil
-    var channelId: Int32? = nil
-    var profileId: Int32? = nil
-    var photoDownloaded: Bool = false
-    var hasPhoto: Bool = false
+final class ImpulseCounterDetailViewState: DetailViewState {
+    @Published var title: String? = nil
+    @Published var channelId: Int32? = nil
+    @Published var profileId: Int32? = nil
+    @Published var photoDownloaded: Bool = false
+    @Published var hasPhoto: Bool = false
 }

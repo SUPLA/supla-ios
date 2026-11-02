@@ -27,7 +27,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
     private lazy var viewModel: AppSettingsVM! = AppSettingsVM()
     
     private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
-    private lazy var appCoordinator: SuplaAppCoordinatorMock! = SuplaAppCoordinatorMock()
+    private lazy var router: AppRouter! = AppRouter()
     private lazy var groupSharedSettings: GroupShared.SettingsMock! = GroupShared.SettingsMock()
 
     private lazy var notificationCenter: UserNotificationCenterMock! = UserNotificationCenterMock()
@@ -35,7 +35,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
     override func setUp() {
         DiContainer.shared.register(type: GlobalSettings.self, settings!)
         DiContainer.shared.register(type: UserNotificationCenter.self, notificationCenter!)
-        DiContainer.shared.register(type: SuplaAppCoordinator.self, appCoordinator!)
+        DiContainer.shared.register(type: AppRouter.self, router!)
         DiContainer.shared.register(type: GroupShared.Settings.self, groupSharedSettings!)
     }
     
@@ -44,7 +44,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         settings = nil
         notificationCenter = nil
-        appCoordinator = nil
+        router = nil
         groupSharedSettings = nil
         
         super.tearDown()
@@ -484,8 +484,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.darkModeValues.count, 0)
         XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
         
-        XCTAssertEqual(appCoordinator.navigateToPinSetupMock.parameters, [])
-        XCTAssertEqual(appCoordinator.navigateToLockScreenMock.parameters, [.confirmAuthorizeApplication])
+        XCTAssertEqual(router.path, [.lockScreen(action: .confirmAuthorizeApplication)])
     }
     
     func test_shouldNavigateToPinVerification_scopeChangeToAccounts() {
@@ -522,8 +521,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.darkModeValues.count, 0)
         XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
         
-        XCTAssertEqual(appCoordinator.navigateToPinSetupMock.parameters, [])
-        XCTAssertEqual(appCoordinator.navigateToLockScreenMock.parameters, [.confirmAuthorizeAccounts])
+        XCTAssertEqual(router.path, [.lockScreen(action: .confirmAuthorizeAccounts)])
     }
     
     func test_shouldNavigateToPinVerification_turnPinOff() {
@@ -560,8 +558,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.darkModeValues.count, 0)
         XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
         
-        XCTAssertEqual(appCoordinator.navigateToPinSetupMock.parameters, [])
-        XCTAssertEqual(appCoordinator.navigateToLockScreenMock.parameters, [.turnOffPin])
+        XCTAssertEqual(router.path, [.lockScreen(action: .turnOffPin)])
     }
     
     func test_shouldNavigateToPinSetup() {
@@ -597,8 +594,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.darkModeValues.count, 0)
         XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
         
-        XCTAssertEqual(appCoordinator.navigateToPinSetupMock.parameters, [.application])
-        XCTAssertEqual(appCoordinator.navigateToLockScreenMock.parameters, [])
+        XCTAssertEqual(router.path, [.pinSetup(scope: .application)])
     }
     
     func test_shouldSaveBatteryWarningLevel() {
@@ -669,9 +665,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.darkModeValues.count, 0)
         XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
         
-        XCTAssertEqual(appCoordinator.navigateToLocationOrderingMock.parameters.count, 1)
-        XCTAssertEqual(appCoordinator.navigateToPinSetupMock.parameters, [])
-        XCTAssertEqual(appCoordinator.navigateToLockScreenMock.parameters, [])
+        XCTAssertEqual(router.path, [.locationOrdering])
     }
     
     func test_shouldNavigateToAppPreferences() {

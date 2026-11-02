@@ -16,10 +16,20 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-struct ItemBundle: Equatable {
+struct ItemBundle: Equatable, Hashable {
     let remoteId: Int32
     let profileId: Int32
     let deviceId: Int32
     let subjectType: SubjectType
     let function: Int32
+
+    static func from(remoteId: Int32) -> ItemBundle {
+        ItemBundle(
+            remoteId: remoteId,
+            profileId: 0,
+            deviceId: 0,
+            subjectType: .channel,
+            function: 0
+        )
+    }
 }

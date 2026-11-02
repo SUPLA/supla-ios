@@ -39,6 +39,7 @@ final class DisconnectUseCaseImpl: DisconnectUseCase {
     @Singleton<SuplaClientProvider> private var suplaClientProvider
     @Singleton<SuplaAppProvider> private var suplaAppProvider
     @Singleton<UpdateEventsManager> private var updateEventsManager
+    @Singleton<SuplaSchedulers> private var schedulers
     
     func invoke(reason: SuplaAppState.Reason? = nil) -> Completable {
         Completable.create { completable in
@@ -47,20 +48,27 @@ final class DisconnectUseCaseImpl: DisconnectUseCase {
             completable(.completed)
             return Disposables.create()
         }
+        .subscribe(on: schedulers.background)
     }
     
     func invokeSynchronous(reason: SuplaAppState.Reason? = nil) {
+        SALog.info("Disconnect started")
         let suplaApp = suplaAppProvider.provide()
         
         if (suplaApp.isClientWorking()) {
-            let suplaClient = suplaClientProvider.provide()
-            suplaClient?.cancel(reason: reason)
+            SALog.debug("Stopping supla client")
+            if let suplaClient = suplaClientProvider.provide() {
+                // Cancel is only setting a flag so we need to await cancelation
+                suplaClient.cancel(reason: reason)
+            }
             
-            while (suplaClient?.isFinished() == false) {
+            while(suplaClientProvider.provide() != nil) {
+                // When SuplaClient finishes, sets the _SuplaClient instance in SuplaApp to nil, so await for that
                 usleep(1000)
             }
         }
         
+        SALog.debug("Cleanup")
         suplaAppProvider.revokeOAuthToken()
         
         updateEventsManager.cleanup()

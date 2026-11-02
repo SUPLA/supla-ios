@@ -55,14 +55,14 @@ class SALabeledTextField: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .gray
-        label.font = .caption
+        label.font = .bodySmall
         return label
     }()
     
     fileprivate lazy var textField: UITextField = {
         let view = UITextField()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .body1
+        view.font = .bodyLarge
         return view
     }()
     

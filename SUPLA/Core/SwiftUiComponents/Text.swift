@@ -24,112 +24,79 @@ extension View {
     func textColor(_ color: Color) -> some View {
         foregroundStyle(color)
     }
-    
+
     func fontCaptionSmall() -> some View {
         font(.Supla.captionSmall)
             .textCase(.uppercase)
     }
-    
+
     func fontLabelSmall() -> some View {
         font(.Supla.labelSmall)
     }
-    
+
     func fontLabelMedium() -> some View {
         font(.Supla.labelMedium)
     }
-    
+
     func fontLabelLarge() -> some View {
         font(.Supla.labelLarge)
     }
-    
+
     func fontBodySmall() -> some View {
         font(.Supla.bodySmall)
     }
-    
+
     func fontBodySmallBold() -> some View {
         font(.Supla.bodySmallBold)
     }
-    
+
     func fontBodySmallSemiBold() -> some View {
         font(.Supla.bodySmallSemiBold)
     }
-    
+
     func fontBodyMedium() -> some View {
         font(.Supla.bodyMedium)
     }
-    
+
+    func fontBodyMedium(_ scale: CGFloat) -> some View {
+        font(.Supla.bodyMedium(scale))
+    }
+
     func fontBodyLarge() -> some View {
         font(.Supla.bodyLarge)
     }
-    
+
     func fontTitleSmall() -> some View {
         font(.Supla.titleSmall)
     }
-    
+
     func fontTitleMedium() -> some View {
         font(.Supla.titleMedium)
     }
-    
+
     func fontTitleLarge() -> some View {
         font(.Supla.titleLarge)
     }
-    
+
     func fontHeadlineSmall() -> some View {
         font(.Supla.headlineSmall)
     }
-    
+
     func fontHeadlineMedium() -> some View {
         font(.Supla.headlineMedium)
     }
-    
+
     func fontHeadlineLarge() -> some View {
         font(.Supla.headlineLarge)
     }
-    
+
     func fontDisplaySmall() -> some View {
         font(.Supla.displaySmall)
     }
-    
+
     func fontPickerLabel() -> some View {
         font(.Supla.bodySmall)
             .foregroundColor(Color.Supla.onSurfaceVariant)
-    }
-}
-
-struct CellValue: View {
-    @Environment(\.scaleFactor) var scaleFactor: CGFloat
-    
-    var text: String
-    
-    var body: some View {
-        SwiftUI.Text(text)
-            .font(Font.Supla.cellValue(scaleFactor, limit: .lower(1)))
-            .foregroundColor(Color.Supla.onBackground)
-    }
-}
-
-struct CellCaption: View {
-    @Environment(\.scaleFactor) var scaleFactor: CGFloat
-    
-    var text: String
-    
-    var body: some View {
-        SwiftUI.Text(text)
-            .lineLimit(1)
-            .font(Font.Supla.cellCaption(scaleFactor, limit: .lower(1)))
-            .foregroundColor(Color.Supla.onBackground)
-    }
-}
-
-struct CellSubValue: View {
-    @Environment(\.scaleFactor) var scaleFactor: CGFloat
-    
-    var text: String
-    
-    var body: some View {
-        SwiftUI.Text(text)
-            .font(Font.Supla.cellSubValue(scaleFactor, limit: .lower(1)))
-            .foregroundColor(Color.Supla.onBackground)
     }
 }
 

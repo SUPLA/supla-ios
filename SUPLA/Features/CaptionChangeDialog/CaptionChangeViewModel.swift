@@ -18,13 +18,13 @@
     
 extension CaptionChangeDialogFeature {
     class ViewModel: SuplaCore.Dialog.ViewModel {
-        
         @Singleton<VibrationService> private var vibrationService
         @Singleton<CaptionChangeUseCase> private var captionChangeUseCase
         @Singleton<ReadGroupByRemoteIdUseCase> private var readGroupByRemoteIdUseCase
         @Singleton<ReadSceneByRemoteIdUseCase> private var readSceneByRemoteIdUseCase
         @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
         @Singleton<ReadLocationByRemoteIdUseCase> private var readLocationByRemoteIdUseCase
+        @Singleton<AuthorizationCoordinator> private var authorizationCoordinator
         
         @Published var caption: String = ""
         @Published private(set) var label: String? = nil
@@ -46,59 +46,65 @@ extension CaptionChangeDialogFeature {
             self.error = error
         }
 
-        func show(_ viewController: UIViewController?, channelRemoteId: Int32) {
+        func show(channelRemoteId: Int32) {
             readChannelByRemoteIdUseCase.invoke(remoteId: channelRemoteId)
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] in
-                    self?.show(viewController, remoteId: $0.remote_id, caption: $0.caption ?? "", captionType: .channel)
+                    self?.show(remoteId: $0.remote_id, caption: $0.caption ?? "", captionType: .channel)
                 })
                 .disposed(by: self)
         }
         
-        func show(_ viewController: UIViewController?, groupRemoteId: Int32) {
+        func show(groupRemoteId: Int32) {
             readGroupByRemoteIdUseCase.invoke(remoteId: groupRemoteId)
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] in
-                    self?.show(viewController, remoteId: $0.remote_id, caption: $0.caption ?? "", captionType: .group)
+                    self?.show(remoteId: $0.remote_id, caption: $0.caption ?? "", captionType: .group)
                 })
                 .disposed(by: self)
         }
         
-        func show(_ viewController: UIViewController?, sceneRemoteId: Int32) {
+        func show(sceneRemoteId: Int32) {
             readSceneByRemoteIdUseCase.invoke(remoteId: sceneRemoteId)
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] in
-                    self?.show(viewController, remoteId: $0.sceneId, caption: $0.caption ?? "", captionType: .scene)
+                    self?.show(remoteId: $0.sceneId, caption: $0.caption ?? "", captionType: .scene)
                 })
                 .disposed(by: self)
         }
         
-        func show(_ viewController: UIViewController?, locationRemoteId: Int32) {
+        func show(locationRemoteId: Int32) {
             readLocationByRemoteIdUseCase.invoke(remoteId: locationRemoteId)
                 .asDriverWithoutError()
                 .drive(onNext: { [weak self] in
                     if let locationId = $0.location_id?.int32Value {
-                        self?.show(viewController, remoteId: locationId, caption: $0.caption ?? "", captionType: .location)
+                        self?.show(remoteId: locationId, caption: $0.caption ?? "", captionType: .location)
                     }
                 })
                 .disposed(by: self)
         }
-        
-        func show(_ viewController: UIViewController?, sensorData: RelatedChannelData) {
-            show(viewController, remoteId: sensorData.id, caption: sensorData.userCaption, captionType: .channel)
+
+        func show(sensorData: RelatedChannelData) {
+            show(remoteId: sensorData.id, caption: sensorData.userCaption, captionType: .channel)
         }
-        
-        func show(_ viewController: UIViewController?, remoteId: Int32, caption: String, captionType: CaptionChangeUseCaseImpl.CaptionType) {
-            if let viewController {
-                self.remoteId = remoteId
-                self.caption = caption
-                self.label = captionType.label
-                self.captionType = captionType
-                
-                vibrationService.vibrate()
-                
-                SAAuthorizationDialogVC { [weak self] in self?.present = true }.showAuthorization(viewController)
-            }
+
+        func show(remoteId: Int32, caption: String, captionType: CaptionChangeUseCaseImpl.CaptionType) {
+            vibrationService.vibrate()
+
+            authorizationCoordinator.authorize(
+                onAuthorized: { [weak self] in
+                    self?.showAuthorized(remoteId: remoteId, caption: caption, captionType: captionType)
+                }
+            )
+        }
+
+        private func showAuthorized(remoteId: Int32, caption: String, captionType: CaptionChangeUseCaseImpl.CaptionType) {
+            self.remoteId = remoteId
+            self.caption = caption
+            self.label = captionType.label
+            self.captionType = captionType
+
+            present = true
         }
         
         func hide() {
@@ -116,11 +122,10 @@ extension CaptionChangeDialogFeature {
                 })
                 .disposed(by: self)
         }
-        
     }
 }
 
-fileprivate extension CaptionChangeUseCaseImpl.CaptionType {
+private extension CaptionChangeUseCaseImpl.CaptionType {
     var label: String {
         switch (self) {
         case .channel: Strings.ChangeCaption.channelName

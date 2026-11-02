@@ -18,8 +18,8 @@
     
 final class HumidityHistoryDetailVC: BaseHistoryDetailVC {
     
-    init(remoteId: Int32, navigationItemProvider: NavigationItemProvider) {
-        super.init(remoteId: remoteId, navigationItemProvider: navigationItemProvider, viewModel: HumidityHistoryDetailVM())
+    init(remoteId: Int32) {
+        super.init(remoteId: remoteId, viewModel: HumidityHistoryDetailVM())
     }
     
     required init?(coder: NSCoder) {

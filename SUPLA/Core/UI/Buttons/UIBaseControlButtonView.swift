@@ -97,7 +97,7 @@ class UIBaseControlButtonView: UIView {
     lazy var textView: UILabel = {
         let text = UILabel()
         text.translatesAutoresizingMaskIntoConstraints = false
-        text.font = .button
+        text.font = .labelLarge
         text.isHidden = true
         text.textAlignment = .center
         text.textColor = active ? type.textColor : type.inactiveColor

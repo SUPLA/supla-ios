@@ -69,7 +69,7 @@
 
 -(void) superuserAuthorizationCanceled {
     _sueruserAuthoriztionStarted = NO;
-    [SuplaAppCoordinatorLegacyWrapper finish];
+    [AppRouterLegacyWrapper finish];
 }
 
 
@@ -114,7 +114,11 @@
     self.backgroundColor = [UIColor background];
     
     _sueruserAuthoriztionStarted = YES;
-    [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
+    [AuthorizationCoordinatorLegacyWrapper authorizeWithOnAuthorized:^{
+        [self superuserAuthorizationSuccess];
+    } onDismissed:^{
+        [self superuserAuthorizationCanceled];
+    }];
 }
 
 -(void)acceptChanges {
@@ -137,7 +141,7 @@
 
 -(BOOL)isExitLocked {
     return _preloaderPopup != nil
-    || (_sueruserAuthoriztionStarted && [SASuperuserAuthorizationDialog.globalInstance isVisible])
+    || (_sueruserAuthoriztionStarted && [AuthorizationCoordinatorLegacyWrapper isAuthorizationVisible])
     || (_configStartedAtTime != nil
      && [[NSDate date] timeIntervalSince1970] - [_configStartedAtTime timeIntervalSince1970] <= 15);
 }
@@ -146,7 +150,7 @@
     
     if (!_settingsChanged) {
         [self acceptChanges];
-        [SuplaAppCoordinatorLegacyWrapper finish];
+        [AppRouterLegacyWrapper finish];
         return NO;
     }
     
@@ -160,7 +164,7 @@
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
         [self acceptChanges];
-        [SuplaAppCoordinatorLegacyWrapper finish];
+        [AppRouterLegacyWrapper finish];
     }];
     
     UIAlertAction* noBtn = [UIAlertAction
@@ -173,7 +177,7 @@
     [alert addAction:noBtn];
     [alert addAction:yesBtn];
     
-    UIViewController *vc = [SuplaAppCoordinatorLegacyWrapper currentViewController];
+    UIViewController *vc = [AppRouterLegacyWrapper currentViewController];
     [vc presentViewController:alert animated:YES completion:nil];
     
     return NO;
@@ -207,7 +211,7 @@
     [alert addAction:noBtn];
     [alert addAction:yesBtn];
     
-    UIViewController *vc = [SuplaAppCoordinatorLegacyWrapper currentViewController];
+    UIViewController *vc = [AppRouterLegacyWrapper currentViewController];
     [vc presentViewController:alert animated:YES completion:nil];
 }
 
@@ -246,7 +250,7 @@
     [alert addAction:noBtn];
     [alert addAction:cancelBtn];
     
-    UIViewController *vc = [SuplaAppCoordinatorLegacyWrapper currentViewController];
+    UIViewController *vc = [AppRouterLegacyWrapper currentViewController];
     [vc presentViewController:alert animated:YES completion:nil];
     
 }
@@ -397,7 +401,6 @@
 }
 
 -(void)setConfigurationStarted {
-    [SASuperuserAuthorizationDialog.globalInstance closeWithAnimation:NO completion:nil];
     [_detailView addSubview:self];
     [_detailView bringSubviewToFront:self];
     _configStartedAtTime = [NSDate date];

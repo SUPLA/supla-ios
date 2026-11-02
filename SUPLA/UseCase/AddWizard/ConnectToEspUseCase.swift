@@ -23,18 +23,26 @@ private let ACCEPTED_INTERNAL_ERROR_RETRIES: Int = 3
 
 enum ConnectToEsp {
     protocol UseCase {
-        func invoke() async -> Result
+        func invoke(progressHandler: @escaping (CGFloat) -> Void) async -> Result
     }
 
     class Implementation: UseCase {
         @Singleton<DisconnectUseCase> private var disconnectUseCase
 
-        func invoke() async -> Result {
+        func invoke(
+            progressHandler: @escaping (CGFloat) -> Void
+        ) async -> Result {
             disconnectUseCase.invokeSynchronous(reason: .addWizardStarted)
             var internalErrorRetries = 0
 
-            for _ in 0 ..< 3 {
-                for prefix in Esp.prefixes {
+            for retry in 0 ..< 3 {
+                for prefixNo in 0 ..< Esp.prefixes.count {
+                    let prefix = Esp.prefixes[prefixNo]
+                    
+                    await MainActor.run {
+                        progressHandler(CGFloat((retry * Esp.prefixes.count) + prefixNo) / CGFloat(3 * Esp.prefixes.count))
+                    }
+                    
                     if (!Task.isCancelled) {
                         do {
                             let config = NEHotspotConfiguration(ssidPrefix: prefix)

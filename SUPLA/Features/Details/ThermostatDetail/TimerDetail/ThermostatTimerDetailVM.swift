@@ -16,12 +16,13 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import Foundation
 import RxRelay
 import RxSwift
 import SharedCore
 
 extension ThermostatTimerDetailFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
         @Singleton<ExecuteThermostatActionUseCase> private var executeThermostatActionUseCase
         @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
         @Singleton<ChannelConfigEventsManager> private var channelConfigEventManager
@@ -35,10 +36,14 @@ extension ThermostatTimerDetailFeature {
         init(item: ItemBundle, loadingTimeoutManager: LoadingTimeoutManager = LoadingTimeoutManagerImpl()) {
             self.item = item
             self.loadingTimeoutManager = loadingTimeoutManager
-            super.init(state: ViewState())
+            super.init(
+                state: ViewState(),
+                eventSelector: #selector(handleChannelValueChange(notification:)),
+                eventName: NSNotification.Name.saChannelValueChanged
+            )
         }
         
-        override func onViewDidLoad() {
+        override func onViewCreated() {
             loadingTimeoutManager.watch(
                 stateProvider: { [weak self] in self?.state.loadingState },
                 onTimeout: { [weak self] in self?.loadData() }
@@ -56,8 +61,23 @@ extension ThermostatTimerDetailFeature {
                 })
                 .disposed(by: disposeBag)
         }
+
+        override func onViewAppear() {
+            loadData()
+        }
+
+        @objc
+        private func handleChannelValueChange(notification: Notification) {
+            if let isGroup = notification.userInfo?["isGroup"] as? NSNumber,
+               let remoteId = notification.userInfo?["remoteId"] as? NSNumber,
+               !isGroup.boolValue,
+               remoteId.int32Value == item.remoteId
+            {
+                loadData()
+            }
+        }
         
-        func loadData() {
+        private func loadData() {
             readChannelByRemoteIdUseCase.invoke(remoteId: item.remoteId)
                 .subscribe(onNext: { [weak self] in self?.channelRelay.accept($0) })
                 .disposed(by: disposeBag)

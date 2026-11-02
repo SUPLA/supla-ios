@@ -71,7 +71,9 @@ class EspHtmlParser {
             if let match = matches.first,
                match.numberOfRanges == 6 {
                 result.name = html.substring(range: match.range(at: 1))
-                result.state = html.substring(range: match.range(at: 2))
+                if let state = html.substring(range: match.range(at: 2)) {
+                    result.state = (try? Entities.unescape(state)) ?? state
+                }
                 result.version = html.substring(range: match.range(at: 3))
                 result.guid = html.substring(range: match.range(at: 4))
                 result.mac = html.substring(range: match.range(at: 5))

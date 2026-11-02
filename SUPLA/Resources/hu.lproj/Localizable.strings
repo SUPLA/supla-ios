@@ -49,10 +49,6 @@
 "Dimmer" = "Dimmer";
 "Distance sensor" = "Távolságmérő";
 "Depth sensor" = "Mélységérzékelő";
-"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Tudtad, hogy a Supla egy nyíltforráskódú, ingyenes, a közösség által fejlesztett projekt? Ha tetszik az alkalmazás, szánj egy percet az értékelésére. Köszönjük a támogatásodat!";
-"Rate Now" = "Értékelj minket";
-"Later" = "Később";
-"No thanks" = "Köszönöm, nem";
 "Mail sensor" = "Postaláda érzékelő";
 "Window opening sensor" = "Ablak nyitásérzékelő";
 "Add I/O device" = "Eszköz hozzáadása";
@@ -261,12 +257,19 @@
 "channel_caption_flood_sensor" = "Árvízérzékelő";
 "channel_caption_motion_sensor" = "Mozgásérzékelő";
 "channel_caption_binary_sensor" = "Bináris érzékelő";
+"channel_caption_smoke_sensor" = "Füstérzékelő";
+"channel_caption_carbon_monoxide_sensor" = "Szén-monoxid-érzékelő";
+"channel_caption_gas_sensor" = "Gázérzékelő";
 "channel_caption_invisible" = "Rejtett";
 "channel_offline" = "A csatorna offline állapotban van";
 "channel_not_found" = "Csatorna nem található";
 "scene_inactive" = "A jelenet inaktív";
 "channel_battery_level" = "Az akkumulátor töltöttségi szintje: %d%%";
 "channel_battery_level_with_info" = "Az akkumulátor töltöttségi szintje (%d - %@): %d%%";
+"channel_battery_low" = "Az akkumulátor töltöttségi szintje alacsony";
+"channel_battery_low_with_info" = "Az akkumulátor töltöttségi szintje alacsony (%d - %@)";
+"channel_battery_state_low_value" = "alacsony";
+"channel_battery_state_normal_value" = "normál";
 "channel_uv_warning" = "Az uv fűtőtest élettartama %.01f%%. Ütemezze a cseréjét.";
 "channel_uv_error" = "Az uv fűtőtest élettartama %.01f%%. Cserélje ki a fűtőtestet.";
 "channel_lightsource_warning" = "A fényforrás élettartama %.01f%%";
@@ -507,7 +510,7 @@
 "lock_screen_pin_locked" = "Túl sok sikertelen próbálkozás. A PIN zárolva lett %1$@.";
 
 /* Device Catalog */
-"device_list_url" = "https://www.supla.org/en/devices";
+"device_list_url" = "https://supla.org/en/devices";
 
 /* About */
 "about_version" = "verzió %@";
@@ -605,6 +608,7 @@
 "state_ip_address" = "IP";
 "state_mac_address" = "MAC";
 "state_battery_level" = "Az akkumulátor töltöttségi szintje";
+"battery_state" = "Akkumulátor állapota";
 "state_power_supply" = "Tápellátás";
 "channel_state_battery_powered" = "elemes";
 "channel_state_main_powered" = "hálózati";
@@ -675,6 +679,7 @@
 "enabling_registration_timeout" = "A regisztráció engedélyezésének várakozási ideje lejárt!";
 "add_wizard_step_1_welcome" = "Üdvözöljük az eszköz hozzáadása varázslóban, amely segít új eszköz gyors és egyszerű hozzáadásával a rendszerhez.";
 "add_wizard_step_1_continue" = "A folytatáshoz nyomja meg a <b> Következő </b> gombot.";
+"add_wizard_step_1_wifi_required" = "Eszköz hozzáadásához Wi-Fi szükséges.\nA Beállításokban kapcsolhatja be.";
 "add_wizard_step_2_message" = "Írja be annak otthoni vagy vállalati Wi-Fi hálózatának nevét és jelszavát, amelyen keresztül a végrehajtó eszköz képes kapcsolatot létesíteni a szerverrel.";
 "add_wizard_network_name" = "Hálózat neve";
 "add_wizard_step_3_message_1" = "Csatlakoztassa eszközét a tápegységhez. Az eszköznek alapértelmezés szerint konfigurációs módban kell működnie, amit az állapotjelző LED alábbi villogása jelez.";
@@ -685,7 +690,18 @@
 "add_wizard_is_not_available" = "A Hozzáadás varázsló csak akkor érhető el, ha a megadott e-mail cím alapján létrejött a kapcsolat a szerverrel! (A speciális beállítások letiltása a fiókkonfigurációban)";
 "add_wizard_remember_passwd" = "Emlékezzen a jelszavamra";
 "add_wizard_auto_mode" = "Automatikus mód";
-"add_wizard_manual_mode_message" = "Kérjük, használd az alábbi Rendszerbeállítások parancsikont, és válaszd ki az I/O eszköz Wi-Fi hálózatát a konfiguráláshoz, például: SUPLA-A220A63612B1.\n\nA konfigurációs Wi-Fi név általában tartalmazza a gyártó nevét, pl. SUPLA, ZAMEL, NICE, HEATPOL stb.\n\nMiután a kapcsolat létrejött, térj vissza az alkalmazásba, és folytasd a hozzáadási folyamatot a **START** gomb megnyomásával.";
+"add_wizard_manual_mode_message" = "Csatlakoztasd ideiglenesen a telefonodat a hozzáadni kívánt eszköz Wi-Fi-hálózatához.";
+"add_wizard_manual_mode_step_1_title" = "Nyisd meg a Beállításokat az iPhone-odon";
+"add_wizard_manual_mode_step_1_message" = "Ezután válaszd a **Wi-Fi** lehetőséget.";
+"add_wizard_manual_mode_step_2_title" = "Válaszd ki az eszköz hálózatát";
+"add_wizard_manual_mode_step_2_message" = "A neve általában tartalmazza a SUPLA, ZAMEL, NICE vagy HEATPOL nevet.";
+"add_wizard_manual_mode_example_network" = "pl. SUPLA-A220A63612B1";
+"add_wizard_manual_mode_step_3_title" = "Térj vissza a SUPLA alkalmazásba";
+"add_wizard_manual_mode_step_3_message" = "Amint megjelenik egy pipa ✓ a hálózat mellett, térj vissza ide, és koppints a **START** gombra.";
+"add_wizard_manual_reconnect_title" = "Az internetkapcsolat nem sikerült!";
+"add_wizard_manual_reconnect_step_2_title" = "Állítsa helyre az internetkapcsolatot";
+"add_wizard_manual_reconnect_step_2_message" = "Állítsa helyre az internetkapcsolatot mobiladat vagy Wi-Fi-hálózat használatával.";
+"add_wizard_manual_reconnect_step_3_message" = "Az internetkapcsolat helyreállítása után térjen vissza ide, és nyomja meg a **Tovább** gombot.";
 "add_wizard_manual_mode_settings" = "Ugrás a rendszerbeállításokhoz";
 "add_wizard_location_service_off" = "Az Eszköz hozzáadása varázsló megfelelő működéséhez a helymeghatározási szolgáltatásokat engedélyezni kell az eszközön. Menj a rendszerbeállításokba, és győződj meg róla, hogy be van kapcsolva (Beállítások -> Adatvédelem és biztonság -> Helymeghatározás).";
 "add_wizard_missing_location" = "A SUPLA alkalmazásnak helyhozzáférésre van szüksége az Eszköz hozzáadása varázsló megfelelő működéséhez. Engedélyezd a SUPLA alkalmazás számára a helyhozzáférést a rendszerbeállításokban.";
@@ -696,10 +712,18 @@
 "wizard_result_compat_error" = "A csatlakoztatott eszköz nem kompatibilis ezzel a varázslóval!";
 "wizard_result_conn_error" = "Nem lehet csatlakozni az eszközhöz!";
 "wizard_result_failed" = "Az újrakonfigurálás nem sikerült";
+"wizard_result_certificate_untrusted" = "Az eszköz tanúsítványa nem megbízható. Győződjön meg arról, hogy a megfelelő eszközhöz csatlakozik, és hogy annak szoftvere naprakész.";
+"wizard_result_certificate_expired" = "Az eszköz tanúsítványa lejárt. Frissítse az eszköz szoftverét, vagy lépjen kapcsolatba a támogatással. Ellenőrizze azt is, hogy a telefon dátuma és ideje helyes-e.";
+"wizard_result_certificate_not_yet_valid" = "Az eszköz tanúsítványa még nem érvényes. Ellenőrizze a dátumot és az időt a telefonon és az eszközön, majd próbálja újra.";
+"wizard_result_certificate_revoked" = "Az eszköz tanúsítványát visszavonták. Biztonsági okokból a kapcsolat nem hozható létre. Frissítse az eszköz szoftverét, vagy lépjen kapcsolatba a támogatással.";
+"wizard_result_certificate_host_mismatch" = "A tanúsítvány nem illik ehhez az eszközhöz. Győződjön meg arról, hogy az alkalmazás a megfelelő eszközhöz csatlakozik.";
+"wizard_result_certificate_pin_mismatch" = "Az eszköz tanúsítványa eltér a várt tanúsítványtól. Frissítse az alkalmazást és az eszköz szoftverét, majd próbálja újra.";
+"wizard_result_certificate_unsupported_security" = "Az eszköz nem támogatott biztonsági beállításokat használ. Frissítse az eszköz szoftverét, majd próbálja újra.";
+"wizard_result_certificate_different_names" = "Az eszköz tanúsítványa hibás - a nevek nem egyeznek (tanúsítvány: %1$@, eszköz: %2$@)";
 "wizard_reconnect_timeout" = "Az elsődleges Wi-Fi hálózathoz való visszatérés várakozási ideje túllépve!";
 "wizard_configure_timeout" = "Az eszközkonfiguráció befejezésének várakozási ideje túllépve!";
-"wizard_done" = "Az eszköz konfigurálása sikeres :)";
-"wizard_done_explanations" = "Ha a készülék nem jelenik meg az alkalmazásban, ismételje meg ezt az eljárást, és olvassa el a fenti „Előző állapotot”. Ez azt jelzi, hogy a készülék miért nem csatlakozott a szerverhez. Az \"SSID not found\" üzenet azt jelenti, hogy a megadott 2,4 GHz-es Wi-Fi nevet nem találták meg, vagy a hálózat nem érhető el.";
+"wizard_done" = "A beállítások átkerültek az I/O-eszközre.";
+"wizard_done_explanations" = "Ha az eszköz nem jelenik meg az alkalmazásban, indítsa el újra az eszköz hozzáadására szolgáló varázslót, és olvassa el a fent látható „Előző állapot” részt. Ez segít megállapítani, miért nem tudott az eszköz csatlakozni a szerverhez. Az „SSID not found” üzenet azt jelenti, hogy a kiválasztott 2,4 GHz-es Wi-Fi-hálózat hatótávolságon kívül van, vagy a neve hibás.";
 "wizard_iodev_data" = "Eszköz adatok";
 "wizard_iodev_name" = "Megnevezés";
 "wizard_iodev_firmware" = "Firmware";
@@ -721,7 +745,6 @@
 "add_wizard_password_repeat_label" = "Jelszó ismétlése";
 "add_wizard_password_enter_title" = "Eszközjelszó";
 "add_wizard_password_instruction" = "Kérjük, használja a helyi konfigurációs weboldal hozzáféréséhez használt jelszót.\n\nElfelejtetted a jelszavad? Megváltoztathatod a Supla Cloudon, vagy visszaállíthatod az eszközt gyári beállításokra.";
-"add_wizard_manual_reconnect_message" = "Internetkapcsolat sikertelen.\n\nLépj a rendszerbeállításokba, és válassz egy olyan Wi-Fi hálózatot, amely rendelkezik internetkapcsolattal. Ezután térj vissza az alkalmazásba, és folytasd a műveletet a **Tovább** gomb megnyomásával.";
 "add_device_manual_popup_title" = "Az eszköz hozzáadása sikertelen";
 "add_device_manual_popup_message" = "Az eszköz automatikus hozzáadása sikertelen volt. Ha a probléma továbbra is fennáll, javasoljuk az eszköz kézi hozzáadását.";
 "add_device_manual_popup_resign" = "Maradás automatikus módban";
@@ -807,3 +830,13 @@
 "nfc_timeout_dialog_title" = "Lejárt az idő!";
 "nfc_timeout_dialog_message" = "Nem sikerült a címkét az eszközhöz társítani. Szeretné újra megpróbálni?";
 "toolbar_search_hint" = "Írjon be legalább 2 karaktert...";
+
+/* Light source lifespan settings */
+"light_source_lifespan_settings_lifespan" = "A fényforrás élettartama (óra)";
+"light_source_lifespan_settings_reset_counter" = "A fényforrás-használati számláló visszaállítása";
+
+/* App Rate */
+"rate_app_message" = "Tudtad, hogy a Supla egy nyíltforráskódú, ingyenes, a közösség által fejlesztett projekt? Ha tetszik az alkalmazás, szánj egy percet az értékelésére. Köszönjük a támogatásodat!";
+"rate_app_rate_now" = "Értékelj minket";
+"rate_app_later" = "Később";
+"rate_app_no_thanks" = "Köszönöm, nem";

@@ -22,6 +22,7 @@ import RxSwift
 
 private let MAX_SWIPE_DOWN: CGFloat = 100
 private let INITIAL_Y: CGFloat = -30
+private let INDICATOR_SIZE: CGFloat = 24
 
 protocol PullToRefreshHolder {
     func shouldReceive(touch: UITouch) -> Bool
@@ -67,7 +68,9 @@ final class PullToRefreshView: UIActivityIndicatorView {
         
         guard let superview = superview else { return }
         
-        frame = CGRect(x: superview.center.x - 12, y: INITIAL_Y, width: 24, height: 24)
+        let currentY = configured ? center.y : INITIAL_Y
+        bounds = CGRect(x: 0, y: 0, width: INDICATOR_SIZE, height: INDICATOR_SIZE)
+        center = CGPoint(x: superview.bounds.midX, y: currentY)
         if (!configured) {
             let recognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan))
             recognizer.delegate = self

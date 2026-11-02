@@ -19,7 +19,7 @@
 import SharedCore
 
 extension ValveGeneralFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ChannelUpdatesObserver {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ChannelUpdatesObserver, ViewDelegate {
         @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
         @Singleton<GetChannelBatteryIconUseCase> private var getChannelBatteryIconUseCase
         @Singleton<GetAllChannelIssuesUseCase> private var getAllChannelIssuesUseCase
@@ -28,22 +28,41 @@ extension ValveGeneralFeature {
         @Singleton<ChannelBaseActionUseCase> private var channelBaseActionUseCase
         @Singleton<GetCaptionUseCase> private var getCaptionUseCase
         @Singleton<VibrationService> private var vibrationService
-        
-        init() {
+
+        private let itemBundle: ItemBundle
+
+        init(itemBundle: ItemBundle) {
+            self.itemBundle = itemBundle
             super.init(state: ViewState())
         }
-        
-        func loadData(_ remoteId: Int32) {
-            readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
+
+        override func onViewCreated() {
+            observeChannel(remoteId: Int(itemBundle.remoteId))
+        }
+
+        override func onViewAppear() {
+            loadData()
+        }
+
+        private func loadData() {
+            readChannelWithChildrenUseCase.invoke(remoteId: itemBundle.remoteId)
                 .asDriverWithoutError()
                 .drive(
                     onNext: { [weak self] in self?.handle($0) }
                 )
                 .disposed(by: disposeBag)
         }
-        
-        func onActionClick(_ remoteId: Int32, action: ValveAction) {
-            channelBaseActionUseCase.invoke(remoteId, action.buttonType)
+
+        func onOpenClick() {
+            onActionClick(action: .open)
+        }
+
+        func onCloseClick() {
+            onActionClick(action: .close)
+        }
+
+        private func onActionClick(action: ValveAction) {
+            channelBaseActionUseCase.invoke(itemBundle.remoteId, action.buttonType)
                 .asDriverWithoutError()
                 .drive(
                     onNext: { [weak self] result in
@@ -65,14 +84,14 @@ extension ValveGeneralFeature {
                 )
                 .disposed(by: disposeBag)
         }
-        
-        func closeValveAlertDialog() {
+
+        func onWarningDialogDismiss() {
             state.alertDialog = nil
         }
-        
-        func forceAction(_ remoteId: Int32, action: ActionId) {
+
+        func onForceAction(_ action: ActionId) {
             state.alertDialog = nil
-            executeSimpleActionUseCase.invoke(action: action, type: .channel, remoteId: remoteId)
+            executeSimpleActionUseCase.invoke(action: action, type: .channel, remoteId: itemBundle.remoteId)
                 .asDriverWithoutError()
                 .drive()
                 .disposed(by: disposeBag)
@@ -136,4 +155,3 @@ private extension ValveValue? {
         }
     }
 }
-

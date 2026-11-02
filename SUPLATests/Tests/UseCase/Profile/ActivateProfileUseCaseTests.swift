@@ -17,6 +17,7 @@
  */
 
 @testable import SUPLA
+import RxSwift
 import XCTest
 
 final class ActivateProfileUseCaseTests: CompletableTestCase {
@@ -25,25 +26,20 @@ final class ActivateProfileUseCaseTests: CompletableTestCase {
         ProfileRepositoryMock()
     }()
     
-    private lazy var runtimeConfig: RuntimeConfigMock! = {
-        RuntimeConfigMock()
-    }()
-    
     private lazy var cloudConfigHolder: SuplaCloudConfigHolderMock! = {
         SuplaCloudConfigHolderMock()
     }()
     
     private lazy var reconnectUseCase: ReconnectUseCaseMock! = ReconnectUseCaseMock()
     
-    private lazy var useCase: ActivateProfileUseCaseImpl! = {
-        ActivateProfileUseCaseImpl()
+    private lazy var useCase: ActivateProfileUseCase! = {
+        ActivateProfileUseCase()
     }()
     
     override func setUp() {
         super.setUp()
         
         DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
-        DiContainer.shared.register(type: RuntimeConfig.self, runtimeConfig!)
         DiContainer.shared.register(type: SuplaCloudConfigHolder.self, cloudConfigHolder!)
         DiContainer.shared.register(type: ReconnectUseCase.self, reconnectUseCase!)
     }
@@ -52,7 +48,6 @@ final class ActivateProfileUseCaseTests: CompletableTestCase {
         super.tearDown()
         
         profileRepository = nil
-        runtimeConfig = nil
         cloudConfigHolder = nil
         reconnectUseCase = nil
         
@@ -90,7 +85,6 @@ final class ActivateProfileUseCaseTests: CompletableTestCase {
         // then
         assertEvents(contains: [ .completed ])
         
-        XCTAssertEqual(runtimeConfig.activeProfileIdValues, [])
         XCTAssertEqual(cloudConfigHolder.cleanCalls, 0)
     }
     
@@ -112,7 +106,6 @@ final class ActivateProfileUseCaseTests: CompletableTestCase {
         
         // then
         assertEvents(contains: [ .completed ])
-        XCTAssertEqual(runtimeConfig.activeProfileIdValues, [notActiveProfileEntity.objectID])
         XCTAssertEqual(cloudConfigHolder.cleanCalls, 1)
     }
     
@@ -134,7 +127,53 @@ final class ActivateProfileUseCaseTests: CompletableTestCase {
         
         // then
         assertEvents(contains: [ .completed ])
-        XCTAssertEqual(runtimeConfig.activeProfileIdValues, [activeProfileEntity.objectID])
         XCTAssertEqual(cloudConfigHolder.cleanCalls, 1)
+    }
+
+    func test_shouldWaitForDisconnectBeforeActivatingProfileAndStartingClient() {
+        // given
+        let profile = AuthProfileItem(testContext: nil)
+        profile.id = 7
+        profileRepository.getProfileWithIdMock.returns = .single(.just(profile))
+
+        var events: [String] = []
+        var completeDisconnect: (() -> Void)?
+        let disconnectUseCase = DisconnectUseCaseMock()
+        disconnectUseCase.invokeReturns = Completable.create { completable in
+            events.append("disconnect")
+            completeDisconnect = { completable(.completed) }
+            return Disposables.create()
+        }
+
+        let appProvider = SuplaAppProviderMock()
+        appProvider.onInitSuplaClient = { events.append("start client") }
+        cloudConfigHolder.onClean = { events.append("clean cloud config") }
+
+        profileRepository.markProfileActiveMock.returns = .single(
+            .deferred {
+                events.append("activate profile")
+                return .just(())
+            }
+        )
+
+        DiContainer.shared.register(type: DisconnectUseCase.self, disconnectUseCase)
+        DiContainer.shared.register(type: SuplaAppProvider.self, appProvider)
+        DiContainer.shared.register(type: ReconnectUseCase.self, ReconnectUseCaseImpl())
+
+        // when
+        useCase.invoke(profileId: profile.id, force: false)
+            .subscribe(observer)
+            .disposed(by: disposeBag)
+
+        // then: the profile must remain untouched while disconnect is pending
+        XCTAssertEqual(events, ["disconnect"])
+        XCTAssertEqual(appProvider.initSuplaClientCalls, 0)
+
+        completeDisconnect?()
+
+        XCTAssertEqual(events, ["disconnect", "activate profile", "clean cloud config", "start client"])
+        XCTAssertEqual(profileRepository.markProfileActiveMock.parameters.count, 1)
+        XCTAssertEqual(appProvider.initSuplaClientCalls, 1)
+        assertEvents(contains: [.completed])
     }
 }

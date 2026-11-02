@@ -16,11 +16,10 @@
 #import <UIKit/UIKit.h>
 #import "DetailView.h"
 #import "SARangeCalibrationWheel.h"
-#import "SASuperuserAuthorizationDialog.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SADimmerCalibrationTool : UIView <UIGestureRecognizerDelegate, SASuperuserAuthorizationDialogDelegate>
+@interface SADimmerCalibrationTool : UIView <UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *btnInfo;
 @property (weak, nonatomic) IBOutlet UIButton *btnRestore;
 @property (weak, nonatomic) IBOutlet UIButton *btnOK;
@@ -43,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) deviceCalCfgCommandWithDelay:(int)command;
 
 -(void)startConfiguration:(SADetailView*)detailView;
+-(void)superuserAuthorizationSuccess;
+-(void)superuserAuthorizationCanceled;
 -(void)setConfigurationStarted;
 -(void)cfgToUIWithDelay:(BOOL)delay;
 -(void)dismiss;

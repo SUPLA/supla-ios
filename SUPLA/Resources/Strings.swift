@@ -19,7 +19,7 @@
 import Foundation
 
 struct Strings {
-    static let appName = NSLocalizedString("supla", comment: "Application name")
+    static let appName = NSLocalizedString("SUPLA", comment: "Application name")
     
     struct Cfg {
         static let appConfigTitle = NSLocalizedString("App Settings", comment: "title headline for settings view")
@@ -390,10 +390,18 @@ struct Strings {
             static let captionFloodSensor = "channel_caption_flood_sensor".toLocalized()
             static let captionMotionSensor = "channel_caption_motion_sensor".toLocalized()
             static let captionBinarySensor = "channel_caption_binary_sensor".toLocalized()
+            static let captionSmokeSensor = "channel_caption_smoke_sensor".toLocalized()
+            static let captionCarbonMonoxideSensor = "channel_caption_carbon_monoxide_sensor".toLocalized()
+            static let captionGasSensor = "channel_caption_gas_sensor".toLocalized()
             static let captionInvisible = "channel_caption_invisible".toLocalized()
+            static let captionHvacHrv = "channel_caption_hvac_hrv".toLocalized()
             
             static let batteryLevel = "channel_battery_level".toLocalized()
             static let batteryLevelWithInfo = "channel_battery_level_with_info".toLocalized()
+            static let batteryLow = "channel_battery_low".toLocalized()
+            static let batteryLowWithInfo = "channel_battery_low_with_info".toLocalized()
+            static let batteryStateLowValue = "channel_battery_state_low_value".toLocalized()
+            static let batteryStateNormalValue = "channel_battery_state_normal_value".toLocalized()
             
             static let statusAwaiting = "channel_status_awaiting".toLocalized()
             static let statusUpdating = "channel_status_updating".toLocalized()
@@ -592,6 +600,7 @@ struct Strings {
         static let ipAddress = "state_ip_address".toLocalized()
         static let macAddress = "state_mac_address".toLocalized()
         static let batteryLevel = "state_battery_level".toLocalized()
+        static let batteryState = "battery_state".toLocalized()
         static let wifiRssi = "state_wifi_rssi".toLocalized()
         static let wifiSignalStrength = "state_wifi_signal_strength".toLocalized()
         static let bridgeNodeOnline = "state_bridge_node_online".toLocalized()
@@ -622,6 +631,18 @@ struct Strings {
         static let groupName = "change_caption_group_name".toLocalized()
         static let sceneName = "change_caption_scene_name".toLocalized()
         static let locationName = "change_caption_location_name".toLocalized()
+    }
+
+    struct LightSourceLifespan {
+        static let lifespan = "light_source_lifespan_settings_lifespan".toLocalized()
+        static let resetCounter = "light_source_lifespan_settings_reset_counter".toLocalized()
+    }
+
+    struct RateApp {
+        static let message = "rate_app_message".toLocalized()
+        static let rateNow = "rate_app_rate_now".toLocalized()
+        static let later = "rate_app_later".toLocalized()
+        static let noThanks = "rate_app_no_thanks".toLocalized()
     }
     
     struct Container {
@@ -673,9 +694,18 @@ struct Strings {
         static let resultNotCompatible = "wizard_result_compat_error".toLocalized()
         static let resultConnectionError = "wizard_result_conn_error".toLocalized()
         static let resultFailed = "wizard_result_failed".toLocalized()
+        static let certificateErrorUntrusted = "wizard_result_certificate_untrusted".toLocalized()
+        static let certificateErrorExpired = "wizard_result_certificate_expired".toLocalized()
+        static let certificateErrorNotYetValid = "wizard_result_certificate_not_yet_valid".toLocalized()
+        static let certificateErrorRevoked = "wizard_result_certificate_revoked".toLocalized()
+        static let certificateErrorHostMismatch = "wizard_result_certificate_host_mismatch".toLocalized()
+        static let certificateErrorPinMismatch = "wizard_result_certificate_pin_mismatch".toLocalized()
+        static let certificateErrorUnsupportedSecurity = "wizard_result_certificate_unsupported_security".toLocalized()
+        static let certificateErrorDifferentNames = "wizard_result_certificate_different_names".toLocalized()
         static let reconnectTimeout = "wizard_reconnect_timeout".toLocalized()
         static let step1Welcome = "add_wizard_step_1_welcome".toLocalized()
         static let step1Continue = "add_wizard_step_1_continue".toLocalized()
+        static let step1WifiRequired = "add_wizard_step_1_wifi_required".toLocalized()
         static let step2Message = "add_wizard_step_2_message".toLocalized()
         static let networkName = "add_wizard_network_name".toLocalized()
         static let step3Message1 = "add_wizard_step_3_message_1".toLocalized()
@@ -694,7 +724,17 @@ struct Strings {
         static let rememberPassword = "add_wizard_remember_passwd".toLocalized()
         static let autoMode = "add_wizard_auto_mode".toLocalized()
         static let manualModeMessage = "add_wizard_manual_mode_message".toLocalized()
-        static let manualReconnectMessage = "add_wizard_manual_reconnect_message".toLocalized()
+        static let manualModeStep1Title = "add_wizard_manual_mode_step_1_title".toLocalized()
+        static let manualModeStep1Message = "add_wizard_manual_mode_step_1_message".toLocalized()
+        static let manualModeStep2Title = "add_wizard_manual_mode_step_2_title".toLocalized()
+        static let manualModeStep2Message = "add_wizard_manual_mode_step_2_message".toLocalized()
+        static let manualModeExampleNetwork = "add_wizard_manual_mode_example_network".toLocalized()
+        static let manualModeStep3Title = "add_wizard_manual_mode_step_3_title".toLocalized()
+        static let manualModeStep3Message = "add_wizard_manual_mode_step_3_message".toLocalized()
+        static let manualReconnectTitle = "add_wizard_manual_reconnect_title".toLocalized()
+        static let manualReconnectStep2Title = "add_wizard_manual_reconnect_step_2_title".toLocalized()
+        static let manualReconnectStep2Message = "add_wizard_manual_reconnect_step_2_message".toLocalized()
+        static let manualReconnectStep3Message = "add_wizard_manual_reconnect_step_3_message".toLocalized()
         static let goToSettings = "add_wizard_manual_mode_settings".toLocalized()
         static let locationServiceOff = "add_wizard_location_service_off".toLocalized()
         static let missingLocation = "add_wizard_missing_location".toLocalized()

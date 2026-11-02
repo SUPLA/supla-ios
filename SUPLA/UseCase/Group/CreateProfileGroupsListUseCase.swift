@@ -19,42 +19,92 @@
 import Foundation
 import RxSwift
 
-protocol CreateProfileGroupsListUseCase {
-    func invoke() -> Observable<[List]>
+struct CreateProfileGroupsList {
+    protocol UseCase {
+        func invoke(filter: String?) -> Observable<[MainListItem]>
+    }
+
+    final class Implementation: UseCase {
+        @Singleton<GroupRepository> private var groupRepository
+        @Singleton<ProfileRepository> private var profileRepository
+        @Singleton<GroupToMainListItem.UseCase> private var groupToMainListItemUseCase
+
+        func invoke(filter: String?) -> Observable<[MainListItem]> {
+            return profileRepository
+                .getActiveProfile()
+                .flatMapFirst { self.groupRepository.getAllVisibleGroups(forProfile: $0) }
+                .map { self.toList($0, filter: filter) }
+        }
+
+        private func toList(_ groups: [SAChannelGroup], filter: String?) -> [MainListItem] {
+            guard !groups.isEmpty else {
+                return []
+            }
+
+            var items = [MainListItem]()
+            let inSearch = MainListFilter.isSearchable(filter)
+
+            for section in groups.toLocationSections(
+                locationOf: { $0.location },
+                positionOf: { $0.position }
+            ) {
+                let visibleGroups = section.items.compactMap { group -> MainListItem? in
+                    guard
+                        let location = group.location,
+                        let item = groupToMainListItemUseCase.invoke(group)
+                    else {
+                        return nil
+                    }
+
+                    if inSearch && !itemMatches(item, location: location, filter: filter) {
+                        return nil
+                    }
+
+                    return item
+                }
+
+                guard
+                    !visibleGroups.isEmpty,
+                    let location = section.items
+                        .compactMap(\.location)
+                        .min(by: { ($0.sortOrder?.int32Value ?? 0) < ($1.sortOrder?.int32Value ?? 0) })
+                else {
+                    continue
+                }
+
+                items.append(location.groupListItem(inSearch: inSearch))
+                if inSearch || !location.isCollapsed(flag: .group) {
+                    items.append(contentsOf: visibleGroups)
+                }
+            }
+
+            return items
+        }
+
+        private func itemMatches(_ item: MainListItem, location: _SALocation, filter: String?) -> Bool {
+            guard let filter else { return true }
+
+            return MainListFilter.matches(item, filter: filter)
+                || MainListFilter.matches(location.caption, filter: filter)
+        }
+    }
 }
 
-final class CreateProfileGroupsListUseCaseImpl: CreateProfileGroupsListUseCase {
-    
-    @Singleton<GroupRepository> private var groupRepository
-    @Singleton<ProfileRepository> private var profileRepository
-    
-    func invoke() -> Observable<[List]> {
-        return profileRepository
-            .getActiveProfile()
-            .flatMapFirst { self.groupRepository.getAllVisibleGroups(forProfile: $0) }
-            .map { self.toList($0) }
+extension CreateProfileGroupsList.UseCase {
+    func invoke() -> Observable<[MainListItem]> {
+        invoke(filter: nil)
     }
-    
-    private func toList(_ channels: [SAChannelGroup]) -> [List] {
-        if (channels.isEmpty) {
-            return [.list(items: [])]
-        }
-        
-        var lastLocation: _SALocation = channels[0].location!
-        var items = [ListItem]()
-        items.append(.location(location: lastLocation))
-        
-        for channel in channels {
-            if (lastLocation.caption != channel.location!.caption) {
-                items.append(.location(location: channel.location!))
-                lastLocation = channel.location!
-            }
-            
-            if (!lastLocation.isCollapsed(flag: .group)) {
-                items.append(.channelBase(channelBase: channel, children: []))
-            }
-        }
-        
-        return [.list(items: items)]
+}
+
+private extension _SALocation {
+    func groupListItem(inSearch: Bool) -> MainListItem {
+        .location(
+            LocationListItem(
+                remoteId: location_id?.int32Value ?? 0,
+                profileId: profile.id,
+                userCaption: caption ?? "",
+                collapsed: inSearch ? false : isCollapsed(flag: .group)
+            )
+        )
     }
 }

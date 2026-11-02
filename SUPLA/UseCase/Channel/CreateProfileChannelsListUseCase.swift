@@ -16,74 +16,128 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
 import RxSwift
 
-protocol CreateProfileChannelsListUseCase {
-    func invoke() -> Observable<[List]>
-}
-
-final class CreateProfileChannelsListUseCaseImpl: CreateProfileChannelsListUseCase {
-    
-    @Singleton<ChannelRepository> private var channelRepository
-    @Singleton<ProfileRepository> private var profileRepository
-    @Singleton<ChannelRelationRepository> private var channelRelationRepository
-    @Singleton<CreateChannelWithChildrenUseCase> private var createChannelWithChildrenUseCase
-    
-    func invoke() -> Observable<[List]> {
-        return profileRepository
-            .getActiveProfile()
-            .flatMapFirst { profile in
-                @Singleton<GlobalSettings> var settings
-                
-                return Observable.zip(
-                    self.channelRepository.getAllVisibleChannels(forProfile: profile, withUnavailable: !settings.hideUnavailableChannels),
-                    self.channelRelationRepository.getParentsMap(for: profile),
-                    resultSelector: { channels, listOfParents in self.toList(channels, listOfParents) }
-                )
-            }
+struct CreateProfileChannelsList {
+    protocol UseCase {
+        func invoke(filter: String?) -> Observable<[MainListItem]>
     }
-    
-    private func toList(_ channels: [SAChannel], _ parentsMap: [Int32: [SAChannelRelation]]) -> [List] {
-        if (channels.isEmpty) {
-            return [.list(items: [])]
-        }
-        
-        let allChildrenIds = parentsMap.reduce([Int32]()) { list, item in
-            var result = list
-            result.append(contentsOf: item.value.map{ $0.channel_id })
-            return result
-        }
-        
-        var lastLocation: _SALocation = channels[0].location!
-        var items = [ListItem]()
-        items.append(.location(location: lastLocation))
-        
-        for channel in channels {
-            if (allChildrenIds.contains(channel.remote_id)) {
-                // skip channels which have parent ID.
-                continue
-            }
-            
-            if (lastLocation.caption != channel.location!.caption) {
-                items.append(.location(location: channel.location!))
-                lastLocation = channel.location!
-            }
-            
-            if (!lastLocation.isCollapsed(flag: .channel)) {
-                if let childrenRelations = parentsMap[channel.remote_id] {
-                    let channelWithChildren = createChannelWithChildrenUseCase.invoke(
-                        channel,
-                        allChannels: channels,
-                        relations: childrenRelations
+
+    final class Implementation: UseCase {
+        @Singleton<ChannelRepository> private var channelRepository
+        @Singleton<ProfileRepository> private var profileRepository
+        @Singleton<ChannelRelationRepository> private var channelRelationRepository
+        @Singleton<CreateChannelWithChildrenUseCase> private var createChannelWithChildrenUseCase
+        @Singleton<ChannelToMainListItem.UseCase> private var channelToMainListItemUseCase
+
+        func invoke(filter: String?) -> Observable<[MainListItem]> {
+            return profileRepository
+                .getActiveProfile()
+                .flatMapFirst { profile in
+                    @Singleton<GlobalSettings> var settings
+
+                    return Observable.zip(
+                        self.channelRepository.getAllVisibleChannels(forProfile: profile, withUnavailable: !settings.hideUnavailableChannels),
+                        self.channelRelationRepository.getParentsMap(for: profile),
+                        resultSelector: { channels, listOfParents in self.toList(channels, listOfParents, filter: filter) }
                     )
-                    items.append(.channelBase(channelBase: channel, children: channelWithChildren.children))
-                } else {
-                    items.append(.channelBase(channelBase: channel, children: []))
+                }
+        }
+
+        private func toList(
+            _ channels: [SAChannel],
+            _ parentsMap: [Int32: [SAChannelRelation]],
+            filter: String?
+        ) -> [MainListItem] {
+            if (channels.isEmpty) {
+                return []
+            }
+
+            let allChildrenIds = parentsMap.reduce([Int32]()) { list, item in
+                var result = list
+                result.append(contentsOf: item.value.map { $0.channel_id })
+                return result
+            }
+
+            var items = [MainListItem]()
+            let inSearch = MainListFilter.isSearchable(filter)
+
+            for section in channels.toLocationSections(
+                locationOf: { $0.location },
+                positionOf: { $0.position }
+            ) {
+                let visibleChannels = section.items.compactMap { channel -> MainListItem? in
+                    if allChildrenIds.contains(channel.remote_id) {
+                        return nil
+                    }
+
+                    guard let item = channelItem(channel, channels, parentsMap) else { return nil }
+                    if inSearch && !itemMatches(item, location: channel.location!, filter: filter) {
+                        return nil
+                    }
+
+                    return item
+                }
+
+                guard
+                    !visibleChannels.isEmpty,
+                    let location = section.items
+                        .compactMap(\.location)
+                        .min(by: { ($0.sortOrder?.int32Value ?? 0) < ($1.sortOrder?.int32Value ?? 0) })
+                else {
+                    continue
+                }
+
+                items.append(location.listItem(inSearch: inSearch))
+                if inSearch || !location.isCollapsed(flag: .channel) {
+                    items.append(contentsOf: visibleChannels)
                 }
             }
+
+            return items
         }
-        
-        return [.list(items: items)]
+
+        private func channelItem(
+            _ channel: SAChannel,
+            _ channels: [SAChannel],
+            _ parentsMap: [Int32: [SAChannelRelation]]
+        ) -> MainListItem? {
+            if parentsMap[channel.remote_id] != nil {
+                let channelWithChildren = createChannelWithChildrenUseCase.invoke(
+                    channel,
+                    allChannels: channels,
+                    parentsMap: parentsMap
+                )
+                return channelToMainListItemUseCase.invoke(channelWithChildren)
+            } else {
+                return channelToMainListItemUseCase.invoke(ChannelWithChildren(channel: channel))
+            }
+        }
+
+        private func itemMatches(_ item: MainListItem, location: _SALocation, filter: String?) -> Bool {
+            guard let filter else { return true }
+
+            return MainListFilter.matches(item, filter: filter)
+                || MainListFilter.matches(location.caption, filter: filter)
+        }
+    }
+}
+
+extension CreateProfileChannelsList.UseCase {
+    func invoke() -> Observable<[MainListItem]> {
+        invoke(filter: nil)
+    }
+}
+
+private extension _SALocation {
+    func listItem(inSearch: Bool) -> MainListItem {
+        .location(
+            LocationListItem(
+                remoteId: location_id?.int32Value ?? 0,
+                profileId: profile.id,
+                userCaption: caption ?? "",
+                collapsed: inSearch ? false : isCollapsed(flag: .channel)
+            )
+        )
     }
 }

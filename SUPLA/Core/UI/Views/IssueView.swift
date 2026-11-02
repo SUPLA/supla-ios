@@ -51,7 +51,7 @@ class IssueView: UIView {
     private lazy var textLabel: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .body2
+        view.font = .bodyMedium
         return view
     }()
     

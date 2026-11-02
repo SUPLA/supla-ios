@@ -20,30 +20,44 @@ import RxSwift
 
 @testable import SUPLA
 
-final class CreateProfileChannelsListUseCaseMock: CreateProfileChannelsListUseCase {
-    
-    var observable: Observable<[List]> = Observable.empty()
-    var invokeCounter = 0
-    
-    func invoke() -> Observable<[List]> {
-        invokeCounter += 1
-        return observable
+extension CreateProfileChannelsList {
+    final class Mock: CreateProfileChannelsList.UseCase {
+        var invokeMock: FunctionMock<String?, Observable<[MainListItem]>> = .init()
+
+        func invoke(filter: String?) -> Observable<[MainListItem]> {
+            invokeMock.handle(filter)
+        }
+    }
+}
+
+extension ChannelToMainListItem {
+    final class Mock: ChannelToMainListItem.UseCase {
+        var invokeMock: FunctionMock<SUPLA.ChannelWithChildren, MainListItem?> = .init()
+        var invokeWithLocationMock: FunctionMock<(SUPLA.ChannelWithChildren, _SALocation), MainListItem> = .init()
+
+        func invoke(_ channelWithChildren: SUPLA.ChannelWithChildren) -> MainListItem? {
+            invokeMock.handle(channelWithChildren)
+        }
+
+        func invoke(_ channelWithChildren: SUPLA.ChannelWithChildren, location: _SALocation) -> MainListItem {
+            invokeWithLocationMock.handle((channelWithChildren, location))
+        }
+    }
+}
+
+final class CreateChannelWithChildrenUseCaseMock: CreateChannelWithChildrenUseCase {
+    var invokeMock: FunctionMock<(SAChannel, [SAChannel], [Int32: [SAChannelRelation]]), SUPLA.ChannelWithChildren> = .init()
+
+    func invoke(_ channel: SAChannel, allChannels: [SAChannel], parentsMap: [Int32: [SAChannelRelation]]) -> SUPLA.ChannelWithChildren {
+        invokeMock.handle((channel, allChannels, parentsMap))
     }
 }
 
 final class SwapChannelPositionsUseCaseMock: SwapChannelPositionsUseCase {
+    var invokeMock: FunctionMock<([MainListItem], Int32), Observable<Void>> = .init()
     
-    var observable: Observable<Void> = Observable.empty()
-    var firstRemoteIdArray: [Int32] = []
-    var secondRemoteIdArray: [Int32] = []
-    var locationCaptionArray: [String] = []
-    
-    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationCaption: String) -> Observable<Void> {
-        firstRemoteIdArray.append(firstRemoteId)
-        secondRemoteIdArray.append(secondRemoteId)
-        locationCaptionArray.append(locationCaption)
-        
-        return observable
+    func invoke(items: [MainListItem], movedItemId: Int32) -> Observable<Void> {
+        invokeMock.handle((items, movedItemId))
     }
 }
 

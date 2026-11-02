@@ -23,7 +23,7 @@ import XCTest
 class LockScreenVMTests: XCTestCase {
     private lazy var checkPinUseCase: CheckPinUseCaseMock! = CheckPinUseCaseMock()
     private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
-    private lazy var coordinator: SuplaAppCoordinatorMock! = SuplaAppCoordinatorMock()
+    private lazy var router: AppRouter! = AppRouter()
     private lazy var schedulers: SuplaSchedulersMock! = SuplaSchedulersMock()
     private lazy var dateProvider: DateProviderMock! = DateProviderMock()
     
@@ -32,7 +32,7 @@ class LockScreenVMTests: XCTestCase {
     override func setUp() {
         DiContainer.shared.register(type: CheckPinUseCase.self, checkPinUseCase!)
         DiContainer.shared.register(type: GlobalSettings.self, settings!)
-        DiContainer.shared.register(type: SuplaAppCoordinator.self, coordinator!)
+        DiContainer.shared.register(type: AppRouter.self, router!)
         DiContainer.shared.register(type: SuplaSchedulers.self, schedulers!)
         DiContainer.shared.register(type: DateProvider.self, dateProvider!)
     }
@@ -40,17 +40,18 @@ class LockScreenVMTests: XCTestCase {
     override func tearDown() {
         checkPinUseCase = nil
         settings = nil
-        coordinator = nil
+        router = nil
         schedulers = nil
         dateProvider = nil
         
         viewModel = nil
     }
     
-    func test_shouldVerifyPin_andCloseScreen() {
+    func test_shouldVerifyPin_andShowConnectionStatus() {
         // given
         let pin = "1234"
         checkPinUseCase.returns = .just(.unlocked)
+        router.setRoot(.unlockApp(action: .authorizeApplication))
         
         // when
         viewModel.setUnlockAction(.authorizeApplication)
@@ -59,7 +60,8 @@ class LockScreenVMTests: XCTestCase {
         
         // then
         XCTAssertTuples(checkPinUseCase.parameters, [(LockScreenFeature.UnlockAction.authorizeApplication, CheckPinAction.checkPin(pin: pin))])
-        coordinator.verifyPopViewController([true])
+        XCTAssertEqual(router.root, .status)
+        XCTAssertEqual(router.path, [])
     }
     
     func test_shouldVerifyPin_andNavigateToCreateProfile() {
@@ -75,8 +77,7 @@ class LockScreenVMTests: XCTestCase {
         
         // then
         XCTAssertTuples(checkPinUseCase.parameters, [(action, CheckPinAction.checkPin(pin: pin))])
-        XCTAssertTuples(coordinator.navigateToProfileWithLockCheckMock.parameters, [(ProfileDto.INVALID_ID, false)])
-        coordinator.verifyPopViewController([])
+        XCTAssertEqual(router.path, [.profile(profileId: ProfileDto.INVALID_ID, withLockCheck: false)])
     }
     
     func test_shouldVerifyPin_andNavigateToEditProfile() {
@@ -94,16 +95,16 @@ class LockScreenVMTests: XCTestCase {
         
         // then
         XCTAssertTuples(checkPinUseCase.parameters, [(action, CheckPinAction.checkPin(pin: pin))])
-        XCTAssertTuples(coordinator.navigateToProfileWithLockCheckMock.parameters, [(profileId, false)])
-        coordinator.verifyPopViewController([])
+        XCTAssertEqual(router.path, [.profile(profileId: profileId, withLockCheck: false)])
     }
     
-    func test_shouldVerifyPin_andDoNothingWhenNoAccount() {
+    func test_shouldVerifyPin_andShowConnectionStatusWhenNoAccount() {
         // given
         let pin = "1234"
         let action: LockScreenFeature.UnlockAction = .authorizeApplication
         
         checkPinUseCase.returns = .just(.unlockedNoAccount)
+        router.setRoot(.unlockApp(action: action))
         
         // when
         viewModel.setUnlockAction(action)
@@ -112,8 +113,8 @@ class LockScreenVMTests: XCTestCase {
         
         // then
         XCTAssertTuples(checkPinUseCase.parameters, [(action, CheckPinAction.checkPin(pin: pin))])
-        XCTAssertTuples(coordinator.navigateToProfileWithLockCheckMock.parameters, [])
-        coordinator.verifyPopViewController([true])
+        XCTAssertEqual(router.root, .status)
+        XCTAssertEqual(router.path, [])
     }
     
     func test_shouldRejectPin() {
@@ -137,7 +138,6 @@ class LockScreenVMTests: XCTestCase {
         XCTAssertEqual(viewModel.state.lockedTime, lockTime)
         XCTAssertEqual(viewModel.state.pin, "")
         XCTAssertTuples(checkPinUseCase.parameters, [(action, CheckPinAction.checkPin(pin: pin))])
-        XCTAssertTuples(coordinator.navigateToProfileWithLockCheckMock.parameters, [])
-        coordinator.verifyPopViewController([])
+        XCTAssertEqual(router.path, [])
     }
 }

@@ -17,10 +17,10 @@
  */
     
 extension NfcTagDetailFeature {
-    class ViewModel: SuplaCore.BaseViewModel<ViewState>, ViewDelegate {
+    class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
         @Singleton private var readNfcItemUseCase: ReadNfcItem.UseCase
         @Singleton private var lockNfcTagUseCase: LockNfcTag.UseCase
-        @Singleton private var coordinator: SuplaAppCoordinator
+        @Singleton private var router: AppRouter
         
         @Singleton<NfcTagItemRepository> private var nfcTagItemRepository
         @Singleton<ProfileRepository> private var profileRepository
@@ -37,7 +37,7 @@ extension NfcTagDetailFeature {
             titleSetter = setter
         }
         
-        override func onViewWillAppear() {
+        override func onViewAppear() {
             Task {
                 dispatchPrecondition(condition: .notOnQueue(.main))
                 guard let tag = try? await readNfcItemUseCase.invoke(uuid).awaitFirstElement() else { return }
@@ -92,7 +92,7 @@ extension NfcTagDetailFeature {
         }
         
         func onEditClick() {
-            coordinator.navigateToEditNfcTag(uuid: uuid)
+            router.navigate(to: .editNfcTag(uuid: uuid, readOnly: nil))
         }
         
         func onDeleteClick() {
@@ -102,7 +102,7 @@ extension NfcTagDetailFeature {
                 
                 await MainActor.run {
                     if (deleted) {
-                        coordinator.popViewController()
+                        router.back()
                     }
                 }
             }
