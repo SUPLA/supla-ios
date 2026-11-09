@@ -222,6 +222,11 @@
 /* General */
 "general_yes" = "Oui";
 "general_no" = "Non";
+"general_lock" = "Verrouiller";
+"general_unlock" = "Déverrouiller";
+"general_locked" = "Verrouillé";
+"general_unlocked" = "Déverrouillé";
+"at_allow_temporary_unlock" = "Autoriser le déverrouillage temporaire";
 "general_auto" = "Auto";
 "general_error" = "Erreur";
 "general_warning" = "Avertissement";
@@ -290,6 +295,7 @@
 "channel_caption_smoke_sensor" = "Détecteur de fumée";
 "channel_caption_carbon_monoxide_sensor" = "Détecteur de monoxyde de carbone";
 "channel_caption_gas_sensor" = "Détecteur de gaz";
+"channel_caption_action_trigger" = "Déclencheur d’action";
 "channel_caption_container" = "Conteneur";
 "channel_caption_septic_tank" = "Fosse septique";
 "channel_caption_invisible" = "Masqué";
@@ -832,3 +838,11 @@
 "schedule_next_execution" = "Prochaine exécution : %@";
 "schedule_name" = "Nom du programme";
 "schedules_login_required" = "Connectez-vous à SUPLA Cloud pour afficher les programmes.";
+
+/* Action trigger */
+"action_trigger_unlock_dialog_title" = "Déverrouiller le déclencheur d’action";
+"action_trigger_schedule_temporary_unlock_duration" = "Durée du déverrouillage temporaire";
+"action_trigger_unlock_temporarily" = "Déverrouiller temporairement";
+"at_locked_temporary_unlock_allowed" = "Verrouillé (déverrouillage temporaire)";
+"action_trigger_schedule_button_mode" = "Mode du bouton";
+"action_trigger_temporary_unlocked" = "déverrouillé temporairement";

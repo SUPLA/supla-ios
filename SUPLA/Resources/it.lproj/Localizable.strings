@@ -232,6 +232,11 @@
 /* General */
 "general_yes" = "Si";
 "general_no" = "No";
+"general_lock" = "Blocca";
+"general_unlock" = "Sblocca";
+"general_locked" = "Bloccato";
+"general_unlocked" = "Sbloccato";
+"at_allow_temporary_unlock" = "Consenti lo sblocco temporaneo";
 "general_auto" = "Auto";
 "general_error" = "Errore";
 "general_warning" = "Attenzione";
@@ -304,6 +309,7 @@
 "channel_caption_smoke_sensor" = "Sensore di fumo";
 "channel_caption_carbon_monoxide_sensor" = "Sensore di monossido di carbonio";
 "channel_caption_gas_sensor" = "Sensore di gas";
+"channel_caption_action_trigger" = "Attivatore di azione";
 "channel_caption_container" = "Contenitore";
 "channel_caption_septic_tank" = "Fossa settica";
 "channel_caption_invisible" = "Nascosto";
@@ -863,3 +869,11 @@
 "schedule_next_execution" = "Prossima esecuzione: %@";
 "schedule_name" = "Nome programmazione";
 "schedules_login_required" = "Accedi a SUPLA Cloud per visualizzare le programmazioni.";
+
+/* Action trigger */
+"action_trigger_unlock_dialog_title" = "Sblocca il trigger dell’azione";
+"action_trigger_schedule_temporary_unlock_duration" = "Durata dello sblocco temporaneo";
+"action_trigger_unlock_temporarily" = "Sblocca temporaneamente";
+"at_locked_temporary_unlock_allowed" = "Bloccato (sblocco temporaneo)";
+"action_trigger_schedule_button_mode" = "Modalità del pulsante";
+"action_trigger_temporary_unlocked" = "sbloccato temporaneamente";

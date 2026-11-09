@@ -51,6 +51,11 @@ extension SAChannelConfig {
             let result = try? jsonDecoder.decode(SuplaChannelHvacConfig.self, from: configData)
             return result
         }
+
+        if (channelConfigType == .actionTrigger) {
+            let jsonDecoder = JSONDecoder()
+            return try? jsonDecoder.decode(SuplaChannelActionTriggerConfig.self, from: configData)
+        }
         
         if let channel = channel {
             return SuplaChannelConfig(remoteId: channel.remote_id, channelFunc: channel.func, crc32: 0)

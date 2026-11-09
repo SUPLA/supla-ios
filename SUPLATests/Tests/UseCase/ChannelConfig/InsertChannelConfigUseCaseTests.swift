@@ -56,6 +56,39 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         // then
         assertEvents([.next(()), .completed])
     }
+
+    func test_shouldInsertActionTriggerConfig() {
+        let remoteId: Int32 = 231
+        let crc32: Int64 = 123
+        let profile = AuthProfileItem.mock()
+        let channel = SAChannel.mock()
+        let config = SuplaChannelActionTriggerConfig(
+            remoteId: remoteId,
+            channelFunc: SUPLA_CHANNELFNC_ACTIONTRIGGER,
+            crc32: crc32,
+            temporaryUnlockDurationSec: 900
+        )
+        let channelConfig = SAChannelConfig.mock()
+
+        channelConfigRepository.getConfigReturns = .just(nil)
+        profileRepository.activeProfileObservable = .just(profile)
+        channelRepository.channelObservable = .just(channel)
+        channelConfigRepository.createObservable = .just(channelConfig)
+        channelConfigRepository.saveObservable = .just(())
+
+        useCase.invoke(config: config, result: .resultTrue).subscribe(observer).disposed(by: disposeBag)
+
+        assertEvents([.next(()), .completed])
+        XCTAssertEqual(channelConfigRepository.getConfigParameters, [remoteId])
+        XCTAssertEqual(channelConfigRepository.saveParameters, [channelConfig])
+        XCTAssertEqual(channelConfig.config_type, Int32(ChannelConfigType.actionTrigger.rawValue))
+        XCTAssertEqual(channelConfig.config_crc32, crc32)
+        XCTAssertEqual(channelConfig.config, config.toJson())
+        XCTAssertEqual(
+            (channelConfig.configAsSuplaConfig() as? SuplaChannelActionTriggerConfig)?.temporaryUnlockDurationSec,
+            900
+        )
+    }
     
     func test_shouldInsertGeneralPurposeMeasurementConfig() {
         // given

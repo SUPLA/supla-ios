@@ -222,6 +222,11 @@
 /* General */
 "general_yes" = "Da";
 "general_no" = "Ne";
+"general_lock" = "Zakleni";
+"general_unlock" = "Odkleni";
+"general_locked" = "Zaklenjeno";
+"general_unlocked" = "Odklenjeno";
+"at_allow_temporary_unlock" = "Dovoli začasno odklepanje";
 "general_auto" = "Auto";
 "general_error" = "Napaka";
 "general_warning" = "Opozorilo";
@@ -290,6 +295,7 @@
 "channel_caption_smoke_sensor" = "Senzor dima";
 "channel_caption_carbon_monoxide_sensor" = "Senzor ogljikovega monoksida";
 "channel_caption_gas_sensor" = "Senzor plina";
+"channel_caption_action_trigger" = "Sprožilec dejanja";
 "channel_caption_container" = "Posoda";
 "channel_caption_septic_tank" = "Greznica";
 "channel_caption_invisible" = "Skrit";
@@ -832,3 +838,11 @@
 "schedule_next_execution" = "Naslednja izvedba: %@";
 "schedule_name" = "Ime urnika";
 "schedules_login_required" = "Za ogled urnikov se prijavite v SUPLA Cloud.";
+
+/* Action trigger */
+"action_trigger_unlock_dialog_title" = "Odkleni sprožilec dejanja";
+"action_trigger_schedule_temporary_unlock_duration" = "Trajanje začasnega odklepanja";
+"action_trigger_unlock_temporarily" = "Začasno odkleni";
+"at_locked_temporary_unlock_allowed" = "Zaklenjeno (začasno odklepanje)";
+"action_trigger_schedule_button_mode" = "Način gumba";
+"action_trigger_temporary_unlocked" = "začasno odklenjeno";

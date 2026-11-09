@@ -281,7 +281,8 @@ private extension SharedCore.SuplaFunction {
              .binarySensor,
              .smokeSensor,
              .carbonMonoxideSensor,
-             .gasSensor: []
+             .gasSensor,
+             .actionTrigger: []
 
         case .controllingTheDoorLock,
              .controllingTheGatewayLock: [.open]

@@ -47,6 +47,13 @@ final class InsertChannelConfigUseCaseImpl: InsertChannelConfigUseCase {
                 .map { self.updateConfig($0, suplaConfig) }
                 .flatMap { self.channelConfigRepository.save($0) }
         }
+
+        if let suplaConfig = config as? SuplaChannelActionTriggerConfig {
+            SALog.info("Saving config (remoteId: `\(suplaConfig.remoteId)`, function: `\(suplaConfig.channelFunc ?? -1)`)")
+            return getOrCreateConfig(suplaConfig.remoteId, suplaConfig: suplaConfig)
+                .map { self.updateConfig($0, suplaConfig) }
+                .flatMap { self.channelConfigRepository.save($0) }
+        }
         
         if let suplaConfig = config as? SuplaChannelGeneralPurposeMeasurementConfig {
             SALog.info("Saving config (remoteId: `\(suplaConfig.remoteId)`, function: `\(suplaConfig.channelFunc ?? -1)`")
@@ -136,6 +143,17 @@ final class InsertChannelConfigUseCaseImpl: InsertChannelConfigUseCase {
         config.config_type = Int32(ChannelConfigType.generalPurposeMeasurement.rawValue)
         config.config_crc32 = suplaConfig.crc32
         
+        return config
+    }
+
+    private func updateConfig(
+        _ config: SAChannelConfig,
+        _ suplaConfig: SuplaChannelActionTriggerConfig
+    ) -> SAChannelConfig {
+        config.config = suplaConfig.toJson()
+        config.config_type = Int32(ChannelConfigType.actionTrigger.rawValue)
+        config.config_crc32 = suplaConfig.crc32
+
         return config
     }
     

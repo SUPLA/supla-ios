@@ -128,7 +128,8 @@ private extension DetailPage {
              .impulseCounterGeneral,
              .valveGeneral,
              .containerGeneral,
-             .gateGeneral: Strings.StandardDetail.tabGeneral
+             .gateGeneral,
+             .actionTriggerGeneral: Strings.StandardDetail.tabGeneral
         }
     }
 
@@ -165,7 +166,8 @@ private extension DetailPage {
              .impulseCounterGeneral,
              .valveGeneral,
              .containerGeneral,
-             .gateGeneral: String.Icons.general
+             .gateGeneral,
+             .actionTriggerGeneral: String.Icons.general
         }
     }
 }

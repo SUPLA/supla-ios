@@ -94,6 +94,8 @@ class BaseDetailTypeProviderUseCase {
             return .standardDetail(pages: [.gateGeneral])
         case SUPLA_CHANNELFNC_HVAC_HRV:
             return .standardDetail(pages: [.recuperatorGeneral])
+        case SUPLA_CHANNELFNC_ACTIONTRIGGER:
+            return .standardDetail(pages: [.actionTriggerGeneral])
         default:
             return nil
         }
@@ -165,6 +167,7 @@ enum DetailPage: Hashable {
     // Gate
     case gateGeneral
     case gateSchedule
+    case actionTriggerGeneral
     
     // HRV
     case recuperatorGeneral

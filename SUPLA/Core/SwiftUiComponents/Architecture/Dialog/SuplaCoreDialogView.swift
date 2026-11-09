@@ -18,6 +18,13 @@
     
 import SwiftUI
 
+private let contentDefaultPadding = EdgeInsets(
+    top: 0,
+    leading: Distance.default,
+    bottom: Distance.small,
+    trailing: Distance.default
+)
+
 extension SuplaCore.Dialog {
     struct Base<Content: View>: SwiftUI.View {
         let onDismiss: () -> Void
@@ -64,15 +71,18 @@ extension SuplaCore.Dialog {
     struct Content<Content: View>: SwiftUI.View {
         let alignment: SwiftUICore.HorizontalAlignment
         let spacing: CGFloat
+        let padding: EdgeInsets
         let content: Content
         
         init(
             alignment: SwiftUICore.HorizontalAlignment = .leading,
             spacing: CGFloat = Distance.default,
+            padding: EdgeInsets = contentDefaultPadding,
             @ViewBuilder _ content: () -> Content
         ) {
             self.alignment = alignment
             self.spacing = spacing
+            self.padding = padding
             self.content = content()
         }
         

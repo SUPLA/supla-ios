@@ -215,6 +215,11 @@
 /* General */
 "general_yes" = "Ja";
 "general_no" = "Nein";
+"general_lock" = "Sperren";
+"general_unlock" = "Entsperren";
+"general_locked" = "Gesperrt";
+"general_unlocked" = "Entsperrt";
+"at_allow_temporary_unlock" = "Vorübergehendes Entriegeln erlauben";
 "general_auto" = "Auto";
 "general_error" = "Fehler";
 "general_warning" = "Warnung";
@@ -276,6 +281,7 @@
 "channel_caption_smoke_sensor" = "Rauchsensor";
 "channel_caption_carbon_monoxide_sensor" = "Kohlenmonoxidsensor";
 "channel_caption_gas_sensor" = "Gassensor";
+"channel_caption_action_trigger" = "Aktionsauslöser";
 "channel_caption_invisible" = "Verborgen";
 "channel_offline" = "Das Kanal ist offline";
 "channel_not_found" = "Kanal nicht gefunden";
@@ -869,3 +875,11 @@
 "schedule_next_execution" = "Nächste Ausführung: %@";
 "schedule_name" = "Zeitplanname";
 "schedules_login_required" = "Melde dich bei SUPLA Cloud an, um Zeitpläne anzuzeigen.";
+
+/* Action trigger */
+"action_trigger_unlock_dialog_title" = "Aktionstrigger entsperren";
+"action_trigger_schedule_temporary_unlock_duration" = "Dauer der vorübergehenden Entsperrung";
+"action_trigger_unlock_temporarily" = "Vorübergehend entsperren";
+"at_locked_temporary_unlock_allowed" = "Gesperrt (vorübergehende Entsperrung)";
+"action_trigger_schedule_button_mode" = "Tastenmodus";
+"action_trigger_temporary_unlocked" = "vorübergehend entsperrt";

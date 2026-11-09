@@ -36,6 +36,43 @@ class SuplaChannelConfigTests: XCTestCase {
         XCTAssertEqual(result.remoteId, 123)
         XCTAssertEqual(result.channelFunc, SUPLA_CHANNELFNC_HUMIDITY)
     }
+
+    func test_shouldGetActionTriggerConfigWithDefaultTemporaryUnlockDuration() {
+        var native = TChannelConfig_ActionTrigger()
+        native.TemporaryUnlockDurationSec = 1_800
+        var config = TSCS_ChannelConfig()
+        config.ChannelId = 456
+        config.Func = SUPLA_CHANNELFNC_ACTIONTRIGGER
+        config.ConfigType = UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+        config.ConfigSize = UInt16(MemoryLayout<TChannelConfig_ActionTrigger>.size)
+        config.setPayload(native)
+
+        let result = SuplaChannelConfig.from(suplaConfig: config, crc32: 123)
+
+        XCTAssertTrue(type(of: result) == SuplaChannelActionTriggerConfig.self)
+        XCTAssertEqual(result.remoteId, 456)
+        XCTAssertEqual(result.channelFunc, SUPLA_CHANNELFNC_ACTIONTRIGGER)
+        XCTAssertEqual(result.crc32, 123)
+        XCTAssertEqual((result as? SuplaChannelActionTriggerConfig)?.temporaryUnlockDurationSec, 1_800)
+        XCTAssertEqual(ChannelConfigType.actionTrigger.rawValue, 8)
+        XCTAssertEqual(ChannelConfigType.from(value: 8), .actionTrigger)
+    }
+
+    func test_shouldTreatLegacyActionTriggerConfigWithoutDurationAsZero() {
+        var native = TChannelConfig_ActionTrigger()
+        native.TemporaryUnlockDurationSec = 1_800
+        var config = TSCS_ChannelConfig()
+        config.ChannelId = 456
+        config.Func = SUPLA_CHANNELFNC_ACTIONTRIGGER
+        config.ConfigType = UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+        config.ConfigSize = UInt16(MemoryLayout<UInt32>.size)
+        config.setPayload(native)
+        config.ConfigSize = UInt16(MemoryLayout<UInt32>.size)
+
+        let result = SuplaChannelConfig.from(suplaConfig: config, crc32: 0) as? SuplaChannelActionTriggerConfig
+
+        XCTAssertEqual(result?.temporaryUnlockDurationSec, 0)
+    }
     
     func test_shouldGetHvacConfigForTermostat() {
         // given

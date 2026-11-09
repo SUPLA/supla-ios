@@ -45,6 +45,18 @@ class SuplaChannelConfig: Codable {
                 suplaConfig: suplaConfig.payload()
             )
         }
+        if (suplaConfig.isActionTriggerConfig()) {
+            let actionTriggerConfig: TChannelConfig_ActionTrigger = suplaConfig.payload()
+            let temporaryUnlockDuration = suplaConfig.ConfigSize >= UInt16(MemoryLayout<UInt32>.size * 2)
+                ? actionTriggerConfig.TemporaryUnlockDurationSec
+                : 0
+            return SuplaChannelActionTriggerConfig(
+                remoteId: suplaConfig.ChannelId,
+                channelFunc: suplaConfig.Func,
+                crc32: crc32,
+                temporaryUnlockDurationSec: UInt32(temporaryUnlockDuration)
+            )
+        }
         if (suplaConfig.isWeeklyConfig()) {
             return SuplaChannelWeeklyScheduleConfig.from(
                 remoteId: suplaConfig.ChannelId,
@@ -95,6 +107,13 @@ private extension TSCS_ChannelConfig {
         isHvac()
             && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
             && ConfigSize == MemoryLayout<TChannelConfig_HVAC>.size
+    }
+
+    func isActionTriggerConfig() -> Bool {
+        Func == SUPLA_CHANNELFNC_ACTIONTRIGGER
+            && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+            && (ConfigSize == UInt16(MemoryLayout<UInt32>.size)
+                || ConfigSize == UInt16(MemoryLayout<TChannelConfig_ActionTrigger>.size))
     }
     
     func isWeeklyConfig() -> Bool {
@@ -156,7 +175,8 @@ private extension TSCS_ChannelConfig {
              SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
              SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK,
              SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
+             SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK,
+             SUPLA_CHANNELFNC_ACTIONTRIGGER:
             true
         default:
             false

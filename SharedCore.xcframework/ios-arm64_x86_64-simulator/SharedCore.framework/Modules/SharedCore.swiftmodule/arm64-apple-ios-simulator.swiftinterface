@@ -826,10 +826,15 @@ extension SharedCore.__SuplaChannelAvailabilityStatus {
   case locked
   case cmdWeeklySchedule
   case cmdSwitchToManual
+  case lockedTemporaryUnlockAllowed
+  case cmdTemporaryUnlock
   public var name: Swift.String {
     get
   }
   public var ordinal: Swift.Int32 {
+    get
+  }
+  public var rawValue: Swift.Int8 {
     get
   }
   public var value: Swift.Int32 {
@@ -1023,6 +1028,10 @@ extension SharedCore.__Icon {
   case generalReveal
   case generalCollapse
   case generalExpand
+  case generalLock
+  case generalUnlock
+  case generalLocked
+  case generalUnlocked
   case generalYes
   case generalNo
   case channelCaptionOpenSensorGateway
@@ -1087,6 +1096,7 @@ extension SharedCore.__Icon {
   case channelCaptionSmokeSensor
   case channelCaptionCarbonMonoxideSensor
   case channelCaptionGasSensor
+  case channelCaptionActionTrigger
   case channelStatusAwaiting
   case channelStatusUpdating
   case channelStatusNotAvailable
@@ -1418,6 +1428,7 @@ extension SharedCore.__ValueUnit {
   case valvePercentage
   case generalPurposeMeasurement
   case generalPurposeMeter
+  case actionTrigger
   case digiglassHorizontal
   case digiglassVertical
   case controllingTheFacadeBlind
@@ -1474,6 +1485,77 @@ extension SharedCore.SuplaFunction {
 }
 extension SharedCore.__SuplaFunction {
   public func toSwiftEnum() -> SharedCore.SuplaFunction
+}
+@frozen public enum SuplaChannelFlag : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case zwaveBridge
+  case irBridge
+  case rfBridge
+  case ocr
+  case floodSensorSupported
+  case fillLevelReportingInFullRange
+  case valveMotorAlarmSupported
+  case rsSbsAndStopActions
+  case rgbwCommandsSupported
+  case alwaysAllowChannelDeletion
+  case rsAutoCalibration
+  case calcfgResetCounters
+  case calcfgRecalibrate
+  case calcfgIdentifySubdevice
+  case channelState
+  case phase1Unsupported
+  case phase2Unsupported
+  case phase3Unsupported
+  case timeSettingNotAvailable
+  case rsaEncryptedPinRequired
+  case offlineDuringRegistration
+  case zigbeeBridge
+  case countdownTimerSupported
+  case lightSourceLifespanSettable
+  case weeklySchedule
+  case hasParent
+  case calcfgRestartSubdevice
+  case batteryCoverAvailable
+  case buttonModeSupported
+  case relayModeStartSupported
+  case relayModeForcedSupported
+  case relayModeAutomaticSupported
+  case relayModeNotSetSupported
+  case buttonTemporaryUnlockSupported
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var rawValue: Swift.Int64 {
+    get
+  }
+  public static var companion: SharedCore.__SuplaChannelFlag.Companion {
+    get
+  }
+  public func inside(flags: Swift.Int64) -> Swift.Bool
+  public func notInside(flags: Swift.Int64) -> Swift.Bool
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaChannelFlag, result: inout SharedCore.SuplaChannelFlag?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaChannelFlag, result: inout SharedCore.SuplaChannelFlag?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaChannelFlag?) -> SharedCore.SuplaChannelFlag
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaChannelFlag
+  public typealias _ObjectiveCType = SharedCore.__SuplaChannelFlag
+  public typealias Companion = SharedCore.__SuplaChannelFlag.Companion
+  public static func == (a: SharedCore.SuplaChannelFlag, b: SharedCore.SuplaChannelFlag) -> Swift.Bool
+  public typealias AllCases = [SharedCore.SuplaChannelFlag]
+  nonisolated public static var allCases: [SharedCore.SuplaChannelFlag] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaChannelFlag {
+  public func toKotlinEnum() -> SharedCore.__SuplaChannelFlag
+}
+extension SharedCore.__SuplaChannelFlag {
+  public func toSwiftEnum() -> SharedCore.SuplaChannelFlag
 }
 extension SharedCore.CheckRegistrationEnabledUseCase {
   public typealias Result = SharedCore.__Bridge__CheckRegistrationEnabledUseCase_Result
@@ -1593,6 +1675,77 @@ extension SharedCore.ChannelRelationType {
 }
 extension SharedCore.__ChannelRelationType {
   public func toSwiftEnum() -> SharedCore.ChannelRelationType
+}
+extension SharedCore.ActionTriggerValue {
+  public typealias IndicatorType = SharedCore.__Bridge__ActionTriggerValue_IndicatorType
+}
+extension SharedCore.__Bridge__ActionTriggerValue_IndicatorType {
+  public func toKotlinEnum() -> SharedCore.ActionTriggerValue.__IndicatorType
+}
+extension SharedCore.ActionTriggerValue.__IndicatorType {
+  public func toSwiftEnum() -> SharedCore.ActionTriggerValue.IndicatorType
+}
+@frozen public enum __Bridge__ActionTriggerValue_IndicatorType : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case none
+  case locked
+  case temporaryUnlocked
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.ActionTriggerValue.__IndicatorType, result: inout SharedCore.ActionTriggerValue.IndicatorType?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.ActionTriggerValue.__IndicatorType, result: inout SharedCore.ActionTriggerValue.IndicatorType?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.ActionTriggerValue.__IndicatorType?) -> SharedCore.__Bridge__ActionTriggerValue_IndicatorType
+  public func _bridgeToObjectiveC() -> SharedCore.ActionTriggerValue.__IndicatorType
+  public typealias _ObjectiveCType = SharedCore.ActionTriggerValue.__IndicatorType
+  public static func == (a: SharedCore.__Bridge__ActionTriggerValue_IndicatorType, b: SharedCore.__Bridge__ActionTriggerValue_IndicatorType) -> Swift.Bool
+  public typealias AllCases = [SharedCore.__Bridge__ActionTriggerValue_IndicatorType]
+  nonisolated public static var allCases: [SharedCore.__Bridge__ActionTriggerValue_IndicatorType] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@frozen public enum SuplaActionTriggerFlag : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
+  case weeklyScheduleEnabled
+  case temporaryUnlockActive
+  public var name: Swift.String {
+    get
+  }
+  public var ordinal: Swift.Int32 {
+    get
+  }
+  public var value: Swift.Int8 {
+    get
+  }
+  public static var companion: SharedCore.__SuplaActionTriggerFlag.Companion {
+    get
+  }
+  public static func _forceBridgeFromObjectiveC(_ source: SharedCore.__SuplaActionTriggerFlag, result: inout SharedCore.SuplaActionTriggerFlag?)
+  public static func _conditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaActionTriggerFlag, result: inout SharedCore.SuplaActionTriggerFlag?) -> Swift.Bool
+  public static func _unconditionallyBridgeFromObjectiveC(_ source: SharedCore.__SuplaActionTriggerFlag?) -> SharedCore.SuplaActionTriggerFlag
+  public func _bridgeToObjectiveC() -> SharedCore.__SuplaActionTriggerFlag
+  public typealias _ObjectiveCType = SharedCore.__SuplaActionTriggerFlag
+  public typealias Companion = SharedCore.__SuplaActionTriggerFlag.Companion
+  public static func == (a: SharedCore.SuplaActionTriggerFlag, b: SharedCore.SuplaActionTriggerFlag) -> Swift.Bool
+  public typealias AllCases = [SharedCore.SuplaActionTriggerFlag]
+  nonisolated public static var allCases: [SharedCore.SuplaActionTriggerFlag] {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SharedCore.SuplaActionTriggerFlag {
+  public func toKotlinEnum() -> SharedCore.__SuplaActionTriggerFlag
+}
+extension SharedCore.__SuplaActionTriggerFlag {
+  public func toSwiftEnum() -> SharedCore.SuplaActionTriggerFlag
 }
 @frozen public enum ContainerFlag : Swift.Hashable, Swift.CaseIterable, Swift._ObjectiveCBridgeable {
   case warningLevel
@@ -2036,6 +2189,7 @@ extension SharedCore.Skie.supla_android__shared_core.ChannelIssueItem {
   @frozen public enum __Sealed : Swift.Hashable {
     case error(SharedCore.ChannelIssueItem.Error)
     case lowBattery(SharedCore.ChannelIssueItem.LowBattery)
+    case schedule(SharedCore.ChannelIssueItem.Schedule)
     case soundAlarm(SharedCore.ChannelIssueItem.SoundAlarm)
     case warning(SharedCore.ChannelIssueItem.Warning)
     public static func == (a: SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed, b: SharedCore.Skie.supla_android__shared_core.ChannelIssueItem.__Sealed) -> Swift.Bool
@@ -2057,6 +2211,7 @@ extension SharedCore.Skie.supla_android__shared_core.IssueIcon {
     case battery75(SharedCore.IssueIcon.Battery75)
     case batteryNotUsed(SharedCore.IssueIcon.BatteryNotUsed)
     case error(SharedCore.IssueIcon.Error)
+    case schedule(SharedCore.IssueIcon.Schedule)
     case sound(SharedCore.IssueIcon.Sound)
     case update(SharedCore.IssueIcon.Update)
     case warning(SharedCore.IssueIcon.Warning)
@@ -2439,6 +2594,14 @@ public var WeightKiloPrecision: Swift.Int32 {
   get
 }
 public func exactPrecision(value: Swift.Int32) -> Swift.Int32
+public var FLAG_ZWAVE_BRIDGE: Swift.Int64 {
+  get
+}
+extension Swift.Int64 {
+  public var suplaFlags: [SharedCore.SuplaChannelFlag] {
+    get
+  }
+}
 extension SharedCore.BatteryState : Swift.Sendable {}
 extension SharedCore.BatteryState : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaEventType : Swift.Sendable {}
@@ -2465,12 +2628,18 @@ extension SharedCore.ValueUnit : Swift.Sendable {}
 extension SharedCore.ValueUnit : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaFunction : Swift.Sendable {}
 extension SharedCore.SuplaFunction : Swift.BitwiseCopyable {}
+extension SharedCore.SuplaChannelFlag : Swift.Sendable {}
+extension SharedCore.SuplaChannelFlag : Swift.BitwiseCopyable {}
 extension SharedCore.__Bridge__CheckRegistrationEnabledUseCase_Result : Swift.Sendable {}
 extension SharedCore.__Bridge__CheckRegistrationEnabledUseCase_Result : Swift.BitwiseCopyable {}
 extension SharedCore.__Bridge__EnableRegistrationUseCase_Result : Swift.Sendable {}
 extension SharedCore.__Bridge__EnableRegistrationUseCase_Result : Swift.BitwiseCopyable {}
 extension SharedCore.ChannelRelationType : Swift.Sendable {}
 extension SharedCore.ChannelRelationType : Swift.BitwiseCopyable {}
+extension SharedCore.__Bridge__ActionTriggerValue_IndicatorType : Swift.Sendable {}
+extension SharedCore.__Bridge__ActionTriggerValue_IndicatorType : Swift.BitwiseCopyable {}
+extension SharedCore.SuplaActionTriggerFlag : Swift.Sendable {}
+extension SharedCore.SuplaActionTriggerFlag : Swift.BitwiseCopyable {}
 extension SharedCore.ContainerFlag : Swift.Sendable {}
 extension SharedCore.ContainerFlag : Swift.BitwiseCopyable {}
 extension SharedCore.SuplaDigiglassFlag : Swift.Sendable {}

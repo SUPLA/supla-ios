@@ -222,6 +222,11 @@
 /* General */
 "general_yes" = "Áno";
 "general_no" = "Nie";
+"general_lock" = "Zamknúť";
+"general_unlock" = "Odomknúť";
+"general_locked" = "Zamknutý";
+"general_unlocked" = "Odomknutý";
+"at_allow_temporary_unlock" = "Povoliť dočasné odomknutie";
 "general_auto" = "Auto";
 "general_error" = "Chyba";
 "general_warning" = "Varovanie";
@@ -290,6 +295,7 @@
 "channel_caption_smoke_sensor" = "Snímač dymu";
 "channel_caption_carbon_monoxide_sensor" = "Snímač oxidu uhoľnatého";
 "channel_caption_gas_sensor" = "Snímač plynu";
+"channel_caption_action_trigger" = "Akčný spúšťač";
 "channel_caption_container" = "Kontajner";
 "channel_caption_septic_tank" = "Septik";
 "channel_caption_invisible" = "Skrytý";
@@ -830,3 +836,11 @@
 "schedule_next_execution" = "Ďalšie spustenie: %@";
 "schedule_name" = "Názov plánu";
 "schedules_login_required" = "Ak chcete zobraziť plány, prihláste sa do SUPLA Cloud.";
+
+/* Action trigger */
+"action_trigger_unlock_dialog_title" = "Odomknúť akčný spúšťač";
+"action_trigger_schedule_temporary_unlock_duration" = "Trvanie dočasného odomknutia";
+"action_trigger_unlock_temporarily" = "Dočasne odomknúť";
+"at_locked_temporary_unlock_allowed" = "Zamknuté (dočasné odomknutie)";
+"action_trigger_schedule_button_mode" = "Režim tlačidla";
+"action_trigger_temporary_unlocked" = "dočasne odomknuté";

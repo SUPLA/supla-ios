@@ -224,6 +224,11 @@
 /* General */
 "general_yes" = "Tak";
 "general_no" = "Nie";
+"general_lock" = "Zablokuj";
+"general_unlock" = "Odblokuj";
+"general_locked" = "Zablokowany";
+"general_unlocked" = "Odblokowany";
+"at_allow_temporary_unlock" = "Zezwól na czasowe odblokowanie";
 "general_auto" = "Auto";
 "general_error" = "Błąd";
 "general_warning" = "Uwaga";
@@ -301,6 +306,7 @@
 "channel_caption_smoke_sensor" = "Czujnik dymu";
 "channel_caption_carbon_monoxide_sensor" = "Czujnik tlenku węgla";
 "channel_caption_gas_sensor" = "Czujnik gazu";
+"channel_caption_action_trigger" = "Wyzwalacz akcji";
 "channel_caption_invisible" = "Ukryty";
 "channel_offline" = "Kanał jest offline";
 "channel_not_found" = "Kanał nie istnieje";
@@ -904,3 +910,11 @@
 "schedule_next_execution" = "Następne wykonanie: %@";
 "schedule_name" = "Nazwa harmonogramu";
 "schedules_login_required" = "Zaloguj się do SUPLA Cloud, aby wyświetlić harmonogramy.";
+
+/* Action trigger */
+"action_trigger_unlock_dialog_title" = "Odblokuj wyzwalacz akcji";
+"action_trigger_schedule_temporary_unlock_duration" = "Czas chwilowego odblokowania";
+"action_trigger_unlock_temporarily" = "Odblokuj tymczasowo";
+"at_locked_temporary_unlock_allowed" = "Zablokowany (chwilowe odblokowanie)";
+"action_trigger_schedule_button_mode" = "Tryb przycisku";
+"action_trigger_temporary_unlocked" = "tymczasowo odblokowany";

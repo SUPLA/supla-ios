@@ -25,9 +25,9 @@ enum LockIconType {
 
     var assetName: String {
         switch self {
-        case .closed: "icon_lock_closed"
-        case .opened: "icon_lock_open_right"
-        case .temporaryClosed: "icon_lock_temporary"
+        case .closed: .Icons.lock
+        case .opened: .Icons.lockOpened
+        case .temporaryClosed: .Icons.lockTemporary
         }
     }
 }

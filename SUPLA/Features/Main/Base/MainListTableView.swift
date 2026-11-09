@@ -450,7 +450,7 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
         }
 
         if let leftButtonTitle = item.leftButtonTitle {
-            leftButton.setTitle(leftButtonTitle, for: .normal)
+            leftButton.setTitle(leftButtonTitle.ucFirst(), for: .normal)
             leftButton.buttonWidth = Dimens.ListItem.buttonWidth
             leftButtons = [leftButton as Any]
         } else {
@@ -458,7 +458,7 @@ final class MainListCell: MGSwipeTableCell, MoveableCell {
         }
 
         if let rightButtonTitle = item.rightButtonTitle {
-            rightButton.setTitle(rightButtonTitle, for: .normal)
+            rightButton.setTitle(rightButtonTitle.ucFirst(), for: .normal)
             rightButton.buttonWidth = Dimens.ListItem.buttonWidth
             rightButtons = [rightButton as Any]
         } else {

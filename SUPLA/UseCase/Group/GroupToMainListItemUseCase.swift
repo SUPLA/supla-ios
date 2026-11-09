@@ -114,7 +114,8 @@ enum GroupToMainListItem {
                  .binarySensor,
                  .smokeSensor,
                  .carbonMonoxideSensor,
-                 .gasSensor: .default(groupToDefaultListItem(function, group, location))
+                 .gasSensor,
+                 .actionTrigger: .default(groupToDefaultListItem(function, group, location))
             }
         }
 
@@ -140,8 +141,8 @@ enum GroupToMainListItem {
                 title: getCaptionUseCase.invoke(data: group.shareableBase).string,
                 icon: getChannelBaseIconUseCase.stateIcon(group, state: state),
                 value: nil,
-                leftButtonTitle: getChannelActionStringUseCase.leftButton(function: group.func.suplaFuntion)?.value,
-                rightButtonTitle: getChannelActionStringUseCase.rightButton(function: group.func.suplaFuntion)?.value
+                leftButtonTitle: getChannelActionStringUseCase.leftButton(function: group.func.suplaFuntion, flags: [])?.value,
+                rightButtonTitle: getChannelActionStringUseCase.rightButton(function: group.func.suplaFuntion, flags: [])?.value
             )
         }
 
@@ -168,8 +169,8 @@ enum GroupToMainListItem {
                     title: getCaptionUseCase.invoke(data: group.shareableBase).string,
                     icon: getChannelBaseIconUseCase.stateIcon(group, state: state),
                     value: getHeatpolThermostatValue(group: group),
-                    leftButtonTitle: getChannelActionStringUseCase.leftButton(function: group.func.suplaFuntion)?.value,
-                    rightButtonTitle: getChannelActionStringUseCase.rightButton(function: group.func.suplaFuntion)?.value
+                    leftButtonTitle: getChannelActionStringUseCase.leftButton(function: group.func.suplaFuntion, flags: [])?.value,
+                    rightButtonTitle: getChannelActionStringUseCase.rightButton(function: group.func.suplaFuntion, flags: [])?.value
                 ),
                 subValue: getHeatpolThermostatSubvalue(group: group)
             )

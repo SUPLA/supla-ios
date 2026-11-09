@@ -80,7 +80,7 @@ enum ChannelProgramState {
                         }
 
                         if let description = item.description {
-                            Text(description)
+                            Text(description.ucFirst())
                                 .fontLabelMedium()
                                 .foregroundStyle(Color.Supla.onBackground)
                                 .lineLimit(1)

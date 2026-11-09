@@ -133,11 +133,17 @@ struct ChannelToMainListItem {
 private extension ChannelWithChildren {
     var leftButtonTitle: String? {
         @Singleton<GetChannelActionStringUseCase> var getChannelActionStringUseCase
-        return getChannelActionStringUseCase.leftButton(function: function.suplaFuntion)?.value
+        return getChannelActionStringUseCase.leftButton(
+            function: function.suplaFuntion,
+            flags: SuplaChannelFlag.companion.from(value: channel.flags)
+        )?.value
     }
 
     var rightButtonTitle: String? {
         @Singleton<GetChannelActionStringUseCase> var getChannelActionStringUseCase
-        return getChannelActionStringUseCase.rightButton(function: function.suplaFuntion)?.value
+        return getChannelActionStringUseCase.rightButton(
+            function: function.suplaFuntion,
+            flags: SuplaChannelFlag.companion.from(value: channel.flags)
+        )?.value
     }
 }

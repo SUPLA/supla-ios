@@ -72,7 +72,7 @@ struct ChannelCurrentState {
                         .if(iconColor != nil) { $0.foregroundColor(iconColor!) }
                 }
                 
-                Text(stateValue)
+                Text(stateValue.ucFirst())
                     .font(.Supla.bodyMedium.bold())
                 Spacer()
             }

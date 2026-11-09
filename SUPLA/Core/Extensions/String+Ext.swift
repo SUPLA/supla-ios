@@ -119,6 +119,11 @@ extension String {
         return nil
     }
     
+    func ucFirst() -> String {
+        guard let first = self.first else { return self }
+        return first.uppercased() + dropFirst()
+    }
+    
     static func fromC<T>(_ address: T) -> String {
         return withUnsafePointer(to: address) {
             $0.withMemoryRebound(to: UInt8.self, capacity: MemoryLayout.size(ofValue: $0)) {

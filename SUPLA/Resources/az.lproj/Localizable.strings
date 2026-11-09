@@ -224,6 +224,11 @@
 /* General */
 "general_yes" = "Bəli";
 "general_no" = "Xeyr";
+"general_lock" = "Kilidlə";
+"general_unlock" = "Kilidi aç";
+"general_locked" = "Kilidli";
+"general_unlocked" = "Kilidi açılmış";
+"at_allow_temporary_unlock" = "Müvəqqəti kilidin açılmasına icazə ver";
 "general_auto" = "Auto";
 "general_error" = "Xəta";
 "general_warning" = "Xəbərdarlıq";
@@ -301,6 +306,7 @@
 "channel_caption_smoke_sensor" = "Tüstü sensoru";
 "channel_caption_carbon_monoxide_sensor" = "Dəm qazı sensoru";
 "channel_caption_gas_sensor" = "Qaz sensoru";
+"channel_caption_action_trigger" = "Fəaliyyət tetikleyicisi";
 "channel_caption_invisible" = "Gizli";
 "channel_offline" = "Kanal offline vəziyyətdədir";
 "channel_not_found" = "Kanal tapılmadı";
@@ -900,3 +906,11 @@
 "schedule_next_execution" = "Növbəti icra: %@";
 "schedule_name" = "Cədvəlin adı";
 "schedules_login_required" = "Cədvəllərə baxmaq üçün SUPLA Cloud-a daxil olun.";
+
+/* Action trigger */
+"action_trigger_unlock_dialog_title" = "Fəaliyyət tetikleyicisinin kilidini aç";
+"action_trigger_schedule_temporary_unlock_duration" = "Müvəqqəti kilidin açılma müddəti";
+"action_trigger_unlock_temporarily" = "Müvəqqəti olaraq kilidi aç";
+"at_locked_temporary_unlock_allowed" = "Kilidli (müvəqqəti açılma)";
+"action_trigger_schedule_button_mode" = "Düymə rejimi";
+"action_trigger_temporary_unlocked" = "müvəqqəti olaraq kiliddən açılıb";

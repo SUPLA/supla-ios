@@ -222,6 +222,11 @@
 /* General */
 "general_yes" = "Ano";
 "general_no" = "Ne";
+"general_lock" = "Zamknout";
+"general_unlock" = "Odemknout";
+"general_locked" = "Zamčený";
+"general_unlocked" = "Odemčený";
+"at_allow_temporary_unlock" = "Povolit dočasné odemknutí";
 "general_auto" = "Auto";
 "general_error" = "Chyba";
 "general_warning" = "Upozornění";
@@ -290,6 +295,7 @@
 "channel_caption_smoke_sensor" = "Snímač kouře";
 "channel_caption_carbon_monoxide_sensor" = "Snímač oxidu uhelnatého";
 "channel_caption_gas_sensor" = "Snímač plynu";
+"channel_caption_action_trigger" = "Akční spouštěč";
 "channel_caption_invisible" = "Skrytý";
 "channel_offline" = "Kanál je v režimu offline";
 "channel_battery_level" = "Stav baterie: %d%%";
@@ -831,3 +837,11 @@
 "schedule_next_execution" = "Další spuštění: %@";
 "schedule_name" = "Název plánu";
 "schedules_login_required" = "Pro zobrazení plánů se přihlaste do SUPLA Cloud.";
+
+/* Action trigger */
+"action_trigger_unlock_dialog_title" = "Odemknout akční spouštěč";
+"action_trigger_schedule_temporary_unlock_duration" = "Doba dočasného odemknutí";
+"action_trigger_unlock_temporarily" = "Dočasně odemknout";
+"at_locked_temporary_unlock_allowed" = "Zamčeno (dočasné odemknutí)";
+"action_trigger_schedule_button_mode" = "Režim tlačítka";
+"action_trigger_temporary_unlocked" = "dočasně odemčeno";

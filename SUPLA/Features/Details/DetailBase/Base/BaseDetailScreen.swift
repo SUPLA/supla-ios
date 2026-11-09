@@ -156,6 +156,8 @@ extension DetailBaseFeature {
                 ContainerGeneralFeature.Screen(itemBundle: item)
             case .gateGeneral:
                 GateGeneralFeature.Screen(itemBundle: item)
+            case .actionTriggerGeneral:
+                ActionTriggerGeneralFeature.Screen(itemBundle: item)
             case .gateSchedule:
                 RelayScheduleFeature.Screen(itemBundle: item)
             case .recuperatorGeneral:

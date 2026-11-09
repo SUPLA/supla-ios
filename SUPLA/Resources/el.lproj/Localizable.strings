@@ -222,6 +222,11 @@
 /* General */
 "general_yes" = "Ναί";
 "general_no" = "Όχι";
+"general_lock" = "Κλείδωμα";
+"general_unlock" = "Ξεκλείδωμα";
+"general_locked" = "Κλειδωμένο";
+"general_unlocked" = "Ξεκλειδωμένο";
+"at_allow_temporary_unlock" = "Να επιτρέπεται το προσωρινό ξεκλείδωμα";
 "general_auto" = "Auto";
 "general_error" = "Λάθος";
 "general_warning" = "Προειδοποίηση";
@@ -290,6 +295,7 @@
 "channel_caption_smoke_sensor" = "Αισθητήρας καπνού";
 "channel_caption_carbon_monoxide_sensor" = "Αισθητήρας μονοξειδίου του άνθρακα";
 "channel_caption_gas_sensor" = "Αισθητήρας αερίου";
+"channel_caption_action_trigger" = "Ενεργοποιητής ενέργειας";
 "channel_caption_container" = "Δοχείο";
 "channel_caption_septic_tank" = "Βόθρος";
 "channel_caption_invisible" = "Κρυφός";
@@ -832,3 +838,11 @@
 "schedule_next_execution" = "Επόμενη εκτέλεση: %@";
 "schedule_name" = "Όνομα προγράμματος";
 "schedules_login_required" = "Συνδεθείτε στο SUPLA Cloud για να δείτε τα προγράμματα.";
+
+/* Action trigger */
+"action_trigger_unlock_dialog_title" = "Ξεκλείδωμα ενεργοποιητή ενέργειας";
+"action_trigger_schedule_temporary_unlock_duration" = "Διάρκεια προσωρινού ξεκλειδώματος";
+"action_trigger_unlock_temporarily" = "Προσωρινό ξεκλείδωμα";
+"at_locked_temporary_unlock_allowed" = "Κλειδωμένο (προσωρινό ξεκλείδωμα)";
+"action_trigger_schedule_button_mode" = "Λειτουργία κουμπιού";
+"action_trigger_temporary_unlocked" = "προσωρινά ξεκλείδωτο";

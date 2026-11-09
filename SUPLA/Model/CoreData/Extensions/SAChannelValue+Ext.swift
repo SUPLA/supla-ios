@@ -56,6 +56,10 @@ extension SAChannelValue {
         RgbwwValue.companion.from(status: status, bytes: KotlinByteArray.from(data: rawDataValue()))
     }
     
+    func asActionTriggerValue() -> ActionTriggerValue {
+        ActionTriggerValue.companion.from(status: status, bytes: KotlinByteArray.from(data: rawDataValue()))
+    }
+    
     @objc func isThermostatSubfunctionHeat() -> Bool {
         asThermostatValue().subfunction == .heat
     }

@@ -22,12 +22,12 @@ extension GateGeneralFeature {
     class ViewModel: SuplaCore.ViewModel<ViewState>, ViewDelegate {
         @Singleton<ObserveChannelWithChildren.UseCase> private var observeChannelWithChildrenUseCase
         @Singleton<ObserveGroupWithChannels.UseCase> private var observeGroupWithChannelsUseCase
-        @Singleton private var getAllChannelIssuesUseCase: GetAllChannelIssuesUseCase
-        @Singleton private var getChannelBaseStateUseCase: GetChannelBaseStateUseCase
         @Singleton<ObserveRelayProgramState.UseCase> private var observeRelayProgramStateUseCase
-        @Singleton private var executeSimpleActionUseCase: ExecuteSimpleAction.UseCase
-        @Singleton private var executeRelayActionUseCase: ExecuteRelayAction.UseCase
-        @Singleton private var getChannelBaseIconUseCase: GetChannelBaseIconUseCase
+        @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleActionUseCase
+        @Singleton<GetAllChannelIssuesUseCase> private var getAllChannelIssuesUseCase
+        @Singleton<GetChannelBaseStateUseCase> private var getChannelBaseStateUseCase
+        @Singleton<ExecuteRelayAction.UseCase> private var executeRelayActionUseCase
+        @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
         
         private let itemBundle: ItemBundle
 

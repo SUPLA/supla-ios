@@ -203,6 +203,7 @@ extension DiContainer {
         register(GetDeviceConfigUseCase.self, GetDeviceConfigUseCaseImpl())
         register(ExecuteThermostatActionUseCase.self, ExecuteThermostatActionUseCaseImpl())
         register(ExecuteRelayAction.UseCase.self, ExecuteRelayAction.Implementation())
+        register(ExecuteActionTriggerActionUseCase.UseCase.self, ExecuteActionTriggerActionUseCase.Implementation())
         register(CallSuplaClientOperationUseCase.self, CallSuplaClientOperationUseCaseImpl())
         register(ExecuteRollerShutterActionUseCase.self, ExecuteRollerShutterActionUseCaseImpl())
         register(AuthorizeUseCase.self, AuthorizeUseCaseImpl())

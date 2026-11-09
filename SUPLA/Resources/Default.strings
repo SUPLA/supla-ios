@@ -48,6 +48,11 @@
 /* General */
 "general_yes" = "Yes";
 "general_no" = "No";
+"general_lock" = "lock";
+"general_unlock" = "unlock";
+"general_locked" = "locked";
+"general_unlocked" = "unlocked";
+"at_allow_temporary_unlock" = "Allow temporary unlock";
 "general_auto" = "Auto";
 "general_error" = "Error";
 "general_hour_format" = "HH:mm:ss";
@@ -128,6 +133,7 @@
 "channel_caption_smoke_sensor" = "Smoke sensor";
 "channel_caption_carbon_monoxide_sensor" = "Carbon monoxide sensor";
 "channel_caption_gas_sensor" = "Gas sensor";
+"channel_caption_action_trigger" = "Action trigger";
 "channel_caption_invisible" = "Hidden";
 "channel_caption_hvac_hrv" = "Heat recovery ventilation";
 "channel_offline" = "Channel is offline";
@@ -736,3 +742,11 @@
 "rate_app_rate_now" = "Rate Now";
 "rate_app_later" = "Later";
 "rate_app_no_thanks" = "No thanks";
+
+/* Action trigger */
+"action_trigger_unlock_dialog_title" = "Unlock Action Trigger";
+"action_trigger_schedule_temporary_unlock_duration" = "Temporary unlock duration";
+"action_trigger_unlock_temporarily" = "Unlock temporarily";
+"at_locked_temporary_unlock_allowed" = "Locked (temporary unlock)";
+"action_trigger_schedule_button_mode" = "Button mode";
+"action_trigger_temporary_unlocked" = "temporarily unlocked";

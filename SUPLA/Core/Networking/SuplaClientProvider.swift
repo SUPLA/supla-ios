@@ -116,9 +116,12 @@ extension SuplaClientProtocol {
                 parameters: &parameters,
                 length: Int32(MemoryLayout<TAction_HVAC_Parameters>.size)
             )
-        case let .at(subjectType, subjectId, mode):
+        case let .at(subjectType, subjectId, mode, durationSec):
             var parameters = TAction_AT_Parameters()
             parameters.Mode = UInt8(mode.value)
+            if let durationSec {
+                parameters.DurationSec = UInt32(durationSec)
+            }
 
             return executeAction(
                 Int32(ACTION_SET_AT_PARAMETERS),

@@ -222,7 +222,8 @@ private extension SAChannelBase {
              .hvacHrv,
              .smokeSensor,
              .carbonMonoxideSensor,
-             .gasSensor: nil
+             .gasSensor,
+             .actionTrigger: nil
         }
     }
 }

@@ -76,6 +76,14 @@ final class SetChannelConfigUseCaseImpl: SetChannelConfigUseCase {
                 nativeProgram.SetpointTemperatureCool = program.setpointTemperatureCool ?? 0
                 nativeConfig.setProgram(nativeProgram, at: programId)
             }
+        case .actionTrigger(let programs):
+            for program in programs {
+                let programId = Int(validatedProgramId(program.program) - 1)
+                var nativeProgram = TWeeklyScheduleProgram()
+                nativeProgram.Mode = UInt8(program.mode.value)
+                nativeProgram.ButtonTemporaryUnlockDurationS = program.buttonTemporaryUnlockDurationS
+                nativeConfig.setProgram(nativeProgram, at: programId)
+            }
         }
     }
 

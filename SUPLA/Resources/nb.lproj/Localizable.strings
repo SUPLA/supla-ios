@@ -222,6 +222,11 @@
 /* General */
 "general_yes" = "Ja";
 "general_no" = "Nei";
+"general_lock" = "Lås";
+"general_unlock" = "Lås opp";
+"general_locked" = "Låst";
+"general_unlocked" = "Ulåst";
+"at_allow_temporary_unlock" = "Tillat midlertidig opplåsing";
 "general_auto" = "Auto";
 "general_error" = "Feil";
 "general_warning" = "Advarsel";
@@ -290,6 +295,7 @@
 "channel_caption_smoke_sensor" = "Røyksensor";
 "channel_caption_carbon_monoxide_sensor" = "Karbonmonoksidsensor";
 "channel_caption_gas_sensor" = "Gassensor";
+"channel_caption_action_trigger" = "Handlingsutløser";
 "channel_caption_container" = "Beholder";
 "channel_caption_septic_tank" = "Septiktank";
 "channel_caption_invisible" = "Skjult";
@@ -830,3 +836,11 @@
 "schedule_next_execution" = "Neste kjøring: %@";
 "schedule_name" = "Tidsplannavn";
 "schedules_login_required" = "Logg inn på SUPLA Cloud for å vise tidsplaner.";
+
+/* Action trigger */
+"action_trigger_unlock_dialog_title" = "Lås opp handlingsutløser";
+"action_trigger_schedule_temporary_unlock_duration" = "Varighet for midlertidig opplåsing";
+"action_trigger_unlock_temporarily" = "Lås opp midlertidig";
+"at_locked_temporary_unlock_allowed" = "Låst (midlertidig opplåsing)";
+"action_trigger_schedule_button_mode" = "Knappmodus";
+"action_trigger_temporary_unlocked" = "midlertidig låst opp";

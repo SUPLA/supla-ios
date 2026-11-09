@@ -181,6 +181,11 @@
 /* General */
 "general_yes" = "Igen";
 "general_no" = "Nem";
+"general_lock" = "Zárolás";
+"general_unlock" = "Feloldás";
+"general_locked" = "Zárolva";
+"general_unlocked" = "Feloldva";
+"at_allow_temporary_unlock" = "Ideiglenes feloldás engedélyezése";
 "general_auto" = "Auto";
 "general_error" = "Hiba";
 "general_hour_format" = "HH:mm:ss";
@@ -261,6 +266,7 @@
 "channel_caption_smoke_sensor" = "Füstérzékelő";
 "channel_caption_carbon_monoxide_sensor" = "Szén-monoxid-érzékelő";
 "channel_caption_gas_sensor" = "Gázérzékelő";
+"channel_caption_action_trigger" = "Műveletindító";
 "channel_caption_invisible" = "Rejtett";
 "channel_offline" = "A csatorna offline állapotban van";
 "channel_not_found" = "Csatorna nem található";
@@ -871,3 +877,11 @@
 "schedule_next_execution" = "Következő végrehajtás: %@";
 "schedule_name" = "Ütemezés neve";
 "schedules_login_required" = "Az ütemezések megtekintéséhez jelentkezz be a SUPLA Cloudba.";
+
+/* Action trigger */
+"action_trigger_unlock_dialog_title" = "Műveletindító feloldása";
+"action_trigger_schedule_temporary_unlock_duration" = "Ideiglenes feloldás időtartama";
+"action_trigger_unlock_temporarily" = "Ideiglenes feloldás";
+"at_locked_temporary_unlock_allowed" = "Zárolva (ideiglenes feloldás)";
+"action_trigger_schedule_button_mode" = "Gomb módja";
+"action_trigger_temporary_unlocked" = "ideiglenesen feloldva";

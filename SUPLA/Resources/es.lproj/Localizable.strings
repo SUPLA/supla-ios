@@ -223,6 +223,11 @@
 /* General */
 "general_yes" = "Sí";
 "general_no" = "No";
+"general_lock" = "Bloquear";
+"general_unlock" = "Desbloquear";
+"general_locked" = "Bloqueado";
+"general_unlocked" = "Desbloqueado";
+"at_allow_temporary_unlock" = "Permitir desbloqueo temporal";
 "general_auto" = "Auto";
 "general_error" = "Error";
 "general_warning" = "Advertencia";
@@ -293,6 +298,7 @@
 "channel_caption_smoke_sensor" = "Sensor de humo";
 "channel_caption_carbon_monoxide_sensor" = "Sensor de monóxido de carbono";
 "channel_caption_gas_sensor" = "Sensor de gas";
+"channel_caption_action_trigger" = "Activador de acciones";
 "channel_caption_invisible" = "Oculto";
 "channel_offline" = "El canal está offline";
 "channel_battery_level" = "Nivel de batería: %d%%";
@@ -832,3 +838,11 @@
 "schedule_next_execution" = "Próxima ejecución: %@";
 "schedule_name" = "Nombre de la programación";
 "schedules_login_required" = "Inicia sesión en SUPLA Cloud para ver las programaciones.";
+
+/* Action trigger */
+"action_trigger_unlock_dialog_title" = "Desbloquear activador de acción";
+"action_trigger_schedule_temporary_unlock_duration" = "Duración del desbloqueo temporal";
+"action_trigger_unlock_temporarily" = "Desbloquear temporalmente";
+"at_locked_temporary_unlock_allowed" = "Bloqueado (desbloqueo temporal)";
+"action_trigger_schedule_button_mode" = "Modo del botón";
+"action_trigger_temporary_unlocked" = "desbloqueado temporalmente";

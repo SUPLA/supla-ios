@@ -54,6 +54,7 @@ enum ChannelConfigType: UInt8, CaseIterable {
     case facadeBlind = 5
     case container = 6
     case hvac = 7
+    case actionTrigger = 8
     
     static func from(value: UInt8) -> ChannelConfigType {
         for configType in ChannelConfigType.allCases {

@@ -358,6 +358,10 @@ struct Strings {
         static let off = "Off".toLocalized()
         static let yes = "general_yes".toLocalized()
         static let no = "general_no".toLocalized()
+        static let lock = "general_lock".toLocalized()
+        static let unlock = "general_unlock".toLocalized()
+        static let locked = "general_locked".toLocalized()
+        static let unlocked = "general_unlocked".toLocalized()
         static let auto = "general_auto".toLocalized()
         static let turnOn = "turn_on".toLocalized()
         static let turnOff = "turn_off".toLocalized()
@@ -431,6 +435,7 @@ struct Strings {
             static let captionSmokeSensor = "channel_caption_smoke_sensor".toLocalized()
             static let captionCarbonMonoxideSensor = "channel_caption_carbon_monoxide_sensor".toLocalized()
             static let captionGasSensor = "channel_caption_gas_sensor".toLocalized()
+            static let captionActionTrigger = "channel_caption_action_trigger".toLocalized()
             static let captionInvisible = "channel_caption_invisible".toLocalized()
             static let captionHvacHrv = "channel_caption_hvac_hrv".toLocalized()
             
@@ -900,6 +905,15 @@ struct Strings {
             static let assignAction = "nfc_assign_action".toLocalized()
             static let updateAction = "ndc_update_action".toLocalized()
         }
+    }
+
+    struct ActionTrigger {
+        static let scheduleButtonMode = "action_trigger_schedule_button_mode".toLocalized()
+        static let temporaryUnlocked = "action_trigger_temporary_unlocked".toLocalized()
+        static let allowTemporaryUnlock = "at_allow_temporary_unlock".toLocalized()
+        static let unlockDialogTitle = "action_trigger_unlock_dialog_title".toLocalized()
+        static let temporaryUnlockDuration = "action_trigger_schedule_temporary_unlock_duration".toLocalized()
+        static let unlockTemporarily = "action_trigger_unlock_temporarily".toLocalized()
     }
 }
 

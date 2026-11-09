@@ -222,6 +222,11 @@
 /* General */
 "general_yes" = "Ja";
 "general_no" = "Nee";
+"general_lock" = "Vergrendelen";
+"general_unlock" = "Ontgrendelen";
+"general_locked" = "Vergrendeld";
+"general_unlocked" = "Ontgrendeld";
+"at_allow_temporary_unlock" = "Tijdelijk ontgrendelen toestaan";
 "general_auto" = "Auto";
 "general_error" = "Fout";
 "general_warning" = "Waarschuwing";
@@ -290,6 +295,7 @@
 "channel_caption_smoke_sensor" = "Rooksensor";
 "channel_caption_carbon_monoxide_sensor" = "Koolmonoxidesensor";
 "channel_caption_gas_sensor" = "Gassensor";
+"channel_caption_action_trigger" = "Actietrigger";
 "channel_caption_container" = "Container";
 "channel_caption_septic_tank" = "Septic tank";
 "channel_caption_invisible" = "Verborgen";
@@ -831,3 +837,11 @@
 "schedule_next_execution" = "Volgende uitvoering: %@";
 "schedule_name" = "Schemaname";
 "schedules_login_required" = "Log in bij SUPLA Cloud om schema’s te bekijken.";
+
+/* Action trigger */
+"action_trigger_unlock_dialog_title" = "Actietrigger ontgrendelen";
+"action_trigger_schedule_temporary_unlock_duration" = "Duur van tijdelijk ontgrendelen";
+"action_trigger_unlock_temporarily" = "Tijdelijk ontgrendelen";
+"at_locked_temporary_unlock_allowed" = "Vergrendeld (tijdelijk ontgrendelen)";
+"action_trigger_schedule_button_mode" = "Knopmodus";
+"action_trigger_temporary_unlocked" = "tijdelijk ontgrendeld";

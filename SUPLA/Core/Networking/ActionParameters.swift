@@ -59,7 +59,8 @@ public enum ActionParameters {
     case at(
         subjectType: SubjectType,
         subjectId: Int32,
-        mode: SuplaRelayMode
+        mode: SuplaButtonMode,
+        durationSec: Int32?
     )
     case relay(
         subjectType: SubjectType,

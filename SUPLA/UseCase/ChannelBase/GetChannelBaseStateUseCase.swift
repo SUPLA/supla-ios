@@ -111,7 +111,8 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              .hvacThermostatHeatCool,
              .hvacDomesticHotWater,
              .generalPurposeMeasurement,
-             .generalPurposeMeter: .default(value: .notUsed)
+             .generalPurposeMeter,
+             .actionTrigger: .default(value: .notUsed)
         }
     }
     
@@ -211,7 +212,8 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              .hvacThermostatHeatCool,
              .hvacDomesticHotWater,
              .generalPurposeMeasurement,
-             .generalPurposeMeter: return .default(value: .notUsed)
+             .generalPurposeMeter,
+             .actionTrigger: return .default(value: .notUsed)
         }
     }
     

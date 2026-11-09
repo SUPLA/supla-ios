@@ -222,6 +222,11 @@
 /* General */
 "general_yes" = "Так";
 "general_no" = "Ні";
+"general_lock" = "Заблокувати";
+"general_unlock" = "Розблокувати";
+"general_locked" = "Заблоковано";
+"general_unlocked" = "Розблоковано";
+"at_allow_temporary_unlock" = "Дозволити тимчасове розблокування";
 "general_auto" = "Auto";
 "general_error" = "Помилка";
 "general_warning" = "Попередження";
@@ -290,6 +295,7 @@
 "channel_caption_smoke_sensor" = "Датчик диму";
 "channel_caption_carbon_monoxide_sensor" = "Датчик чадного газу";
 "channel_caption_gas_sensor" = "Датчик газу";
+"channel_caption_action_trigger" = "Тригер дії";
 "channel_caption_container" = "Контейнер";
 "channel_caption_septic_tank" = "Септик";
 "channel_caption_invisible" = "Прихований";
@@ -831,3 +837,11 @@
 "schedule_next_execution" = "Наступне виконання: %@";
 "schedule_name" = "Назва розкладу";
 "schedules_login_required" = "Увійдіть до SUPLA Cloud, щоб переглянути розклади.";
+
+/* Action trigger */
+"action_trigger_unlock_dialog_title" = "Розблокувати тригер дії";
+"action_trigger_schedule_temporary_unlock_duration" = "Тривалість тимчасового розблокування";
+"action_trigger_unlock_temporarily" = "Розблокувати тимчасово";
+"at_locked_temporary_unlock_allowed" = "Заблоковано (тимчасове розблокування)";
+"action_trigger_schedule_button_mode" = "Режим кнопки";
+"action_trigger_temporary_unlocked" = "тимчасово розблоковано";

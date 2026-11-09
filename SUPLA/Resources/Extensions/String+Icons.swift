@@ -73,6 +73,10 @@ extension String {
         static let dimmerCircularSelector = "icon_dimmer_circular_selector"
         static let dimmerLinearSelector = "icon_dimmer_linear_selector"
         static let lock = "icon_lock"
+        static let lockClosed = "icon_lock_closed"
+        static let lockOpened = "icon_lock_open_right"
+        static let lockTemporary = "icon_lock_temporary"
+        static let unlockTemporary = "icon_unlock_temporary"
         static let search = "icon_search"
         static let menu = "icon_menu"
         
@@ -256,6 +260,8 @@ extension String {
         static let fncDimmerOff = "dimmer-off"
         static let fncDimmerCctOn = "fnc_dimmer_cct-on"
         static let fncDimmerCctOff = "fnc_dimmer_cct-off"
+        // Action trigger
+        static let fncActionTrigger = "fnc_action_trigger"
         
         // MARK: other
         static let thumbHeat = "thumb_heat"

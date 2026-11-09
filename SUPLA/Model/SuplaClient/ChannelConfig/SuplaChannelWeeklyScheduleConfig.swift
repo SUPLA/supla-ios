@@ -16,6 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import Foundation
 import SharedCore
 
 final class SuplaChannelWeeklyScheduleConfig: SuplaChannelConfig {
@@ -37,7 +38,16 @@ final class SuplaChannelWeeklyScheduleConfig: SuplaChannelConfig {
         
         let programConfigurations: SuplaWeeklyScheduleProgramSet
         let size = TChannelConfig_WeeklySchedule.programCount
-        if channelFunc?.isRelayScheduleFunction == true {
+        if channelFunc == SUPLA_CHANNELFNC_ACTIONTRIGGER {
+            programConfigurations = .actionTrigger((0..<size).map { programId in
+                let program = suplaConfig.program(at: programId)
+                return SuplaButtonWeeklyScheduleProgram(
+                    program: SuplaScheduleProgram.from(value: UInt8(programId + 1)),
+                    mode: SuplaButtonMode.companion.from(value: Int8(program.Mode)),
+                    buttonTemporaryUnlockDurationS: program.ButtonTemporaryUnlockDurationS
+                )
+            })
+        } else if channelFunc?.isRelayScheduleFunction == true {
             programConfigurations = .relay((0..<size).map { programId in
                 let program = suplaConfig.program(at: programId)
                 return SuplaRelayWeeklyScheduleProgram(
@@ -159,14 +169,44 @@ struct SuplaRelayWeeklyScheduleProgram: Equatable, SuplaWeeklyScheduleProgramPro
     }
 }
 
+struct SuplaButtonWeeklyScheduleProgram: Equatable, SuplaWeeklyScheduleProgramProtocol {
+    let program: SuplaScheduleProgram
+    let mode: SuplaButtonMode
+    let buttonTemporaryUnlockDurationS: UInt16
+    var description: String {
+        guard mode == .lockedTemporaryUnlockAllowed else {
+            return mode == .notSet ? Strings.General.unlocked : Strings.General.locked
+        }
+
+        let duration = Int(buttonTemporaryUnlockDurationS)
+        guard duration > 0 else { return "\(Strings.General.locked) ⏱️" }
+
+        let hours = duration / 3_600
+        let minutes = (duration % 3_600) / 60
+        let seconds = duration % 60
+        let formattedDuration: String
+        if hours > 0 {
+            formattedDuration = String(format: "%d:%02d:%02d", hours, minutes, seconds)
+        } else if minutes > 0 {
+            formattedDuration = String(format: "%d:%02d", minutes, seconds)
+        } else {
+            formattedDuration = "\(seconds)s"
+        }
+
+        return "\(Strings.General.locked) \(formattedDuration)"
+    }
+}
+
 enum SuplaWeeklyScheduleProgramSet: Equatable {
     case hvac([SuplaHvacWeeklyScheduleProgram])
     case relay([SuplaRelayWeeklyScheduleProgram])
+    case actionTrigger([SuplaButtonWeeklyScheduleProgram])
 
     var isEmpty: Bool {
         switch self {
         case .hvac(let programs): programs.isEmpty
         case .relay(let programs): programs.isEmpty
+        case .actionTrigger(let programs): programs.isEmpty
         }
     }
 

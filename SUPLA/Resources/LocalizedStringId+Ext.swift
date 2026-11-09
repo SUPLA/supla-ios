@@ -33,6 +33,10 @@ extension LocalizedStringId {
             
         case .generalYes: Strings.General.yes
         case .generalNo: Strings.General.no
+        case .generalLock: Strings.General.lock
+        case .generalUnlock: Strings.General.unlock
+        case .generalLocked: Strings.General.locked
+        case .generalUnlocked: Strings.General.unlocked
 
         case .channelCaptionOpenSensorGateway: NSLocalizedString("Gateway opening sensor", comment: "")
         case .channelCaptionControllingTheGatewayLock: NSLocalizedString("Gateway", comment: "")
@@ -96,6 +100,7 @@ extension LocalizedStringId {
         case .channelCaptionSmokeSensor: Strings.General.Channel.captionSmokeSensor
         case .channelCaptionCarbonMonoxideSensor: Strings.General.Channel.captionCarbonMonoxideSensor
         case .channelCaptionGasSensor: Strings.General.Channel.captionGasSensor
+        case .channelCaptionActionTrigger: Strings.General.Channel.captionActionTrigger
 
         case .channelBatteryLevel: Strings.General.Channel.batteryLevel
         case .channelBatteryLevelWithInfo: Strings.General.Channel.batteryLevelWithInfo

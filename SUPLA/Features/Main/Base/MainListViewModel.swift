@@ -69,7 +69,8 @@ class MainListViewModel<S: ObservableObject>: SuplaCore.ViewModel<S> {
             SUPLA_CHANNELFNC_STAIRCASETIMER,
             SUPLA_CHANNELFNC_RGBLIGHTING,
             SUPLA_CHANNELFNC_DIMMER,
-            SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+            SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING,
+            SUPLA_CHANNELFNC_ACTIONTRIGGER:
             return true
         default:
             return false

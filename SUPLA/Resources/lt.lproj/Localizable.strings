@@ -224,6 +224,11 @@
 /* General */
 "general_yes" = "Taip";
 "general_no" = "Ne";
+"general_lock" = "Užrakinti";
+"general_unlock" = "Atrakinti";
+"general_locked" = "Užrakinta";
+"general_unlocked" = "Atrakinta";
+"at_allow_temporary_unlock" = "Leisti laikiną atrakinimą";
 "general_auto" = "Auto";
 "general_error" = "Klaida";
 "general_warning" = "Įspėjimas";
@@ -292,6 +297,7 @@
 "channel_caption_smoke_sensor" = "Dūmų jutiklis";
 "channel_caption_carbon_monoxide_sensor" = "Anglies monoksido jutiklis";
 "channel_caption_gas_sensor" = "Dujų jutiklis";
+"channel_caption_action_trigger" = "Veiksmų aktyviklis";
 "channel_caption_container" = "Konteineris";
 "channel_caption_septic_tank" = "Septikas";
 "channel_caption_invisible" = "Paslėptas";
@@ -833,3 +839,11 @@
 "schedule_next_execution" = "Kitas vykdymas: %@";
 "schedule_name" = "Tvarkaraščio pavadinimas";
 "schedules_login_required" = "Norėdami peržiūrėti tvarkaraščius, prisijunkite prie SUPLA Cloud.";
+
+/* Action trigger */
+"action_trigger_unlock_dialog_title" = "Atrakinti veiksmo aktyviklį";
+"action_trigger_schedule_temporary_unlock_duration" = "Laikino atrakinimo trukmė";
+"action_trigger_unlock_temporarily" = "Laikinai atrakinti";
+"at_locked_temporary_unlock_allowed" = "Užrakinta (laikinas atrakinimas)";
+"action_trigger_schedule_button_mode" = "Mygtuko režimas";
+"action_trigger_temporary_unlocked" = "laikinai atrakinta";
