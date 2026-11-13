@@ -87,7 +87,7 @@ extension RelayScheduleFeature {
 
         func onShowQuarters(_ key: ScheduleDetailBoxKey) {
             guard let hourPrograms = state.schedule[key] else { return }
-            state.quarters = QuartersState(key: key, programs: relayProgramsForView(state.programs), activeProgram: state.activeProgram, hourPrograms: hourPrograms)
+            state.quarters = QuartersSelectionData(key: key, programs: relayProgramsForView(state.programs), activeProgram: state.activeProgram, hourPrograms: hourPrograms)
         }
 
         func onQuartersDismiss() { state.quarters = nil }
@@ -235,18 +235,8 @@ extension RelayScheduleFeature {
         @Published var currentHour: Int?
         @Published var changing = false
         @Published var lastInteractionTime: TimeInterval?
-        @Published var quarters: QuartersState?
+        @Published var quarters: QuartersSelectionData?
         @Published var programSettings: ProgramSettings?
-    }
-
-    final class QuartersState: ObservableObject {
-        let key: ScheduleDetailBoxKey
-        let programs: [WeeklyScheduleProgram]
-        @Published var activeProgram: SuplaScheduleProgram?
-        @Published var hourPrograms: WeeklyScheduleBoxValue
-        init(key: ScheduleDetailBoxKey, programs: [WeeklyScheduleProgram], activeProgram: SuplaScheduleProgram?, hourPrograms: WeeklyScheduleBoxValue) {
-            self.key = key; self.programs = programs; self.activeProgram = activeProgram; self.hourPrograms = hourPrograms
-        }
     }
 
     final class ProgramSettings: ObservableObject {

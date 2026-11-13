@@ -139,7 +139,7 @@ final class RefreshImpulseCounterAggregatedValueUseCaseTests: XCTestCase {
             (
                 profileId,
                 remoteId,
-                "4.000 "
+                decimalLocalized("4.000 ")
             )
         ])
     }

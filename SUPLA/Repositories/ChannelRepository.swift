@@ -55,7 +55,7 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
     func observeAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]> {
         let request = SAChannel.fetchRequest()
             .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile.id == %d", profile.id))
-            .ordered(by: "remote_id")
+        setVisibleChannelsSortDescriptors(on: request)
         return continuousQuery(request)
     }
 
@@ -87,7 +87,13 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
                 SAChannel.fetchRequest()
                     .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile.id == %d AND (value.last_online_state == nil OR value.last_online_state != 2)", profileId))
             }
-        
+
+        setVisibleChannelsSortDescriptors(on: request)
+
+        return query(request)
+    }
+
+    private func setVisibleChannelsSortDescriptors(on request: NSFetchRequest<SAChannel>) {
         let localeAwareCompare = #selector(NSString.localizedStandardCompare)
         request.sortDescriptors = [
             NSSortDescriptor(key: "location.sortOrder", ascending: true),
@@ -96,23 +102,14 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
             NSSortDescriptor(key: "func", ascending: false),
             NSSortDescriptor(key: "caption", ascending: false, selector: localeAwareCompare)
         ]
-        
-        return query(request)
     }
     
     func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannel]> {
         let request = SAChannel.fetchRequest()
             .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile = %@ AND location.caption = %@", profile, locationCaption))
-        
-        let localeAwareCompare = #selector(NSString.localizedStandardCompare)
-        request.sortDescriptors = [
-            NSSortDescriptor(key: "location.sortOrder", ascending: true),
-            NSSortDescriptor(key: "location.caption", ascending: true, selector: localeAwareCompare),
-            NSSortDescriptor(key: "position", ascending: true),
-            NSSortDescriptor(key: "func", ascending: false),
-            NSSortDescriptor(key: "caption", ascending: false, selector: localeAwareCompare)
-        ]
-        
+
+        setVisibleChannelsSortDescriptors(on: request)
+
         return query(request)
     }
     

@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7100000000000000000000C /* ActionTriggerScheduleViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7100000000000000000000D /* ActionTriggerScheduleViewState.swift */; };
+		A7100000000000000000000E /* AtProgramSettingsDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7100000000000000000000F /* AtProgramSettingsDialog.swift */; };
+		A71100000000000000000001 /* QuartersSelectionDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71100000000000000000002 /* QuartersSelectionDialog.swift */; };
+		C0DE20261109000200000001 /* ActionTriggerScheduleVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE20261109000200000002 /* ActionTriggerScheduleVMTests.swift */; };
+		A71000000000000000000001 /* ActionTriggerScheduleFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71000000000000000000006 /* ActionTriggerScheduleFeature.swift */; };
+		A71000000000000000000002 /* ActionTriggerScheduleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71000000000000000000007 /* ActionTriggerScheduleScreen.swift */; };
+		A71000000000000000000003 /* ActionTriggerScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71000000000000000000008 /* ActionTriggerScheduleView.swift */; };
+		A71000000000000000000004 /* ActionTriggerScheduleVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71000000000000000000009 /* ActionTriggerScheduleVM.swift */; };
+		A71000000000000000000005 /* TemporaryUnlockDurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7100000000000000000000A /* TemporaryUnlockDurationPicker.swift */; };
 		010714732656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 010714722656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m */; };
 		010714782656C605009C119F /* SAZWaveWakeupSettingsReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 010714772656C605009C119F /* SAZWaveWakeupSettingsReport.m */; };
 		010714802656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 010714822656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib */; };
@@ -1019,7 +1028,6 @@
 		A5ABE5CD2ABCD89400FFA50B /* LoadingTimoutManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5CC2ABCD89400FFA50B /* LoadingTimoutManagerMock.swift */; };
 		A5ABE5CF2ABD696900FFA50B /* DataMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5CE2ABD696900FFA50B /* DataMocks.swift */; };
 		A5ABE9BB2F7E864F005ED5DC /* DefaultValueFormatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE9BA2F7E8646005ED5DC /* DefaultValueFormatter+Ext.swift */; };
-		A5ABE9BD2F7FFAAF005ED5DC /* EditQuartersDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE9BC2F7FFAA7005ED5DC /* EditQuartersDialog.swift */; };
 		A5AD70182C00766400A36318 /* CGRect+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD70172C00766400A36318 /* CGRect+Ext.swift */; };
 		A5AD701B2C00B1D700A36318 /* ControlButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD701A2C00B1D700A36318 /* ControlButtonType.swift */; };
 		A5AD701D2C00B2CC00A36318 /* LeftRightControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD701C2C00B2CC00A36318 /* LeftRightControlButton.swift */; };
@@ -1737,6 +1745,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A7100000000000000000000D /* ActionTriggerScheduleViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleViewState.swift; sourceTree = "<group>"; };
+		A7100000000000000000000F /* AtProgramSettingsDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtProgramSettingsDialog.swift; sourceTree = "<group>"; };
+		A71100000000000000000002 /* QuartersSelectionDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuartersSelectionDialog.swift; sourceTree = "<group>"; };
+		C0DE20261109000200000002 /* ActionTriggerScheduleVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleVMTests.swift; sourceTree = "<group>"; };
+		A71000000000000000000006 /* ActionTriggerScheduleFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleFeature.swift; sourceTree = "<group>"; };
+		A71000000000000000000007 /* ActionTriggerScheduleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleScreen.swift; sourceTree = "<group>"; };
+		A71000000000000000000008 /* ActionTriggerScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleView.swift; sourceTree = "<group>"; };
+		A71000000000000000000009 /* ActionTriggerScheduleVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleVM.swift; sourceTree = "<group>"; };
+		A7100000000000000000000A /* TemporaryUnlockDurationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryUnlockDurationPicker.swift; sourceTree = "<group>"; };
 		010714712656A6FB009C119F /* SAZWaveWakeupSettingsDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveWakeupSettingsDialog.h; sourceTree = "<group>"; };
 		010714722656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveWakeupSettingsDialog.m; sourceTree = "<group>"; };
 		010714762656C605009C119F /* SAZWaveWakeupSettingsReport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveWakeupSettingsReport.h; sourceTree = "<group>"; };
@@ -2961,7 +2978,6 @@
 		A5ABE5CC2ABCD89400FFA50B /* LoadingTimoutManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTimoutManagerMock.swift; sourceTree = "<group>"; };
 		A5ABE5CE2ABD696900FFA50B /* DataMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMocks.swift; sourceTree = "<group>"; };
 		A5ABE9BA2F7E8646005ED5DC /* DefaultValueFormatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultValueFormatter+Ext.swift"; sourceTree = "<group>"; };
-		A5ABE9BC2F7FFAA7005ED5DC /* EditQuartersDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuartersDialog.swift; sourceTree = "<group>"; };
 		A5AD70172C00766400A36318 /* CGRect+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Ext.swift"; sourceTree = "<group>"; };
 		A5AD701A2C00B1D700A36318 /* ControlButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButtonType.swift; sourceTree = "<group>"; };
 		A5AD701C2C00B2CC00A36318 /* LeftRightControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftRightControlButton.swift; sourceTree = "<group>"; };
@@ -4558,9 +4574,24 @@
 		B70000012F90000100000010 /* ActionTrigger */ = {
 			isa = PBXGroup;
 			children = (
+				A7100000000000000000000B /* Schedule */,
+				A7100000000000000000000A /* TemporaryUnlockDurationPicker.swift */,
 				B70000012F90000100000011 /* General */,
 			);
 			path = ActionTrigger;
+			sourceTree = "<group>";
+		};
+		A7100000000000000000000B /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				A71000000000000000000006 /* ActionTriggerScheduleFeature.swift */,
+				A71000000000000000000007 /* ActionTriggerScheduleScreen.swift */,
+				A71000000000000000000008 /* ActionTriggerScheduleView.swift */,
+				A71000000000000000000009 /* ActionTriggerScheduleVM.swift */,
+				A7100000000000000000000D /* ActionTriggerScheduleViewState.swift */,
+				A7100000000000000000000F /* AtProgramSettingsDialog.swift */,
+			);
+			path = Schedule;
 			sourceTree = "<group>";
 		};
 		B70000012F90000100000011 /* General */ = {
@@ -6054,7 +6085,6 @@
 		A57C4AB12AAF372B00D9C695 /* dialogs */ = {
 			isa = PBXGroup;
 			children = (
-				A5ABE9BC2F7FFAA7005ED5DC /* EditQuartersDialog.swift */,
 				A5EE0C892F7D146400D7B14F /* EditProgramDialog.swift */,
 			);
 			path = dialogs;
@@ -7544,6 +7574,7 @@
 			isa = PBXGroup;
 			children = (
 				C0DE20261109000100000013 /* ActionTriggerGeneral */,
+				C0DE20261109000200000003 /* ActionTriggerSchedule */,
 				A50B5D102BECC58800918D18 /* WindowDetail */,
 				A5E40B632B86248300DB6ABE /* GpmDetail */,
 				A573B0972A5FD849001E19D0 /* SwitchDetail */,
@@ -7551,6 +7582,14 @@
 				A54A06642AF526EE00C03DBC /* ThermometerDetail */,
 			);
 			path = Details;
+			sourceTree = "<group>";
+		};
+		C0DE20261109000200000003 /* ActionTriggerSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				C0DE20261109000200000002 /* ActionTriggerScheduleVMTests.swift */,
+			);
+			path = ActionTriggerSchedule;
 			sourceTree = "<group>";
 		};
 		C0DE20261109000100000013 /* ActionTriggerGeneral */ = {
@@ -7784,6 +7823,7 @@
 				35C397550E5CE1A8D6868CF8 /* WeeklyScheduleProgram.swift */,
 				D10000000000000000000002 /* ScheduleProgramDialogHeader.swift */,
 				5E5321C05CE094A81C94BFE3 /* WeeklyScheduleBoxValue.swift */,
+				A71100000000000000000002 /* QuartersSelectionDialog.swift */,
 				E0A9C122B1C02D1D061AEF2F /* WeeklyScheduleEditor.swift */,
 				6D04D04BEF38C6D3D9AD4BB1 /* DelayedWeeklyScheduleConfigSubject.swift */,
 			);
@@ -8998,7 +9038,6 @@
 				A5BCA9BA2E2A606100A5054A /* Esp.swift in Sources */,
 				A5F29BBE2A24DB1300ED700A /* UpdateGroupUseCase.swift in Sources */,
 				019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */,
-				A5ABE9BD2F7FFAAF005ED5DC /* EditQuartersDialog.swift in Sources */,
 				A5F29BB22A24C52600ED700A /* UpdateChannelUseCase.swift in Sources */,
 				A5074BE22BCFE6230081B6B1 /* SuplaTiltControlType.swift in Sources */,
 				A57C4AB52AAF458F00D9C695 /* SuplaScheduleProgram.swift in Sources */,
@@ -9548,6 +9587,13 @@
 				B70000012F90000100000003 /* ActionTriggerGeneralView.swift in Sources */,
 				B70000012F90000100000004 /* ActionTriggerGeneralViewState.swift in Sources */,
 				B70000012F90000100000005 /* ActionTriggerGeneralVM.swift in Sources */,
+				A71000000000000000000001 /* ActionTriggerScheduleFeature.swift in Sources */,
+				A71000000000000000000002 /* ActionTriggerScheduleScreen.swift in Sources */,
+				A71000000000000000000003 /* ActionTriggerScheduleView.swift in Sources */,
+				A71000000000000000000004 /* ActionTriggerScheduleVM.swift in Sources */,
+				A7100000000000000000000C /* ActionTriggerScheduleViewState.swift in Sources */,
+				A7100000000000000000000E /* AtProgramSettingsDialog.swift in Sources */,
+				A71000000000000000000005 /* TemporaryUnlockDurationPicker.swift in Sources */,
 				A5F29B1C3034F10000C0DE01 /* ChannelListVM.swift in Sources */,
 				A6B2D10D3E6A4C1800D1BEEF /* RecuperatorGeneralVM.swift in Sources */,
 				A5074BDB2BCFE22E0081B6B1 /* SuplaChannelShadingSystemBaseConfig.swift in Sources */,
@@ -10101,6 +10147,7 @@
 				436A44A71A5CB44B93225E0D /* WeeklyScheduleProgram.swift in Sources */,
 				D10000000000000000000001 /* ScheduleProgramDialogHeader.swift in Sources */,
 				994C8B0FB7D10818D0ABAB80 /* WeeklyScheduleBoxValue.swift in Sources */,
+				A71100000000000000000001 /* QuartersSelectionDialog.swift in Sources */,
 				869350A1443344FC1696CB06 /* WeeklyScheduleEditor.swift in Sources */,
 				97810EE89490414E7EE3F4D0 /* RelayScheduleFeature.swift in Sources */,
 				39538CDCC5A3AD5E1055B03E /* RelayScheduleView.swift in Sources */,
@@ -10231,6 +10278,7 @@
 				A57C88372ACB49C5000B0F10 /* ThermostatProgramInfoTests.swift in Sources */,
 				A5ABE5C72ABCD52500FFA50B /* ThermostatGeneralVMTests.swift in Sources */,
 				C0DE20261109000100000011 /* ActionTriggerGeneralVMTests.swift in Sources */,
+				C0DE20261109000200000001 /* ActionTriggerScheduleVMTests.swift in Sources */,
 				A5E40B532B85F31100DB6ABE /* SuplaChannelGeneralPurposeMeterConfig+Mock.swift in Sources */,
 				A5519B3E2B6D37F100811747 /* DistanceValueProviderTest.swift in Sources */,
 				A54A067E2AF903A700C03DBC /* DownloadTemperatureMeasurementsUseCaseTests.swift in Sources */,

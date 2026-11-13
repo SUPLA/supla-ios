@@ -23,7 +23,7 @@ final class DepthValueStringProvider: ChannelValueStringProvider {
         channelWithChildren.channel.func == SUPLA_CHANNELFNC_DEPTHSENSOR
     }
     
-    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String? {
         DistanceValueFormatter.shared.format(
             value: depthValueProvider.value(channelWithChildren.channel, valueType: valueType),
             format: ValueFormatKt.withUnit(withUnit: withUnit)

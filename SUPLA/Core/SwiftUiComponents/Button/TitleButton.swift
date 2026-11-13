@@ -40,6 +40,7 @@ struct TitleButton: View {
     var body: some View {
         SwiftUI.Button(action: action) {
             Text(title)
+                .multilineTextAlignment(.center)
                 .fontLabelLarge()
                 .padding(size.paddings)
                 .if(fullWidth) { $0.frame(maxWidth: .infinity) }

@@ -72,11 +72,16 @@ extension ThermostatScheduleDetailFeature {
         
         func onShowQuartersDialog(_ key: ScheduleDetailBoxKey) {
             if let hourPrograms = state.schedule[key] {
-                state.editQuartersState = EditQuartersState(
+                state.editQuartersState = QuartersSelectionData(
                     key: key,
-                    programs: state.programs,
+                    programs: state.programs.map { WeeklyScheduleProgram(program: $0.scheduleProgram, icon: $0.icon) },
                     activeProgram: state.activeProgram,
-                    hourPrograms: hourPrograms
+                    hourPrograms: WeeklyScheduleBoxValue(
+                        hourPrograms.firstQuarterProgram,
+                        hourPrograms.secondQuarterProgram,
+                        hourPrograms.thirdQuarterProgram,
+                        hourPrograms.fourthQuarterProgram
+                    )
                 )
             }
         }
@@ -300,7 +305,7 @@ extension ThermostatScheduleDetailFeature {
         
         func onQuartersDialogProgramChange(_ program: SuplaScheduleProgram) {
             state.activeProgram = program
-            state.editQuartersState = state.editQuartersState?.withActiveProgram(program)
+            state.editQuartersState?.activeProgram = program
         }
         
         func onQuartersDialogQuarterChange(_ quarter: QuarterOfHour) {
@@ -308,14 +313,18 @@ extension ThermostatScheduleDetailFeature {
                   let activeProgram = editQuartersState.activeProgram
             else { return }
             
-            let newHourPrograms = editQuartersState.hourPrograms.withQuarterProgram(quarter, activeProgram)
-            state.editQuartersState = editQuartersState.withHourPrograms(newHourPrograms)
+            editQuartersState.hourPrograms = editQuartersState.hourPrograms.withQuarterProgram(quarter, activeProgram)
         }
         
         func onQuartersDialogSave() {
             guard let editQuarterState = state.editQuartersState else { return }
             var schedule = state.schedule
-            schedule[editQuarterState.key] = editQuarterState.hourPrograms
+            schedule[editQuarterState.key] = ThermostatScheduleDetailBoxValue(
+                editQuarterState.hourPrograms.firstQuarterProgram,
+                editQuarterState.hourPrograms.secondQuarterProgram,
+                editQuarterState.hourPrograms.thirdQuarterProgram,
+                editQuarterState.hourPrograms.fourthQuarterProgram
+            )
             state.schedule = schedule
             state.editQuartersState = nil
             

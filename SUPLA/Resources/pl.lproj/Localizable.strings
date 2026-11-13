@@ -917,4 +917,6 @@
 "action_trigger_unlock_temporarily" = "Odblokuj tymczasowo";
 "at_locked_temporary_unlock_allowed" = "Zablokowany (chwilowe odblokowanie)";
 "action_trigger_schedule_button_mode" = "Tryb przycisku";
+"action_trigger_schedule_default_temporary_unlock_duration" = "Domyślny";
+"action_trigger_schedule_other_temporary_unlock_duration" = "Własny";
 "action_trigger_temporary_unlocked" = "tymczasowo odblokowany";

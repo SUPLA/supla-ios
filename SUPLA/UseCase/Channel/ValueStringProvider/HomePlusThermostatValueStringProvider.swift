@@ -24,7 +24,7 @@ class HomePlusThermostatValueStringProvider: ChannelValueStringProvider {
         homePlusThermostatValueProvider.handle(channel.channel)
     }
 
-    func value(_ channel: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channel: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String? {
         guard let value = homePlusThermostatValueProvider.value(channel.channel, valueType: valueType) as? HomePlusThermostatValue
         else { return NO_VALUE_TEXT }
 

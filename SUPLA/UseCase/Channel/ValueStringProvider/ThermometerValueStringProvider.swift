@@ -26,7 +26,7 @@ final class ThermometerValueStringProvider: ChannelValueStringProvider {
         channelWithChildren.channel.func == SUPLA_CHANNELFNC_THERMOMETER
     }
 
-    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String? {
         return formatter.format(value: thermometerValueProvider.value(channelWithChildren.channel, valueType: valueType), format: ValueFormatKt.withUnit(withUnit: withUnit))
     }
 }

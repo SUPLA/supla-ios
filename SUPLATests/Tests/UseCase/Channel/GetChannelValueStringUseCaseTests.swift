@@ -134,7 +134,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
-        XCTAssertEqual(valueText, "25.00 m")
+        XCTAssertEqual(valueText, decimalLocalized("25.00 m"))
     }
     
     func test_shouldGetDepthValueStringInKilometers() {
@@ -149,7 +149,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
-        XCTAssertEqual(valueText, "25.00 km")
+        XCTAssertEqual(valueText, decimalLocalized("25.00 km"))
     }
     
     func test_shouldGetDepthValueStringInCentimeters() {
@@ -164,7 +164,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
-        XCTAssertEqual(valueText, "2.5 cm")
+        XCTAssertEqual(valueText, decimalLocalized("2.5 cm"))
     }
     
     func test_shouldGetDepthValueStringInMilimeters() {
@@ -209,7 +209,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
-        XCTAssertEqual(valueText, "25.00 m")
+        XCTAssertEqual(valueText, decimalLocalized("25.00 m"))
     }
     
     func test_shouldGetGpmValueString() {
@@ -232,7 +232,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
-        XCTAssertEqual(valueText, "$12.50 k")
+        XCTAssertEqual(valueText, decimalLocalized("$12.50 k"))
     }
     
     func test_shouldGetGpmValueString_whenValueIsNan() {
@@ -277,7 +277,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
-        XCTAssertEqual(valueText, "25.0%")
+        XCTAssertEqual(valueText, decimalLocalized("25.0%"))
     }
     
     func test_shouldGetPressureValueString() {
@@ -307,7 +307,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
-        XCTAssertEqual(valueText, "0.25 mm")
+        XCTAssertEqual(valueText, decimalLocalized("0.25 mm"))
     }
     
     func test_shouldGetTemperatureAndHumidityValueString_temperature() {
@@ -324,7 +324,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
-        XCTAssertEqual(valueText, "25.0 °C")
+        XCTAssertEqual(valueText, decimalLocalized("25.0 °C"))
     }
     
     func test_shouldGetTemperatureAndHumidityValueString_humidity() {
@@ -339,7 +339,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(ChannelWithChildren(channel: channel), valueType: .second)
         
         // then
-        XCTAssertEqual(valueText, "25.0%")
+        XCTAssertEqual(valueText, decimalLocalized("25.0%"))
     }
     
     func test_shouldGetWeightValueString() {
@@ -369,6 +369,6 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(ChannelWithChildren(channel: channel))
         
         // then
-        XCTAssertEqual(valueText, "25.0 m/s")
+        XCTAssertEqual(valueText, decimalLocalized("25.0 m/s"))
     }
 }

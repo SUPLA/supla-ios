@@ -21,7 +21,9 @@ import RxSwift
 
 struct ObserveChannelsTreeSnapshot {
     struct Snapshot {
+        let channels: [SAChannel]
         let channelsWithChildren: [Int32: ChannelWithChildren]
+        let childIds: Set<Int32>
     }
 
     protocol UseCase {
@@ -56,13 +58,73 @@ struct ObserveChannelsTreeSnapshot {
                             parentsMap: parentsMap
                         )
                     }
-                    return Snapshot(channelsWithChildren: channelsWithChildren)
+                    let childIds = ChannelChildVisibilityPolicy.childIds(
+                        channels: channels,
+                        parentsMap: parentsMap
+                    )
+                    return Snapshot(
+                        channels: channels,
+                        channelsWithChildren: channelsWithChildren,
+                        childIds: childIds
+                    )
                 }
             }
             .share(replay: 1, scope: .forever)
 
         func invoke() -> Observable<Snapshot> {
             snapshot
+        }
+    }
+}
+
+enum ChannelChildVisibilityPolicy {
+    private static let actionTriggerParentFunctions: Set<Int32> = [
+        SUPLA_CHANNELFNC_DIMMER,
+        SUPLA_CHANNELFNC_DIMMER_CCT,
+        SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING,
+        SUPLA_CHANNELFNC_DIMMER_CCT_AND_RGB,
+        SUPLA_CHANNELFNC_RGBLIGHTING,
+        SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
+        SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
+        SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
+        SUPLA_CHANNELFNC_TERRACE_AWNING,
+        SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
+        SUPLA_CHANNELFNC_CURTAIN,
+        SUPLA_CHANNELFNC_VERTICAL_BLIND,
+        SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR,
+        SUPLA_CHANNELFNC_LIGHTSWITCH,
+        SUPLA_CHANNELFNC_POWERSWITCH,
+        SUPLA_CHANNELFNC_STAIRCASETIMER,
+        SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
+        SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK,
+        SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
+        SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK
+    ]
+
+    static func childIds(
+        channels: [SAChannel],
+        parentsMap: [Int32: [SAChannelRelation]]
+    ) -> Set<Int32> {
+        let channelsById = channels.reduce(into: [Int32: SAChannel]()) { result, channel in
+            result[channel.remote_id] = channel
+        }
+
+        return parentsMap.reduce(into: Set<Int32>()) { result, entry in
+            let parentFunction = channelsById[entry.key]?.func
+            for relation in entry.value {
+                let childId = relation.channel_id
+                guard
+                    let child = channelsById[childId],
+                    child.func == SUPLA_CHANNELFNC_ACTIONTRIGGER
+                else {
+                    result.insert(childId)
+                    continue
+                }
+
+                if let parentFunction, actionTriggerParentFunctions.contains(parentFunction) {
+                    result.insert(childId)
+                }
+            }
         }
     }
 }

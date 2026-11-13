@@ -27,7 +27,7 @@ class SwitchWithImpulseCounterValueStringProvider: ChannelValueStringProvider {
         switchWithImpulseCounterValueProvider.handle(channelWithChildren.channel)
     }
     
-    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String? {
         let channel = channelWithChildren.channel
         let settings = userStateHolder.getImpulseCounterSettings(profileId: channel.profile.id, remoteId: channel.remote_id)
         

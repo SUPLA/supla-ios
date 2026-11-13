@@ -26,7 +26,7 @@ class HvacThermostatValueStringProvider: ChannelValueStringProvider {
             channel.function == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER
     }
 
-    func value(_ channel: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channel: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String? {
         guard let mainThermometer = channel.children.first(where: { $0.relationType == .mainThermometer })
         else { return NO_VALUE_TEXT }
 

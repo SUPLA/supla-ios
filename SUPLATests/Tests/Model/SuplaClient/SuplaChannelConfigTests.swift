@@ -217,6 +217,25 @@ class SuplaChannelConfigTests: XCTestCase {
         )
     }
 
+    func test_shouldReadActionTriggerTemporaryUnlockDurationFromNativeWeeklyConfig() {
+        var native = TChannelConfig_WeeklySchedule()
+        var nativeProgram = TWeeklyScheduleProgram()
+        nativeProgram.Mode = UInt8(SuplaButtonMode.lockedTemporaryUnlockAllowed.value)
+        nativeProgram.ButtonTemporaryUnlockDurationS = 64_800
+        native.setProgram(nativeProgram, at: 0)
+        var config = TSCS_ChannelConfig()
+        config.ChannelId = 456
+        config.Func = SUPLA_CHANNELFNC_ACTIONTRIGGER
+        config.ConfigType = UInt8(SUPLA_CONFIG_TYPE_WEEKLY_SCHEDULE)
+        config.ConfigSize = UInt16(MemoryLayout<TChannelConfig_WeeklySchedule>.size)
+        config.setPayload(native)
+
+        let result = SuplaChannelConfig.from(suplaConfig: config, crc32: 0) as! SuplaChannelWeeklyScheduleConfig
+
+        XCTAssertEqual(result.programConfigurations.buttonPrograms?.first,
+                       SuplaButtonWeeklyScheduleProgram(program: .program1, mode: .lockedTemporaryUnlockAllowed, buttonTemporaryUnlockDurationS: 64_800))
+    }
+
     func test_shouldReplaceProgramInQuarterAndHandleScheduleBoundaries() {
         var config = TChannelConfig_WeeklySchedule()
 

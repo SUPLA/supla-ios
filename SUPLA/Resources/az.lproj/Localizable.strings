@@ -913,4 +913,6 @@
 "action_trigger_unlock_temporarily" = "Müvəqqəti olaraq kilidi aç";
 "at_locked_temporary_unlock_allowed" = "Kilidli (müvəqqəti açılma)";
 "action_trigger_schedule_button_mode" = "Düymə rejimi";
+"action_trigger_schedule_default_temporary_unlock_duration" = "Standart";
+"action_trigger_schedule_other_temporary_unlock_duration" = "Fərdi";
 "action_trigger_temporary_unlocked" = "müvəqqəti olaraq kiliddən açılıb";

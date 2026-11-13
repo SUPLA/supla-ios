@@ -39,6 +39,8 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
 
             case SUPLA_CHANNELFNC_VALVE_OPENCLOSE: .standardDetail(pages: [.valveGeneral])
 
+            case SUPLA_CHANNELFNC_ACTIONTRIGGER: .standardDetail(pages: getActionTriggerDetailPages(channelWithChildren))
+
             case SUPLA_CHANNELFNC_CONTAINER,
                  SUPLA_CHANNELFNC_WATER_TANK,
                  SUPLA_CHANNELFNC_SEPTIC_TANK: .standardDetail(pages: [.containerGeneral])
@@ -82,6 +84,14 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
             list.append(.gateSchedule)
         }
         return list
+    }
+
+    private func getActionTriggerDetailPages(_ channelWithChildren: ChannelWithChildren) -> [DetailPage] {
+        var pages: [DetailPage] = [.actionTriggerGeneral]
+        if (channelWithChildren.channel.flags & Int64(SUPLA_CHANNEL_FLAG_WEEKLY_SCHEDULE) > 0) {
+            pages.append(.actionTriggerSchedule)
+        }
+        return pages
     }
 
     private func getThermostatDetailPages(_ channelWithChildren: ChannelWithChildren) -> [DetailPage] {

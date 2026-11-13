@@ -27,28 +27,19 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
     private lazy var useCase: CreateProfileChannelsList.UseCase! = CreateProfileChannelsList.Implementation()
 
     private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
-    private lazy var channelRepository: ChannelRepositoryMock! = ChannelRepositoryMock()
-    private lazy var profileRepository: ProfileRepositoryMock! = ProfileRepositoryMock()
-    private lazy var channelRelationRepository: ChannelRelationRepositoryMock! = ChannelRelationRepositoryMock()
-    private lazy var createChannelWithChildrenUseCase: CreateChannelWithChildrenUseCaseMock! = CreateChannelWithChildrenUseCaseMock()
+    private lazy var snapshotUseCase: ObserveChannelsTreeSnapshotMock! = ObserveChannelsTreeSnapshotMock()
     private lazy var channelToMainListItemUseCase: ChannelToMainListItem.Mock! = ChannelToMainListItem.Mock()
 
     override func setUp() {
         DiContainer.shared.register(type: GlobalSettings.self, settings!)
-        DiContainer.shared.register(type: (any ChannelRepository).self, channelRepository!)
-        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
-        DiContainer.shared.register(type: (any ChannelRelationRepository).self, channelRelationRepository!)
-        DiContainer.shared.register(type: CreateChannelWithChildrenUseCase.self, createChannelWithChildrenUseCase!)
+        DiContainer.shared.register(type: ObserveChannelsTreeSnapshot.UseCase.self, snapshotUseCase!)
         DiContainer.shared.register(type: ChannelToMainListItem.UseCase.self, channelToMainListItemUseCase!)
     }
 
     override func tearDown() {
         useCase = nil
         settings = nil
-        channelRepository = nil
-        profileRepository = nil
-        channelRelationRepository = nil
-        createChannelWithChildrenUseCase = nil
+        snapshotUseCase = nil
         channelToMainListItemUseCase = nil
 
         super.tearDown()
@@ -57,8 +48,6 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
     func test_shouldProvideItems_whenLocationIsExpanded() {
         // given
         let profile = profile()
-        profileRepository.activeProfileObservable = Observable.just(profile)
-
         let location1 = location(profile: profile, caption: "Caption 1", remoteId: 1)
         let channel1 = channel(remoteId: 1, profile: profile, location: location1)
 
@@ -75,9 +64,15 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         )
 
         settings.hideUnavailableChannelsMock.returns = .single(false)
-        channelRepository.allVisibleChannelsMock.returns = .single(.just([channel1, channel2, channel3]))
-        channelRelationRepository.getParentsMapReturns = Observable.just([1: [relation]])
-        createChannelWithChildrenUseCase.invokeMock.returns = .single(channel1WithChildren)
+        setSnapshot(
+            channels: [channel1, channel2, channel3],
+            trees: [
+                1: channel1WithChildren,
+                2: ChannelWithChildren(channel: channel2),
+                3: ChannelWithChildren(channel: channel3)
+            ],
+            childIds: [3]
+        )
         channelToMainListItemUseCase.invokeMock.returns = .many([channel1Item, channel2Item])
 
         // when
@@ -93,19 +88,12 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
             ]),
             .completed
         ])
-        XCTAssertTuples(channelRepository.allVisibleChannelsMock.parameters, [(profile, true)])
-        XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.count, 1)
-        XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.0, channel1)
-        XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.1, [channel1, channel2, channel3])
-        XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.2, [1: [relation]])
         assertMappedItems([channel1WithChildren, ChannelWithChildren(channel: channel2)])
     }
 
     func test_shouldNotProvideItems_whenLocationIsCollapsed() {
         // given
         let profile = profile()
-        profileRepository.activeProfileObservable = Observable.just(profile)
-
         let location1 = location(
             profile: profile,
             caption: "Location 1",
@@ -119,8 +107,10 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         let channel2Item = channelItem(remoteId: 2, title: "Channel 2")
 
         settings.hideUnavailableChannelsMock.returns = .single(true)
-        channelRepository.allVisibleChannelsMock.returns = .single(.just([channel1, channel2]))
-        channelRelationRepository.getParentsMapReturns = Observable.just([:])
+        setSnapshot(
+            channels: [channel1, channel2],
+            trees: [1: ChannelWithChildren(channel: channel1), 2: ChannelWithChildren(channel: channel2)]
+        )
         channelToMainListItemUseCase.invokeMock.returns = .single(channel2Item)
 
         // when
@@ -135,16 +125,15 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
             ]),
             .completed
         ])
-        XCTAssertTuples(channelRepository.allVisibleChannelsMock.parameters, [(profile, false)])
-        createChannelWithChildrenUseCase.invokeMock.verifyCalls(0)
-        assertMappedItems([ChannelWithChildren(channel: channel1), ChannelWithChildren(channel: channel2)])
+        assertMappedItems([
+            ChannelWithChildren(channel: channel1),
+            ChannelWithChildren(channel: channel2)
+        ])
     }
 
     func test_shouldProvideAllLocationItems_whenFilterMatchesCollapsedLocation() {
         // given
         let profile = profile()
-        profileRepository.activeProfileObservable = Observable.just(profile)
-
         let location1 = location(
             profile: profile,
             caption: "Kitchen",
@@ -155,8 +144,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         let channel1Item = channelItem(remoteId: 1, title: "Light")
 
         settings.hideUnavailableChannelsMock.returns = .single(false)
-        channelRepository.allVisibleChannelsMock.returns = .single(.just([channel1]))
-        channelRelationRepository.getParentsMapReturns = Observable.just([:])
+        setSnapshot(channels: [channel1], trees: [1: ChannelWithChildren(channel: channel1)])
         channelToMainListItemUseCase.invokeMock.returns = .single(channel1Item)
 
         // when
@@ -176,8 +164,6 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
     func test_shouldMergeLocationWithTheSameNameIntoOne() {
         // given
         let profile = profile()
-        profileRepository.activeProfileObservable = Observable.just(profile)
-
         let location1 = location(profile: profile, caption: "Location 1", remoteId: 1)
         let channel1 = channel(remoteId: 1, profile: profile, location: location1, position: 1)
         let channel2 = channel(remoteId: 2, profile: profile, location: location1, position: 3)
@@ -190,8 +176,14 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         let channel3Item = channelItem(remoteId: 3, title: "Channel 3", locationId: 2)
 
         settings.hideUnavailableChannelsMock.returns = .single(false)
-        channelRepository.allVisibleChannelsMock.returns = .single(.just([channel1, channel2, channel3]))
-        channelRelationRepository.getParentsMapReturns = Observable.just([:])
+        setSnapshot(
+            channels: [channel1, channel2, channel3],
+            trees: [
+                1: ChannelWithChildren(channel: channel1),
+                2: ChannelWithChildren(channel: channel2),
+                3: ChannelWithChildren(channel: channel3)
+            ]
+        )
         channelToMainListItemUseCase.invokeMock.returns = .many([channel1Item, channel3Item, channel2Item])
 
         // when
@@ -207,7 +199,6 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
             ]),
             .completed
         ])
-        XCTAssertTuples(channelRepository.allVisibleChannelsMock.parameters, [(profile, true)])
         assertMappedItems([
             ChannelWithChildren(channel: channel1),
             ChannelWithChildren(channel: channel3),
@@ -218,8 +209,6 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
     func test_shouldLoadChannelWithChildren() {
         // given
         let profile = profile()
-        profileRepository.activeProfileObservable = Observable.just(profile)
-
         let location1 = location(profile: profile, caption: "Caption 1", remoteId: 1)
         let channel1 = channel(remoteId: 1, profile: profile, location: location1)
 
@@ -241,11 +230,15 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         )
 
         settings.hideUnavailableChannelsMock.returns = .single(false)
-        channelRepository.allVisibleChannelsMock.returns = .single(.just([channel1, channel2, channel3]))
-        channelRelationRepository.getParentsMapReturns = Observable.just([
-            1: [relation1, relation2]
-        ])
-        createChannelWithChildrenUseCase.invokeMock.returns = .single(channel1WithChildren)
+        setSnapshot(
+            channels: [channel1, channel2, channel3],
+            trees: [
+                1: channel1WithChildren,
+                2: ChannelWithChildren(channel: channel2),
+                3: ChannelWithChildren(channel: channel3)
+            ],
+            childIds: [2, 3]
+        )
         channelToMainListItemUseCase.invokeMock.returns = .single(channel1Item)
 
         // when
@@ -259,12 +252,110 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
             ]),
             .completed
         ])
-        XCTAssertTuples(channelRepository.allVisibleChannelsMock.parameters, [(profile, true)])
-        XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.count, 1)
-        XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.0, channel1)
-        XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.1, [channel1, channel2, channel3])
-        XCTAssertEqual(createChannelWithChildrenUseCase.invokeMock.parameters.first?.2, [1: [relation1, relation2]])
         assertMappedItems([channel1WithChildren])
+    }
+
+    func test_shouldHideActionTriggerChildOnly_whenAtLeastOneParentSupportsIt() {
+        let profile = profile()
+        let location = location(profile: profile, caption: "Location", remoteId: 1)
+        let supportedParent = channel(
+            remoteId: 1,
+            profile: profile,
+            location: location,
+            function: SUPLA_CHANNELFNC_POWERSWITCH
+        )
+        let unsupportedParent = channel(
+            remoteId: 2,
+            profile: profile,
+            location: location,
+            function: SUPLA_CHANNELFNC_THERMOMETER
+        )
+        let actionTriggerWithSupportedParent = channel(
+            remoteId: 3,
+            profile: profile,
+            location: location,
+            function: SUPLA_CHANNELFNC_ACTIONTRIGGER
+        )
+        let actionTriggerWithUnsupportedParent = channel(
+            remoteId: 4,
+            profile: profile,
+            location: location,
+            function: SUPLA_CHANNELFNC_ACTIONTRIGGER
+        )
+        let regularChild = channel(
+            remoteId: 5,
+            profile: profile,
+            location: location,
+            function: SUPLA_CHANNELFNC_THERMOMETER
+        )
+
+        let supportedRelation = SAChannelRelation.mock(channelId: 3, type: .default)
+        let unsupportedRelation = SAChannelRelation.mock(channelId: 4, type: .default)
+        let regularChildRelation = SAChannelRelation.mock(channelId: 5, type: .default)
+
+        let childIds = ChannelChildVisibilityPolicy.childIds(
+            channels: [
+                supportedParent,
+                unsupportedParent,
+                actionTriggerWithSupportedParent,
+                actionTriggerWithUnsupportedParent,
+                regularChild
+            ],
+            parentsMap: [
+                supportedParent.remote_id: [supportedRelation],
+                unsupportedParent.remote_id: [supportedRelation, unsupportedRelation, regularChildRelation],
+                99: [unsupportedRelation]
+            ]
+        )
+
+        XCTAssertEqual(childIds, Set([actionTriggerWithSupportedParent.remote_id, regularChild.remote_id]))
+    }
+
+    func test_shouldHideActionTriggerChild_whenItHasAnySupportedParent() {
+        let profile = profile()
+        let location = location(profile: profile, caption: "Location", remoteId: 1)
+        let supportedParent = channel(
+            remoteId: 1,
+            profile: profile,
+            location: location,
+            function: SUPLA_CHANNELFNC_LIGHTSWITCH
+        )
+        let unsupportedParent = channel(
+            remoteId: 2,
+            profile: profile,
+            location: location,
+            function: SUPLA_CHANNELFNC_THERMOMETER
+        )
+        let child = channel(
+            remoteId: 3,
+            profile: profile,
+            location: location,
+            function: SUPLA_CHANNELFNC_ACTIONTRIGGER
+        )
+
+        let childIds = ChannelChildVisibilityPolicy.childIds(
+            channels: [supportedParent, unsupportedParent, child],
+            parentsMap: [
+                supportedParent.remote_id: [SAChannelRelation.mock(channelId: child.remote_id, type: .default)],
+                unsupportedParent.remote_id: [SAChannelRelation.mock(channelId: child.remote_id, type: .default)]
+            ]
+        )
+
+        XCTAssertEqual(childIds, Set([child.remote_id]))
+    }
+
+    private func setSnapshot(
+        channels: [SAChannel],
+        trees: [Int32: SUPLA.ChannelWithChildren],
+        childIds: Set<Int32> = []
+    ) {
+        snapshotUseCase.returns = .just(
+            ObserveChannelsTreeSnapshot.Snapshot(
+                channels: channels,
+                channelsWithChildren: trees,
+                childIds: childIds
+            )
+        )
     }
 
     private func profile(id: Int32 = 1) -> AuthProfileItem {
@@ -291,7 +382,8 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         remoteId: Int32,
         profile: AuthProfileItem,
         location: _SALocation,
-        position: Int32 = 0
+        position: Int32 = 0,
+        function: Int32 = SUPLA_CHANNELFNC_LIGHTSWITCH
     ) -> SAChannel {
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
@@ -299,6 +391,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
         channel.location = location
         channel.location_id = location.location_id?.int32Value ?? 0
         channel.position = position
+        channel.func = function
         return channel
     }
 
@@ -339,5 +432,13 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[MainListItem]> {
             XCTAssertEqual(parameter.children, expectedItem.children)
         }
         channelToMainListItemUseCase.invokeWithLocationMock.verifyCalls(0)
+    }
+}
+
+private final class ObserveChannelsTreeSnapshotMock: ObserveChannelsTreeSnapshot.UseCase {
+    var returns: Observable<ObserveChannelsTreeSnapshot.Snapshot> = .empty()
+
+    func invoke() -> Observable<ObserveChannelsTreeSnapshot.Snapshot> {
+        returns
     }
 }

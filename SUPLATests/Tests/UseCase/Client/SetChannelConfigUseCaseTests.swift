@@ -127,6 +127,21 @@ final class SetChannelConfigUseCaseTests: UseCaseTest<RequestResult> {
         XCTAssertEqual(config.Program.0.RelayModeDurationS, 45)
         XCTAssertEqual(config.Program.0.RelayOppositeModeDurationS, 15)
     }
+
+    func test_shouldSetActionTriggerModeAndTemporaryUnlockDurationWithoutDefaultProgram() {
+        let weeklyConfig = SuplaChannelWeeklyScheduleConfig(
+            remoteId: 123, channelFunc: SUPLA_CHANNELFNC_ACTIONTRIGGER, crc32: 0,
+            programConfigurations: .actionTrigger([
+                SuplaButtonWeeklyScheduleProgram(program: .program1, mode: .lockedTemporaryUnlockAllowed, buttonTemporaryUnlockDurationS: 64_800)
+            ]), schedule: []
+        )
+        useCase.invoke(remoteId: 123, config: weeklyConfig).subscribe(observer).disposed(by: disposeBag)
+        var parameters = suplaClientProvider.suplaClientMock.setChannelConfigParameters[0].pointee
+        let config = extract(pointee: &(parameters.Config))
+        XCTAssertEqual(config.Program.0.Mode, UInt8(SuplaButtonMode.lockedTemporaryUnlockAllowed.value))
+        XCTAssertEqual(config.Program.0.ButtonTemporaryUnlockDurationS, 64_800)
+        XCTAssertEqual(config.Program.1.Mode, 0)
+    }
     
     func test_shouldBrakeWithFatalError_whenInvalidProgramSet() {
         // given

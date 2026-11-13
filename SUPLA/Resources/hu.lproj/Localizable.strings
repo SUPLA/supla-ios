@@ -884,4 +884,6 @@
 "action_trigger_unlock_temporarily" = "Ideiglenes feloldás";
 "at_locked_temporary_unlock_allowed" = "Zárolva (ideiglenes feloldás)";
 "action_trigger_schedule_button_mode" = "Gomb módja";
+"action_trigger_schedule_default_temporary_unlock_duration" = "Alapértelmezett";
+"action_trigger_schedule_other_temporary_unlock_duration" = "Egyéni";
 "action_trigger_temporary_unlocked" = "ideiglenesen feloldva";

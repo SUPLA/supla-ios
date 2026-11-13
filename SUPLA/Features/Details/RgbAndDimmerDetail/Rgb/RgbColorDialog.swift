@@ -45,7 +45,7 @@ extension RgbDetailFeature {
                         ColorTextField(value: $colorFieldValue, label: Strings.RgbDetail.color, color: color)
                     }
                     
-                    SuplaCore.Dialog.DoubleButtons(
+                    SuplaCore.Dialog.Buttons(
                         onSecondaryClick: { delegate?.onColorDialogDismiss() },
                         onPrimaryClick: { delegate?.onColorDialogConfirm(color) },
                         primaryDisabled: color == nil

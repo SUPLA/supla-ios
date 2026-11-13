@@ -846,4 +846,6 @@
 "action_trigger_unlock_temporarily" = "Laikinai atrakinti";
 "at_locked_temporary_unlock_allowed" = "Užrakinta (laikinas atrakinimas)";
 "action_trigger_schedule_button_mode" = "Mygtuko režimas";
+"action_trigger_schedule_default_temporary_unlock_duration" = "Numatytoji";
+"action_trigger_schedule_other_temporary_unlock_duration" = "Pasirinktinis";
 "action_trigger_temporary_unlocked" = "laikinai atrakinta";

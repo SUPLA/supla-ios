@@ -51,7 +51,7 @@ extension CredentialsFeature {
                     }
                 }
 
-                SuplaCore.Dialog.DoubleButtons(
+                SuplaCore.Dialog.Buttons(
                     onSecondaryClick: { delegate?.onDismiss() },
                     onPrimaryClick: { delegate?.onAuthorize() },
                     processing: state.loading,

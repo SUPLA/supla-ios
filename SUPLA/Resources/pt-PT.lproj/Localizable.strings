@@ -846,4 +846,6 @@
 "action_trigger_unlock_temporarily" = "Desbloquear temporariamente";
 "at_locked_temporary_unlock_allowed" = "Bloqueado (desbloqueio temporário)";
 "action_trigger_schedule_button_mode" = "Modo do botão";
+"action_trigger_schedule_default_temporary_unlock_duration" = "Predefinido";
+"action_trigger_schedule_other_temporary_unlock_duration" = "Personalizado";
 "action_trigger_temporary_unlocked" = "desbloqueado temporariamente";

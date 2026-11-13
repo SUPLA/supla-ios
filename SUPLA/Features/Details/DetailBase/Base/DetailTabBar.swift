@@ -99,7 +99,7 @@ private extension DetailPage {
         switch self {
         case .switchTimer, .thermostatTimer: Strings.StandardDetail.tabTimer
         case .thermostatList: Strings.StandardDetail.tabList
-        case .schedule, .switchSchedule, .gateSchedule: Strings.StandardDetail.tabSchedule
+        case .schedule, .switchSchedule, .gateSchedule, .actionTriggerSchedule: Strings.StandardDetail.tabSchedule
         case .thermostatHistory,
              .thermometerHistory,
              .gpmHistory,
@@ -137,7 +137,7 @@ private extension DetailPage {
         switch self {
         case .switchTimer, .thermostatTimer: String.Icons.timer
         case .thermostatList: String.Icons.list
-        case .schedule, .switchSchedule, .gateSchedule: String.Icons.schedule
+        case .schedule, .switchSchedule, .gateSchedule, .actionTriggerSchedule: String.Icons.schedule
         case .thermostatHistory,
              .thermometerHistory,
              .gpmHistory,

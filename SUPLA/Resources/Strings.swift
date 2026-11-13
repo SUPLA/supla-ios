@@ -909,10 +909,13 @@ struct Strings {
 
     struct ActionTrigger {
         static let scheduleButtonMode = "action_trigger_schedule_button_mode".toLocalized()
+        static let defaultTemporaryUnlockDuration = "action_trigger_schedule_default_temporary_unlock_duration".toLocalized()
+        static let customTemporaryUnlockDuration = "action_trigger_schedule_other_temporary_unlock_duration".toLocalized()
         static let temporaryUnlocked = "action_trigger_temporary_unlocked".toLocalized()
         static let allowTemporaryUnlock = "at_allow_temporary_unlock".toLocalized()
         static let unlockDialogTitle = "action_trigger_unlock_dialog_title".toLocalized()
         static let temporaryUnlockDuration = "action_trigger_schedule_temporary_unlock_duration".toLocalized()
+        static let lockedTemporaryUnlockAllowed = "at_locked_temporary_unlock_allowed".toLocalized()
         static let unlockTemporarily = "action_trigger_unlock_temporarily".toLocalized()
     }
 }

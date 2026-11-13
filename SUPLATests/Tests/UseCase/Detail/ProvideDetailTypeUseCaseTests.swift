@@ -319,6 +319,20 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
             return channel
         }
     }
+
+    func test_actionTriggerScheduleVisibilityFollowsWeeklyScheduleFlag() {
+        doTest(expectedResult: .standardDetail(pages: [.actionTriggerGeneral])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_ACTIONTRIGGER
+            return channel
+        }
+        doTest(expectedResult: .standardDetail(pages: [.actionTriggerGeneral, .actionTriggerSchedule])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_ACTIONTRIGGER
+            channel.flags = Int64(SUPLA_CHANNEL_FLAG_WEEKLY_SCHEDULE)
+            return channel
+        }
+    }
     
     private func doTest(expectedResult: DetailType?, provider: () -> SAChannel) {
         // given

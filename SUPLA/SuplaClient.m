@@ -857,7 +857,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     BOOL DataChanged = NO;
     BOOL ChannelValueChanged = NO;
     
-    NSLog(@"ChannelID: %i, caption: %@", channel->Id, [NSString stringWithUTF8String:channel->Caption]);
+    NSLog(@"channelUpdate id: %i, caption: %@", channel->Id, [NSString stringWithUTF8String:channel->Caption]);
     
     if ( ![self isChannelExcluded:channel]
         && [UseCaseLegacyWrapper updateChannelWithSuplaChannel: *channel] ) {
@@ -893,6 +893,8 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 }
 
 - (void) channelValueUpdate:(TSC_SuplaChannelValue_B *)channel_value {
+    NSLog(@"channelValueUpdate id: %i", channel_value->Id);
+    
     if ( [UseCaseLegacyWrapper updateChannelValueWithSuplaChannelValue: *channel_value] ) {
         [self onChannelValueChanged: channel_value->Id isGroup:NO];
         [self onDataChanged];

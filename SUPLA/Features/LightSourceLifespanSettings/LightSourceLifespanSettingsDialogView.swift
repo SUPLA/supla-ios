@@ -42,7 +42,7 @@ extension LightSourceLifespanSettingsFeature {
                     .keyboardType(.numberPad)
                 }
 
-                SuplaCore.Dialog.DoubleButtons(
+                SuplaCore.Dialog.Buttons(
                     onSecondaryClick: { viewModel.hide() },
                     onPrimaryClick: { viewModel.onApply() }
                 )

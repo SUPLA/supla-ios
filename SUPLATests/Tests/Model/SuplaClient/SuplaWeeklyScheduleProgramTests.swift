@@ -56,7 +56,7 @@ final class SuplaWeeklyScheduleProgramTests: XCTestCase {
         let result = program.description
         
         // then
-        XCTAssertEqual(result, "12.0°")
+        XCTAssertEqual(result, decimalLocalized("12.0°"))
     }
     
     func test_shouldGetDescription_whenModeIsCool() {
@@ -69,7 +69,7 @@ final class SuplaWeeklyScheduleProgramTests: XCTestCase {
         let result = program.description
         
         // then
-        XCTAssertEqual(result, "23.0°")
+        XCTAssertEqual(result, decimalLocalized("23.0°"))
     }
     
     func test_shouldGetDescription_whenModeIsAuto() {
@@ -82,7 +82,7 @@ final class SuplaWeeklyScheduleProgramTests: XCTestCase {
         let result = program.description
         
         // then
-        XCTAssertEqual(result, "18.0° - 21.0°")
+        XCTAssertEqual(result, decimalLocalized("18.0° - 21.0°"))
     }
     
     func test_shouldGetDescriptionNoValue_whenModeIsDry() {
@@ -96,5 +96,37 @@ final class SuplaWeeklyScheduleProgramTests: XCTestCase {
         
         // then
         XCTAssertEqual(result, ValueFormatterKt.NO_VALUE_TEXT)
+    }
+
+    func test_actionTriggerProgramCopyAndDefault() {
+        let program = SuplaButtonWeeklyScheduleProgram(program: .program2, mode: .locked, buttonTemporaryUnlockDurationS: 59)
+        XCTAssertEqual(program.copy(mode: .lockedTemporaryUnlockAllowed, buttonTemporaryUnlockDurationS: 60),
+                       SuplaButtonWeeklyScheduleProgram(program: .program2, mode: .lockedTemporaryUnlockAllowed, buttonTemporaryUnlockDurationS: 60))
+        XCTAssertEqual(SuplaButtonWeeklyScheduleProgram.default(), SuplaButtonWeeklyScheduleProgram(program: .off, mode: .notSet, buttonTemporaryUnlockDurationS: 0))
+    }
+
+    func test_actionTriggerProgramDescriptionUsesClockForTemporaryUnlockMode() {
+        func description(_ seconds: UInt16) -> String {
+            SuplaButtonWeeklyScheduleProgram(program: .program1, mode: .lockedTemporaryUnlockAllowed, buttonTemporaryUnlockDurationS: seconds).description
+        }
+        XCTAssertEqual(description(0), "\(Strings.General.locked) ⏱️")
+        XCTAssertEqual(description(5), "\(Strings.General.locked) ⏱️")
+        XCTAssertEqual(description(59), "\(Strings.General.locked) ⏱️")
+        XCTAssertEqual(description(60), "\(Strings.General.locked) ⏱️")
+        XCTAssertEqual(description(3_599), "\(Strings.General.locked) ⏱️")
+        XCTAssertEqual(description(3_600), "\(Strings.General.locked) ⏱️")
+        XCTAssertEqual(description(64_800), "\(Strings.General.locked) ⏱️")
+    }
+
+    func test_temporaryUnlockDurationClampsAndKeepsOtherPickerUnits() {
+        for value in [0, 59, 60, 3_599, 3_600, 64_800] {
+            XCTAssertEqual(ActionTriggerTemporaryUnlockDuration.clamp(value), value)
+        }
+        XCTAssertEqual(ActionTriggerTemporaryUnlockDuration.clamp(70_000), 64_800)
+        let duration = 3_723 // 1:02:03
+        XCTAssertEqual(ActionTriggerTemporaryUnlockDuration.replacingSeconds(7, in: duration), 3_727) // 1:02:07
+        XCTAssertEqual(ActionTriggerTemporaryUnlockDuration.replacingHours(18, in: duration), 64_800)
+        XCTAssertEqual(ActionTriggerTemporaryUnlockDuration.minuteValues(for: 64_800), 0...0)
+        XCTAssertEqual(ActionTriggerTemporaryUnlockDuration.secondValues(for: 64_800), 0...0)
     }
 }

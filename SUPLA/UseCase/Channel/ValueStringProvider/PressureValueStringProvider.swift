@@ -22,7 +22,7 @@ final class PressureValueStringProvider: ChannelValueStringProvider {
         channelWithChildren.channel.func == SUPLA_CHANNELFNC_PRESSURESENSOR
     }
 
-    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String? {
         PressureValueFormatter.shared.format(
             value: pressureValueProvider.value(channelWithChildren.channel, valueType: valueType),
             format: ValueFormatKt.withUnit(withUnit: withUnit)

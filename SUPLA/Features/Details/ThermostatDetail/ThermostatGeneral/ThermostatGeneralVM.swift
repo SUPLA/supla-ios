@@ -377,6 +377,7 @@ extension ThermostatGeneralFeature {
             builder.thermostatFlags = value.flags
             builder.currentMode = value.mode
             builder.channelOnline = online
+            builder.currentTemperature = Float(ThermometerValueProviderImpl.UNKNOWN_VALUE)
             if value.mode == .heat || value.mode == .heatCool { builder.currentTemperature = value.setpointTemperatureHeat }
             if value.mode == .cool || value.mode == .heatCool { builder.currentTemperature = value.setpointTemperatureCool }
             return builder.build()

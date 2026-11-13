@@ -39,6 +39,8 @@ final class ScheduleDetailVMTests: SuplaCore.ViewModelTest<ThermostatScheduleDet
 
     private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
 
+    private lazy var groupSharedSettings: GroupShared.SettingsMock! = GroupShared.SettingsMock()
+
     private lazy var readChannelByRemoteIdUseCAse: ReadChannelByRemoteIdUseCaseMock! = ReadChannelByRemoteIdUseCaseMock()
 
     override func setUp() {
@@ -50,6 +52,10 @@ final class ScheduleDetailVMTests: SuplaCore.ViewModelTest<ThermostatScheduleDet
         DiContainer.shared.register(type: ValuesFormatter.self, ValuesFormatterMock())
         DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCAse!)
         DiContainer.shared.register(type: GlobalSettings.self, settings!)
+        DiContainer.shared.register(type: GroupShared.Settings.self, groupSharedSettings!)
+
+        groupSharedSettings.temperatureUnitMock.returns = .single(.celsius)
+        groupSharedSettings.temperaturePrecisionMock.returns = .single(1)
     }
 
     override func tearDown() {
@@ -62,6 +68,7 @@ final class ScheduleDetailVMTests: SuplaCore.ViewModelTest<ThermostatScheduleDet
         dateProvider = nil
         readChannelByRemoteIdUseCAse = nil
         settings = nil
+        groupSharedSettings = nil
 
         super.tearDown()
     }
@@ -107,8 +114,8 @@ final class ScheduleDetailVMTests: SuplaCore.ViewModelTest<ThermostatScheduleDet
             program: .program2,
             modes: SelectableList(selected: .heat, items: [.heat]),
             temperatureUnit: .celsius,
-            heatSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: "22.0"),
-            coolSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: "21.0")
+            heatSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: decimalLocalized("22.0")),
+            coolSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: decimalLocalized("21.0"))
         ))
     }
 
@@ -139,8 +146,8 @@ final class ScheduleDetailVMTests: SuplaCore.ViewModelTest<ThermostatScheduleDet
             program: .program3,
             modes: SelectableList(selected: .cool, items: [.cool]),
             temperatureUnit: .celsius,
-            heatSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: "21.0"),
-            coolSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: "21.0"),
+            heatSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: decimalLocalized("21.0")),
+            coolSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: decimalLocalized("21.0")),
         ))
     }
 
@@ -208,11 +215,16 @@ final class ScheduleDetailVMTests: SuplaCore.ViewModelTest<ThermostatScheduleDet
         viewModel.onShowQuartersDialog(firstKey)
 
         // then
-        XCTAssertEqual(viewModel.state.editQuartersState, ThermostatScheduleDetailFeature.EditQuartersState(
+        XCTAssertEqual(viewModel.state.editQuartersState, QuartersSelectionData(
             key: firstKey,
-            programs: programs,
+            programs: programs.map { WeeklyScheduleProgram(program: $0.scheduleProgram, icon: $0.icon) },
             activeProgram: activeProgram,
-            hourPrograms: firstValue
+            hourPrograms: WeeklyScheduleBoxValue(
+                firstValue.firstQuarterProgram,
+                firstValue.secondQuarterProgram,
+                firstValue.thirdQuarterProgram,
+                firstValue.fourthQuarterProgram
+            )
         ))
     }
 

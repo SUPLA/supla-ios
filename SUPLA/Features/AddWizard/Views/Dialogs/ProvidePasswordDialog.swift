@@ -69,7 +69,7 @@ extension AddWizardFeature {
                         .textColor(Color.Supla.onSurfaceVariant)
                 }
                 
-                SuplaCore.Dialog.DoubleButtons(
+                SuplaCore.Dialog.Buttons(
                     onSecondaryClick: { delegate?.onCloseProvidePasswordDialog() },
                     onPrimaryClick: { delegate?.onPasswordProvided(password) },
                     processing: state.processing,

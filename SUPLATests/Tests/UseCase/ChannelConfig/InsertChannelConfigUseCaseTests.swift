@@ -57,7 +57,7 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         assertEvents([.next(()), .completed])
     }
 
-    func test_shouldInsertActionTriggerConfig() {
+    func test_shouldInsertActionTriggerConfig() throws {
         let remoteId: Int32 = 231
         let crc32: Int64 = 123
         let profile = AuthProfileItem.mock()
@@ -83,7 +83,11 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(channelConfigRepository.saveParameters, [channelConfig])
         XCTAssertEqual(channelConfig.config_type, Int32(ChannelConfigType.actionTrigger.rawValue))
         XCTAssertEqual(channelConfig.config_crc32, crc32)
-        XCTAssertEqual(channelConfig.config, config.toJson())
+        let actualConfigJson = Data(try XCTUnwrap(channelConfig.config).utf8)
+        let expectedConfigJson = Data(try XCTUnwrap(config.toJson()).utf8)
+        let actualConfig = try XCTUnwrap(JSONSerialization.jsonObject(with: actualConfigJson) as? NSDictionary)
+        let expectedConfig = try XCTUnwrap(JSONSerialization.jsonObject(with: expectedConfigJson) as? NSDictionary)
+        XCTAssertEqual(actualConfig, expectedConfig)
         XCTAssertEqual(
             (channelConfig.configAsSuplaConfig() as? SuplaChannelActionTriggerConfig)?.temporaryUnlockDurationSec,
             900

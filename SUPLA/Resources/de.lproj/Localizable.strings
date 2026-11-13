@@ -882,4 +882,6 @@
 "action_trigger_unlock_temporarily" = "Vorübergehend entsperren";
 "at_locked_temporary_unlock_allowed" = "Gesperrt (vorübergehende Entsperrung)";
 "action_trigger_schedule_button_mode" = "Tastenmodus";
+"action_trigger_schedule_default_temporary_unlock_duration" = "Standard";
+"action_trigger_schedule_other_temporary_unlock_duration" = "Benutzerdefiniert";
 "action_trigger_temporary_unlocked" = "vorübergehend entsperrt";

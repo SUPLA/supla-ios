@@ -202,7 +202,7 @@ extension ThermostatScheduleDetailFeature {
                     } else {
                         programContent
                         temperatureEditColumn
-                        SuplaCore.Dialog.DoubleButtons(
+                        SuplaCore.Dialog.Buttons(
                             onSecondaryClick: onDismiss,
                             onPrimaryClick: { onSave(heatValue, coolValue) },
                             primaryDisabled: state.saveDisabled

@@ -23,7 +23,7 @@ final class RainValueStringProvider: ChannelValueStringProvider {
         channelWithChildren.channel.func == SUPLA_CHANNELFNC_RAINSENSOR
     }
 
-    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String? {
         guard let value = rainValueProvider.value(channelWithChildren.channel, valueType: valueType) as? Double else { return NO_VALUE_TEXT }
         return RainValueFormatter.shared.format(
             value: value / 1000,

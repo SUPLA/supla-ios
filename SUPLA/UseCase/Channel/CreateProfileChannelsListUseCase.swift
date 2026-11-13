@@ -24,39 +24,29 @@ struct CreateProfileChannelsList {
     }
 
     final class Implementation: UseCase {
-        @Singleton<ChannelRepository> private var channelRepository
-        @Singleton<ProfileRepository> private var profileRepository
-        @Singleton<ChannelRelationRepository> private var channelRelationRepository
-        @Singleton<CreateChannelWithChildrenUseCase> private var createChannelWithChildrenUseCase
+        @Singleton<GlobalSettings> private var settings
+        @Singleton<ObserveChannelsTreeSnapshot.UseCase> private var observeChannelsTreeSnapshotUseCase
         @Singleton<ChannelToMainListItem.UseCase> private var channelToMainListItemUseCase
 
         func invoke(filter: String?) -> Observable<[MainListItem]> {
-            return profileRepository
-                .getActiveProfile()
-                .flatMapFirst { profile in
-                    @Singleton<GlobalSettings> var settings
-
-                    return Observable.zip(
-                        self.channelRepository.getAllVisibleChannels(forProfile: profile, withUnavailable: !settings.hideUnavailableChannels),
-                        self.channelRelationRepository.getParentsMap(for: profile),
-                        resultSelector: { channels, listOfParents in self.toList(channels, listOfParents, filter: filter) }
-                    )
+            observeChannelsTreeSnapshotUseCase.invoke()
+                .throttle(.milliseconds(500), latest: true, scheduler: MainScheduler.instance)
+                .do(onNext: { _ in SALog.debug("Got new channels list") })
+                .map { snapshot in
+                    let channels = self.settings.hideUnavailableChannels
+                        ? snapshot.channels.filter { $0.value?.last_online_state?.int32Value != 2 }
+                        : snapshot.channels
+                    return self.toList(channels, snapshot, filter: filter)
                 }
         }
 
         private func toList(
             _ channels: [SAChannel],
-            _ parentsMap: [Int32: [SAChannelRelation]],
+            _ snapshot: ObserveChannelsTreeSnapshot.Snapshot,
             filter: String?
         ) -> [MainListItem] {
             if (channels.isEmpty) {
                 return []
-            }
-
-            let allChildrenIds = parentsMap.reduce([Int32]()) { list, item in
-                var result = list
-                result.append(contentsOf: item.value.map { $0.channel_id })
-                return result
             }
 
             var items = [MainListItem]()
@@ -67,11 +57,16 @@ struct CreateProfileChannelsList {
                 positionOf: { $0.position }
             ) {
                 let visibleChannels = section.items.compactMap { channel -> MainListItem? in
-                    if allChildrenIds.contains(channel.remote_id) {
+                    if snapshot.childIds.contains(channel.remote_id) {
                         return nil
                     }
 
-                    guard let item = channelItem(channel, channels, parentsMap) else { return nil }
+                    guard
+                        let channelWithChildren = snapshot.channelsWithChildren[channel.remote_id],
+                        let item = channelToMainListItemUseCase.invoke(channelWithChildren)
+                    else {
+                        return nil
+                    }
                     if inSearch && !itemMatches(item, location: channel.location!, filter: filter) {
                         return nil
                     }
@@ -82,8 +77,8 @@ struct CreateProfileChannelsList {
                 guard
                     !visibleChannels.isEmpty,
                     let location = section.items
-                        .compactMap(\.location)
-                        .min(by: { ($0.sortOrder?.int32Value ?? 0) < ($1.sortOrder?.int32Value ?? 0) })
+                    .compactMap(\.location)
+                    .min(by: { ($0.sortOrder?.int32Value ?? 0) < ($1.sortOrder?.int32Value ?? 0) })
                 else {
                     continue
                 }
@@ -95,23 +90,6 @@ struct CreateProfileChannelsList {
             }
 
             return items
-        }
-
-        private func channelItem(
-            _ channel: SAChannel,
-            _ channels: [SAChannel],
-            _ parentsMap: [Int32: [SAChannelRelation]]
-        ) -> MainListItem? {
-            if parentsMap[channel.remote_id] != nil {
-                let channelWithChildren = createChannelWithChildrenUseCase.invoke(
-                    channel,
-                    allChannels: channels,
-                    parentsMap: parentsMap
-                )
-                return channelToMainListItemUseCase.invoke(channelWithChildren)
-            } else {
-                return channelToMainListItemUseCase.invoke(ChannelWithChildren(channel: channel))
-            }
         }
 
         private func itemMatches(_ item: MainListItem, location: _SALocation, filter: String?) -> Bool {

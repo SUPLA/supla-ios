@@ -54,35 +54,86 @@ final class GetChannelValueStringUseCaseImpl: GetChannelValueStringUseCase {
         SwitchWithImpulseCounterValueStringProvider(),
         ContainerValueStringProvider(),
         HomePlusThermostatValueStringProvider(),
-        HvacThermostatValueStringProvider()
+        HvacThermostatValueStringProvider(),
+
+        NoValueStringProvider(SUPLA_CHANNELFNC_STAIRCASETIMER),
+        NoValueStringProvider(SUPLA_CHANNELFNC_POWERSWITCH),
+        NoValueStringProvider(SUPLA_CHANNELFNC_LIGHTSWITCH),
+        NoValueStringProvider(SUPLA_CHANNELFNC_MAILSENSOR),
+        NoValueStringProvider(SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW),
+        NoValueStringProvider(SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR),
+        NoValueStringProvider(SUPLA_CHANNELFNC_OPENINGSENSOR_GATE),
+        NoValueStringProvider(SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY),
+        NoValueStringProvider(SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR),
+        NoValueStringProvider(SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW),
+        NoValueStringProvider(SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER),
+        NoValueStringProvider(SUPLA_CHANNELFNC_DIMMER),
+        NoValueStringProvider(SUPLA_CHANNELFNC_DIMMER_CCT),
+        NoValueStringProvider(SUPLA_CHANNELFNC_RGBLIGHTING),
+        NoValueStringProvider(SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING),
+        NoValueStringProvider(SUPLA_CHANNELFNC_DIMMER_CCT_AND_RGB),
+        NoValueStringProvider(SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK),
+        NoValueStringProvider(SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK),
+        NoValueStringProvider(SUPLA_CHANNELFNC_CONTROLLINGTHEGATE),
+        NoValueStringProvider(SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR),
+        NoValueStringProvider(SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER),
+        NoValueStringProvider(SUPLA_CHANNELFNC_VALVE_OPENCLOSE),
+        NoValueStringProvider(SUPLA_CHANNELFNC_NOLIQUIDSENSOR),
+        NoValueStringProvider(SUPLA_CHANNELFNC_FLOOD_SENSOR),
+        NoValueStringProvider(SUPLA_CHANNELFNC_HOTELCARDSENSOR),
+        NoValueStringProvider(SUPLA_CHANNELFNC_ACTIONTRIGGER),
+        NoValueStringProvider(SUPLA_CHANNELFNC_GAS_SENSOR),
+        NoValueStringProvider(SUPLA_CHANNELFNC_CARBON_MONOXIDE_SENSOR),
+        NoValueStringProvider(SUPLA_CHANNELFNC_SMOKE_SENSOR),
+        NoValueStringProvider(SUPLA_CHANNELFNC_MOTION_SENSOR),
+        NoValueStringProvider(SUPLA_CHANNELFNC_HVAC_HRV),
+        NoValueStringProvider(SUPLA_CHANNELFNC_BINARY_SENSOR),
+        NoValueStringProvider(SUPLA_CHANNELFNC_VERTICAL_BLIND),
+        NoValueStringProvider(SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND),
+        NoValueStringProvider(SUPLA_CHANNELFNC_CONTAINER_LEVEL_SENSOR)
     ]
-    
+
     func invoke(_ channelWithChildren: ChannelWithChildren, valueType: ValueType = .first, withUnit: Bool = true) -> String {
         return valueOrNil(channelWithChildren, valueType: valueType, withUnit: withUnit) ?? NO_VALUE_TEXT
     }
-    
+
     func valueOrNil(_ channelWithChildren: ChannelWithChildren, valueType: ValueType = .first, withUnit: Bool = true) -> String? {
         if let provider = providers.first(where: { $0.handle(channelWithChildren) }) {
             return provider.valueWithOfflineCheck(channelWithChildren, valueType: valueType, withUnit: withUnit)
         }
-        
+
         SALog.debug("No value provider for channel function `\(channelWithChildren.function)`")
         return nil
     }
 }
 
-
 protocol ChannelValueStringProvider {
     func handle(_ channel: ChannelWithChildren) -> Bool
-    func value(_ channel: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String
+    func value(_ channel: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String?
 }
 
 private extension ChannelValueStringProvider {
-    func valueWithOfflineCheck(_ channel: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+    func valueWithOfflineCheck(_ channel: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String? {
         if (channel.channel.status().offline) {
             return NO_VALUE_TEXT
         }
-        
+
         return value(channel, valueType: valueType, withUnit: withUnit)
+    }
+}
+
+class NoValueStringProvider: ChannelValueStringProvider {
+    private let function: Int32
+
+    init(_ function: Int32) {
+        self.function = function
+    }
+
+    func handle(_ channel: ChannelWithChildren) -> Bool {
+        channel.function == function
+    }
+
+    func value(_ channel: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String? {
+        nil
     }
 }

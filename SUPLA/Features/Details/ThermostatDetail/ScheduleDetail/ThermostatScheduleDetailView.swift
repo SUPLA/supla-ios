@@ -82,7 +82,7 @@ extension ThermostatScheduleDetailFeature {
                             onSave: { delegate?.onProgramDialogSave($0, $1) }
                         ))
                     } else if let editQuartersState = state.editQuartersState {
-                        AnyView(ThermostatScheduleDetailFeature.EditQuartersDialog(
+                        AnyView(QuartersSelectionDialog(
                             state: editQuartersState,
                             onDismiss: { delegate?.onQuartersDialogDismiss() },
                             onProgramChange: { delegate?.onQuartersDialogProgramChange($0) },

@@ -32,8 +32,11 @@ extension SAChannel {
     var timerEndDate: Date? {
         @Singleton<DateProvider> var dateProvider
 
-        let value = value?.asRelayValue()
-        let forced = value?.mode == .forcedOn || value?.mode == .forcedOff
+        var forced = false
+        if (isRelay) {
+            let value = value?.asRelayValue()
+            forced = value?.mode == .forcedOn || value?.mode == .forcedOff
+        }
 
         if
             let state = ev?.timerState,
@@ -45,7 +48,7 @@ extension SAChannel {
 
         return nil
     }
-    
+
     @objc func isFacadeBlindClosed() -> Bool {
         if (self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND) {
             value?.asFacadeBlindValue().position ?? 0 >= 100
@@ -56,12 +59,12 @@ extension SAChannel {
 
     func hasHistory() -> Bool {
         switch (self.func) {
-            case SUPLA_CHANNELFNC_THERMOMETER,
-                 SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
-                 SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
-                 SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT,
-                 SUPLA_CHANNELFNC_ELECTRICITY_METER: true
-            default: false
+        case SUPLA_CHANNELFNC_THERMOMETER,
+             SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
+             SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
+             SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT,
+             SUPLA_CHANNELFNC_ELECTRICITY_METER: true
+        default: false
         }
     }
 
@@ -106,5 +109,28 @@ extension SAChannel {
 
     var temperatureControlType: SuplaTemperatureControlType? {
         (config?.configAsSuplaConfig() as? SuplaChannelHvacConfig)?.temperatureControlType
+    }
+
+    var isRelay: Bool {
+        self.func.isRelayFunction
+    }
+}
+
+extension Int32 {
+    var isRelayFunction: Bool {
+        switch self {
+        case SUPLA_CHANNELFNC_LIGHTSWITCH,
+             SUPLA_CHANNELFNC_POWERSWITCH,
+             SUPLA_CHANNELFNC_STAIRCASETIMER,
+             SUPLA_CHANNELFNC_PUMPSWITCH,
+             SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
+            true
+        default:
+            false
+        }
     }
 }

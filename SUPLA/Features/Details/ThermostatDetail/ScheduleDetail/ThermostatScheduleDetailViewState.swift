@@ -38,7 +38,7 @@ extension ThermostatScheduleDetailFeature {
         @Published var autoOffsetMax: Float? = nil
         
         @Published var editProgramState: EditProgramState? = nil
-        @Published var editQuartersState: EditQuartersState? = nil
+        @Published var editQuartersState: QuartersSelectionData? = nil
         
         var suplaPrograms: [SuplaHvacWeeklyScheduleProgram] {
             programs.filter { $0.scheduleProgram.program != .off }

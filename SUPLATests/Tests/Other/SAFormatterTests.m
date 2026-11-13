@@ -30,8 +30,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 - (void)setUp {
     formatter = [[SAFormatter alloc] init];
-    separator = [formatter doubleToString:1.2 withUnit:nil maxPrecision:2];
-    separator = [separator isEqual:@"1,2"] ? @"," : @".";
     separator = @".";
 }
 
@@ -39,11 +37,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     formatter = nil;
 }
 
+- (NSString *)canonicalizedDecimalSeparator:(NSString *)value {
+    return [value stringByReplacingOccurrencesOfString:@"," withString:@"."];
+}
+
 - (void)testDoubleToStringConversionWithUnit {
 
     NSString *expected = [NSString stringWithFormat:@"%@%@%@", @"321", separator, @"00"];
     XCTAssertEqualObjects(expected,
-                   [formatter doubleToString:321.000000001 withUnit:nil maxPrecision:2]);
+                   [self canonicalizedDecimalSeparator:[formatter doubleToString:321.000000001 withUnit:nil maxPrecision:2]]);
     
     expected = @"321";
     XCTAssertEqualObjects(expected,
@@ -51,23 +53,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     expected = [NSString stringWithFormat:@"%@%@%@", @"321", separator, @"000000001"];
     XCTAssertEqualObjects(expected,
-                   [formatter doubleToString:321.000000001 withUnit:nil maxPrecision:15]);
+                   [self canonicalizedDecimalSeparator:[formatter doubleToString:321.000000001 withUnit:nil maxPrecision:15]]);
 
     expected = [NSString stringWithFormat:@"%@%@%@", @"321", separator, @"000000001"];
     XCTAssertEqualObjects(expected,
-                   [formatter doubleToString:321.000000001 withUnit:nil maxPrecision:9]);
+                   [self canonicalizedDecimalSeparator:[formatter doubleToString:321.000000001 withUnit:nil maxPrecision:9]]);
 
     expected = [NSString stringWithFormat:@"%@%@%@", @"321", separator, @"000000001"];
     XCTAssertEqualObjects(expected,
-                   [formatter doubleToString:321.00000000101 withUnit:nil maxPrecision:9]);
+                   [self canonicalizedDecimalSeparator:[formatter doubleToString:321.00000000101 withUnit:nil maxPrecision:9]]);
 
     expected = [NSString stringWithFormat:@"%@%@%@", @"0", separator, @"00"];
     XCTAssertEqualObjects(expected,
-                   [formatter doubleToString:0 withUnit:nil maxPrecision:10]);
+                   [self canonicalizedDecimalSeparator:[formatter doubleToString:0 withUnit:nil maxPrecision:10]]);
 
     expected = [NSString stringWithFormat:@"%@%@%@", @"321", separator, @"00"];
     XCTAssertEqualObjects(expected,
-                   [formatter doubleToString:321 withUnit:nil maxPrecision:10]);
+                   [self canonicalizedDecimalSeparator:[formatter doubleToString:321 withUnit:nil maxPrecision:10]]);
 }
 
 @end

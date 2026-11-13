@@ -138,7 +138,7 @@ private struct ActionTriggerUnlockDialog: SwiftUI.View {
                     LabelText(text: Strings.ActionTrigger.temporaryUnlockDuration)
                         .fontBodyMedium()
                         .textColor(.Supla.onSurfaceVariant)
-                    TimePicker()
+                    TemporaryUnlockDurationPicker(durationS: durationS, onChange: onDurationChange)
                 }
                 if geometry.size.width > geometry.size.height {
                     HStack(spacing: Distance.tiny) { buttonsLandscape }
@@ -174,48 +174,6 @@ private struct ActionTriggerUnlockDialog: SwiftUI.View {
             .textButtonStyle()
     }
 
-    @ViewBuilder
-    private func TimePicker() -> some SwiftUI.View {
-        HStack(spacing: 0) {
-            SuplaCore.WheelPicker(selected: hoursBinding, items: (0...18).map { $0.asHourPickerItem })
-            SuplaCore.WheelPicker(selected: minutesBinding, items: minuteItems)
-            SuplaCore.WheelPicker(selected: secondsBinding, items: secondItems)
-        }
-        .frame(height: 160)
-    }
-
-    private var hour: Int { durationS / 3_600 }
-    private var minute: Int { (durationS % 3_600) / 60 }
-    private var second: Int { durationS % 60 }
-
-    private var hoursBinding: Binding<HourPickerItem> {
-        Binding(
-            get: { hour.asHourPickerItem },
-            set: { onDurationChange(min(64_800, $0.id * 3_600 + minute * 60 + second)) }
-        )
-    }
-
-    private var minutesBinding: Binding<NumberPickerItem> {
-        Binding(
-            get: { minute.asMinutePickerItem },
-            set: { onDurationChange(min(64_800, hour * 3_600 + $0.id * 60 + second)) }
-        )
-    }
-
-    private var secondsBinding: Binding<NumberPickerItem> {
-        Binding(
-            get: { NumberPickerItem(id: second, pattern: Strings.TimerDetail.secondPattern) },
-            set: { onDurationChange(min(64_800, hour * 3_600 + minute * 60 + $0.id)) }
-        )
-    }
-
-    private var minuteItems: [NumberPickerItem] {
-        (0...(hour == 18 ? 0 : 59)).map { $0.asMinutePickerItem }
-    }
-
-    private var secondItems: [NumberPickerItem] {
-        (0...(hour == 18 ? 0 : 59)).map { NumberPickerItem(id: $0, pattern: Strings.TimerDetail.secondPattern) }
-    }
 }
 
 #Preview("Action trigger locked") {

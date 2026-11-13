@@ -47,7 +47,7 @@ final class SuplaChannelWeeklyScheduleConfig: SuplaChannelConfig {
                     buttonTemporaryUnlockDurationS: program.ButtonTemporaryUnlockDurationS
                 )
             })
-        } else if channelFunc?.isRelayScheduleFunction == true {
+        } else if channelFunc?.isRelayFunction == true {
             programConfigurations = .relay((0..<size).map { programId in
                 let program = suplaConfig.program(at: programId)
                 return SuplaRelayWeeklyScheduleProgram(
@@ -173,27 +173,19 @@ struct SuplaButtonWeeklyScheduleProgram: Equatable, SuplaWeeklyScheduleProgramPr
     let program: SuplaScheduleProgram
     let mode: SuplaButtonMode
     let buttonTemporaryUnlockDurationS: UInt16
+    func copy(mode: SuplaButtonMode? = nil, buttonTemporaryUnlockDurationS: UInt16? = nil) -> SuplaButtonWeeklyScheduleProgram {
+        SuplaButtonWeeklyScheduleProgram(program: program, mode: mode ?? self.mode, buttonTemporaryUnlockDurationS: buttonTemporaryUnlockDurationS ?? self.buttonTemporaryUnlockDurationS)
+    }
+
+    static func `default`() -> SuplaButtonWeeklyScheduleProgram {
+        SuplaButtonWeeklyScheduleProgram(program: .off, mode: .notSet, buttonTemporaryUnlockDurationS: 0)
+    }
     var description: String {
         guard mode == .lockedTemporaryUnlockAllowed else {
             return mode == .notSet ? Strings.General.unlocked : Strings.General.locked
         }
 
-        let duration = Int(buttonTemporaryUnlockDurationS)
-        guard duration > 0 else { return "\(Strings.General.locked) ⏱️" }
-
-        let hours = duration / 3_600
-        let minutes = (duration % 3_600) / 60
-        let seconds = duration % 60
-        let formattedDuration: String
-        if hours > 0 {
-            formattedDuration = String(format: "%d:%02d:%02d", hours, minutes, seconds)
-        } else if minutes > 0 {
-            formattedDuration = String(format: "%d:%02d", minutes, seconds)
-        } else {
-            formattedDuration = "\(seconds)s"
-        }
-
-        return "\(Strings.General.locked) \(formattedDuration)"
+        return "\(Strings.General.locked) ⏱️"
     }
 }
 
@@ -217,6 +209,11 @@ enum SuplaWeeklyScheduleProgramSet: Equatable {
 
     var relayPrograms: [SuplaRelayWeeklyScheduleProgram]? {
         guard case .relay(let programs) = self else { return nil }
+        return programs
+    }
+
+    var buttonPrograms: [SuplaButtonWeeklyScheduleProgram]? {
+        guard case .actionTrigger(let programs) = self else { return nil }
         return programs
     }
 }
@@ -245,25 +242,6 @@ private extension SuplaRelayMode {
             return format.arguments(Int(duration))
         }
         return defaultValue
-    }
-}
-
-private extension Int32 {
-    var isRelayScheduleFunction: Bool {
-        switch self {
-        case SUPLA_CHANNELFNC_LIGHTSWITCH,
-             SUPLA_CHANNELFNC_POWERSWITCH,
-             SUPLA_CHANNELFNC_STAIRCASETIMER,
-             SUPLA_CHANNELFNC_PUMPSWITCH,
-             SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
-            true
-        default:
-            false
-        }
     }
 }
 

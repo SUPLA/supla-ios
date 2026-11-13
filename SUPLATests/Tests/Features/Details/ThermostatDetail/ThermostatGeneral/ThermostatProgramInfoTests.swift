@@ -163,7 +163,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                 time: Strings.ThermostatDetail.clockError,
                 icon: SuplaHvacMode.heat.icon,
                 iconColor: SuplaHvacMode.heat.uiColor,
-                description: "10.0°",
+                description: decimalLocalized("10.0°"),
                 manualActive: false
             )
         ])
@@ -231,7 +231,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                 ),
                 icon: SuplaHvacMode.heat.icon,
                 iconColor: SuplaHvacMode.heat.uiColor,
-                description: "21.0°",
+                description: decimalLocalized("21.0°"),
                 manualActive: false
             ),
             ThermostatProgramInfo(
@@ -239,7 +239,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                 time: nil,
                 icon: SuplaHvacMode.cool.icon,
                 iconColor: SuplaHvacMode.cool.uiColor,
-                description: "12.0°",
+                description: decimalLocalized("12.0°"),
                 manualActive: false
             )
         ])
@@ -279,7 +279,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                 time: nil,
                 icon: SuplaHvacMode.cool.icon,
                 iconColor: SuplaHvacMode.cool.uiColor,
-                description: "12.0°",
+                description: decimalLocalized("12.0°"),
                 manualActive: false
             )
         ])
@@ -312,7 +312,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
                 ),
                 icon: SuplaHvacMode.heat.icon,
                 iconColor: SuplaHvacMode.heat.uiColor,
-                description: "21.0°",
+                description: decimalLocalized("21.0°"),
                 manualActive: false
             ),
             ThermostatProgramInfo(

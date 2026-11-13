@@ -845,4 +845,6 @@
 "action_trigger_unlock_temporarily" = "Προσωρινό ξεκλείδωμα";
 "at_locked_temporary_unlock_allowed" = "Κλειδωμένο (προσωρινό ξεκλείδωμα)";
 "action_trigger_schedule_button_mode" = "Λειτουργία κουμπιού";
+"action_trigger_schedule_default_temporary_unlock_duration" = "Προεπιλογή";
+"action_trigger_schedule_other_temporary_unlock_duration" = "Προσαρμοσμένο";
 "action_trigger_temporary_unlocked" = "προσωρινά ξεκλείδωτο";

@@ -34,6 +34,7 @@ extension ActionTriggerGeneralFeature {
         
         private let itemBundle: ItemBundle
         private var currentMode: SuplaButtonMode = .notSet
+        private var temporaryUnlockActive: Bool = false
         private var currentTemporaryUnlockDurationS: Int?
         private var defaultTemporaryUnlockDurationS = 0
 
@@ -91,7 +92,15 @@ extension ActionTriggerGeneralFeature {
         func onAuto() {}
         
         func onLock() {
-            execute(.locked)
+            guard currentMode != .locked,
+                  currentMode != .lockedTemporaryUnlockAllowed || temporaryUnlockActive
+            else { return }
+            
+            if (currentMode == .lockedTemporaryUnlockAllowed) {
+                execute(.lockedTemporaryUnlockAllowed)
+            } else {
+                execute(.locked)
+            }
         }
         
         func onUnlock() {
@@ -161,11 +170,12 @@ extension ActionTriggerGeneralFeature {
             let channel = value.channel
             let atValue = channel.value?.asActionTriggerValue()
             let weekly = atValue?.flags.contains(.weeklyScheduleEnabled) == true
+            let lockedMode = atValue?.buttonMode == .locked || atValue?.buttonMode == .lockedTemporaryUnlockAllowed
+            
             currentMode = atValue?.buttonMode ?? .notSet
             defaultTemporaryUnlockDurationS = Int(actionTriggerConfig?.temporaryUnlockDurationSec ?? 0)
             currentTemporaryUnlockDurationS = weekly ? currentProgramTemporaryUnlockDuration(schedule) : nil
-            let lockedMode = atValue?.buttonMode == .locked || atValue?.buttonMode == .lockedTemporaryUnlockAllowed
-            let temporaryUnlockActive = atValue?.temporaryUnlockActive == true
+            temporaryUnlockActive = atValue?.temporaryUnlockActive == true
             
             if channel.status().offline {
                 state.channelCurrentStateData = .init(
@@ -286,12 +296,5 @@ extension ActionTriggerGeneralFeature {
 
             return Int(program.buttonTemporaryUnlockDurationS)
         }
-    }
-}
-
-private extension SuplaWeeklyScheduleProgramSet {
-    var buttonPrograms: [SuplaButtonWeeklyScheduleProgram]? {
-        if case .actionTrigger(let programs) = self { return programs }
-        return nil
     }
 }

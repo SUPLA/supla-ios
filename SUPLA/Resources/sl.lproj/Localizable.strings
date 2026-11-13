@@ -845,4 +845,6 @@
 "action_trigger_unlock_temporarily" = "Začasno odkleni";
 "at_locked_temporary_unlock_allowed" = "Zaklenjeno (začasno odklepanje)";
 "action_trigger_schedule_button_mode" = "Način gumba";
+"action_trigger_schedule_default_temporary_unlock_duration" = "Privzeto";
+"action_trigger_schedule_other_temporary_unlock_duration" = "Po meri";
 "action_trigger_temporary_unlocked" = "začasno odklenjeno";

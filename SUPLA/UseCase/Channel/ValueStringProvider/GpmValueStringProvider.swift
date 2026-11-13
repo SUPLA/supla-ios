@@ -24,7 +24,7 @@ class GpmValueStringProvider: ChannelValueStringProvider {
             || channelWithChildren.channel.func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
     }
     
-    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String? {
         let channel = channelWithChildren.channel
         guard let value = gpmValueProvider.value(channel, valueType: valueType) as? Double
         else {

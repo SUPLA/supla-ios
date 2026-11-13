@@ -56,7 +56,13 @@ extension RelayScheduleFeature {
                 onBoxLongPress: { delegate?.onShowQuarters($0) },
                 dialogs: {
                     if let quarters = state.quarters {
-                        AnyView(QuartersDialog(state: quarters, delegate: delegate))
+                        AnyView(QuartersSelectionDialog(
+                            state: quarters,
+                            onDismiss: { delegate?.onQuartersDismiss() },
+                            onProgramChange: { delegate?.onQuartersProgramChange($0) },
+                            onQuarterChange: { delegate?.onQuartersChange($0) },
+                            onSave: { delegate?.onQuartersSave() }
+                        ))
                     } else if let settings = state.programSettings {
                         AnyView(ProgramSettingsDialog(state: settings, delegate: delegate))
                     } else {
@@ -64,62 +70,6 @@ extension RelayScheduleFeature {
                     }
                 }
             )
-        }
-    }
-
-    private struct QuartersDialog: SwiftUI.View {
-        @ObservedObject var state: QuartersState
-        let delegate: ViewDelegate?
-
-        var body: some SwiftUI.View {
-            GeometryReader { geometry in
-                let width: CGFloat = geometry.size.width > geometry.size.height ? 500 : 300
-                let maxHeight = max(0, geometry.size.height - Distance.default * 2)
-
-                SuplaCore.Dialog.Base(onDismiss: { delegate?.onQuartersDismiss() }, width: width) {
-                    VStack(spacing: 0) {
-                        ScrollView(.vertical) {
-                            VStack(spacing: 0) {
-                                SuplaCore.Dialog.Header(title: Strings.ThermostatDetail.editQuartersDialogHeader.arguments(state.key.hour))
-                                FlowHStack(data: state.programs) { _, program in
-                                    ScheduleProgramButton(
-                                        state: program.buttonState(state.activeProgram),
-                                        action: { delegate?.onQuartersProgramChange(program.program) }
-                                    )
-                                }
-                                .padding(.vertical, Distance.tiny)
-                                .padding(.horizontal, Distance.default)
-                                .background(Color.Supla.background)
-
-                                Text(state.key.dayOfWeek.fullText().uppercased())
-                                    .fontBodyMedium()
-                                    .padding(.horizontal, Distance.default)
-                                    .padding(.vertical, Distance.small)
-
-                                ForEach(QuarterOfHour.allCases, id: \.self) { quarter in
-                                    HStack(spacing: Distance.default) {
-                                        Text(state.key.hour.toHour(withMinutes: quarter.minutes())).fontBodyMedium()
-                                        state.hourPrograms.programForQuarter(quarter).color
-                                            .frame(maxWidth: .infinity, maxHeight: 36)
-                                            .clipShape(RoundedRectangle(cornerRadius: Dimens.radiusSmall))
-                                            .onTapGesture { delegate?.onQuartersChange(quarter) }
-                                    }
-                                    .padding(.horizontal, Distance.default)
-                                    .padding(.bottom, Distance.tiny)
-                                }
-                            }
-                        }
-                        .frame(maxHeight: .infinity)
-                        .hideScrollIndicators()
-
-                        SuplaCore.Dialog.HorizontalButtons(
-                            onSecondaryClick: { delegate?.onQuartersDismiss() },
-                            onPrimaryClick: { delegate?.onQuartersSave() }
-                        )
-                    }
-                    .frame(maxHeight: maxHeight)
-                }
-            }
         }
     }
 
@@ -166,7 +116,7 @@ extension RelayScheduleFeature {
                     }
                 }
 
-                SuplaCore.Dialog.HorizontalButtons(
+                SuplaCore.Dialog.Buttons(
                     onSecondaryClick: { delegate?.onProgramSettingsDismiss() },
                     onPrimaryClick: { delegate?.onProgramSettingsSave() }
                 )
@@ -292,7 +242,7 @@ private func relaySchedulePreviewSchedule() -> [ScheduleDetailBoxKey: WeeklySche
 
 #Preview("Relay quarters dialog") {
     let state = relaySchedulePreviewState()
-    state.quarters = RelayScheduleFeature.QuartersState(
+    state.quarters = QuartersSelectionData(
         key: .init(dayOfWeek: .monday, hour: 9),
         programs: relayProgramsForView(relaySchedulePreviewPrograms),
         activeProgram: .program1,

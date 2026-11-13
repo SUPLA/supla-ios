@@ -52,7 +52,7 @@ extension CaptionChangeDialogFeature {
                     }
                 }
                 
-                SuplaCore.Dialog.DoubleButtons(
+                SuplaCore.Dialog.Buttons(
                     onSecondaryClick: { delegate?.onCaptionDialogDismiss() },
                     onPrimaryClick: { delegate?.onApply() },
                     processing: viewState.processing

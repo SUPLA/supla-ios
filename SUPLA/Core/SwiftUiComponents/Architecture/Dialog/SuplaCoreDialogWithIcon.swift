@@ -65,27 +65,25 @@ extension SuplaCore {
                     .padding([.leading, .trailing], Distance.default)
                     
                 if let primaryButtonData, let secondaryButtonText {
-                    SuplaCore.Dialog.DoubleButtons(
+                    SuplaCore.Dialog.Buttons(
                         onSecondaryClick: onSecondaryButtonClick ?? {},
                         onPrimaryClick: onPrimaryButtonClick ?? {},
                         secondaryText: secondaryButtonText,
                         primaryButtonData: primaryButtonData
                     )
                 } else if let primaryButtonData {
-                    TitleButton(title: primaryButtonData.title, fullWidth: primaryButtonData.fullWidth) {
+                    SuplaCore.Dialog.PositiveButton(buttonData: primaryButtonData) {
                         if let onPrimaryButtonClick {
                             onPrimaryButtonClick()
                         }
                     }
-                    .filledButtonStyle(colors: primaryButtonData.colors)
                     .padding(Distance.default)
                 } else if let secondaryButtonText {
-                    TitleButton(title: secondaryButtonText, fullWidth: true) {
+                    SuplaCore.Dialog.NegativeButton(title: secondaryButtonText, fullWidth: true) {
                         if let onSecondaryButtonClick {
                             onSecondaryButtonClick()
                         }
                     }
-                    .borderedButtonStyle()
                     .padding(Distance.default)
                 }
             }

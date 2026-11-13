@@ -28,7 +28,7 @@ class SwitchWithElectricityMeterValueStringProvider: ChannelValueStringProvider 
         switchWithElectricityMeterValueProvider.handle(channelWithChildren.channel)
     }
     
-    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String? {
         let channel = channelWithChildren.channel
         let value = switchWithElectricityMeterValueProvider.value(channel, valueType: valueType)
         let settings = userStateHolder.getElectricityMeterSettings(profileId: channel.profile.id, remoteId: channel.remote_id)

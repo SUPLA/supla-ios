@@ -168,6 +168,7 @@ enum DetailPage: Hashable {
     case gateGeneral
     case gateSchedule
     case actionTriggerGeneral
+    case actionTriggerSchedule
     
     // HRV
     case recuperatorGeneral

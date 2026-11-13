@@ -843,4 +843,6 @@
 "action_trigger_unlock_temporarily" = "Dočasne odomknúť";
 "at_locked_temporary_unlock_allowed" = "Zamknuté (dočasné odomknutie)";
 "action_trigger_schedule_button_mode" = "Režim tlačidla";
+"action_trigger_schedule_default_temporary_unlock_duration" = "Predvolené";
+"action_trigger_schedule_other_temporary_unlock_duration" = "Vlastné";
 "action_trigger_temporary_unlocked" = "dočasne odomknuté";

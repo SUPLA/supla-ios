@@ -20,6 +20,10 @@ import XCTest
 @testable import SUPLA
 
 extension XCTestCase {
+    func decimalLocalized(_ value: String) -> String {
+        value.replacingOccurrences(of: ".", with: Locale.current.decimalSeparator ?? ".")
+    }
+
     func setUpInMemoryManagedObjectContext() -> NSManagedObjectContext {
         let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle.main])!
         

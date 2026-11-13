@@ -168,7 +168,7 @@ struct CloudFollowupPopup: View {
                 .multilineTextAlignment(.center)
                 .padding([.leading, .trailing], Distance.default)
                 
-            SuplaCore.Dialog.DoubleButtons(
+            SuplaCore.Dialog.Buttons(
                 onSecondaryClick: onNegativeButtonClick ?? {},
                 onPrimaryClick: onPositiveButtonClick ?? {},
                 secondaryText: Strings.AddWizard.cloudFollowupClose,
@@ -203,7 +203,7 @@ struct ManualModePopup: View {
                 .multilineTextAlignment(.center)
                 .padding([.leading, .trailing], Distance.default)
                 
-            SuplaCore.Dialog.DoubleButtons(
+            SuplaCore.Dialog.Buttons(
                 onSecondaryClick: onContinueAuto ?? {},
                 onPrimaryClick: onContinueManual ?? {},
                 secondaryText: Strings.AddWizard.manualModePopupResign,

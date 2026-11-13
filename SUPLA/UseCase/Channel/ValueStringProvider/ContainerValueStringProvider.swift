@@ -26,7 +26,7 @@ class ContainerValueStringProvider: ChannelValueStringProvider {
         containerValueProvider.handle(channelWithChildren.channel)
     }
     
-    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String {
+    func value(_ channelWithChildren: ChannelWithChildren, valueType: ValueType, withUnit: Bool) -> String? {
         ContainerValueFormatter.shared.format(
             value: containerValueProvider.value(channelWithChildren.channel, valueType: valueType),
             format: ValueFormatKt.withUnit(withUnit: withUnit)
