@@ -309,7 +309,7 @@
 "channel_caption_smoke_sensor" = "Sensore di fumo";
 "channel_caption_carbon_monoxide_sensor" = "Sensore di monossido di carbonio";
 "channel_caption_gas_sensor" = "Sensore di gas";
-"channel_caption_action_trigger" = "Attivatore di azione";
+"channel_caption_action_trigger" = "Pulsante";
 "channel_caption_container" = "Contenitore";
 "channel_caption_septic_tank" = "Fossa settica";
 "channel_caption_invisible" = "Nascosto";

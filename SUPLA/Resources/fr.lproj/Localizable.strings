@@ -295,7 +295,7 @@
 "channel_caption_smoke_sensor" = "Détecteur de fumée";
 "channel_caption_carbon_monoxide_sensor" = "Détecteur de monoxyde de carbone";
 "channel_caption_gas_sensor" = "Détecteur de gaz";
-"channel_caption_action_trigger" = "Déclencheur d’action";
+"channel_caption_action_trigger" = "Bouton";
 "channel_caption_container" = "Conteneur";
 "channel_caption_septic_tank" = "Fosse septique";
 "channel_caption_invisible" = "Masqué";

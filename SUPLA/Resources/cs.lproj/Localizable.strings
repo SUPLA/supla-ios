@@ -295,7 +295,7 @@
 "channel_caption_smoke_sensor" = "Snímač kouře";
 "channel_caption_carbon_monoxide_sensor" = "Snímač oxidu uhelnatého";
 "channel_caption_gas_sensor" = "Snímač plynu";
-"channel_caption_action_trigger" = "Akční spouštěč";
+"channel_caption_action_trigger" = "Tlačítko";
 "channel_caption_invisible" = "Skrytý";
 "channel_offline" = "Kanál je v režimu offline";
 "channel_battery_level" = "Stav baterie: %d%%";

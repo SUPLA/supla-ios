@@ -56,8 +56,8 @@ struct ChannelToMainListItem {
                 processing: isProcessing(channelWithChildren),
                 estimatedTimerEndDate: channel.timerEndDate,
                 infoSupported: channelWithChildren.showInfoIcon,
-                leftButtonTitle: channelWithChildren.leftButtonTitle,
-                rightButtonTitle: channelWithChildren.rightButtonTitle
+                leftButtonTitle: function == .actionTrigger ? Strings.General.unlock : channelWithChildren.leftButtonTitle,
+                rightButtonTitle: function == .actionTrigger ? Strings.General.lock : channelWithChildren.rightButtonTitle
             )
 
             return switch (function) {
@@ -80,6 +80,13 @@ struct ChannelToMainListItem {
                  .hvacThermostat,
                  .hvacDomesticHotWater:
                 createHvacThermostatListItem(channelWithChildren: channelWithChildren, base: base)
+            case .actionTrigger:
+                MainListItem.actionTrigger(
+                    ActionTriggerListItem(
+                        base: base,
+                        indicatorType: channel.value?.asActionTriggerValue().indicatorType ?? .none
+                    )
+                )
             default:
                 MainListItem.default(base)
             }

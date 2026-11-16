@@ -297,7 +297,7 @@
 "channel_caption_smoke_sensor" = "Dūmų jutiklis";
 "channel_caption_carbon_monoxide_sensor" = "Anglies monoksido jutiklis";
 "channel_caption_gas_sensor" = "Dujų jutiklis";
-"channel_caption_action_trigger" = "Veiksmų aktyviklis";
+"channel_caption_action_trigger" = "Mygtukas";
 "channel_caption_container" = "Konteineris";
 "channel_caption_septic_tank" = "Septikas";
 "channel_caption_invisible" = "Paslėptas";

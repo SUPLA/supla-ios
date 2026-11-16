@@ -109,7 +109,7 @@ extension ActionTriggerGeneralFeature {
                 return
             }
 
-            let duration = currentTemporaryUnlockDurationS ?? defaultTemporaryUnlockDurationS
+            let duration = currentTemporaryUnlockDurationS?.let { $0 > 0 ? $0 : nil } ?? defaultTemporaryUnlockDurationS
             state.unlockDialogDurationS = duration.clamped(to: 0...64_800)
             state.unlockTemporaryAllowed = duration > 0
             state.unlockDialogPresented = true

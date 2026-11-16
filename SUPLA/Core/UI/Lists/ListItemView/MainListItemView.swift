@@ -95,6 +95,14 @@ struct MainListItemView: SwiftUI.View {
                 onTitleLongClick: onTitleLongClick,
                 onItemClick: onItemClick
             )
+        case .actionTrigger(let item):
+            ActionTriggerListItemView(
+                item: item,
+                onInfoClick: onInfoClick,
+                onIssueClick: onIssueClick,
+                onTitleLongClick: onTitleLongClick,
+                onItemClick: onItemClick
+            )
         }
     }
 }

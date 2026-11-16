@@ -306,7 +306,7 @@
 "channel_caption_smoke_sensor" = "Tüstü sensoru";
 "channel_caption_carbon_monoxide_sensor" = "Dəm qazı sensoru";
 "channel_caption_gas_sensor" = "Qaz sensoru";
-"channel_caption_action_trigger" = "Fəaliyyət tetikleyicisi";
+"channel_caption_action_trigger" = "Düymə";
 "channel_caption_invisible" = "Gizli";
 "channel_offline" = "Kanal offline vəziyyətdədir";
 "channel_not_found" = "Kanal tapılmadı";

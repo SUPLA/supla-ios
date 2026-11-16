@@ -65,7 +65,7 @@ struct ListItemScaffold<Content: View>: View {
         .contentShape(Rectangle())
         .overlay(alignment: .topTrailing) {
             ListItemTimerText(endDate: itemEstimatedEndDate)
-                .padding(.top, scaleFactor.scale(Distance.tiny, limit: .lower(1)))
+                .padding(.top, scaleFactor.scale(Distance.tiny))
                 .padding(.trailing, Distance.tiny)
         }
         .overlay(alignment: .bottom) {
@@ -131,7 +131,7 @@ private struct ListItemTimerText: View {
     var body: some View {
         if let text = timerText {
             Text(text)
-                .font(Font.Supla.bodyMedium(scaleFactor, limit: .upper(0.8)))
+                .font(Font.Supla.bodyMedium(scaleFactor, limit: .lower(0.8)))
                 .foregroundColor(Color.Supla.gray)
                 .onReceive(timer) { currentDate = $0 }
         }

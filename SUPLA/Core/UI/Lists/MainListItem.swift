@@ -26,6 +26,7 @@ enum MainListItem: Equatable, Identifiable {
     case hvacThermostat(HvacThermostatListItem)
     case heatpolThermostat(HeatpolThermostatListItem)
     case doubleValue(DoubleValueListItem)
+    case actionTrigger(ActionTriggerListItem)
 
     var id: String { key }
 
@@ -37,6 +38,7 @@ enum MainListItem: Equatable, Identifiable {
         case .hvacThermostat(let item): "C\(item.base.remoteId)"
         case .heatpolThermostat(let item): "C\(item.base.remoteId)"
         case .doubleValue(let item): "C\(item.base.remoteId)"
+        case .actionTrigger(let item): "C\(item.base.remoteId)"
         }
     }
 
@@ -48,6 +50,7 @@ enum MainListItem: Equatable, Identifiable {
         case .hvacThermostat(let item): item.base.remoteId
         case .heatpolThermostat(let item): item.base.remoteId
         case .doubleValue(let item): item.base.remoteId
+        case .actionTrigger(let item): item.base.remoteId
         }
     }
 
@@ -59,6 +62,7 @@ enum MainListItem: Equatable, Identifiable {
         case .hvacThermostat(let item): item.base.profileId
         case .heatpolThermostat(let item): item.base.profileId
         case .doubleValue(let item): item.base.profileId
+        case .actionTrigger(let item): item.base.profileId
         }
     }
 
@@ -70,6 +74,7 @@ enum MainListItem: Equatable, Identifiable {
         case .hvacThermostat(let item): item.base.userCaption
         case .heatpolThermostat(let item): item.base.userCaption
         case .doubleValue(let item): item.base.userCaption
+        case .actionTrigger(let item): item.base.userCaption
         }
     }
 
@@ -86,6 +91,8 @@ enum MainListItem: Equatable, Identifiable {
         case .heatpolThermostat(let item):
             item.base.locationCaption
         case .doubleValue(let item):
+            item.base.locationCaption
+        case .actionTrigger(let item):
             item.base.locationCaption
         }
     }
@@ -104,6 +111,8 @@ enum MainListItem: Equatable, Identifiable {
             item.base.locationId
         case .doubleValue(let item):
             item.base.locationId
+        case .actionTrigger(let item):
+            item.base.locationId
         }
     }
 
@@ -118,6 +127,8 @@ enum MainListItem: Equatable, Identifiable {
         case .heatpolThermostat(let item):
             item.base.leftButtonTitle
         case .doubleValue(let item):
+            item.base.leftButtonTitle
+        case .actionTrigger(let item):
             item.base.leftButtonTitle
         default:
             nil
@@ -136,6 +147,8 @@ enum MainListItem: Equatable, Identifiable {
             item.base.rightButtonTitle
         case .doubleValue(let item):
             item.base.rightButtonTitle
+        case .actionTrigger(let item):
+            item.base.rightButtonTitle
         default:
             nil
         }
@@ -152,6 +165,8 @@ enum MainListItem: Equatable, Identifiable {
         case .heatpolThermostat(let item):
             item.base.status.online
         case .doubleValue(let item):
+            item.base.status.online
+        case .actionTrigger(let item):
             item.base.status.online
         case .location:
             false
@@ -294,6 +309,11 @@ struct DoubleValueListItem: Equatable {
     let secondValue: String?
 }
 
+struct ActionTriggerListItem: Equatable {
+    let base: DefaultListItem
+    let indicatorType: ActionTriggerValue.IndicatorType
+}
+
 extension DefaultListItem {
     static func == (lhs: DefaultListItem, rhs: DefaultListItem) -> Bool {
         lhs.remoteId == rhs.remoteId &&
@@ -355,6 +375,8 @@ private extension MainListItem {
         case .heatpolThermostat(let item):
             return item.base.title
         case .doubleValue(let item):
+            return item.base.title
+        case .actionTrigger(let item):
             return item.base.title
         }
     }

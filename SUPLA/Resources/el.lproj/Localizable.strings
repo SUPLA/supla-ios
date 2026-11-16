@@ -295,7 +295,7 @@
 "channel_caption_smoke_sensor" = "Αισθητήρας καπνού";
 "channel_caption_carbon_monoxide_sensor" = "Αισθητήρας μονοξειδίου του άνθρακα";
 "channel_caption_gas_sensor" = "Αισθητήρας αερίου";
-"channel_caption_action_trigger" = "Ενεργοποιητής ενέργειας";
+"channel_caption_action_trigger" = "Κουμπί";
 "channel_caption_container" = "Δοχείο";
 "channel_caption_septic_tank" = "Βόθρος";
 "channel_caption_invisible" = "Κρυφός";

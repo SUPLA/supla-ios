@@ -266,7 +266,7 @@
 "channel_caption_smoke_sensor" = "Füstérzékelő";
 "channel_caption_carbon_monoxide_sensor" = "Szén-monoxid-érzékelő";
 "channel_caption_gas_sensor" = "Gázérzékelő";
-"channel_caption_action_trigger" = "Műveletindító";
+"channel_caption_action_trigger" = "Gomb";
 "channel_caption_invisible" = "Rejtett";
 "channel_offline" = "A csatorna offline állapotban van";
 "channel_not_found" = "Csatorna nem található";

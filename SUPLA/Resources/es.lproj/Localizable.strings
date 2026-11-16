@@ -298,7 +298,7 @@
 "channel_caption_smoke_sensor" = "Sensor de humo";
 "channel_caption_carbon_monoxide_sensor" = "Sensor de monóxido de carbono";
 "channel_caption_gas_sensor" = "Sensor de gas";
-"channel_caption_action_trigger" = "Activador de acciones";
+"channel_caption_action_trigger" = "Botón";
 "channel_caption_invisible" = "Oculto";
 "channel_offline" = "El canal está offline";
 "channel_battery_level" = "Nivel de batería: %d%%";

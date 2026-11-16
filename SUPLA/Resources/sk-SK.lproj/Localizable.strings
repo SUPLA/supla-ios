@@ -295,7 +295,7 @@
 "channel_caption_smoke_sensor" = "Snímač dymu";
 "channel_caption_carbon_monoxide_sensor" = "Snímač oxidu uhoľnatého";
 "channel_caption_gas_sensor" = "Snímač plynu";
-"channel_caption_action_trigger" = "Akčný spúšťač";
+"channel_caption_action_trigger" = "Tlačidlo";
 "channel_caption_container" = "Kontajner";
 "channel_caption_septic_tank" = "Septik";
 "channel_caption_invisible" = "Skrytý";

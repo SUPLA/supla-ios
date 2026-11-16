@@ -115,14 +115,14 @@ final class ActionTriggerGeneralVMTests: XCTestCase {
         XCTAssertTrue(viewModel.state.unlockTemporaryAllowed)
     }
 
-    func test_zeroScheduleDurationDoesNotUseDefaultTemporaryUnlockDuration() {
+    func test_zeroScheduleDurationDoesUseDefaultTemporaryUnlockDuration() {
         let channel = makeChannel(mode: .lockedTemporaryUnlockAllowed, valueFlags: weeklyScheduleFlag)
         load(channel, schedule: weeklySchedule(temporaryUnlockDurationS: 0), defaultTemporaryUnlockDurationS: 600)
 
         viewModel.onUnlock()
 
-        XCTAssertEqual(viewModel.state.unlockDialogDurationS, 0)
-        XCTAssertFalse(viewModel.state.unlockTemporaryAllowed)
+        XCTAssertEqual(viewModel.state.unlockDialogDurationS, 600)
+        XCTAssertTrue(viewModel.state.unlockTemporaryAllowed)
     }
 
     func test_activeTemporaryUnlockChangesOnlyCurrentProgramDescription() {

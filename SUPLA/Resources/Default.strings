@@ -133,7 +133,7 @@
 "channel_caption_smoke_sensor" = "Smoke sensor";
 "channel_caption_carbon_monoxide_sensor" = "Carbon monoxide sensor";
 "channel_caption_gas_sensor" = "Gas sensor";
-"channel_caption_action_trigger" = "Action trigger";
+"channel_caption_action_trigger" = "Button";
 "channel_caption_invisible" = "Hidden";
 "channel_caption_hvac_hrv" = "Heat recovery ventilation";
 "channel_offline" = "Channel is offline";

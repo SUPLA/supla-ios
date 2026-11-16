@@ -295,7 +295,7 @@
 "channel_caption_smoke_sensor" = "Датчик диму";
 "channel_caption_carbon_monoxide_sensor" = "Датчик чадного газу";
 "channel_caption_gas_sensor" = "Датчик газу";
-"channel_caption_action_trigger" = "Тригер дії";
+"channel_caption_action_trigger" = "Кнопка";
 "channel_caption_container" = "Контейнер";
 "channel_caption_septic_tank" = "Септик";
 "channel_caption_invisible" = "Прихований";

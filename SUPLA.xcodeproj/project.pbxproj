@@ -672,6 +672,7 @@
 		A562866D303320E200851CED /* IconValueListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562866C303320D500851CED /* IconValueListItemView.swift */; };
 		A562869E3033311700851CED /* DoubleIconValueListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562869D3033310E00851CED /* DoubleIconValueListItemView.swift */; };
 		A56286A13033381C00851CED /* ThermostatListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286A03033381500851CED /* ThermostatListItemView.swift */; };
+		A56286B13034500000851CED /* ActionTriggerListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286B03034500000851CED /* ActionTriggerListItemView.swift */; };
 		A56286A330333A7100851CED /* SetpointTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286A230333A6700851CED /* SetpointTemperature.swift */; };
 		A56286A530334EE500851CED /* FontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286A430334EE200851CED /* FontSize.swift */; };
 		A56286A630334EE500851CED /* FontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286A430334EE200851CED /* FontSize.swift */; };
@@ -2613,6 +2614,7 @@
 		A562866C303320D500851CED /* IconValueListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconValueListItemView.swift; sourceTree = "<group>"; };
 		A562869D3033310E00851CED /* DoubleIconValueListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleIconValueListItemView.swift; sourceTree = "<group>"; };
 		A56286A03033381500851CED /* ThermostatListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatListItemView.swift; sourceTree = "<group>"; };
+		A56286B03034500000851CED /* ActionTriggerListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerListItemView.swift; sourceTree = "<group>"; };
 		A56286A230333A6700851CED /* SetpointTemperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetpointTemperature.swift; sourceTree = "<group>"; };
 		A56286A430334EE200851CED /* FontSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSize.swift; sourceTree = "<group>"; };
 		A56286A7303351D600851CED /* FontName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontName.swift; sourceTree = "<group>"; };
@@ -5685,6 +5687,7 @@
 				A56286AC3034422A00851CED /* LocationListItemView.swift */,
 				A56286AA30343B9300851CED /* HeatpolThermostatListItemView.swift */,
 				A56286A03033381500851CED /* ThermostatListItemView.swift */,
+				A56286B03034500000851CED /* ActionTriggerListItemView.swift */,
 				A562869D3033310E00851CED /* DoubleIconValueListItemView.swift */,
 				A562866C303320D500851CED /* IconValueListItemView.swift */,
 				C0DE1570000000000000001A /* MainListItemView.swift */,
@@ -10135,6 +10138,7 @@
 				A5F14B8029DEE4D800682FA6 /* CreateAccountScreen.swift in Sources */,
 				A5DEE9382E9E6E01000811C7 /* ProfilesListScreen.swift in Sources */,
 				A56286A13033381C00851CED /* ThermostatListItemView.swift in Sources */,
+				A56286B13034500000851CED /* ActionTriggerListItemView.swift in Sources */,
 				A5DEE9332E9E66A7000811C7 /* ProfilesListVM.swift in Sources */,
 				A5E4904A2A3C6215006801FE /* ChannelHeight.swift in Sources */,
 				A5F21B1B2F42B1000000001B /* DimmerDetailScreen.swift in Sources */,

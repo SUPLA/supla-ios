@@ -295,7 +295,7 @@
 "channel_caption_smoke_sensor" = "Røyksensor";
 "channel_caption_carbon_monoxide_sensor" = "Karbonmonoksidsensor";
 "channel_caption_gas_sensor" = "Gassensor";
-"channel_caption_action_trigger" = "Handlingsutløser";
+"channel_caption_action_trigger" = "Knapp";
 "channel_caption_container" = "Beholder";
 "channel_caption_septic_tank" = "Septiktank";
 "channel_caption_invisible" = "Skjult";

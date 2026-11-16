@@ -306,7 +306,7 @@
 "channel_caption_smoke_sensor" = "Czujnik dymu";
 "channel_caption_carbon_monoxide_sensor" = "Czujnik tlenku węgla";
 "channel_caption_gas_sensor" = "Czujnik gazu";
-"channel_caption_action_trigger" = "Wyzwalacz akcji";
+"channel_caption_action_trigger" = "Przycisk";
 "channel_caption_invisible" = "Ukryty";
 "channel_offline" = "Kanał jest offline";
 "channel_not_found" = "Kanał nie istnieje";

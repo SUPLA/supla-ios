@@ -18,16 +18,23 @@
     
 import SwiftUI
 
+let DEFAULT_LIST_ITEM_ICON_WIDTH: CGFloat = 60
+let DEFAULT_LIST_ITEM_ICON_HEIGHT: CGFloat = 50
+
 struct ListItemIcon: View {
     @Environment(\.scaleFactor) var scaleFactor: CGFloat
     
     let iconResult: IconResult?
-
+    
+    @ViewBuilder
     var body: some View {
+        let iconWidth = scale(scaleFactor, DEFAULT_LIST_ITEM_ICON_WIDTH)
+        let iconHeight = scale(scaleFactor, DEFAULT_LIST_ITEM_ICON_HEIGHT)
+        
         Image()
             .resizable()
             .scaledToFit()
-            .frame(width: scale(scaleFactor, 60), height: scale(scaleFactor, 50))
+            .frame(width: iconWidth, height: iconHeight)
     }
     
     private func Image() -> SwiftUI.Image {

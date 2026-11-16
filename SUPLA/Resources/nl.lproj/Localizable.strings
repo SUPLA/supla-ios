@@ -295,7 +295,7 @@
 "channel_caption_smoke_sensor" = "Rooksensor";
 "channel_caption_carbon_monoxide_sensor" = "Koolmonoxidesensor";
 "channel_caption_gas_sensor" = "Gassensor";
-"channel_caption_action_trigger" = "Actietrigger";
+"channel_caption_action_trigger" = "Knop";
 "channel_caption_container" = "Container";
 "channel_caption_septic_tank" = "Septic tank";
 "channel_caption_invisible" = "Verborgen";

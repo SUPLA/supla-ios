@@ -295,7 +295,7 @@
 "channel_caption_smoke_sensor" = "Senzor dima";
 "channel_caption_carbon_monoxide_sensor" = "Senzor ogljikovega monoksida";
 "channel_caption_gas_sensor" = "Senzor plina";
-"channel_caption_action_trigger" = "Sprožilec dejanja";
+"channel_caption_action_trigger" = "Gumb";
 "channel_caption_container" = "Posoda";
 "channel_caption_septic_tank" = "Greznica";
 "channel_caption_invisible" = "Skrit";
