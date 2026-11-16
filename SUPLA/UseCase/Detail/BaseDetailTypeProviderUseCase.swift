@@ -114,6 +114,11 @@ enum LegacyDetailType: Hashable {
 }
 
 enum DetailPage: Hashable {
+    enum IconDestination: Hashable {
+        case bottomBar
+        case topBar
+    }
+
     // Switches
     case switchGeneral
     case switchSchedule
@@ -177,4 +182,14 @@ enum DetailPage: Hashable {
     case rgb
     case dimmer
     case dimmerCct
+    case dimmerSettings
+
+    var iconDestination: IconDestination {
+        switch self {
+        case .electricityMeterSettings,
+             .impulseCounterSettings,
+             .dimmerSettings: .topBar
+        default: .bottomBar
+        }
+    }
 }

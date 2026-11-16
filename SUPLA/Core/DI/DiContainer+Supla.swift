@@ -24,7 +24,7 @@ extension DiContainer {
 
         register(AppRouter.self, AppRouter())
         register(AuthorizationCoordinator.self, AuthorizationCoordinatorImpl())
-        register(DetailTopBarCoordinator.self, DetailTopBarCoordinator())
+        register(TopBarActionCoordinator.self, TopBarActionCoordinator())
         let globalSettings = registerAndGet(GlobalSettings.self, GlobalSettingsImpl())
         register(RuntimeConfig.self, RuntimeConfigImpl())
         register(SuplaClientProvider.self, SuplaClientProviderImpl())

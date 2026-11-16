@@ -16,7 +16,146 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import Combine
 import SwiftUI
+
+enum TopBarEvent: Hashable {
+    case openProfileSelector
+    case deleteNotifications
+    case deleteNfcTag
+    case deleteHistoryData
+    case openImpulseCounterOcr
+    case openDimmerSettings
+    case openElectricityMeterSettings
+    case openImpulseCounterSettings
+}
+
+enum TopBarAction: Hashable {
+    case profileSelect
+    case notificationsDelete
+    case nfcTagDelete
+    case historyDeleteData
+    case impulseCounterOpenOcr
+    case detailDimmerSettings
+    case detailElectricityMeterSettings
+    case detailImpulseCounterSettings
+
+    var title: String {
+        switch self {
+        case .profileSelect: Strings.ProfileChooser.title
+        case .notificationsDelete, .nfcTagDelete: Strings.General.delete
+        case .historyDeleteData: Strings.Charts.historyDeleteData
+        case .impulseCounterOpenOcr: Strings.StandardDetail.tabOcr
+        case .detailDimmerSettings,
+             .detailElectricityMeterSettings,
+             .detailImpulseCounterSettings: Strings.StandardDetail.tabSettings
+        }
+    }
+
+    var icon: String? {
+        switch self {
+        case .profileSelect: "profile-navbar"
+        case .notificationsDelete, .nfcTagDelete: String.Icons.delete
+        case .historyDeleteData: nil
+        case .impulseCounterOpenOcr: String.Icons.ocrPhoto
+        case .detailDimmerSettings,
+             .detailElectricityMeterSettings,
+             .detailImpulseCounterSettings: String.Icons.settings
+        }
+    }
+
+    var displayMode: DisplayMode {
+        switch self {
+        case .historyDeleteData: .overflowOnly
+        default: .automatic
+        }
+    }
+
+    var lifetime: Lifetime {
+        switch self {
+        case .detailDimmerSettings,
+             .detailElectricityMeterSettings,
+             .detailImpulseCounterSettings: .detail
+        default: .tab
+        }
+    }
+
+    var event: TopBarEvent {
+        switch self {
+        case .profileSelect: .openProfileSelector
+        case .notificationsDelete: .deleteNotifications
+        case .nfcTagDelete: .deleteNfcTag
+        case .historyDeleteData: .deleteHistoryData
+        case .impulseCounterOpenOcr: .openImpulseCounterOcr
+        case .detailDimmerSettings: .openDimmerSettings
+        case .detailElectricityMeterSettings: .openElectricityMeterSettings
+        case .detailImpulseCounterSettings: .openImpulseCounterSettings
+        }
+    }
+
+    enum DisplayMode: Equatable {
+        case automatic
+        case overflowOnly
+    }
+
+    enum Lifetime: Equatable {
+        case tab
+        case detail
+    }
+}
+
+private struct TopBarEventHandler: ViewModifier {
+    @Singleton<TopBarActionCoordinator> private var coordinator
+    @State private var subscription: AnyCancellable?
+    @State private var isVisible = false
+
+    let event: TopBarEvent
+    let enabled: Bool
+    let handler: () -> Void
+
+    func body(content: Content) -> some View {
+        content
+            .onAppear {
+                isVisible = true
+                updateSubscription(isEnabled: enabled)
+            }
+            .onChange(of: enabled) { newValue in
+                updateSubscription(isEnabled: newValue)
+            }
+            .onDisappear {
+                isVisible = false
+                cancelSubscription()
+            }
+    }
+
+    private func updateSubscription(isEnabled: Bool) {
+        guard isVisible && isEnabled else {
+            cancelSubscription()
+            return
+        }
+
+        guard subscription == nil else { return }
+        subscription = coordinator.events
+            .filter { $0 == event }
+            .receive(on: DispatchQueue.main)
+            .sink { _ in handler() }
+    }
+
+    private func cancelSubscription() {
+        subscription?.cancel()
+        subscription = nil
+    }
+}
+
+extension View {
+    func onTopBarEvent(
+        _ event: TopBarEvent,
+        enabled: Bool = true,
+        perform handler: @escaping () -> Void
+    ) -> some View {
+        modifier(TopBarEventHandler(event: event, enabled: enabled, handler: handler))
+    }
+}
 
 extension SuplaCore {
     struct TopBarContainer<TopBarContent: View, Content: View>: View {
@@ -49,38 +188,11 @@ extension SuplaCore {
     }
 
     struct TopBar: View {
-        enum NavigationIcon {
-            case back
-            case menu
-            case custom(String)
-
-            var name: String {
-                switch self {
-                case .back: String.Icons.arrowLeft
-                case .menu: String.Icons.menu
-                case let .custom(name): name
-                }
-            }
-        }
-
-        enum ActionIcon {
-            case icon(String, () -> Void)
-            case more([ActionItem])
-
-            init(icon: String, onTap: @escaping () -> Void) {
-                self = .icon(icon, onTap)
-            }
-        }
-
-        struct ActionItem: Identifiable {
-            let id = UUID()
-            let title: String
-            let action: () -> Void
-        }
+        @Singleton<TopBarActionCoordinator> private var actionCoordinator
 
         let navigationIcon: NavigationIcon
         let title: String
-        let actionIcon: ActionIcon?
+        let actions: [TopBarAction]
         let searchText: Binding<String>?
         let searchActive: Binding<Bool>?
         let searchPrompt: String
@@ -92,8 +204,15 @@ extension SuplaCore {
 
         static let height: CGFloat = 56
         private let height = TopBar.height
+        private var searchIconVisible: Bool { searchText != nil && !searchOpened }
+        private var actionLayout: ActionLayout {
+            Self.layoutActions(actions, searchIconVisible: searchIconVisible)
+        }
         private var rightControlsWidth: CGFloat {
-            height * CGFloat((searchText == nil ? 0 : 1) + (actionIcon == nil ? 0 : 1))
+            let searchControlCount = searchIconVisible ? 1 : 0
+            let actionControlCount = actionLayout.controlCount
+            let placeholderCount = searchText == nil && actionControlCount == 0 ? 1 : 0
+            return height * CGFloat(searchControlCount + actionControlCount + placeholderCount)
         }
 
         private var titleHorizontalPadding: CGFloat { max(height, rightControlsWidth) }
@@ -101,7 +220,7 @@ extension SuplaCore {
         init(
             navigationIcon: NavigationIcon,
             title: String,
-            actionIcon: ActionIcon? = nil,
+            actions: [TopBarAction] = [],
             searchText: Binding<String>? = nil,
             searchActive: Binding<Bool>? = nil,
             searchPrompt: String = Strings.Notifications.searchPrompt,
@@ -110,7 +229,7 @@ extension SuplaCore {
         ) {
             self.navigationIcon = navigationIcon
             self.title = title
-            self.actionIcon = actionIcon
+            self.actions = actions
             self.searchText = searchText
             self.searchActive = searchActive
             self.searchPrompt = searchPrompt
@@ -142,9 +261,9 @@ extension SuplaCore {
                         toolbarButton(icon: String.Icons.search, action: openSearch)
                     }
 
-                    if let actionIcon {
-                        actionButton(actionIcon)
-                    } else if (searchText == nil) {
+                    actionControls
+
+                    if (searchText == nil && actionLayout.controlCount == 0) {
                         Color.clear
                             .frame(width: height, height: height)
                     }
@@ -183,9 +302,9 @@ extension SuplaCore {
                     .overlay(RoundedRectangle(cornerRadius: Dimens.buttonRadius).stroke(Color.Supla.outline))
                     .onAppear { searchFocused = true }
 
-                    if let actionIcon {
-                        actionButton(actionIcon)
-                    } else {
+                    actionControls
+
+                    if (actionLayout.controlCount == 0) {
                         Color.clear
                             .frame(width: height, height: height)
                     }
@@ -196,19 +315,58 @@ extension SuplaCore {
         }
 
         @ViewBuilder
-        private func actionButton(_ actionIcon: ActionIcon) -> some View {
-            switch actionIcon {
-            case let .icon(icon, action):
-                toolbarButton(icon: icon, action: action)
-            case let .more(items):
+        private var actionControls: some View {
+            ForEach(actionLayout.icons.indices, id: \.self) { index in
+                let item = actionLayout.icons[index]
+                if let icon = item.icon {
+                    Button(action: { actionCoordinator.emit(item.event) }) {
+                        toolbarIcon(icon)
+                    }
+                    .accessibilityLabel(item.title)
+                }
+            }
+
+            if (!actionLayout.overflow.isEmpty) {
                 Menu {
-                    ForEach(items) { item in
-                        Button(item.title, action: item.action)
+                    ForEach(actionLayout.overflow.indices, id: \.self) { index in
+                        let item = actionLayout.overflow[index]
+                        Button(item.title) { actionCoordinator.emit(item.event) }
                     }
                 } label: {
                     toolbarIcon(String.Icons.more)
                 }
             }
+        }
+
+        static func layoutActions(_ actions: [TopBarAction], searchIconVisible: Bool) -> ActionLayout {
+            let eligibleIcons = actions.filter { $0.displayMode == .automatic && $0.icon != nil }
+            let hasOverflowOnlyAction = actions.contains { $0.displayMode == .overflowOnly }
+
+            if (searchIconVisible && (actions.count > 1 || hasOverflowOnlyAction)) {
+                return ActionLayout(icons: [], overflow: actions)
+            }
+
+            if (searchIconVisible) {
+                return ActionLayout(icons: eligibleIcons, overflow: [])
+            }
+
+            let needsOverflow = hasOverflowOnlyAction || actions.count > 2
+            guard (needsOverflow) else {
+                return ActionLayout(icons: eligibleIcons, overflow: actions.filter { $0.icon == nil })
+            }
+
+            guard let firstIconIndex = actions.firstIndex(where: {
+                $0.displayMode == .automatic && $0.icon != nil
+            }) else {
+                return ActionLayout(icons: [], overflow: actions)
+            }
+
+            return ActionLayout(
+                icons: [actions[firstIconIndex]],
+                overflow: actions.enumerated().compactMap { index, action in
+                    index == firstIconIndex ? nil : action
+                }
+            )
         }
 
         private func toolbarButton(icon: String, action: @escaping () -> Void) -> some View {
@@ -271,6 +429,27 @@ extension SuplaCore {
                     internalSearchOpened = newValue
                 }
             }
+        }
+
+        enum NavigationIcon {
+            case back
+            case menu
+            case custom(String)
+
+            var name: String {
+                switch self {
+                case .back: String.Icons.arrowLeft
+                case .menu: String.Icons.menu
+                case let .custom(name): name
+                }
+            }
+        }
+
+        struct ActionLayout {
+            let icons: [TopBarAction]
+            let overflow: [TopBarAction]
+
+            var controlCount: Int { icons.count + (overflow.isEmpty ? 0 : 1) }
         }
     }
 }

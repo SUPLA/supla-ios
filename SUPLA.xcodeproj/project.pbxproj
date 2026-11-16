@@ -1449,7 +1449,7 @@
 		A5F213012F42310000000001 /* ThermostatTimerDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F213002F42310000000000 /* ThermostatTimerDetailScreen.swift */; };
 		A5F214022F42410000000002 /* ThermostatHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F214002F42410000000000 /* ThermostatHistoryDetailFeature.swift */; };
 		A5F214032F42410000000003 /* ThermostatHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F214012F42410000000001 /* ThermostatHistoryDetailScreen.swift */; };
-		A5F215012F42510000000001 /* DetailTopBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F215002F42510000000000 /* DetailTopBarCoordinator.swift */; };
+		A5F215012F42510000000001 /* TopBarActionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F215002F42510000000000 /* TopBarActionCoordinator.swift */; };
 		A5F216022F42610000000002 /* HeatpolHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F216002F42610000000000 /* HeatpolHistoryDetailFeature.swift */; };
 		A5F216032F42610000000003 /* HeatpolHistoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F216012F42610000000001 /* HeatpolHistoryDetailScreen.swift */; };
 		A5F217012F42710000000001 /* GpmHistoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F217002F42710000000000 /* GpmHistoryDetailFeature.swift */; };
@@ -3362,7 +3362,7 @@
 		A5F213002F42310000000000 /* ThermostatTimerDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailScreen.swift; sourceTree = "<group>"; };
 		A5F214002F42410000000000 /* ThermostatHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailFeature.swift; sourceTree = "<group>"; };
 		A5F214012F42410000000001 /* ThermostatHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailScreen.swift; sourceTree = "<group>"; };
-		A5F215002F42510000000000 /* DetailTopBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopBarCoordinator.swift; sourceTree = "<group>"; };
+		A5F215002F42510000000000 /* TopBarActionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarActionCoordinator.swift; sourceTree = "<group>"; };
 		A5F216002F42610000000000 /* HeatpolHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolHistoryDetailFeature.swift; sourceTree = "<group>"; };
 		A5F216012F42610000000001 /* HeatpolHistoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolHistoryDetailScreen.swift; sourceTree = "<group>"; };
 		A5F217002F42710000000000 /* GpmHistoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpmHistoryDetailFeature.swift; sourceTree = "<group>"; };
@@ -5725,7 +5725,6 @@
 				A5E100012F41000000000007 /* DetailBaseFeature.swift */,
 				A5E100012F41000000000008 /* BaseDetailScreen.swift */,
 				A5E100012F41000000000009 /* DetailTabBar.swift */,
-				A5F215002F42510000000000 /* DetailTopBarCoordinator.swift */,
 				A52BFED12B07B8BC00A2F64C /* ItemBundle.swift */,
 			);
 			path = Base;
@@ -6688,6 +6687,7 @@
 				A58B70833037245900C3E561 /* SeparatorView.swift */,
 				A5A160022C2AAEDE0049AA73 /* Text.swift */,
 				A50D00012F9000010000000A /* TopBar.swift */,
+				A5F215002F42510000000000 /* TopBarActionCoordinator.swift */,
 				A5EE0C872F7D00CE00D7B14F /* View+hideScrollIndicator.swift */,
 				A5C5F6E32D91F1AD00E303B8 /* View+If.swift */,
 				A5F8A0003039000000C0DE01 /* View+ListSearchText.swift */,
@@ -9335,7 +9335,7 @@
 				A5E100012F41000000000001 /* DetailBaseFeature.swift in Sources */,
 				A5E100012F41000000000002 /* BaseDetailScreen.swift in Sources */,
 				A5E100012F41000000000003 /* DetailTabBar.swift in Sources */,
-				A5F215012F42510000000001 /* DetailTopBarCoordinator.swift in Sources */,
+				A5F215012F42510000000001 /* TopBarActionCoordinator.swift in Sources */,
 				A5E100012F41000000000004 /* StandardDetailScreen.swift in Sources */,
 				A5E100012F41000000000005 /* ImpulseCounterDetailScreen.swift in Sources */,
 				A5E100012F41000000000006 /* RgbAndDimmerDetailScreen.swift in Sources */,

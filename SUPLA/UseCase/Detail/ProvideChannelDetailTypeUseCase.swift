@@ -20,6 +20,9 @@ protocol ProvideChannelDetailTypeUseCase {
     func invoke(channelWithChildren: ChannelWithChildren) -> DetailType?
 }
 
+private let ZAM_PRODID_DIW_01 = 2000
+private let COM_PRODID_WDIM100 = 2000
+
 final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, ProvideChannelDetailTypeUseCase {
     func invoke(channelWithChildren: ChannelWithChildren) -> DetailType? {
         switch (channelWithChildren.channel.func) {
@@ -52,8 +55,26 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
                  SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
                  SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK: .standardDetail(pages: getGateDetailPages(channelWithChildren))
 
-            default: provide(channelWithChildren.channel)
+            default: provideDetailType(for: channelWithChildren.channel)
         }
+    }
+
+    private func provideDetailType(for channel: SAChannel) -> DetailType? {
+        guard let detailType = provide(channel) else { return nil }
+        guard shouldShowDimmerSettings(channel),
+              case .rgbwDetail(let pages) = detailType
+        else { return detailType }
+
+        return .rgbwDetail(pages: pages + [.dimmerSettings])
+    }
+
+    private func shouldShowDimmerSettings(_ channel: SAChannel) -> Bool {
+        let manufacturerId = channel.manufacturer_id
+        let productId = channel.product_id
+
+        return manufacturerId == SUPLA_MFR_DOYLETRATT && (productId == 1 || productId == 10) ||
+            manufacturerId == SUPLA_MFR_ZAMEL && productId == ZAM_PRODID_DIW_01 ||
+            manufacturerId == SUPLA_MFR_COMELIT && productId == COM_PRODID_WDIM100
     }
 
     private func getSwitchDetailPages(_ channelWithChildren: ChannelWithChildren) -> [DetailPage] {

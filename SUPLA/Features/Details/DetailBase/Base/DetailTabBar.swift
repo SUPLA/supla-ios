@@ -109,6 +109,7 @@ private extension DetailPage {
              .thermostatHeatpolHistory: Strings.StandardDetail.tabHistory
         case .electricityMeterSettings,
              .impulseCounterSettings,
+             .dimmerSettings,
              .recuperatorGeneral: Strings.StandardDetail.tabSettings
         case .impulseCounterOcr: Strings.StandardDetail.tabOcr
         case .rgb: Strings.StandardDetail.tabRgb
@@ -147,6 +148,7 @@ private extension DetailPage {
              .thermostatHeatpolHistory: String.Icons.history
         case .electricityMeterSettings,
              .impulseCounterSettings,
+             .dimmerSettings,
              .recuperatorGeneral: String.Icons.settings
         case .impulseCounterOcr: String.Icons.ocrPhoto
         case .rgb: String.Icons.rgb

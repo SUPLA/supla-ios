@@ -56,6 +56,8 @@ enum AppRoute: Hashable {
     case pinSetup(scope: LockScreenScope)
     case lockScreen(action: LockScreenFeature.UnlockAction)
     case counterPhoto(item: ItemBundle)
+    case electricityMeterSettings(item: ItemBundle)
+    case impulseCounterSettings(item: ItemBundle)
     case carPlayList
     case carPlayAdd
     case carPlayEdit(id: NSManagedObjectID)

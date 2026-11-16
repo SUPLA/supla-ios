@@ -20,13 +20,13 @@ import SwiftUI
 
 extension DetailBaseFeature {
     struct BaseScreen<S: DetailViewState, VM: BaseDetailVM<S>>: SwiftUI.View {
+        @EnvironmentObject private var router: AppRouter
         @Singleton<GlobalSettings> private var settings
-        @Singleton<DetailTopBarCoordinator> private var topBarCoordinator
 
         private let item: ItemBundle
         private let pages: [DetailPage]
         private let viewModel: VM
-        private let topBarActionProvider: (S, DetailPage) -> SuplaCore.TopBar.ActionIcon?
+        private let topBarActionsProvider: (S, DetailPage) -> [TopBarAction]
 
         @State private var selectedPage: DetailPage
 
@@ -34,12 +34,12 @@ extension DetailBaseFeature {
             viewModel: VM,
             item: ItemBundle,
             pages: [DetailPage],
-            topBarActionProvider: @escaping (S, DetailPage) -> SuplaCore.TopBar.ActionIcon? = { _, _ in nil }
+            topBarActionsProvider: @escaping (S, DetailPage) -> [TopBarAction] = { _, _ in [] }
         ) {
             self.viewModel = viewModel
             self.item = item
             self.pages = pages
-            self.topBarActionProvider = topBarActionProvider
+            self.topBarActionsProvider = topBarActionsProvider
             _selectedPage = State(initialValue: Self.initialPage(item: item, pages: pages))
         }
 
@@ -56,8 +56,9 @@ extension DetailBaseFeature {
                     VStack(spacing: 0) {
                         DetailTopBar(
                             state: state,
+                            pages: pages,
                             selectedPage: selectedPage,
-                            actionProvider: topBarActionProvider
+                            actionsProvider: topBarActionsProvider
                         )
 
                         GeometryReader { geometry in
@@ -76,12 +77,18 @@ extension DetailBaseFeature {
                     }
                 }
             }
-            .onChange(of: selectedPage) { _ in
-                topBarCoordinator.clearAction()
-            }
-            .onDisappear {
-                topBarCoordinator.clearAction()
-            }
+            .onTopBarEvent(
+                .openElectricityMeterSettings,
+                enabled: pages.contains(.electricityMeterSettings)
+            ) { router.navigate(to: .electricityMeterSettings(item: item)) }
+            .onTopBarEvent(
+                .openImpulseCounterSettings,
+                enabled: pages.contains(.impulseCounterSettings)
+            ) { router.navigate(to: .impulseCounterSettings(item: item)) }
+            .onTopBarEvent(
+                .openDimmerSettings,
+                enabled: pages.contains(.dimmerSettings)
+            ) { router.navigate(to: .legacyDimmerSettings(channelId: item.remoteId)) }
         }
 
         private var selectedContent: some SwiftUI.View {
@@ -140,16 +147,12 @@ extension DetailBaseFeature {
                 ElectricityMeterGeneralFeature.Screen(itemBundle: item)
             case .electricityMeterHistory:
                 ElectricityMeterHistoryFeature.Screen(itemBundle: item)
-            case .electricityMeterSettings:
-                ElectricityMeterSettingsFeature.Screen(itemBundle: item)
             case .impulseCounterGeneral:
                 ImpulseCounterGeneralFeature.Screen(itemBundle: item)
             case .impulseCounterHistory:
                 ImpulseCounterHistoryDetailFeature.Screen(itemBundle: item)
             case .impulseCounterOcr:
                 CounterPhotoFeature.Screen(itemBundle: item)
-            case .impulseCounterSettings:
-                ImpulseCounterSettingsFeature.Screen(itemBundle: item)
             case .valveGeneral:
                 ValveGeneralFeature.Screen(itemBundle: item)
             case .containerGeneral:
@@ -177,10 +180,11 @@ extension DetailBaseFeature {
 
         @ViewBuilder
         private func detailTabBar(axis: Axis) -> some SwiftUI.View {
-            if (pages.count > 1) {
+            let bottomBarPages = pages.filter { $0.iconDestination == .bottomBar }
+            if (bottomBarPages.count > 1) {
                 DetailTabBar(
                     remoteId: item.remoteId,
-                    pages: pages,
+                    pages: bottomBarPages,
                     selectedPage: $selectedPage,
                     axis: axis,
                     showLabels: settings.showBottomLabels
@@ -189,14 +193,15 @@ extension DetailBaseFeature {
         }
 
         private static func initialPage(item: ItemBundle, pages: [DetailPage]) -> DetailPage {
-            guard let firstPage = pages.first else {
+            let bottomBarPages = pages.filter { $0.iconDestination == .bottomBar }
+            guard let firstPage = bottomBarPages.first else {
                 fatalError("BaseDetailScreen requires at least one detail page")
             }
 
             let runtimeConfig = DiContainer.shared.resolve(type: RuntimeConfig.self)
             let pageToOpen = runtimeConfig?.getDetailOpenedPage(remoteId: item.remoteId) ?? -1
-            if (pageToOpen >= 0 && pageToOpen < pages.count) {
-                return pages[pageToOpen]
+            if (pageToOpen >= 0 && pageToOpen < bottomBarPages.count) {
+                return bottomBarPages[pageToOpen]
             }
 
             return firstPage
@@ -207,21 +212,35 @@ extension DetailBaseFeature {
 private struct DetailTopBar<S: DetailViewState>: SwiftUI.View {
     @EnvironmentObject private var router: AppRouter
     @ObservedObject var state: S
-    @ObservedObject private var topBarCoordinator: DetailTopBarCoordinator = DiContainer.shared.resolve(
-        type: DetailTopBarCoordinator.self
+    @ObservedObject private var topBarCoordinator: TopBarActionCoordinator = DiContainer.shared.resolve(
+        type: TopBarActionCoordinator.self
     )!
 
+    let pages: [DetailPage]
     let selectedPage: DetailPage
-    let actionProvider: (S, DetailPage) -> SuplaCore.TopBar.ActionIcon?
+    let actionsProvider: (S, DetailPage) -> [TopBarAction]
 
     var body: some SwiftUI.View {
-        let action = actionProvider(state, selectedPage) ?? topBarCoordinator.action
+        let pageActions = pages.compactMap { action(for: $0) }
+        let actions = pageActions + actionsProvider(state, selectedPage) + topBarCoordinator.actions
 
         SuplaCore.TopBar(
             navigationIcon: .back,
             title: state.title ?? "",
-            actionIcon: action,
+            actions: actions,
             onNavigationIconTap: router.back
         )
+    }
+
+    private func action(for page: DetailPage) -> TopBarAction? {
+        guard page.iconDestination == .topBar else { return nil }
+
+        switch page {
+        case .electricityMeterSettings: return .detailElectricityMeterSettings
+        case .impulseCounterSettings: return .detailImpulseCounterSettings
+        case .dimmerSettings: return .detailDimmerSettings
+        default:
+            return nil
+        }
     }
 }

@@ -17,14 +17,17 @@
  */
 
 import RxCocoa
+import Combine
 import RxRelay
 import RxSwift
 import SwiftUI
 
 class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, BaseHistoryDetailViewEvent, BaseHistoryDetailVM> {
-    @Singleton<DetailTopBarCoordinator> private var topBarCoordinator
+    @Singleton<TopBarActionCoordinator> private var topBarCoordinator
 
     let remoteId: Int32
+    private var topBarActionRegistration: UUID?
+    private var topBarEventSubscription: AnyCancellable?
     
     private var dataSetsRowState = DataSetsViewState()
     private lazy var dataSetsRow: DataSetsRow = .init(viewState: dataSetsRowState)
@@ -102,18 +105,25 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        topBarCoordinator.setAction(.more([
-            SuplaCore.TopBar.ActionItem(title: Strings.Charts.historyDeleteData) { [weak self] in
+        topBarActionRegistration = topBarCoordinator.setActions([.historyDeleteData])
+        topBarEventSubscription = topBarCoordinator.events
+            .filter { $0 == .deleteHistoryData }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
                 guard let self else { return }
                 self.viewModel.deleteAndDownloadData(remoteId: self.remoteId)
             }
-        ]))
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        topBarCoordinator.clearAction()
+        if let topBarActionRegistration {
+            topBarCoordinator.clearAction(registration: topBarActionRegistration)
+            self.topBarActionRegistration = nil
+        }
+        topBarEventSubscription?.cancel()
+        topBarEventSubscription = nil
     }
     
     override func handle(event: BaseHistoryDetailViewEvent) {

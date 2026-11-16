@@ -20,6 +20,7 @@ import SwiftUI
 
 extension ImpulseCounterSettingsFeature {
     struct Screen: SwiftUI.View {
+        @EnvironmentObject private var router: AppRouter
         @StateObject private var viewModel: ViewModel
 
         init(itemBundle: ItemBundle) {
@@ -28,10 +29,18 @@ extension ImpulseCounterSettingsFeature {
 
         var body: some SwiftUI.View {
             SuplaCore.ViewModelHost(viewModel) { state in
-                ImpulseCounterSettingsFeature.View(
-                    viewState: state,
-                    delegate: viewModel
-                )
+                SuplaCore.TopBarContainer {
+                    SuplaCore.TopBar(
+                        navigationIcon: .back,
+                        title: Strings.ElectricityMeter.settingsTitle.arguments(state.channelName),
+                        onNavigationIconTap: router.back
+                    )
+                } content: {
+                    ImpulseCounterSettingsFeature.View(
+                        viewState: state,
+                        delegate: viewModel
+                    )
+                }
             }
         }
     }

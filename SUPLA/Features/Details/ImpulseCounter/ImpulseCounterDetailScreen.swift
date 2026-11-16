@@ -40,16 +40,20 @@ extension ImpulseCounterDetailFeature {
                 viewModel: viewModel,
                 item: item,
                 pages: pages,
-                topBarActionProvider: topBarAction(state:page:)
+                topBarActionsProvider: topBarActions(state:page:)
             )
+            .onTopBarEvent(
+                .openImpulseCounterOcr,
+                enabled: pages.contains(.impulseCounterGeneral)
+            ) { router.navigate(to: .counterPhoto(item: item)) }
         }
 
-        private func topBarAction(
+        private func topBarActions(
             state: ImpulseCounterDetailViewState,
             page: DetailPage
-        ) -> SuplaCore.TopBar.ActionIcon? {
-            guard state.hasPhoto, let channelId = state.channelId else { return nil }
-            return .icon(String.Icons.ocrPhoto, { router.navigate(to: .counterPhoto(item: item)) })
+        ) -> [TopBarAction] {
+            guard page == .impulseCounterGeneral, state.hasPhoto, state.channelId != nil else { return [] }
+            return [.impulseCounterOpenOcr]
         }
     }
 }

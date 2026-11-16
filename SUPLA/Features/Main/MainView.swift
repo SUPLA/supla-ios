@@ -118,13 +118,14 @@ extension MainFeature {
             SuplaCore.TopBar(
                 navigationIcon: .menu,
                 title: Strings.appName,
-                actionIcon: viewState.showProfilesIcon ? .icon("profile-navbar", openProfileChooser) : nil,
+                actions: viewState.showProfilesIcon ? [.profileSelect] : [],
                 searchText: activeSearchTextBinding,
                 searchActive: activeSearchActiveBinding,
                 onNavigationIconTap: openDrawer,
                 onSearchActiveChange: onSearchActiveChange
             )
             .offset(y: activeTopBarBehavior.offset)
+            .onTopBarEvent(.openProfileSelector, enabled: viewState.showProfilesIcon, perform: openProfileChooser)
         }
 
         private var activeSearchTextBinding: Binding<String> {

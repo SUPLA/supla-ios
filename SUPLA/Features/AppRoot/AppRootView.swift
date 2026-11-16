@@ -120,6 +120,8 @@ private extension AppRootView {
                     showsTopBar: true
                 )
             case .counterPhoto(let item): CounterPhotoFeature.Screen(itemBundle: item)
+            case .electricityMeterSettings(let item): ElectricityMeterSettingsFeature.Screen(itemBundle: item)
+            case .impulseCounterSettings(let item): ImpulseCounterSettingsFeature.Screen(itemBundle: item)
             }
         }
 

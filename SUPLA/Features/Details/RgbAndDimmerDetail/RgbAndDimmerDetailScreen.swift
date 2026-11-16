@@ -22,8 +22,6 @@ struct RgbAndDimmerDetailFeature {}
 
 extension RgbAndDimmerDetailFeature {
     struct Screen: SwiftUI.View {
-        @EnvironmentObject private var router: AppRouter
-
         let item: ItemBundle
         let pages: [DetailPage]
 
@@ -39,18 +37,8 @@ extension RgbAndDimmerDetailFeature {
             DetailBaseFeature.BaseScreen(
                 viewModel: viewModel,
                 item: item,
-                pages: pages,
-                topBarActionProvider: topBarAction(state:page:)
+                pages: pages
             )
-        }
-
-        private func topBarAction(
-            state: RgbAndDimmerDetailViewState,
-            page: DetailPage
-        ) -> SuplaCore.TopBar.ActionIcon? {
-            guard state.showSettings else { return nil }
-
-            return .icon(String.Icons.settings, { router.navigate(to: .legacyDimmerSettings(channelId: item.remoteId)) })
         }
     }
 }
