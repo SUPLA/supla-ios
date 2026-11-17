@@ -74,9 +74,8 @@ struct ReadGroupWithChannels {
                             icon: getChannelBaseIconUseCase.invoke(channel: channelWithChildren.channel),
                             caption: getCaptionUseCase.invoke(data: channelWithChildren.channel.shareable).string,
                             userCaption: channelWithChildren.channel.caption ?? "",
-                            batteryIcon: nil,
-                            showChannelStateIcon: channelWithChildren.channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) != 0 &&
-                                channelWithChildren.channel.state != nil
+                            iconsBlock: nil,
+                            showChannelStateIcon: channelWithChildren.showInfoIcon
                         )
                     }
                 }

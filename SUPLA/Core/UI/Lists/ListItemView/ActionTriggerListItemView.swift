@@ -81,79 +81,81 @@ struct ActionTriggerListItemView: View {
 }
 
 #Preview {
-    VStack(spacing: 1) {
-        ActionTriggerListItemView(
-            item: ActionTriggerListItem(
-                base: DefaultListItem(
-                    remoteId: 1,
-                    profileId: 1,
-                    userCaption: "Button",
-                    function: .actionTrigger,
-                    locationCaption: "Default",
-                    locationId: 1,
-                    status: .channel(.online),
-                    title: "Button",
-                    icon: .originalSuplaIcon(name: .Icons.fncActionTrigger),
-                    value: nil,
-                    leftButtonTitle: Strings.General.unlock,
-                    rightButtonTitle: Strings.General.lock
+    BackgroundStack(alignment: .top) {
+        VStack(spacing: 1) {
+            ActionTriggerListItemView(
+                item: ActionTriggerListItem(
+                    base: DefaultListItem(
+                        remoteId: 1,
+                        profileId: 1,
+                        userCaption: "Button",
+                        function: .actionTrigger,
+                        locationCaption: "Default",
+                        locationId: 1,
+                        status: .channel(.online),
+                        title: "Button",
+                        icon: .originalSuplaIcon(name: .Icons.fncActionTrigger),
+                        value: nil,
+                        leftButtonTitle: Strings.General.unlock,
+                        rightButtonTitle: Strings.General.lock
+                    ),
+                    indicatorType: .locked
                 ),
-                indicatorType: .locked
-            ),
-            onInfoClick: {},
-            onIssueClick: { _ in },
-            onTitleLongClick: {},
-            onItemClick: {}
-        )
-
-        ActionTriggerListItemView(
-            item: ActionTriggerListItem(
-                base: DefaultListItem(
-                    remoteId: 2,
-                    profileId: 1,
-                    userCaption: "Button",
-                    function: .actionTrigger,
-                    locationCaption: "Default",
-                    locationId: 1,
-                    status: .channel(.online),
-                    title: "Button",
-                    icon: .originalSuplaIcon(name: .Icons.fncActionTrigger),
-                    value: nil,
-                    leftButtonTitle: Strings.General.unlock,
-                    rightButtonTitle: Strings.General.lock
+                onInfoClick: {},
+                onIssueClick: { _ in },
+                onTitleLongClick: {},
+                onItemClick: {}
+            )
+            
+            ActionTriggerListItemView(
+                item: ActionTriggerListItem(
+                    base: DefaultListItem(
+                        remoteId: 2,
+                        profileId: 1,
+                        userCaption: "Button",
+                        function: .actionTrigger,
+                        locationCaption: "Default",
+                        locationId: 1,
+                        status: .channel(.online),
+                        title: "Button",
+                        icon: .originalSuplaIcon(name: .Icons.fncActionTrigger),
+                        value: nil,
+                        leftButtonTitle: Strings.General.unlock,
+                        rightButtonTitle: Strings.General.lock
+                    ),
+                    indicatorType: .temporaryUnlocked
                 ),
-                indicatorType: .temporaryUnlocked
-            ),
-            onInfoClick: {},
-            onIssueClick: { _ in },
-            onTitleLongClick: {},
-            onItemClick: {}
-        )
-
-        ActionTriggerListItemView(
-            item: ActionTriggerListItem(
-                base: DefaultListItem(
-                    remoteId: 3,
-                    profileId: 1,
-                    userCaption: "Offline button",
-                    function: .actionTrigger,
-                    locationCaption: "Default",
-                    locationId: 1,
-                    status: .channel(.offline),
-                    title: "Offline button",
-                    icon: .originalSuplaIcon(name: .Icons.fncActionTrigger),
-                    value: nil,
-                    leftButtonTitle: Strings.General.unlock,
-                    rightButtonTitle: Strings.General.lock
+                onInfoClick: {},
+                onIssueClick: { _ in },
+                onTitleLongClick: {},
+                onItemClick: {}
+            )
+            
+            ActionTriggerListItemView(
+                item: ActionTriggerListItem(
+                    base: DefaultListItem(
+                        remoteId: 3,
+                        profileId: 1,
+                        userCaption: "Offline button",
+                        function: .actionTrigger,
+                        locationCaption: "Default",
+                        locationId: 1,
+                        status: .channel(.offline),
+                        title: "Offline button",
+                        icon: .originalSuplaIcon(name: .Icons.fncActionTrigger),
+                        value: nil,
+                        leftButtonTitle: Strings.General.unlock,
+                        rightButtonTitle: Strings.General.lock
+                    ),
+                    indicatorType: .locked
                 ),
-                indicatorType: .locked
-            ),
-            onInfoClick: {},
-            onIssueClick: { _ in },
-            onTitleLongClick: {},
-            onItemClick: {}
-        )
+                onInfoClick: {},
+                onIssueClick: { _ in },
+                onTitleLongClick: {},
+                onItemClick: {}
+            )
+        }
+        .padding(.vertical, 1)
+        .background(Color.Supla.background)
     }
-    .padding(.vertical, 1)
-    .background(Color.Supla.background)
 }

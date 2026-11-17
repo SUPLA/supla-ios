@@ -362,6 +362,7 @@
 "standard_detail_metrics_tab" = "Metingen";
 "standard_detail_history_tab" = "Geschiedenis";
 "standard_detail_list_tab" = "Vul in";
+"standard_detail_buttons_tab" = "Knoppen";
 "standard_detail_timer_tab" = "Timer";
 "standard_detail_settings_tab" = "Instellingen";
 
@@ -844,6 +845,7 @@
 "action_trigger_unlock_temporarily" = "Tijdelijk ontgrendelen";
 "at_locked_temporary_unlock_allowed" = "Vergrendeld (tijdelijk ontgrendelen)";
 "action_trigger_schedule_button_mode" = "Knopmodus";
+"action_trigger_list_related_title" = "Gerelateerde knoppen";
 "action_trigger_schedule_default_temporary_unlock_duration" = "Standaard";
 "action_trigger_schedule_other_temporary_unlock_duration" = "Aangepast";
 "action_trigger_temporary_unlocked" = "tijdelijk ontgrendeld";

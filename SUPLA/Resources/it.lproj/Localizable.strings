@@ -377,6 +377,7 @@
 "standard_detail_schedule_tab" = "Settimana";
 "standard_detail_history_tab" = "Cronologia";
 "standard_detail_list_tab" = "Elenco";
+"standard_detail_buttons_tab" = "Pulsanti";
 "standard_detail_settings_tab" = "Impostazioni";
 
 /* Switch Detail */
@@ -876,6 +877,7 @@
 "action_trigger_unlock_temporarily" = "Sblocca temporaneamente";
 "at_locked_temporary_unlock_allowed" = "Bloccato (sblocco temporaneo)";
 "action_trigger_schedule_button_mode" = "Modalità del pulsante";
+"action_trigger_list_related_title" = "Pulsanti correlati";
 "action_trigger_schedule_default_temporary_unlock_duration" = "Predefinito";
 "action_trigger_schedule_other_temporary_unlock_duration" = "Personalizzato";
 "action_trigger_temporary_unlocked" = "sbloccato temporaneamente";

@@ -121,7 +121,7 @@ extension ContainerGeneralFeature {
             icon: .suplaIcon(name: "fnc_container_level_sensor-on"),
             caption: "Container level sensor",
             userCaption: "",
-            batteryIcon: IssueIcon.Battery25(),
+            iconsBlock: RelatedChannelData.issueIconBlock(IssueIcon.Battery25()),
             showChannelStateIcon: true
         ),
         RelatedChannelData.invisible(id: 2)

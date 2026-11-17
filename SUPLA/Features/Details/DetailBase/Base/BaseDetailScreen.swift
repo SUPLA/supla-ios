@@ -163,6 +163,8 @@ extension DetailBaseFeature {
                 ActionTriggerGeneralFeature.Screen(itemBundle: item)
             case .actionTriggerSchedule:
                 ActionTriggerScheduleFeature.Screen(itemBundle: item)
+            case .actionTriggerList:
+                ActionTriggerListFeature.Screen(itemBundle: item)
             case .gateSchedule:
                 RelayScheduleFeature.Screen(itemBundle: item)
             case .recuperatorGeneral:

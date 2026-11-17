@@ -197,6 +197,7 @@ struct Strings {
         static let tabSchedule = "standard_detail_schedule_tab".toLocalized()
         static let tabHistory = "standard_detail_history_tab".toLocalized()
         static let tabList = "standard_detail_list_tab".toLocalized()
+        static let tabButtons = "standard_detail_buttons_tab".toLocalized()
         static let tabSettings = "standard_detail_settings_tab".toLocalized()
         static let tabRgb = "standard_detail_rgb_tab".toLocalized()
         static let tabDimmer = "standard_detail_dimmer_tab".toLocalized()
@@ -908,6 +909,7 @@ struct Strings {
     }
 
     struct ActionTrigger {
+        static let relatedButtons = "action_trigger_list_related_title".toLocalized()
         static let scheduleButtonMode = "action_trigger_schedule_button_mode".toLocalized()
         static let defaultTemporaryUnlockDuration = "action_trigger_schedule_default_temporary_unlock_duration".toLocalized()
         static let customTemporaryUnlockDuration = "action_trigger_schedule_other_temporary_unlock_duration".toLocalized()

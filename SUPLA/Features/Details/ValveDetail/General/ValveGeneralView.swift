@@ -154,7 +154,7 @@ extension ValveGeneralFeature {
             icon: .originalSuplaIcon(name: "fnc_flood_sensor-on"),
             caption: "Flood sensor",
             userCaption: "",
-            batteryIcon: IssueIcon.Battery25(),
+            iconsBlock: RelatedChannelData.issueIconBlock(IssueIcon.Battery25()),
             showChannelStateIcon: true
         ),
         RelatedChannelData.visible(
@@ -163,7 +163,7 @@ extension ValveGeneralFeature {
             icon: .originalSuplaIcon(name: "fnc_flood_sensor-off"),
             caption: "Flood sensor",
             userCaption: "",
-            batteryIcon: IssueIcon.Battery50(),
+            iconsBlock: RelatedChannelData.issueIconBlock(IssueIcon.Battery50()),
             showChannelStateIcon: false
         ),
         RelatedChannelData.visible(
@@ -172,7 +172,7 @@ extension ValveGeneralFeature {
             icon: .originalSuplaIcon(name: "fnc_flood_sensor-off"),
             caption: "Flood sensor",
             userCaption: "",
-            batteryIcon: IssueIcon.Battery50(),
+            iconsBlock: RelatedChannelData.issueIconBlock(IssueIcon.Battery50()),
             showChannelStateIcon: true
         ),
         RelatedChannelData.invisible(id: 5)

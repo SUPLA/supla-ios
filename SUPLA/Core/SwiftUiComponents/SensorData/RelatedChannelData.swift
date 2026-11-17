@@ -17,6 +17,7 @@
  */
 
 import SharedCore
+import SwiftUI
 
 enum RelatedChannelData: Identifiable {
     var id: Int32 {
@@ -49,10 +50,10 @@ enum RelatedChannelData: Identifiable {
         case let .visible(_, _, _, _, userCaption, _, _): userCaption
         }
     }
-    var batteryIcon: IssueIcon? {
+    var iconsBlock: (() -> AnyView)? {
         switch self {
         case .invisible(_): nil
-        case let .visible(_, _, _, _, _, batteryIcon, _): batteryIcon
+        case let .visible(_, _, _, _, _, iconsBlock, _): iconsBlock
         }
     }
     var showChannelStateIcon: Bool {
@@ -68,7 +69,12 @@ enum RelatedChannelData: Identifiable {
         icon: IconResult?,
         caption: String,
         userCaption: String,
-        batteryIcon: IssueIcon?,
+        iconsBlock: (() -> AnyView)?,
         showChannelStateIcon: Bool
     )
+
+    static func issueIconBlock(_ icon: IssueIcon?) -> (() -> AnyView)? {
+        guard let icon else { return nil }
+        return { AnyView(RelatedChannelIssueIconBlock(icon: icon)) }
+    }
 }

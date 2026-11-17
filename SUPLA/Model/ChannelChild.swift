@@ -17,6 +17,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 import SharedCore
+import SwiftUI
 
 struct ChannelChild: Equatable {
     let channel: SAChannel
@@ -63,19 +64,22 @@ extension ChannelChild {
         )
     }
     
-    func toSensorItem() -> RelatedChannelData {
+    var showInfoIcon: Bool { channel.showInfoIcon }
+    
+    func toSensorItem(iconsBlock: (() -> AnyView)? = nil) -> RelatedChannelData {
         @Singleton<GetChannelBatteryIconUseCase> var getChannelBatteryIconUseCase
         @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
         @Singleton<GetCaptionUseCase> var getCaptionUseCase
         
+        let batteryIcon = getChannelBatteryIconUseCase.invoke(channel: channel.shareable)
         return RelatedChannelData.visible(
             id: channel.remote_id,
             onlineState: channel.onlineState,
             icon: getChannelBaseIconUseCase.invoke(channel: channel),
             caption: getCaptionUseCase.invoke(data: channel.shareable).string,
             userCaption: channel.caption ?? "",
-            batteryIcon: getChannelBatteryIconUseCase.invoke(channel: channel.shareable),
-            showChannelStateIcon: (channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE)) != 0 && channel.state != nil
+            iconsBlock: iconsBlock ?? RelatedChannelData.issueIconBlock(batteryIcon),
+            showChannelStateIcon: showInfoIcon
         )
     }
 }

@@ -7,15 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A7100000000000000000000C /* ActionTriggerScheduleViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7100000000000000000000D /* ActionTriggerScheduleViewState.swift */; };
-		A7100000000000000000000E /* AtProgramSettingsDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7100000000000000000000F /* AtProgramSettingsDialog.swift */; };
-		A71100000000000000000001 /* QuartersSelectionDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71100000000000000000002 /* QuartersSelectionDialog.swift */; };
-		C0DE20261109000200000001 /* ActionTriggerScheduleVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE20261109000200000002 /* ActionTriggerScheduleVMTests.swift */; };
-		A71000000000000000000001 /* ActionTriggerScheduleFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71000000000000000000006 /* ActionTriggerScheduleFeature.swift */; };
-		A71000000000000000000002 /* ActionTriggerScheduleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71000000000000000000007 /* ActionTriggerScheduleScreen.swift */; };
-		A71000000000000000000003 /* ActionTriggerScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71000000000000000000008 /* ActionTriggerScheduleView.swift */; };
-		A71000000000000000000004 /* ActionTriggerScheduleVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71000000000000000000009 /* ActionTriggerScheduleVM.swift */; };
-		A71000000000000000000005 /* TemporaryUnlockDurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7100000000000000000000A /* TemporaryUnlockDurationPicker.swift */; };
+		000000B8A000012F00000140 /* CloudApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000100 /* CloudApi.swift */; };
+		000000B8A000012F00000141 /* ApiAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000101 /* ApiAuthRequest.swift */; };
+		000000B8A000012F00000142 /* ApiAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000102 /* ApiAuthResponse.swift */; };
+		000000B8A000012F00000143 /* ScheduleDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000103 /* ScheduleDto.swift */; };
+		000000B8A000012F00000144 /* ScheduleClosestExecutionsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000104 /* ScheduleClosestExecutionsDto.swift */; };
+		000000B8A000012F00000145 /* ScheduleExecutionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000105 /* ScheduleExecutionDto.swift */; };
+		000000B8A000012F00000146 /* ScheduleConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000106 /* ScheduleConfigDto.swift */; };
+		000000B8A000012F00000147 /* ScheduleConfigActionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000107 /* ScheduleConfigActionDto.swift */; };
+		000000B8A000012F00000148 /* ScheduleStateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000108 /* ScheduleStateDto.swift */; };
+		000000B8A000012F00000149 /* ScheduleStateExecutionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000109 /* ScheduleStateExecutionDto.swift */; };
+		000000B8A000012F0000014A /* ScheduleSubjectDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010A /* ScheduleSubjectDto.swift */; };
+		000000B8A000012F0000014B /* ScheduleSubjectTypeDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010B /* ScheduleSubjectTypeDto.swift */; };
+		000000B8A000012F0000014C /* ScheduleSubjectFunctionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010C /* ScheduleSubjectFunctionDto.swift */; };
+		000000B8A000012F0000014D /* ScheduleActivityConditionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010D /* ScheduleActivityConditionDto.swift */; };
+		000000B8A000012F0000014E /* ScheduleSubjectConflictDetailsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010E /* ScheduleSubjectConflictDetailsDto.swift */; };
+		000000B8A000012F0000014F /* ScheduleSubjectConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010F /* ScheduleSubjectConfigDto.swift */; };
+		000000B8A000012F00000150 /* ScheduleAlexaConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000110 /* ScheduleAlexaConfigDto.swift */; };
+		000000B8A000012F00000151 /* ScheduleGoogleHomeConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000111 /* ScheduleGoogleHomeConfigDto.swift */; };
+		000000B8A000012F00000152 /* ScheduleSubjectActionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000112 /* ScheduleSubjectActionDto.swift */; };
+		000000B8A000012F00000153 /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000113 /* JSONValue.swift */; };
 		010714732656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 010714722656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m */; };
 		010714782656C605009C119F /* SAZWaveWakeupSettingsReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 010714772656C605009C119F /* SAZWaveWakeupSettingsReport.m */; };
 		010714802656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 010714822656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib */; };
@@ -35,15 +46,12 @@
 		011021D325CC4DE700621D41 /* SAChannelBasicCfg.m in Sources */ = {isa = PBXBuildFile; fileRef = 011021D225CC4DE700621D41 /* SAChannelBasicCfg.m */; };
 		01147CE4264BE317002B2E1C /* SAChannelFunctionSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01147CE3264BE317002B2E1C /* SAChannelFunctionSetResult.m */; };
 		011E736824A1367B004D99EE /* SAVLCalibrationTool.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011E736A24A1367B004D99EE /* SAVLCalibrationTool.xib */; };
-		012119152368C3B2004C1993 /* collapsed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012119142368C3B2004C1993 /* collapsed@3x.png */; };
 		0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122613822F396440013E6A2 /* SAThermostatCalendar.m */; };
 		0126B84125BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0126B83F25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m */; };
 		012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */; };
 		0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */; };
 		013D350423350C48006E3B75 /* SAThermostatScheduleCfg.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D350323350C48006E3B75 /* SAThermostatScheduleCfg.m */; };
 		013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 013F7EC023EB33E30061A497 /* SAChannelStateExtendedValue.m */; };
-		013F7EC423EB4B500061A497 /* battery@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F7EC223EB4B500061A497 /* battery@3x.png */; };
-		013F7EC523EB4B500061A497 /* battery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F7EC323EB4B500061A497 /* battery@2x.png */; };
 		01478826265317B000CC8A01 /* SACalCfgProgressReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 01478825265317B000CC8A01 /* SACalCfgProgressReport.m */; };
 		0148932A25AA03EE00B9974E /* btnOK_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0148932825AA03EE00B9974E /* btnOK_disabled@2x.png */; };
 		0148932B25AA03EE00B9974E /* btnOK_disabled@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0148932925AA03EE00B9974E /* btnOK_disabled@3x.png */; };
@@ -56,8 +64,6 @@
 		01511CFB24F50B470081A1EC /* SAPreloaderPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */; };
 		01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01567445232FCFD700397393 /* SAIncrementalMeterExtendedValue.m */; };
 		01567449232FD0A100397393 /* SAImpulseCounterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01567448232FD0A100397393 /* SAImpulseCounterExtendedValue.m */; };
-		0158396A2576A82A005E615D /* ledalwaysoffwhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839642576A82A005E615D /* ledalwaysoffwhite@3x.png */; };
-		0158396B2576A82A005E615D /* ledoffwhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839652576A82A005E615D /* ledoffwhite@3x.png */; };
 		0158396E2576A82A005E615D /* ledonwhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839682576A82A005E615D /* ledonwhite@3x.png */; };
 		015A983C265594B300B6E6C6 /* NSNumber+SUPLA.m in Sources */ = {isa = PBXBuildFile; fileRef = 015A983B265594B300B6E6C6 /* NSNumber+SUPLA.m */; };
 		015A98412655958500B6E6C6 /* NSDictionary+SUPLA.m in Sources */ = {isa = PBXBuildFile; fileRef = 015A98402655958500B6E6C6 /* NSDictionary+SUPLA.m */; };
@@ -103,10 +109,7 @@
 		01CEAC2525B9AA71009C3BFD /* dgftransparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC2325B9AA71009C3BFD /* dgftransparent@3x.png */; };
 		01CEAC2625B9AA71009C3BFD /* dgfopaque@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC2425B9AA71009C3BFD /* dgfopaque@3x.png */; };
 		01CEAC2A25B9BAE2009C3BFD /* SADigiglassValueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEAC2925B9BAE2009C3BFD /* SADigiglassValueTests.m */; };
-		01D2C38D22C3B0A700BF1A10 /* graphon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D2C38B22C3B0A700BF1A10 /* graphon.png */; };
-		01D2C38E22C3B0A700BF1A10 /* graphoff.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D2C38C22C3B0A700BF1A10 /* graphoff.png */; };
 		01D32F3225C999CF00793A72 /* btnbackl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D32F3125C999CF00793A72 /* btnbackl@2x.png */; };
-		01D3FF6724A20E26000EBE77 /* backbtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D3FF6624A20E26000EBE77 /* backbtn@3x.png */; };
 		01D6A102249BEC8C006B3757 /* SAVLCalibrationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D6A101249BEC8C006B3757 /* SAVLCalibrationTool.m */; };
 		01D6A106249C0EAC006B3757 /* vlinfo@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D6A105249C0EAC006B3757 /* vlinfo@3.png */; };
 		01D6A109249C0F40006B3757 /* vlrestore@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D6A107249C0F40006B3757 /* vlrestore@3.png */; };
@@ -146,8 +149,6 @@
 		405AC4321BC158E8004F7311 /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 405AC4301BC158E8004F7311 /* Quicksand-Regular.ttf */; };
 		405C49A01FCAFFD400C15602 /* wizard_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 405C499E1FCAFFD100C15602 /* wizard_error@2x.png */; };
 		405C49A11FCAFFD400C15602 /* wizard_ok@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 405C499F1FCAFFD200C15602 /* wizard_ok@2x.png */; };
-		4067782C1BCBC647008DD37F /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4067782A1BCBC647008DD37F /* menu@2x.png */; };
-		4067782D1BCBC647008DD37F /* menu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4067782B1BCBC647008DD37F /* menu@3x.png */; };
 		406C92D41BCD8518007BA87A /* btnOK@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 406C92D31BCD8518007BA87A /* btnOK@2x.png */; };
 		4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077ACE120A21BB100BD2216 /* CreateAccountVC.m */; };
 		407D4AFB1BC6D6AA009A5505 /* btnOK@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 407D4AFA1BC6D6AA009A5505 /* btnOK@3x.png */; };
@@ -173,15 +174,9 @@
 		40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA7620C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m */; };
 		40C7BA8720C0492500ACEE42 /* SAChannelBase+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA8420C0492500ACEE42 /* SAChannelBase+CoreDataClass.m */; };
 		40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA8620C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m */; };
-		40CF96D81BC81A470030EFFF /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96D41BC81A470030EFFF /* error@2x.png */; };
-		40CF96D91BC81A470030EFFF /* error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96D51BC81A470030EFFF /* error@3x.png */; };
-		40D397AD1FAF547B00BF477D /* retry@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D397AC1FAF547B00BF477D /* retry@3x.png */; };
 		40D69DEE1BB574FE00937769 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D69DED1BB574FE00937769 /* Database.m */; };
 		40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA568A1DCA1908008F05DE /* _SALocation+CoreDataProperties.m */; };
 		40DB208D1DC9049400FAFAB0 /* RGBWDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DB208F1DC9049400FAFAB0 /* RGBWDetail.xib */; };
-		40DE1A291BCCFF8A004CF43B /* feedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A241BCCFF8A004CF43B /* feedback@2x.png */; };
-		40DE1A2A1BCCFF8A004CF43B /* feedback@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A251BCCFF8A004CF43B /* feedback@3x.png */; };
-		40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A281BCCFF8A004CF43B /* settings@2x.png */; };
 		40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A421BCD6F06004CF43B /* Localizable.strings */; };
 		40E8BE8D1FC06B4200FB2FE6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */; };
 		436A44A71A5CB44B93225E0D /* WeeklyScheduleProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C397550E5CE1A8D6868CF8 /* WeeklyScheduleProgram.swift */; };
@@ -318,11 +313,6 @@
 		A51474662EA66C230044DEF2 /* RelatedChannelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51474652EA66C1D0044DEF2 /* RelatedChannelsView.swift */; };
 		A51474682EA771740044DEF2 /* GateGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51474672EA771700044DEF2 /* GateGeneralView.swift */; };
 		A514746A2EA7741B0044DEF2 /* GateGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51474692EA774180044DEF2 /* GateGeneralVM.swift */; };
-		B70000012F90000100000001 /* ActionTriggerGeneralFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70000012F90000100000007 /* ActionTriggerGeneralFeature.swift */; };
-		B70000012F90000100000002 /* ActionTriggerGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70000012F90000100000008 /* ActionTriggerGeneralScreen.swift */; };
-		B70000012F90000100000003 /* ActionTriggerGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70000012F90000100000009 /* ActionTriggerGeneralView.swift */; };
-		B70000012F90000100000004 /* ActionTriggerGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70000012F9000010000000A /* ActionTriggerGeneralViewState.swift */; };
-		B70000012F90000100000005 /* ActionTriggerGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70000012F9000010000000B /* ActionTriggerGeneralVM.swift */; };
 		A514746E2EA7AE620044DEF2 /* OrientationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514746D2EA7AE5D0044DEF2 /* OrientationObserver.swift */; };
 		A51474702EA8DA080044DEF2 /* ReadGroupWithChannelsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514746F2EA8DA010044DEF2 /* ReadGroupWithChannelsUseCase.swift */; };
 		A517DFED2CFD9C2300D6148C /* SAProfileServer+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517DFEC2CFD9C1C00D6148C /* SAProfileServer+Mock.swift */; };
@@ -353,7 +343,6 @@
 		A51BE90F2AAAFB1400718F2F /* SetChannelConfigUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE90E2AAAFB1400718F2F /* SetChannelConfigUseCase.swift */; };
 		A51BE9112AAAFFC200718F2F /* SuplaChannelWeeklyScheduleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9102AAAFFC200718F2F /* SuplaChannelWeeklyScheduleConfig.swift */; };
 		A51BE9132AAAFFEB00718F2F /* SuplaChannelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9122AAAFFEB00718F2F /* SuplaChannelConfig.swift */; };
-		C0DE20261112000100000001 /* SuplaChannelActionTriggerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE20261112000100000002 /* SuplaChannelActionTriggerConfig.swift */; };
 		A51BE9162AAB022400718F2F /* DayOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9152AAB022400718F2F /* DayOfWeek.swift */; };
 		A51BE9182AAB027400718F2F /* QuarterOfHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9172AAB027400718F2F /* QuarterOfHour.swift */; };
 		A51BE91B2AAB0DF900718F2F /* NativeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE91A2AAB0DF900718F2F /* NativeConfig.swift */; };
@@ -672,7 +661,6 @@
 		A562866D303320E200851CED /* IconValueListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562866C303320D500851CED /* IconValueListItemView.swift */; };
 		A562869E3033311700851CED /* DoubleIconValueListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562869D3033310E00851CED /* DoubleIconValueListItemView.swift */; };
 		A56286A13033381C00851CED /* ThermostatListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286A03033381500851CED /* ThermostatListItemView.swift */; };
-		A56286B13034500000851CED /* ActionTriggerListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286B03034500000851CED /* ActionTriggerListItemView.swift */; };
 		A56286A330333A7100851CED /* SetpointTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286A230333A6700851CED /* SetpointTemperature.swift */; };
 		A56286A530334EE500851CED /* FontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286A430334EE200851CED /* FontSize.swift */; };
 		A56286A630334EE500851CED /* FontSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286A430334EE200851CED /* FontSize.swift */; };
@@ -681,6 +669,7 @@
 		A56286AB30343BA200851CED /* HeatpolThermostatListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286AA30343B9300851CED /* HeatpolThermostatListItemView.swift */; };
 		A56286AD3034423100851CED /* LocationListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286AC3034422A00851CED /* LocationListItemView.swift */; };
 		A56286AF30344A7900851CED /* SceneListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286AE30344A7500851CED /* SceneListItem.swift */; };
+		A56286B13034500000851CED /* ActionTriggerListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56286B03034500000851CED /* ActionTriggerListItemView.swift */; };
 		A562870D30346F2500851CED /* CreateProfileChannelsListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562870C30346F1D00851CED /* CreateProfileChannelsListUseCase.swift */; };
 		A562870F30346F2500851CED /* ChannelToMainListItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562870E30346F2500851CED /* ChannelToMainListItemUseCase.swift */; };
 		A562870F30347B8000851CED /* HomePlusThermostatValueStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562870E30347B7B00851CED /* HomePlusThermostatValueStringProvider.swift */; };
@@ -706,7 +695,6 @@
 		A56851B32D6C8F4A00942F8B /* ChannelUpdatesObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B22D6C8F4500942F8B /* ChannelUpdatesObserver.swift */; };
 		A56851B62D6CA1A000942F8B /* CaptionChangeDialogFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B52D6CA19800942F8B /* CaptionChangeDialogFeature.swift */; };
 		A56851B82D6CA1EE00942F8B /* CaptionChangeDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851B72D6CA1EA00942F8B /* CaptionChangeDialogView.swift */; };
-		C6A000012F00000000000002 /* CaptionChangeDialogState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A000012F00000000000001 /* CaptionChangeDialogState.swift */; };
 		A56851BE2D6DA65F00942F8B /* CaptionChangeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56851BD2D6DA65900942F8B /* CaptionChangeUseCase.swift */; };
 		A56D5ACD2A4C304C004F45DA /* SingleCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56D5ACC2A4C304C004F45DA /* SingleCall.swift */; };
 		A56D5ACF2A4C37AD004F45DA /* SingleCallWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A56D5ACE2A4C37AD004F45DA /* SingleCallWrapper.m */; };
@@ -726,7 +714,6 @@
 		A56F8D132DA9357200F097CE /* ChannelListViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56F8D122DA9356600F097CE /* ChannelListViewState.swift */; };
 		A573B0962A5FD152001E19D0 /* FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0952A5FD152001E19D0 /* FatalError.swift */; };
 		A573B09E2A5FEF57001E19D0 /* SwitchGeneralVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B09D2A5FEF57001E19D0 /* SwitchGeneralVMTests.swift */; };
-		C0DE20261109000100000011 /* ActionTriggerGeneralVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE20261109000100000012 /* ActionTriggerGeneralVMTests.swift */; };
 		A573B0A62A600733001E19D0 /* SwitchTimerDetailVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0A52A600733001E19D0 /* SwitchTimerDetailVMTests.swift */; };
 		A573B0A82A60077B001E19D0 /* StartTimerUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0A72A60077B001E19D0 /* StartTimerUseCaseMock.swift */; };
 		A573B0AA2A601A57001E19D0 /* ReadChannelByRemoteIdUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0A92A601A57001E19D0 /* ReadChannelByRemoteIdUseCaseTests.swift */; };
@@ -1608,6 +1595,14 @@
 		A6B2D10A3E6A4C1800D1BEEF /* RecuperatorGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2D1023E6A4C1800D1BEEF /* RecuperatorGeneralViewState.swift */; };
 		A6B2D10C3E6A4C1800D1BEEF /* RecuperatorGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2D1033E6A4C1800D1BEEF /* RecuperatorGeneralView.swift */; };
 		A6B2D10D3E6A4C1800D1BEEF /* RecuperatorGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2D1043E6A4C1800D1BEEF /* RecuperatorGeneralVM.swift */; };
+		A71000000000000000000001 /* ActionTriggerScheduleFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71000000000000000000006 /* ActionTriggerScheduleFeature.swift */; };
+		A71000000000000000000002 /* ActionTriggerScheduleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71000000000000000000007 /* ActionTriggerScheduleScreen.swift */; };
+		A71000000000000000000003 /* ActionTriggerScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71000000000000000000008 /* ActionTriggerScheduleView.swift */; };
+		A71000000000000000000004 /* ActionTriggerScheduleVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71000000000000000000009 /* ActionTriggerScheduleVM.swift */; };
+		A71000000000000000000005 /* TemporaryUnlockDurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7100000000000000000000A /* TemporaryUnlockDurationPicker.swift */; };
+		A7100000000000000000000C /* ActionTriggerScheduleViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7100000000000000000000D /* ActionTriggerScheduleViewState.swift */; };
+		A7100000000000000000000E /* AtProgramSettingsDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7100000000000000000000F /* AtProgramSettingsDialog.swift */; };
+		A71100000000000000000001 /* QuartersSelectionDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71100000000000000000002 /* QuartersSelectionDialog.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535355276927690077BFFB /* LocationOrderingVC.swift */; };
 		AE535357276927690077BFFB /* LocationOrderingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535358276927690077BFFB /* LocationOrderingScreen.swift */; };
@@ -1621,9 +1616,6 @@
 		AEED87DF276F1FCE005D76CF /* LocationOrderingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEED87DE276F1FCE005D76CF /* LocationOrderingVM.swift */; };
 		AEF1F9BA27726D56008E441A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF1F9B927726D56008E441A /* DetailViewController.swift */; };
 		AEF79D8B2712FE1800D7554B /* AppSettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8A2712FE1800D7554B /* AppSettingsVM.swift */; };
-		B3A100002F77000000000001 /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A100002F77000000000002 /* AppSettingsView.swift */; };
-		B3A100002F77000000000004 /* AppSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A100002F77000000000003 /* AppSettingsFeature.swift */; };
-		B3A100002F77000000000006 /* AppSettingsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A100002F77000000000005 /* AppSettingsViewState.swift */; };
 		AEF79D912713088100D7554B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D902713088100D7554B /* Strings.swift */; };
 		B01000002F43000000000002 /* ThermostatGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01000002F43000000000001 /* ThermostatGeneralView.swift */; };
 		B02000002F43000000000002 /* ThermostatGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02000002F43000000000001 /* ThermostatGeneralViewState.swift */; };
@@ -1635,6 +1627,9 @@
 		B2A100001111111100000004 /* EspRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A100001111111100000003 /* EspRepositoryMock.swift */; };
 		B2A100001111111100000007 /* AuthorizeEspUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A100001111111100000006 /* AuthorizeEspUseCaseTests.swift */; };
 		B2A100001111111100000009 /* CreateEspPasswordUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A100001111111100000008 /* CreateEspPasswordUseCaseTests.swift */; };
+		B3A100002F77000000000001 /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A100002F77000000000002 /* AppSettingsView.swift */; };
+		B3A100002F77000000000004 /* AppSettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A100002F77000000000003 /* AppSettingsFeature.swift */; };
+		B3A100002F77000000000006 /* AppSettingsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A100002F77000000000005 /* AppSettingsViewState.swift */; };
 		B3D000023109000000000002 /* LocationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000013109000000000001 /* LocationSection.swift */; };
 		B3D000043109000000000004 /* LocationSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000033109000000000003 /* LocationSectionTests.swift */; };
 		B3D000063109000000000006 /* MainListItemSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D000053109000000000005 /* MainListItemSection.swift */; };
@@ -1643,6 +1638,11 @@
 		B60000000000000000000003 /* ObserveChannelWithChildrenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60000000000000000000004 /* ObserveChannelWithChildrenUseCase.swift */; };
 		B61000000000000000000001 /* ObserveGroupWithChannelsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61000000000000000000002 /* ObserveGroupWithChannelsUseCase.swift */; };
 		B62000000000000000000001 /* ObserveRelayProgramStateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62000000000000000000002 /* ObserveRelayProgramStateUseCase.swift */; };
+		B70000012F90000100000001 /* ActionTriggerGeneralFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70000012F90000100000007 /* ActionTriggerGeneralFeature.swift */; };
+		B70000012F90000100000002 /* ActionTriggerGeneralScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70000012F90000100000008 /* ActionTriggerGeneralScreen.swift */; };
+		B70000012F90000100000003 /* ActionTriggerGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70000012F90000100000009 /* ActionTriggerGeneralView.swift */; };
+		B70000012F90000100000004 /* ActionTriggerGeneralViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70000012F9000010000000A /* ActionTriggerGeneralViewState.swift */; };
+		B70000012F90000100000005 /* ActionTriggerGeneralVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70000012F9000010000000B /* ActionTriggerGeneralVM.swift */; };
 		B7A000012F00000000000002 /* View+SettingsSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A000012F00000000000001 /* View+SettingsSurface.swift */; };
 		B7A000012F00000000000004 /* SettingsView+Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A000012F00000000000003 /* SettingsView+Block.swift */; };
 		B7A000012F00000000000006 /* SettingsView+NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A000012F00000000000005 /* SettingsView+NavigationItem.swift */; };
@@ -1657,6 +1657,7 @@
 		B8A000012F00000000000012 /* ScheduleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A000012F00000000000006 /* ScheduleListView.swift */; };
 		B8A000012F00000000000013 /* ScheduleListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A000012F00000000000007 /* ScheduleListScreen.swift */; };
 		B8A000012F00000000000016 /* CloudApiTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A000012F00000000000017 /* CloudApiTokenStore.swift */; };
+		B90000012F90000100000001 /* ExecuteActionTriggerActionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90000012F90000100000002 /* ExecuteActionTriggerActionUseCase.swift */; };
 		BE16124B24AE10DA69CD99A5 /* RelayScheduleVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C521012C3F8CA293B8803B7 /* RelayScheduleVM.swift */; };
 		C0DE15700000000000000001 /* ListItemScaffold.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE15700000000000000011 /* ListItemScaffold.swift */; };
 		C0DE15700000000000000002 /* ListItemStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE15700000000000000012 /* ListItemStatusIndicator.swift */; };
@@ -1670,8 +1671,11 @@
 		C0DE1570000000000000000B /* MainListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE1570000000000000001B /* MainListViewModel.swift */; };
 		C0DE20260908000100000102 /* AppRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE20260908000100000101 /* AppRouterTests.swift */; };
 		C0DE20260917000100000102 /* SceneDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE20260917000100000101 /* SceneDelegateTests.swift */; };
+		C0DE20261109000100000011 /* ActionTriggerGeneralVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE20261109000100000012 /* ActionTriggerGeneralVMTests.swift */; };
+		C0DE20261109000200000001 /* ActionTriggerScheduleVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE20261109000200000002 /* ActionTriggerScheduleVMTests.swift */; };
+		C0DE20261112000100000001 /* SuplaChannelActionTriggerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE20261112000100000002 /* SuplaChannelActionTriggerConfig.swift */; };
+		C6A000012F00000000000002 /* CaptionChangeDialogState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A000012F00000000000001 /* CaptionChangeDialogState.swift */; };
 		D00D00000000000000000001 /* ExecuteRelayActionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D00000000000000000002 /* ExecuteRelayActionUseCase.swift */; };
-		B90000012F90000100000001 /* ExecuteActionTriggerActionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90000012F90000100000002 /* ExecuteActionTriggerActionUseCase.swift */; };
 		D00D00000000000000000003 /* OperationButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D00000000000000000004 /* OperationButtons.swift */; };
 		D00D00000000000000000005 /* ChannelProgramState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D00000000000000000006 /* ChannelProgramState.swift */; };
 		D00D00000000000000000007 /* LockSuplaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D00000000000000000008 /* LockSuplaButton.swift */; };
@@ -1681,26 +1685,11 @@
 		D20000000000000000000001 /* SwitchTimerDetailViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20000000000000000000002 /* SwitchTimerDetailViewState.swift */; };
 		D37A5D010000000000000002 /* DetailPreviewScaffold.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37A5D010000000000000001 /* DetailPreviewScaffold.swift */; };
 		D6532852E6766DE5B1C4488D /* Pods_SUPLAWidgetsExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D0242CC965F27890E30863 /* Pods_SUPLAWidgetsExtension.framework */; };
-		000000B8A000012F00000140 /* CloudApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000100 /* CloudApi.swift */; };
-		000000B8A000012F00000141 /* ApiAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000101 /* ApiAuthRequest.swift */; };
-		000000B8A000012F00000142 /* ApiAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000102 /* ApiAuthResponse.swift */; };
-		000000B8A000012F00000143 /* ScheduleDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000103 /* ScheduleDto.swift */; };
-		000000B8A000012F00000144 /* ScheduleClosestExecutionsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000104 /* ScheduleClosestExecutionsDto.swift */; };
-		000000B8A000012F00000145 /* ScheduleExecutionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000105 /* ScheduleExecutionDto.swift */; };
-		000000B8A000012F00000146 /* ScheduleConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000106 /* ScheduleConfigDto.swift */; };
-		000000B8A000012F00000147 /* ScheduleConfigActionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000107 /* ScheduleConfigActionDto.swift */; };
-		000000B8A000012F00000148 /* ScheduleStateDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000108 /* ScheduleStateDto.swift */; };
-		000000B8A000012F00000149 /* ScheduleStateExecutionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000109 /* ScheduleStateExecutionDto.swift */; };
-		000000B8A000012F0000014A /* ScheduleSubjectDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010A /* ScheduleSubjectDto.swift */; };
-		000000B8A000012F0000014B /* ScheduleSubjectTypeDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010B /* ScheduleSubjectTypeDto.swift */; };
-		000000B8A000012F0000014C /* ScheduleSubjectFunctionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010C /* ScheduleSubjectFunctionDto.swift */; };
-		000000B8A000012F0000014D /* ScheduleActivityConditionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010D /* ScheduleActivityConditionDto.swift */; };
-		000000B8A000012F0000014E /* ScheduleSubjectConflictDetailsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010E /* ScheduleSubjectConflictDetailsDto.swift */; };
-		000000B8A000012F0000014F /* ScheduleSubjectConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F0000010F /* ScheduleSubjectConfigDto.swift */; };
-		000000B8A000012F00000150 /* ScheduleAlexaConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000110 /* ScheduleAlexaConfigDto.swift */; };
-		000000B8A000012F00000151 /* ScheduleGoogleHomeConfigDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000111 /* ScheduleGoogleHomeConfigDto.swift */; };
-		000000B8A000012F00000152 /* ScheduleSubjectActionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000112 /* ScheduleSubjectActionDto.swift */; };
-		000000B8A000012F00000153 /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000B8A000012F00000113 /* JSONValue.swift */; };
+		DA7A00000000000000000001 /* ActionTriggerListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7A00000000000000000002 /* ActionTriggerListFeature.swift */; };
+		DA7A00000000000000000011 /* ActionTriggerListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7A00000000000000000012 /* ActionTriggerListScreen.swift */; };
+		DA7A00000000000000000013 /* ActionTriggerListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7A00000000000000000014 /* ActionTriggerListVM.swift */; };
+		DA7A00000000000000000015 /* ActionTriggerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7A00000000000000000016 /* ActionTriggerListView.swift */; };
+		DA7A00000000000000000017 /* ActionTriggerListViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7A00000000000000000018 /* ActionTriggerListViewState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1746,15 +1735,26 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A7100000000000000000000D /* ActionTriggerScheduleViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleViewState.swift; sourceTree = "<group>"; };
-		A7100000000000000000000F /* AtProgramSettingsDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtProgramSettingsDialog.swift; sourceTree = "<group>"; };
-		A71100000000000000000002 /* QuartersSelectionDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuartersSelectionDialog.swift; sourceTree = "<group>"; };
-		C0DE20261109000200000002 /* ActionTriggerScheduleVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleVMTests.swift; sourceTree = "<group>"; };
-		A71000000000000000000006 /* ActionTriggerScheduleFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleFeature.swift; sourceTree = "<group>"; };
-		A71000000000000000000007 /* ActionTriggerScheduleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleScreen.swift; sourceTree = "<group>"; };
-		A71000000000000000000008 /* ActionTriggerScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleView.swift; sourceTree = "<group>"; };
-		A71000000000000000000009 /* ActionTriggerScheduleVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleVM.swift; sourceTree = "<group>"; };
-		A7100000000000000000000A /* TemporaryUnlockDurationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryUnlockDurationPicker.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000100 /* CloudApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudApi.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000101 /* ApiAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiAuthRequest.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000102 /* ApiAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiAuthResponse.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000103 /* ScheduleDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000104 /* ScheduleClosestExecutionsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleClosestExecutionsDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000105 /* ScheduleExecutionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleExecutionDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000106 /* ScheduleConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleConfigDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000107 /* ScheduleConfigActionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleConfigActionDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000108 /* ScheduleStateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleStateDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000109 /* ScheduleStateExecutionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleStateExecutionDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F0000010A /* ScheduleSubjectDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F0000010B /* ScheduleSubjectTypeDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectTypeDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F0000010C /* ScheduleSubjectFunctionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectFunctionDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F0000010D /* ScheduleActivityConditionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleActivityConditionDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F0000010E /* ScheduleSubjectConflictDetailsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectConflictDetailsDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F0000010F /* ScheduleSubjectConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectConfigDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000110 /* ScheduleAlexaConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAlexaConfigDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000111 /* ScheduleGoogleHomeConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleGoogleHomeConfigDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000112 /* ScheduleSubjectActionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectActionDto.swift; sourceTree = "<group>"; };
+		000000B8A000012F00000113 /* JSONValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
 		010714712656A6FB009C119F /* SAZWaveWakeupSettingsDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveWakeupSettingsDialog.h; sourceTree = "<group>"; };
 		010714722656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveWakeupSettingsDialog.m; sourceTree = "<group>"; };
 		010714762656C605009C119F /* SAZWaveWakeupSettingsReport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveWakeupSettingsReport.h; sourceTree = "<group>"; };
@@ -1820,7 +1820,6 @@
 		01172903247473E200DAF1D0 /* SUPLA 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 6.xcdatamodel"; sourceTree = "<group>"; };
 		011E736924A1367B004D99EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Resources/Base.lproj/SAVLCalibrationTool.xib; sourceTree = "<group>"; };
 		012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 5.xcdatamodel"; sourceTree = "<group>"; };
-		012119142368C3B2004C1993 /* collapsed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collapsed@3x.png"; sourceTree = "<group>"; };
 		0122613722F396440013E6A2 /* SAThermostatCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatCalendar.h; sourceTree = "<group>"; };
 		0122613822F396440013E6A2 /* SAThermostatCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatCalendar.m; sourceTree = "<group>"; };
 		0126B83E25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveConfigurationWizardVC.h; sourceTree = "<group>"; };
@@ -1833,8 +1832,6 @@
 		013D350323350C48006E3B75 /* SAThermostatScheduleCfg.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatScheduleCfg.m; sourceTree = "<group>"; };
 		013F7EBF23EB33E30061A497 /* SAChannelStateExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelStateExtendedValue.h; sourceTree = "<group>"; };
 		013F7EC023EB33E30061A497 /* SAChannelStateExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelStateExtendedValue.m; sourceTree = "<group>"; };
-		013F7EC223EB4B500061A497 /* battery@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "battery@3x.png"; sourceTree = "<group>"; };
-		013F7EC323EB4B500061A497 /* battery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "battery@2x.png"; sourceTree = "<group>"; };
 		013FB109262CA21300A0E71D /* SUPLA 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 8.xcdatamodel"; sourceTree = "<group>"; };
 		01478824265317B000CC8A01 /* SACalCfgProgressReport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SACalCfgProgressReport.h; sourceTree = "<group>"; };
 		01478825265317B000CC8A01 /* SACalCfgProgressReport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SACalCfgProgressReport.m; sourceTree = "<group>"; };
@@ -1854,8 +1851,6 @@
 		01567445232FCFD700397393 /* SAIncrementalMeterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAIncrementalMeterExtendedValue.m; sourceTree = "<group>"; };
 		01567447232FD0A100397393 /* SAImpulseCounterExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAImpulseCounterExtendedValue.h; sourceTree = "<group>"; };
 		01567448232FD0A100397393 /* SAImpulseCounterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAImpulseCounterExtendedValue.m; sourceTree = "<group>"; };
-		015839642576A82A005E615D /* ledalwaysoffwhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ledalwaysoffwhite@3x.png"; sourceTree = "<group>"; };
-		015839652576A82A005E615D /* ledoffwhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ledoffwhite@3x.png"; sourceTree = "<group>"; };
 		015839682576A82A005E615D /* ledonwhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ledonwhite@3x.png"; sourceTree = "<group>"; };
 		015839742576AA40005E615D /* pl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = pl; path = Resources/pl.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		015839792576F866005E615D /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = Resources/pl.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
@@ -1983,10 +1978,7 @@
 		01CEAC2425B9AA71009C3BFD /* dgfopaque@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dgfopaque@3x.png"; sourceTree = "<group>"; };
 		01CEAC2925B9BAE2009C3BFD /* SADigiglassValueTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADigiglassValueTests.m; sourceTree = "<group>"; };
 		01CFF6D12365BCCD00C827FB /* SUPLA 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 4.xcdatamodel"; sourceTree = "<group>"; };
-		01D2C38B22C3B0A700BF1A10 /* graphon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graphon.png; sourceTree = "<group>"; };
-		01D2C38C22C3B0A700BF1A10 /* graphoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graphoff.png; sourceTree = "<group>"; };
 		01D32F3125C999CF00793A72 /* btnbackl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnbackl@2x.png"; sourceTree = "<group>"; };
-		01D3FF6624A20E26000EBE77 /* backbtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backbtn@3x.png"; sourceTree = "<group>"; };
 		01D5E0C622DB7FAE00FBE1DC /* SUPLA-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SUPLA-Bridging-Header.h"; sourceTree = "<group>"; };
 		01D6A100249BEC8C006B3757 /* SAVLCalibrationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAVLCalibrationTool.h; sourceTree = "<group>"; };
 		01D6A101249BEC8C006B3757 /* SAVLCalibrationTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAVLCalibrationTool.m; sourceTree = "<group>"; };
@@ -2049,8 +2041,6 @@
 		405AC4301BC158E8004F7311 /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
 		405C499E1FCAFFD100C15602 /* wizard_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard_error@2x.png"; sourceTree = "<group>"; };
 		405C499F1FCAFFD200C15602 /* wizard_ok@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wizard_ok@2x.png"; sourceTree = "<group>"; };
-		4067782A1BCBC647008DD37F /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
-		4067782B1BCBC647008DD37F /* menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@3x.png"; sourceTree = "<group>"; };
 		406C92D31BCD8518007BA87A /* btnOK@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnOK@2x.png"; sourceTree = "<group>"; };
 		407004261BB5706500F6187F /* SUPLA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SUPLA.xcdatamodel; sourceTree = "<group>"; };
 		4077ACE020A21BB100BD2216 /* CreateAccountVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAccountVC.h; sourceTree = "<group>"; };
@@ -2096,10 +2086,7 @@
 		40C7BA8420C0492500ACEE42 /* SAChannelBase+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelBase+CoreDataClass.m"; sourceTree = "<group>"; };
 		40C7BA8520C0492500ACEE42 /* SAChannelBase+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelBase+CoreDataProperties.h"; sourceTree = "<group>"; };
 		40C7BA8620C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelBase+CoreDataProperties.m"; sourceTree = "<group>"; };
-		40CF96D41BC81A470030EFFF /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
-		40CF96D51BC81A470030EFFF /* error@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@3x.png"; sourceTree = "<group>"; };
 		40D2B418207B857700608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
-		40D397AC1FAF547B00BF477D /* retry@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "retry@3x.png"; sourceTree = "<group>"; };
 		40D69DEC1BB574FE00937769 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		40D69DED1BB574FE00937769 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		40DA567D1DCA1515008F05DE /* SAChannel+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAChannel+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -2109,9 +2096,6 @@
 		40DA56891DCA1908008F05DE /* _SALocation+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "_SALocation+CoreDataProperties.h"; sourceTree = "<group>"; };
 		40DA568A1DCA1908008F05DE /* _SALocation+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "_SALocation+CoreDataProperties.m"; sourceTree = "<group>"; };
 		40DB209A1DC904BF00FAFAB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Resources/Base.lproj/RGBWDetail.xib; sourceTree = "<group>"; };
-		40DE1A241BCCFF8A004CF43B /* feedback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback@2x.png"; sourceTree = "<group>"; };
-		40DE1A251BCCFF8A004CF43B /* feedback@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback@3x.png"; sourceTree = "<group>"; };
-		40DE1A281BCCFF8A004CF43B /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		40DE1A431BCD6F08004CF43B /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40DE1A441BCD6F09004CF43B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40DE1A471BCD7207004CF43B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -2254,11 +2238,6 @@
 		A51474652EA66C1D0044DEF2 /* RelatedChannelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedChannelsView.swift; sourceTree = "<group>"; };
 		A51474672EA771700044DEF2 /* GateGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateGeneralView.swift; sourceTree = "<group>"; };
 		A51474692EA774180044DEF2 /* GateGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GateGeneralVM.swift; sourceTree = "<group>"; };
-		B70000012F90000100000007 /* ActionTriggerGeneralFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerGeneralFeature.swift; sourceTree = "<group>"; };
-		B70000012F90000100000008 /* ActionTriggerGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerGeneralScreen.swift; sourceTree = "<group>"; };
-		B70000012F90000100000009 /* ActionTriggerGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerGeneralView.swift; sourceTree = "<group>"; };
-		B70000012F9000010000000A /* ActionTriggerGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerGeneralViewState.swift; sourceTree = "<group>"; };
-		B70000012F9000010000000B /* ActionTriggerGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerGeneralVM.swift; sourceTree = "<group>"; };
 		A514746D2EA7AE5D0044DEF2 /* OrientationObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationObserver.swift; sourceTree = "<group>"; };
 		A514746F2EA8DA010044DEF2 /* ReadGroupWithChannelsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadGroupWithChannelsUseCase.swift; sourceTree = "<group>"; };
 		A517DFEC2CFD9C1C00D6148C /* SAProfileServer+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAProfileServer+Mock.swift"; sourceTree = "<group>"; };
@@ -2287,7 +2266,6 @@
 		A51BE90E2AAAFB1400718F2F /* SetChannelConfigUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetChannelConfigUseCase.swift; sourceTree = "<group>"; };
 		A51BE9102AAAFFC200718F2F /* SuplaChannelWeeklyScheduleConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelWeeklyScheduleConfig.swift; sourceTree = "<group>"; };
 		A51BE9122AAAFFEB00718F2F /* SuplaChannelConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelConfig.swift; sourceTree = "<group>"; };
-		C0DE20261112000100000002 /* SuplaChannelActionTriggerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelActionTriggerConfig.swift; sourceTree = "<group>"; };
 		A51BE9152AAB022400718F2F /* DayOfWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfWeek.swift; sourceTree = "<group>"; };
 		A51BE9172AAB027400718F2F /* QuarterOfHour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterOfHour.swift; sourceTree = "<group>"; };
 		A51BE91A2AAB0DF900718F2F /* NativeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeConfig.swift; sourceTree = "<group>"; };
@@ -2614,13 +2592,13 @@
 		A562866C303320D500851CED /* IconValueListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconValueListItemView.swift; sourceTree = "<group>"; };
 		A562869D3033310E00851CED /* DoubleIconValueListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleIconValueListItemView.swift; sourceTree = "<group>"; };
 		A56286A03033381500851CED /* ThermostatListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatListItemView.swift; sourceTree = "<group>"; };
-		A56286B03034500000851CED /* ActionTriggerListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerListItemView.swift; sourceTree = "<group>"; };
 		A56286A230333A6700851CED /* SetpointTemperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetpointTemperature.swift; sourceTree = "<group>"; };
 		A56286A430334EE200851CED /* FontSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSize.swift; sourceTree = "<group>"; };
 		A56286A7303351D600851CED /* FontName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontName.swift; sourceTree = "<group>"; };
 		A56286AA30343B9300851CED /* HeatpolThermostatListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolThermostatListItemView.swift; sourceTree = "<group>"; };
 		A56286AC3034422A00851CED /* LocationListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListItemView.swift; sourceTree = "<group>"; };
 		A56286AE30344A7500851CED /* SceneListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneListItem.swift; sourceTree = "<group>"; };
+		A56286B03034500000851CED /* ActionTriggerListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerListItemView.swift; sourceTree = "<group>"; };
 		A562870C30346F1D00851CED /* CreateProfileChannelsListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileChannelsListUseCase.swift; sourceTree = "<group>"; };
 		A562870E30346F2500851CED /* ChannelToMainListItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelToMainListItemUseCase.swift; sourceTree = "<group>"; };
 		A562870E30347B7B00851CED /* HomePlusThermostatValueStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePlusThermostatValueStringProvider.swift; sourceTree = "<group>"; };
@@ -2655,7 +2633,6 @@
 		A56851B22D6C8F4500942F8B /* ChannelUpdatesObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelUpdatesObserver.swift; sourceTree = "<group>"; };
 		A56851B52D6CA19800942F8B /* CaptionChangeDialogFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogFeature.swift; sourceTree = "<group>"; };
 		A56851B72D6CA1EA00942F8B /* CaptionChangeDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogView.swift; sourceTree = "<group>"; };
-		C6A000012F00000000000001 /* CaptionChangeDialogState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogState.swift; sourceTree = "<group>"; };
 		A56851BD2D6DA65900942F8B /* CaptionChangeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeUseCase.swift; sourceTree = "<group>"; };
 		A56D5ACC2A4C304C004F45DA /* SingleCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCall.swift; sourceTree = "<group>"; };
 		A56D5ACE2A4C37AD004F45DA /* SingleCallWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleCallWrapper.m; sourceTree = "<group>"; };
@@ -2678,7 +2655,6 @@
 		A573B0942A5E9191001E19D0 /* SUPLA 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 14.xcdatamodel"; sourceTree = "<group>"; };
 		A573B0952A5FD152001E19D0 /* FatalError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalError.swift; sourceTree = "<group>"; };
 		A573B09D2A5FEF57001E19D0 /* SwitchGeneralVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchGeneralVMTests.swift; sourceTree = "<group>"; };
-		C0DE20261109000100000012 /* ActionTriggerGeneralVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerGeneralVMTests.swift; sourceTree = "<group>"; };
 		A573B0A52A600733001E19D0 /* SwitchTimerDetailVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTimerDetailVMTests.swift; sourceTree = "<group>"; };
 		A573B0A72A60077B001E19D0 /* StartTimerUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerUseCaseMock.swift; sourceTree = "<group>"; };
 		A573B0A92A601A57001E19D0 /* ReadChannelByRemoteIdUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadChannelByRemoteIdUseCaseTests.swift; sourceTree = "<group>"; };
@@ -3517,6 +3493,14 @@
 		A6B2D1023E6A4C1800D1BEEF /* RecuperatorGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralViewState.swift; sourceTree = "<group>"; };
 		A6B2D1033E6A4C1800D1BEEF /* RecuperatorGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralView.swift; sourceTree = "<group>"; };
 		A6B2D1043E6A4C1800D1BEEF /* RecuperatorGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperatorGeneralVM.swift; sourceTree = "<group>"; };
+		A71000000000000000000006 /* ActionTriggerScheduleFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleFeature.swift; sourceTree = "<group>"; };
+		A71000000000000000000007 /* ActionTriggerScheduleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleScreen.swift; sourceTree = "<group>"; };
+		A71000000000000000000008 /* ActionTriggerScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleView.swift; sourceTree = "<group>"; };
+		A71000000000000000000009 /* ActionTriggerScheduleVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleVM.swift; sourceTree = "<group>"; };
+		A7100000000000000000000A /* TemporaryUnlockDurationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryUnlockDurationPicker.swift; sourceTree = "<group>"; };
+		A7100000000000000000000D /* ActionTriggerScheduleViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleViewState.swift; sourceTree = "<group>"; };
+		A7100000000000000000000F /* AtProgramSettingsDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtProgramSettingsDialog.swift; sourceTree = "<group>"; };
+		A71100000000000000000002 /* QuartersSelectionDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuartersSelectionDialog.swift; sourceTree = "<group>"; };
 		AC8D0EF60779B8E49040E201 /* Pods-SUPLATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.release.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.release.xcconfig"; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
@@ -3536,9 +3520,6 @@
 		AEF1F9B927726D56008E441A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		AEF6A5D128BBD35B0019684A /* SUPLA 13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 13.xcdatamodel"; sourceTree = "<group>"; };
 		AEF79D8A2712FE1800D7554B /* AppSettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsVM.swift; sourceTree = "<group>"; };
-		B3A100002F77000000000002 /* AppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
-		B3A100002F77000000000003 /* AppSettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsFeature.swift; sourceTree = "<group>"; };
-		B3A100002F77000000000005 /* AppSettingsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsViewState.swift; sourceTree = "<group>"; };
 		AEF79D902713088100D7554B /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		AEFBC25026E39EFC00414C19 /* SUPLATests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SUPLATests-Bridging-Header.h"; sourceTree = "<group>"; };
 		B01000002F43000000000001 /* ThermostatGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralView.swift; sourceTree = "<group>"; };
@@ -3551,6 +3532,9 @@
 		B2A100001111111100000003 /* EspRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspRepositoryMock.swift; sourceTree = "<group>"; };
 		B2A100001111111100000006 /* AuthorizeEspUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeEspUseCaseTests.swift; sourceTree = "<group>"; };
 		B2A100001111111100000008 /* CreateEspPasswordUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEspPasswordUseCaseTests.swift; sourceTree = "<group>"; };
+		B3A100002F77000000000002 /* AppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
+		B3A100002F77000000000003 /* AppSettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsFeature.swift; sourceTree = "<group>"; };
+		B3A100002F77000000000005 /* AppSettingsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsViewState.swift; sourceTree = "<group>"; };
 		B3D000013109000000000001 /* LocationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSection.swift; sourceTree = "<group>"; };
 		B3D000033109000000000003 /* LocationSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSectionTests.swift; sourceTree = "<group>"; };
 		B3D000053109000000000005 /* MainListItemSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListItemSection.swift; sourceTree = "<group>"; };
@@ -3560,6 +3544,11 @@
 		B60000000000000000000004 /* ObserveChannelWithChildrenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveChannelWithChildrenUseCase.swift; sourceTree = "<group>"; };
 		B61000000000000000000002 /* ObserveGroupWithChannelsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveGroupWithChannelsUseCase.swift; sourceTree = "<group>"; };
 		B62000000000000000000002 /* ObserveRelayProgramStateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveRelayProgramStateUseCase.swift; sourceTree = "<group>"; };
+		B70000012F90000100000007 /* ActionTriggerGeneralFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerGeneralFeature.swift; sourceTree = "<group>"; };
+		B70000012F90000100000008 /* ActionTriggerGeneralScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerGeneralScreen.swift; sourceTree = "<group>"; };
+		B70000012F90000100000009 /* ActionTriggerGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerGeneralView.swift; sourceTree = "<group>"; };
+		B70000012F9000010000000A /* ActionTriggerGeneralViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerGeneralViewState.swift; sourceTree = "<group>"; };
+		B70000012F9000010000000B /* ActionTriggerGeneralVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerGeneralVM.swift; sourceTree = "<group>"; };
 		B7A000012F00000000000001 /* View+SettingsSurface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SettingsSurface.swift"; sourceTree = "<group>"; };
 		B7A000012F00000000000003 /* SettingsView+Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+Block.swift"; sourceTree = "<group>"; };
 		B7A000012F00000000000005 /* SettingsView+NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView+NavigationItem.swift"; sourceTree = "<group>"; };
@@ -3574,6 +3563,7 @@
 		B8A000012F00000000000006 /* ScheduleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListView.swift; sourceTree = "<group>"; };
 		B8A000012F00000000000007 /* ScheduleListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListScreen.swift; sourceTree = "<group>"; };
 		B8A000012F00000000000017 /* CloudApiTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudApiTokenStore.swift; sourceTree = "<group>"; };
+		B90000012F90000100000002 /* ExecuteActionTriggerActionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteActionTriggerActionUseCase.swift; sourceTree = "<group>"; };
 		C0DE15700000000000000011 /* ListItemScaffold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemScaffold.swift; sourceTree = "<group>"; };
 		C0DE15700000000000000012 /* ListItemStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemStatusIndicator.swift; sourceTree = "<group>"; };
 		C0DE15700000000000000013 /* ListItemRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemRect.swift; sourceTree = "<group>"; };
@@ -3586,8 +3576,11 @@
 		C0DE1570000000000000001B /* MainListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListViewModel.swift; sourceTree = "<group>"; };
 		C0DE20260908000100000101 /* AppRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterTests.swift; sourceTree = "<group>"; };
 		C0DE20260917000100000101 /* SceneDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateTests.swift; sourceTree = "<group>"; };
+		C0DE20261109000100000012 /* ActionTriggerGeneralVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerGeneralVMTests.swift; sourceTree = "<group>"; };
+		C0DE20261109000200000002 /* ActionTriggerScheduleVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerScheduleVMTests.swift; sourceTree = "<group>"; };
+		C0DE20261112000100000002 /* SuplaChannelActionTriggerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelActionTriggerConfig.swift; sourceTree = "<group>"; };
+		C6A000012F00000000000001 /* CaptionChangeDialogState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionChangeDialogState.swift; sourceTree = "<group>"; };
 		D00D00000000000000000002 /* ExecuteRelayActionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteRelayActionUseCase.swift; sourceTree = "<group>"; };
-		B90000012F90000100000002 /* ExecuteActionTriggerActionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteActionTriggerActionUseCase.swift; sourceTree = "<group>"; };
 		D00D00000000000000000004 /* OperationButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationButtons.swift; sourceTree = "<group>"; };
 		D00D00000000000000000006 /* ChannelProgramState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelProgramState.swift; sourceTree = "<group>"; };
 		D00D00000000000000000008 /* LockSuplaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockSuplaButton.swift; sourceTree = "<group>"; };
@@ -3596,6 +3589,11 @@
 		D10000000000000000000002 /* ScheduleProgramDialogHeader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScheduleProgramDialogHeader.swift; sourceTree = "<group>"; };
 		D20000000000000000000002 /* SwitchTimerDetailViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTimerDetailViewState.swift; sourceTree = "<group>"; };
 		D37A5D010000000000000001 /* DetailPreviewScaffold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPreviewScaffold.swift; sourceTree = "<group>"; };
+		DA7A00000000000000000002 /* ActionTriggerListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerListFeature.swift; sourceTree = "<group>"; };
+		DA7A00000000000000000012 /* ActionTriggerListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerListScreen.swift; sourceTree = "<group>"; };
+		DA7A00000000000000000014 /* ActionTriggerListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerListVM.swift; sourceTree = "<group>"; };
+		DA7A00000000000000000016 /* ActionTriggerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerListView.swift; sourceTree = "<group>"; };
+		DA7A00000000000000000018 /* ActionTriggerListViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTriggerListViewState.swift; sourceTree = "<group>"; };
 		E0A9C122B1C02D1D061AEF2F /* WeeklyScheduleEditor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WeeklyScheduleEditor.swift; sourceTree = "<group>"; };
 		F40AA58F28AC0E8800DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SAVLCalibrationTool.strings"; sourceTree = "<group>"; };
 		F40AA59128AC118700DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/SADiwCalibrationTool.strings"; sourceTree = "<group>"; };
@@ -3632,26 +3630,6 @@
 		F4CD6F8C28ABE477006DAAD7 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F4D3907C29324B570066014D /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F7B204A70EADFDCCCF9F3CE0 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		000000B8A000012F00000100 /* CloudApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudApi.swift; sourceTree = "<group>"; };
-		000000B8A000012F00000101 /* ApiAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiAuthRequest.swift; sourceTree = "<group>"; };
-		000000B8A000012F00000102 /* ApiAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiAuthResponse.swift; sourceTree = "<group>"; };
-		000000B8A000012F00000103 /* ScheduleDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDto.swift; sourceTree = "<group>"; };
-		000000B8A000012F00000104 /* ScheduleClosestExecutionsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleClosestExecutionsDto.swift; sourceTree = "<group>"; };
-		000000B8A000012F00000105 /* ScheduleExecutionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleExecutionDto.swift; sourceTree = "<group>"; };
-		000000B8A000012F00000106 /* ScheduleConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleConfigDto.swift; sourceTree = "<group>"; };
-		000000B8A000012F00000107 /* ScheduleConfigActionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleConfigActionDto.swift; sourceTree = "<group>"; };
-		000000B8A000012F00000108 /* ScheduleStateDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleStateDto.swift; sourceTree = "<group>"; };
-		000000B8A000012F00000109 /* ScheduleStateExecutionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleStateExecutionDto.swift; sourceTree = "<group>"; };
-		000000B8A000012F0000010A /* ScheduleSubjectDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectDto.swift; sourceTree = "<group>"; };
-		000000B8A000012F0000010B /* ScheduleSubjectTypeDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectTypeDto.swift; sourceTree = "<group>"; };
-		000000B8A000012F0000010C /* ScheduleSubjectFunctionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectFunctionDto.swift; sourceTree = "<group>"; };
-		000000B8A000012F0000010D /* ScheduleActivityConditionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleActivityConditionDto.swift; sourceTree = "<group>"; };
-		000000B8A000012F0000010E /* ScheduleSubjectConflictDetailsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectConflictDetailsDto.swift; sourceTree = "<group>"; };
-		000000B8A000012F0000010F /* ScheduleSubjectConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectConfigDto.swift; sourceTree = "<group>"; };
-		000000B8A000012F00000110 /* ScheduleAlexaConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAlexaConfigDto.swift; sourceTree = "<group>"; };
-		000000B8A000012F00000111 /* ScheduleGoogleHomeConfigDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleGoogleHomeConfigDto.swift; sourceTree = "<group>"; };
-		000000B8A000012F00000112 /* ScheduleSubjectActionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSubjectActionDto.swift; sourceTree = "<group>"; };
-		000000B8A000012F00000113 /* JSONValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -3717,6 +3695,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		000000B8A000012F00000180 /* CloudApi */ = {
+			isa = PBXGroup;
+			children = (
+				000000B8A000012F00000100 /* CloudApi.swift */,
+				000000B8A000012F00000101 /* ApiAuthRequest.swift */,
+				000000B8A000012F00000102 /* ApiAuthResponse.swift */,
+				000000B8A000012F00000103 /* ScheduleDto.swift */,
+				000000B8A000012F00000104 /* ScheduleClosestExecutionsDto.swift */,
+				000000B8A000012F00000105 /* ScheduleExecutionDto.swift */,
+				000000B8A000012F00000106 /* ScheduleConfigDto.swift */,
+				000000B8A000012F00000107 /* ScheduleConfigActionDto.swift */,
+				000000B8A000012F00000108 /* ScheduleStateDto.swift */,
+				000000B8A000012F00000109 /* ScheduleStateExecutionDto.swift */,
+				000000B8A000012F0000010A /* ScheduleSubjectDto.swift */,
+				000000B8A000012F0000010B /* ScheduleSubjectTypeDto.swift */,
+				000000B8A000012F0000010C /* ScheduleSubjectFunctionDto.swift */,
+				000000B8A000012F0000010D /* ScheduleActivityConditionDto.swift */,
+				000000B8A000012F0000010E /* ScheduleSubjectConflictDetailsDto.swift */,
+				000000B8A000012F0000010F /* ScheduleSubjectConfigDto.swift */,
+				000000B8A000012F00000110 /* ScheduleAlexaConfigDto.swift */,
+				000000B8A000012F00000111 /* ScheduleGoogleHomeConfigDto.swift */,
+				000000B8A000012F00000112 /* ScheduleSubjectActionDto.swift */,
+				000000B8A000012F00000113 /* JSONValue.swift */,
+			);
+			path = CloudApi;
+			sourceTree = "<group>";
+		};
 		012119122368B597004C1993 /* xib */ = {
 			isa = PBXGroup;
 			children = (
@@ -3944,9 +3949,6 @@
 			isa = PBXGroup;
 			children = (
 				A531D3DF2E74539700714850 /* clock@3x.png */,
-				01D3FF6624A20E26000EBE77 /* backbtn@3x.png */,
-				013F7EC323EB4B500061A497 /* battery@2x.png */,
-				013F7EC223EB4B500061A497 /* battery@3x.png */,
 				011021AD25CC337500621D41 /* bridge_disconnected@3x.png */,
 				01D32F3125C999CF00793A72 /* btnbackl@2x.png */,
 				4091AF3C1FC8405200EFF357 /* btnnextl@2x.png */,
@@ -3956,28 +3958,15 @@
 				0148932925AA03EE00B9974E /* btnOK_disabled@3x.png */,
 				406C92D31BCD8518007BA87A /* btnOK@2x.png */,
 				407D4AFA1BC6D6AA009A5505 /* btnOK@3x.png */,
-				012119142368C3B2004C1993 /* collapsed@3x.png */,
 				01CEAC2425B9AA71009C3BFD /* dgfopaque@3x.png */,
 				01CEAC2325B9AA71009C3BFD /* dgftransparent@3x.png */,
-				40CF96D41BC81A470030EFFF /* error@2x.png */,
-				40CF96D51BC81A470030EFFF /* error@3x.png */,
-				40DE1A241BCCFF8A004CF43B /* feedback@2x.png */,
-				40DE1A251BCCFF8A004CF43B /* feedback@3x.png */,
-				01D2C38C22C3B0A700BF1A10 /* graphoff.png */,
-				01D2C38B22C3B0A700BF1A10 /* graphon.png */,
 				017554F722F1CDB900EB58B7 /* heatpollogo@3x.png */,
 				017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */,
 				017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */,
 				0148933D25AA19DA00B9974E /* infinitywhite@3x.png */,
 				010C8782249A6471002FE526 /* infoclose@2x.png */,
-				015839642576A82A005E615D /* ledalwaysoffwhite@3x.png */,
-				015839652576A82A005E615D /* ledoffwhite@3x.png */,
 				015839682576A82A005E615D /* ledonwhite@3x.png */,
-				4067782A1BCBC647008DD37F /* menu@2x.png */,
-				4067782B1BCBC647008DD37F /* menu@3x.png */,
 				0148933C25AA19DA00B9974E /* p100white@3x.png */,
-				40D397AC1FAF547B00BF477D /* retry@3x.png */,
-				40DE1A281BCCFF8A004CF43B /* settings@2x.png */,
 				017554FA22F1D2BE00EB58B7 /* settings2@3x.png */,
 				01D6A105249C0EAC006B3757 /* vlinfo@3.png */,
 				01D6A107249C0F40006B3757 /* vlrestore@3.png */,
@@ -4571,41 +4560,6 @@
 				A51474592EA65D400044DEF2 /* General */,
 			);
 			path = GateDetail;
-			sourceTree = "<group>";
-		};
-		B70000012F90000100000010 /* ActionTrigger */ = {
-			isa = PBXGroup;
-			children = (
-				A7100000000000000000000B /* Schedule */,
-				A7100000000000000000000A /* TemporaryUnlockDurationPicker.swift */,
-				B70000012F90000100000011 /* General */,
-			);
-			path = ActionTrigger;
-			sourceTree = "<group>";
-		};
-		A7100000000000000000000B /* Schedule */ = {
-			isa = PBXGroup;
-			children = (
-				A71000000000000000000006 /* ActionTriggerScheduleFeature.swift */,
-				A71000000000000000000007 /* ActionTriggerScheduleScreen.swift */,
-				A71000000000000000000008 /* ActionTriggerScheduleView.swift */,
-				A71000000000000000000009 /* ActionTriggerScheduleVM.swift */,
-				A7100000000000000000000D /* ActionTriggerScheduleViewState.swift */,
-				A7100000000000000000000F /* AtProgramSettingsDialog.swift */,
-			);
-			path = Schedule;
-			sourceTree = "<group>";
-		};
-		B70000012F90000100000011 /* General */ = {
-			isa = PBXGroup;
-			children = (
-				B70000012F90000100000008 /* ActionTriggerGeneralScreen.swift */,
-				B70000012F9000010000000B /* ActionTriggerGeneralVM.swift */,
-				B70000012F90000100000009 /* ActionTriggerGeneralView.swift */,
-				B70000012F9000010000000A /* ActionTriggerGeneralViewState.swift */,
-				B70000012F90000100000007 /* ActionTriggerGeneralFeature.swift */,
-			);
-			path = General;
 			sourceTree = "<group>";
 		};
 		A51474592EA65D400044DEF2 /* General */ = {
@@ -7587,22 +7541,6 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
-		C0DE20261109000200000003 /* ActionTriggerSchedule */ = {
-			isa = PBXGroup;
-			children = (
-				C0DE20261109000200000002 /* ActionTriggerScheduleVMTests.swift */,
-			);
-			path = ActionTriggerSchedule;
-			sourceTree = "<group>";
-		};
-		C0DE20261109000100000013 /* ActionTriggerGeneral */ = {
-			isa = PBXGroup;
-			children = (
-				C0DE20261109000100000012 /* ActionTriggerGeneralVMTests.swift */,
-			);
-			path = ActionTriggerGeneral;
-			sourceTree = "<group>";
-		};
 		A5E40B632B86248300DB6ABE /* GpmDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -8361,6 +8299,19 @@
 			path = General;
 			sourceTree = "<group>";
 		};
+		A7100000000000000000000B /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				A71000000000000000000006 /* ActionTriggerScheduleFeature.swift */,
+				A71000000000000000000007 /* ActionTriggerScheduleScreen.swift */,
+				A71000000000000000000008 /* ActionTriggerScheduleView.swift */,
+				A71000000000000000000009 /* ActionTriggerScheduleVM.swift */,
+				A7100000000000000000000D /* ActionTriggerScheduleViewState.swift */,
+				A7100000000000000000000F /* AtProgramSettingsDialog.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
 		AEB195DC276E59B60091D314 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -8405,6 +8356,29 @@
 				B2A100001111111100000008 /* CreateEspPasswordUseCaseTests.swift */,
 			);
 			path = AddWizard;
+			sourceTree = "<group>";
+		};
+		B70000012F90000100000010 /* ActionTrigger */ = {
+			isa = PBXGroup;
+			children = (
+				DA7A00000000000000000003 /* List */,
+				A7100000000000000000000B /* Schedule */,
+				A7100000000000000000000A /* TemporaryUnlockDurationPicker.swift */,
+				B70000012F90000100000011 /* General */,
+			);
+			path = ActionTrigger;
+			sourceTree = "<group>";
+		};
+		B70000012F90000100000011 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				B70000012F90000100000008 /* ActionTriggerGeneralScreen.swift */,
+				B70000012F9000010000000B /* ActionTriggerGeneralVM.swift */,
+				B70000012F90000100000009 /* ActionTriggerGeneralView.swift */,
+				B70000012F9000010000000A /* ActionTriggerGeneralViewState.swift */,
+				B70000012F90000100000007 /* ActionTriggerGeneralFeature.swift */,
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 		B8A000012F00000000000014 /* CloudApi */ = {
@@ -8457,6 +8431,22 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		C0DE20261109000100000013 /* ActionTriggerGeneral */ = {
+			isa = PBXGroup;
+			children = (
+				C0DE20261109000100000012 /* ActionTriggerGeneralVMTests.swift */,
+			);
+			path = ActionTriggerGeneral;
+			sourceTree = "<group>";
+		};
+		C0DE20261109000200000003 /* ActionTriggerSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				C0DE20261109000200000002 /* ActionTriggerScheduleVMTests.swift */,
+			);
+			path = ActionTriggerSchedule;
+			sourceTree = "<group>";
+		};
 		D00D00000000000000000013 /* ChannelState */ = {
 			isa = PBXGroup;
 			children = (
@@ -8475,34 +8465,18 @@
 			path = Preview;
 			sourceTree = "<group>";
 		};
-		000000B8A000012F00000180 /* CloudApi */ = {
+		DA7A00000000000000000003 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				000000B8A000012F00000100 /* CloudApi.swift */,
-				000000B8A000012F00000101 /* ApiAuthRequest.swift */,
-				000000B8A000012F00000102 /* ApiAuthResponse.swift */,
-				000000B8A000012F00000103 /* ScheduleDto.swift */,
-				000000B8A000012F00000104 /* ScheduleClosestExecutionsDto.swift */,
-				000000B8A000012F00000105 /* ScheduleExecutionDto.swift */,
-				000000B8A000012F00000106 /* ScheduleConfigDto.swift */,
-				000000B8A000012F00000107 /* ScheduleConfigActionDto.swift */,
-				000000B8A000012F00000108 /* ScheduleStateDto.swift */,
-				000000B8A000012F00000109 /* ScheduleStateExecutionDto.swift */,
-				000000B8A000012F0000010A /* ScheduleSubjectDto.swift */,
-				000000B8A000012F0000010B /* ScheduleSubjectTypeDto.swift */,
-				000000B8A000012F0000010C /* ScheduleSubjectFunctionDto.swift */,
-				000000B8A000012F0000010D /* ScheduleActivityConditionDto.swift */,
-				000000B8A000012F0000010E /* ScheduleSubjectConflictDetailsDto.swift */,
-				000000B8A000012F0000010F /* ScheduleSubjectConfigDto.swift */,
-				000000B8A000012F00000110 /* ScheduleAlexaConfigDto.swift */,
-				000000B8A000012F00000111 /* ScheduleGoogleHomeConfigDto.swift */,
-				000000B8A000012F00000112 /* ScheduleSubjectActionDto.swift */,
-				000000B8A000012F00000113 /* JSONValue.swift */,
+				DA7A00000000000000000012 /* ActionTriggerListScreen.swift */,
+				DA7A00000000000000000014 /* ActionTriggerListVM.swift */,
+				DA7A00000000000000000016 /* ActionTriggerListView.swift */,
+				DA7A00000000000000000018 /* ActionTriggerListViewState.swift */,
+				DA7A00000000000000000002 /* ActionTriggerListFeature.swift */,
 			);
-			path = CloudApi;
+			path = List;
 			sourceTree = "<group>";
 		};
-
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -8634,50 +8608,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				013F7EC523EB4B500061A497 /* battery@2x.png in Resources */,
 				010714802656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib in Resources */,
 				017554F822F1CDB900EB58B7 /* heatpollogo@3x.png in Resources */,
 				A5E557A82E3CEB3B00E829C7 /* supla_org_cert.cer in Resources */,
-				40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */,
-				012119152368C3B2004C1993 /* collapsed@3x.png in Resources */,
 				011021AF25CC337500621D41 /* bridge_disconnected@3x.png in Resources */,
 				405C49A11FCAFFD400C15602 /* wizard_ok@2x.png in Resources */,
 				0196E82A258CEEEC0016E8DC /* InfoPlist.strings in Resources */,
 				A530EDFB2A54063F00F8DAEE /* OpenSans-Light.ttf in Resources */,
 				0148934125AA19DA00B9974E /* infinitywhite@3x.png in Resources */,
-				013F7EC423EB4B500061A497 /* battery@3x.png in Resources */,
 				A531D3E02E74539700714850 /* clock@3x.png in Resources */,
 				4091AF401FC8405200EFF357 /* btnnextr2@2x.png in Resources */,
 				40B397E21BCED7C000BE7D5A /* OpenSans-Regular.ttf in Resources */,
 				01511CFB24F50B470081A1EC /* SAPreloaderPopup.xib in Resources */,
 				0186054725BF48C500C1332A /* z_wave@3x.png in Resources */,
 				01CEAC2625B9AA71009C3BFD /* dgfopaque@3x.png in Resources */,
-				40CF96D81BC81A470030EFFF /* error@2x.png in Resources */,
 				010714C42656F4C7009C119F /* SAZWaveConfigurationWizardVC.xib in Resources */,
 				A57C4ABA2AAF539600D9C695 /* OpenSans-SemiBold.ttf in Resources */,
 				0175550022F1DDA300EB58B7 /* hp_minus@3x.png in Resources */,
-				4067782C1BCBC647008DD37F /* menu@2x.png in Resources */,
-				40DE1A291BCCFF8A004CF43B /* feedback@2x.png in Resources */,
 				01CEABFE25B9925E009C3BFD /* DigiglassDetailView.xib in Resources */,
 				0186055725BF80AC00C1332A /* wakeup@3x.png in Resources */,
 				405AC4321BC158E8004F7311 /* Quicksand-Regular.ttf in Resources */,
 				011021B025CC337500621D41 /* zwave_timeout@3x.png in Resources */,
 				0148934525AA5D2000B9974E /* SADiwCalibrationTool.xib in Resources */,
 				40B397CF1BCE7F3200BE7D5A /* Launch Screen.storyboard in Resources */,
-				0158396A2576A82A005E615D /* ledalwaysoffwhite@3x.png in Resources */,
 				4091AF3E1FC8405200EFF357 /* btnnextr@2x.png in Resources */,
-				40DE1A2A1BCCFF8A004CF43B /* feedback@3x.png in Resources */,
-				01D2C38D22C3B0A700BF1A10 /* graphon.png in Resources */,
 				40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */,
 				407D4AFB1BC6D6AA009A5505 /* btnOK@3x.png in Resources */,
-				0158396B2576A82A005E615D /* ledoffwhite@3x.png in Resources */,
 				0148933825AA163F00B9974E /* zamel_logo.png in Resources */,
 				A5AE7A812A39AF410097FA8B /* Default.strings in Resources */,
 				A57777D129E6A319004513E6 /* CreateAccountVC.xib in Resources */,
 				406C92D41BCD8518007BA87A /* btnOK@2x.png in Resources */,
 				01D32F3225C999CF00793A72 /* btnbackl@2x.png in Resources */,
 				401CA1CD1BA067DB00117AF4 /* Resources.xcassets in Resources */,
-				01D2C38E22C3B0A700BF1A10 /* graphoff.png in Resources */,
 				017554FC22F1D2BE00EB58B7 /* settings2@3x.png in Resources */,
 				0148932B25AA03EE00B9974E /* btnOK_disabled@3x.png in Resources */,
 				0148934025AA19DA00B9974E /* p100white@3x.png in Resources */,
@@ -8690,18 +8652,14 @@
 				01CEAC2525B9AA71009C3BFD /* dgftransparent@3x.png in Resources */,
 				011E736824A1367B004D99EE /* SAVLCalibrationTool.xib in Resources */,
 				0158396E2576A82A005E615D /* ledonwhite@3x.png in Resources */,
-				40D397AD1FAF547B00BF477D /* retry@3x.png in Resources */,
 				01D6A106249C0EAC006B3757 /* vlinfo@3.png in Resources */,
-				01D3FF6724A20E26000EBE77 /* backbtn@3x.png in Resources */,
 				405C49A01FCAFFD400C15602 /* wizard_error@2x.png in Resources */,
 				4091AF3F1FC8405200EFF357 /* btnnextl@2x.png in Resources */,
 				40DB208D1DC9049400FAFAB0 /* RGBWDetail.xib in Resources */,
 				01C8EBCD23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib in Resources */,
-				40CF96D91BC81A470030EFFF /* error@3x.png in Resources */,
 				01C8EBFA234232EC0072AB8C /* HomePlusDetailView.xib in Resources */,
 				405AC4311BC158E8004F7311 /* Quicksand-Light.ttf in Resources */,
 				01D6A109249C0F40006B3757 /* vlrestore@3.png in Resources */,
-				4067782D1BCBC647008DD37F /* menu@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9590,6 +9548,11 @@
 				B70000012F90000100000003 /* ActionTriggerGeneralView.swift in Sources */,
 				B70000012F90000100000004 /* ActionTriggerGeneralViewState.swift in Sources */,
 				B70000012F90000100000005 /* ActionTriggerGeneralVM.swift in Sources */,
+				DA7A00000000000000000001 /* ActionTriggerListFeature.swift in Sources */,
+				DA7A00000000000000000011 /* ActionTriggerListScreen.swift in Sources */,
+				DA7A00000000000000000013 /* ActionTriggerListVM.swift in Sources */,
+				DA7A00000000000000000015 /* ActionTriggerListView.swift in Sources */,
+				DA7A00000000000000000017 /* ActionTriggerListViewState.swift in Sources */,
 				A71000000000000000000001 /* ActionTriggerScheduleFeature.swift in Sources */,
 				A71000000000000000000002 /* ActionTriggerScheduleScreen.swift in Sources */,
 				A71000000000000000000003 /* ActionTriggerScheduleView.swift in Sources */,

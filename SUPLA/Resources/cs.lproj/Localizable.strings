@@ -361,6 +361,7 @@
 "standard_detail_schedule_tab" = "Týden";
 "standard_detail_history_tab" = "Historie";
 "standard_detail_list_tab" = "Seznam";
+"standard_detail_buttons_tab" = "Tlačítka";
 "standard_detail_settings_tab" = "Nastavení";
 "standard_detail_dimmer_tab" = "Stmívač";
 
@@ -844,6 +845,7 @@
 "action_trigger_unlock_temporarily" = "Dočasně odemknout";
 "at_locked_temporary_unlock_allowed" = "Zamčeno (dočasné odemknutí)";
 "action_trigger_schedule_button_mode" = "Režim tlačítka";
+"action_trigger_list_related_title" = "Související tlačítka";
 "action_trigger_schedule_default_temporary_unlock_duration" = "Výchozí";
 "action_trigger_schedule_other_temporary_unlock_duration" = "Vlastní";
 "action_trigger_temporary_unlocked" = "dočasně odemčeno";

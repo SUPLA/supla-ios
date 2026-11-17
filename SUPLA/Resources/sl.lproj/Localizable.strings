@@ -363,6 +363,7 @@
 "standard_detail_schedule_tab" = "Teden";
 "standard_detail_history_tab" = "Zgodovina";
 "standard_detail_list_tab" = "Seznam";
+"standard_detail_buttons_tab" = "Gumbi";
 "standard_detail_settings_tab" = "Nastavitve";
 "standard_detail_dimmer_tab" = "Zatemnilnik";
 
@@ -845,6 +846,7 @@
 "action_trigger_unlock_temporarily" = "Začasno odkleni";
 "at_locked_temporary_unlock_allowed" = "Zaklenjeno (začasno odklepanje)";
 "action_trigger_schedule_button_mode" = "Način gumba";
+"action_trigger_list_related_title" = "Povezani gumbi";
 "action_trigger_schedule_default_temporary_unlock_duration" = "Privzeto";
 "action_trigger_schedule_other_temporary_unlock_duration" = "Po meri";
 "action_trigger_temporary_unlocked" = "začasno odklenjeno";

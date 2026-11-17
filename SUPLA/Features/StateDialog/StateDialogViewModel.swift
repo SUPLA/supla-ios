@@ -226,7 +226,7 @@ private extension SAChannel {
             function: getChannelBaseDefaultCaptionUseCase.invoke(function: self.func),
             caption: getCaptionUseCase.invoke(data: shareable).string,
             showLifespanSettingsButton: (flags & Int64(SUPLA_CHANNEL_FLAG_LIGHTSOURCELIFESPAN_SETTABLE)) > 0,
-            infoSupported: (flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE)) > 0,
+            infoSupported: showInfoIcon,
             lastKnownState: state,
             online: status().online
         )

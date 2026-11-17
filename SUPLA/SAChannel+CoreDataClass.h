@@ -38,7 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) setChannelType:(int)type;
 - (double) totalForwardActiveEnergy;
 - (double) totalForwardActiveEnergyFromSubValue;
-- (UIImage *) stateIcon;
 - (SAChannelStateExtendedValue *)channelState;
 @end
 

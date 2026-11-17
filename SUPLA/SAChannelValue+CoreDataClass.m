@@ -290,27 +290,6 @@
     
     return 0;
 }
-    
--(TDSC_RollerShutterValue) rollerShutterValue {
-    TDSC_RollerShutterValue result = {};
-    if (self.dataValue.length >= sizeof(TDSC_RollerShutterValue)) {
-        [self.dataValue getBytes:&result length:sizeof(TDSC_RollerShutterValue)];
-    }
-    
-    if (result.position < -1 || result.position > 100) {
-        result.position = -1;
-    }
-    
-    return result;
-}
-
--(THVACValue) hvacValue {
-    THVACValue result = {};
-    if (self.dataValue.length == sizeof(THVACValue)) {
-        [self.dataValue getBytes:&result length:sizeof(THVACValue)];
-    }
-    return result;
-}
 
 -(BOOL) isManuallyClosed {
     return ([self secondByte] & SUPLA_VALVE_FLAG_MANUALLY_CLOSED) > 0;
@@ -322,18 +301,6 @@
 
 -(BOOL) overcurrentRelayOff {
     return ([self secondByte] & SUPLA_RELAY_FLAG_OVERCURRENT_RELAY_OFF) > 0;
-}
-
--(BOOL) calibrationFailed {
-    return (self.rollerShutterValue.flags & RS_VALUE_FLAG_CALIBRATION_FAILED) > 0;
-}
-
--(BOOL) calibrationLost {
-    return (self.rollerShutterValue.flags & RS_VALUE_FLAG_CALIBRATION_LOST) > 0;
-}
-
--(BOOL) motorProblem {
-    return (self.rollerShutterValue.flags & RS_VALUE_FLAG_MOTOR_PROBLEM) > 0;
 }
 
 -(SADigiglassValue *) digiglassValue {

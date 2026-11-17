@@ -208,6 +208,7 @@
 "standard_detail_schedule_tab" = "Week";
 "standard_detail_history_tab" = "History";
 "standard_detail_list_tab" = "List";
+"standard_detail_buttons_tab" = "Buttons";
 "standard_detail_settings_tab" = "Settings";
 "standard_detail_rgb_tab" = "RGB";
 "standard_detail_dimmer_tab" = "Dimmer";
@@ -749,6 +750,7 @@
 "action_trigger_unlock_temporarily" = "Unlock temporarily";
 "at_locked_temporary_unlock_allowed" = "Locked (temporary unlock)";
 "action_trigger_schedule_button_mode" = "Button mode";
+"action_trigger_list_related_title" = "Related buttons";
 "action_trigger_schedule_default_temporary_unlock_duration" = "Default";
 "action_trigger_schedule_other_temporary_unlock_duration" = "Custom";
 "action_trigger_temporary_unlocked" = "temporarily unlocked";

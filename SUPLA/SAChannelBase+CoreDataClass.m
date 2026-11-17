@@ -297,12 +297,6 @@
     return 0;
 }
 
-- (TDSC_RollerShutterValue) rollerShutterValue {
-    TDSC_RollerShutterValue result = {};
-    result.position = -1;
-    return result;
-}
-
 - (double) totalForwardActiveEnergy {
     return 0;
 }

@@ -22,6 +22,19 @@ struct RelatedChannelsView: SwiftUI.View {
     let channels: [RelatedChannelData]
     let onInfoClick: (RelatedChannelData) -> Void
     let onCaptionLongPress: (RelatedChannelData) -> Void
+    let onItemClick: ((RelatedChannelData) -> Void)?
+
+    init(
+        channels: [RelatedChannelData],
+        onInfoClick: @escaping (RelatedChannelData) -> Void,
+        onCaptionLongPress: @escaping (RelatedChannelData) -> Void,
+        onItemClick: ((RelatedChannelData) -> Void)? = nil
+    ) {
+        self.channels = channels
+        self.onInfoClick = onInfoClick
+        self.onCaptionLongPress = onCaptionLongPress
+        self.onItemClick = onItemClick
+    }
     
     var body: some SwiftUI.View {
         if (!channels.isEmpty) {
@@ -31,7 +44,8 @@ struct RelatedChannelsView: SwiftUI.View {
                         RelatedChannelItemView(
                             data: channel,
                             onInfoClick: onInfoClick,
-                            onCaptionLongPress: onCaptionLongPress
+                            onCaptionLongPress: onCaptionLongPress,
+                            onItemClick: onItemClick
                         )
                     }
                 }

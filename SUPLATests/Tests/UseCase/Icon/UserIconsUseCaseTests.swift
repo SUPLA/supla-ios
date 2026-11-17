@@ -38,7 +38,7 @@ final class UserIconsUseCaseTests: XCTestCase {
         // given
         let profileId: Int32 = 12345
         let iconId: Int32 = 1
-        let image = UIImage(named: "error")
+        let image = UIImage(named: "zamel_logo")
         guard let imageData = image?.pngData() else {
             XCTFail("Could not load data for image")
             return

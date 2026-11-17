@@ -45,7 +45,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (double) getTemperatureForFunction:(int)func;
 - (double) humidityValue;
 - (int) percentValue;
-- (TDSC_RollerShutterValue) rollerShutterValue;
 - (int) brightnessValue;
 - (int) colorBrightnessValue;
 - (UIColor *) colorValue;
@@ -62,7 +61,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL) calibrationFailed;
 -(BOOL) calibrationLost;
 -(BOOL) motorProblem;
--(THVACValue) hvacValue;
 @end
 
 NS_ASSUME_NONNULL_END

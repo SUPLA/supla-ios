@@ -121,8 +121,8 @@ extension ValveGeneralFeature {
                 icon: getChannelBaseIconUseCase.invoke(channel: child.channel),
                 caption: getCaptionUseCase.invoke(data: child.channel.shareable).string,
                 userCaption: child.channel.caption ?? "",
-                batteryIcon: getChannelBatteryIconUseCase.invoke(channel: child.channel.shareable),
-                showChannelStateIcon: (child.channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE)) != 0 && child.channel.state != nil
+                iconsBlock: RelatedChannelData.issueIconBlock(getChannelBatteryIconUseCase.invoke(channel: child.channel.shareable)),
+                showChannelStateIcon: child.showInfoIcon
             )
         }
     }

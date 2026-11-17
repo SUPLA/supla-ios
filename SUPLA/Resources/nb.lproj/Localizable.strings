@@ -362,6 +362,7 @@
 "standard_detail_metrics_tab" = "Målinger";
 "standard_detail_history_tab" = "Historien";
 "standard_detail_list_tab" = "Liste";
+"standard_detail_buttons_tab" = "Knapper";
 "standard_detail_timer_tab" = "Timer";
 "standard_detail_settings_tab" = "Innstillinger";
 
@@ -843,6 +844,7 @@
 "action_trigger_unlock_temporarily" = "Lås opp midlertidig";
 "at_locked_temporary_unlock_allowed" = "Låst (midlertidig opplåsing)";
 "action_trigger_schedule_button_mode" = "Knappmodus";
+"action_trigger_list_related_title" = "Relaterte knapper";
 "action_trigger_schedule_default_temporary_unlock_duration" = "Standard";
 "action_trigger_schedule_other_temporary_unlock_duration" = "Tilpasset";
 "action_trigger_temporary_unlocked" = "midlertidig låst opp";

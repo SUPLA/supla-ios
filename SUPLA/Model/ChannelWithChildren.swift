@@ -129,16 +129,8 @@ private struct CoreDataEntitySignature: Equatable {
 extension ChannelWithChildren {
     var remoteId: Int32 { channel.remote_id }
     var function: Int32 { channel.func }
-}
-
-extension ChannelWithChildren {
-    var showInfoIcon: Bool {
-        (channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0 && channel.value?.status.online == true)
-            || channel.state != nil
-    }
-}
-
-extension ChannelWithChildren {
+    var showInfoIcon: Bool { channel.showInfoIcon }
+    
     var shareable: SharedCore.ChannelWithChildren {
         SharedCore.ChannelWithChildren(
             channel: channel.shareable,

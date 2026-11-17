@@ -362,6 +362,7 @@
 "standard_detail_metrics_tab" = "Merania";
 "standard_detail_history_tab" = "História";
 "standard_detail_list_tab" = "Zoznam";
+"standard_detail_buttons_tab" = "Tlačidlá";
 "standard_detail_dimmer_tab" = "Stmievač";
 
 /* Switch Detail */
@@ -843,6 +844,7 @@
 "action_trigger_unlock_temporarily" = "Dočasne odomknúť";
 "at_locked_temporary_unlock_allowed" = "Zamknuté (dočasné odomknutie)";
 "action_trigger_schedule_button_mode" = "Režim tlačidla";
+"action_trigger_list_related_title" = "Súvisiace tlačidlá";
 "action_trigger_schedule_default_temporary_unlock_duration" = "Predvolené";
 "action_trigger_schedule_other_temporary_unlock_duration" = "Vlastné";
 "action_trigger_temporary_unlocked" = "dočasne odomknuté";

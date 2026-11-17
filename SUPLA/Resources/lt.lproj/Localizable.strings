@@ -365,6 +365,7 @@
 "standard_detail_schedule_tab" = "Savaitė";
 "standard_detail_history_tab" = "Istorija";
 "standard_detail_list_tab" = "Sąrašas";
+"standard_detail_buttons_tab" = "Mygtukai";
 "standard_detail_settings_tab" = "Nustatymai";
 
 /* Switch Detail */
@@ -846,6 +847,7 @@
 "action_trigger_unlock_temporarily" = "Laikinai atrakinti";
 "at_locked_temporary_unlock_allowed" = "Užrakinta (laikinas atrakinimas)";
 "action_trigger_schedule_button_mode" = "Mygtuko režimas";
+"action_trigger_list_related_title" = "Susiję mygtukai";
 "action_trigger_schedule_default_temporary_unlock_duration" = "Numatytoji";
 "action_trigger_schedule_other_temporary_unlock_duration" = "Pasirinktinis";
 "action_trigger_temporary_unlocked" = "laikinai atrakinta";

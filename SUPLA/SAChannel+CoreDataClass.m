@@ -138,10 +138,6 @@
     return self.value == nil ? [super overcurrentRelayOff] : [self.value overcurrentRelayOff];
 }
 
-- (TDSC_RollerShutterValue) rollerShutterValue {
-    return self.value == nil ? [super rollerShutterValue] : [self.value rollerShutterValue];
-}
-
 - (NSString *) unit {
     
     NSString *result = nil;
@@ -234,35 +230,6 @@
 
 - (SAChannelStateExtendedValue *)channelState {
     return self.ev != nil ? self.ev.channelState : nil;
-}
-
-- (UIImage *) stateIcon {
-    if (self.status.online
-        || (self.type == SUPLA_CHANNELTYPE_BRIDGE
-            && self.flags & SUPLA_CHANNEL_FLAG_CHANNELSTATE
-            && self.flags & SUPLA_CHANNEL_FLAG_OFFLINE_DURING_REGISTRATION)) {
-        
-        SAChannelStateExtendedValue *channelState = self.ev != nil ? self.ev.channelState : nil;
-        
-        if (self.flags & SUPLA_CHANNEL_FLAG_CHANNELSTATE
-            || channelState != nil) {
-                
-            if (channelState && channelState.state.defaultIconField != 0) {
-                switch (channelState.state.defaultIconField) {
-                    case SUPLA_CHANNELSTATE_FIELD_BATTERYPOWERED:
-                        if (channelState.state.BatteryPowered) {
-                            return [UIImage imageNamed:@"battery"];
-                        }
-                        break;
-                }
-            }
-            
-            return [UIImage iconInfo];
-        }
-        
-    }
-    
-    return nil;
 }
 
 @end

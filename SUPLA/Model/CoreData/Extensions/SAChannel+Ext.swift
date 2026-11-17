@@ -114,6 +114,10 @@ extension SAChannel {
     var isRelay: Bool {
         self.func.isRelayFunction
     }
+    
+    var showInfoIcon: Bool {
+        ((flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE)) != 0 && value?.status.online == true) || state != nil
+    }
 }
 
 extension Int32 {

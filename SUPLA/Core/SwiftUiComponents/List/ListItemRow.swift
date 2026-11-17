@@ -44,7 +44,7 @@ struct ListItemRow<Content: View>: View {
     }
     
     var body: some View {
-        HStack() {
+        HStack(spacing: 0) {
             content()
         }
         .frame(maxWidth: .infinity, alignment: .leading)

@@ -32,6 +32,15 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
                  SUPLA_CHANNELFNC_PUMPSWITCH,
                  SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH: .standardDetail(pages: getSwitchDetailPages(channelWithChildren))
 
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
+                 SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
+                 SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
+                 SUPLA_CHANNELFNC_TERRACE_AWNING,
+                 SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
+                 SUPLA_CHANNELFNC_CURTAIN,
+                 SUPLA_CHANNELFNC_VERTICAL_BLIND,
+                 SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR: .standardDetail(pages: getShadingDetailPages(channelWithChildren))
+
             case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
                  SUPLA_CHANNELFNC_HVAC_THERMOSTAT_HEAT_COOL: .standardDetail(pages: getThermostatDetailPages(channelWithChildren))
 
@@ -55,17 +64,23 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
                  SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
                  SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK: .standardDetail(pages: getGateDetailPages(channelWithChildren))
 
-            default: provideDetailType(for: channelWithChildren.channel)
+            default: provideDetailType(for: channelWithChildren)
         }
     }
 
-    private func provideDetailType(for channel: SAChannel) -> DetailType? {
+    private func provideDetailType(for channelWithChildren: ChannelWithChildren) -> DetailType? {
+        let channel = channelWithChildren.channel
         guard let detailType = provide(channel) else { return nil }
-        guard shouldShowDimmerSettings(channel),
-              case .rgbwDetail(let pages) = detailType
-        else { return detailType }
+        guard case .rgbwDetail(var pages) = detailType else { return detailType }
 
-        return .rgbwDetail(pages: pages + [.dimmerSettings])
+        if (channelWithChildren.hasActionTriggers && channel.func.supportsActionTriggerList) {
+            pages.append(.actionTriggerList)
+        }
+        if (shouldShowDimmerSettings(channel)) {
+            pages.append(.dimmerSettings)
+        }
+
+        return .rgbwDetail(pages: pages)
     }
 
     private func shouldShowDimmerSettings(_ channel: SAChannel) -> Bool {
@@ -88,6 +103,10 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
             list.append(.switchTimer)
         }
 
+        if (channelWithChildren.hasActionTriggers) {
+            list.append(.actionTriggerList)
+        }
+
         if (channelWithChildren.isOrHasElectricityMeter) {
             list.append(.electricityMeterHistory)
             list.append(.electricityMeterSettings)
@@ -97,6 +116,13 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
         }
 
         return list
+    }
+
+    private func getShadingDetailPages(_ channelWithChildren: ChannelWithChildren) -> [DetailPage] {
+        guard case let .standardDetail(pages)? = provide(channelWithChildren.channel) else { return [] }
+        guard channelWithChildren.hasActionTriggers else { return pages }
+
+        return pages + [.actionTriggerList]
     }
 
     private func getGateDetailPages(_ channelWithChildren: ChannelWithChildren) -> [DetailPage] {
@@ -139,7 +165,22 @@ final class ProvideChannelDetailTypeUseCaseImpl: BaseDetailTypeProviderUseCase, 
 }
 
 private extension ChannelWithChildren {
+    var hasActionTriggers: Bool {
+        children.contains {
+            $0.relationType == .default && $0.channel.func == SUPLA_CHANNELFNC_ACTIONTRIGGER
+        }
+    }
+
     var supportsTimer: Bool {
         channel.flags & Int64(SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED) > 0 && channel.func != SUPLA_CHANNELFNC_STAIRCASETIMER
+    }
+}
+
+private extension Int32 {
+    var supportsActionTriggerList: Bool {
+        self == SUPLA_CHANNELFNC_DIMMER ||
+            self == SUPLA_CHANNELFNC_DIMMER_CCT ||
+            self == SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING ||
+            self == SUPLA_CHANNELFNC_DIMMER_CCT_AND_RGB
     }
 }

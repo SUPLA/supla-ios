@@ -380,6 +380,7 @@
 "standard_detail_schedule_tab" = "Cari həftə";
 "standard_detail_history_tab" = "Tarixçə";
 "standard_detail_list_tab" = "Siyahı";
+"standard_detail_buttons_tab" = "Düymələr";
 "standard_detail_settings_tab" = "Parametrlər";
 
 /* Switch Detail */
@@ -913,6 +914,7 @@
 "action_trigger_unlock_temporarily" = "Müvəqqəti olaraq kilidi aç";
 "at_locked_temporary_unlock_allowed" = "Kilidli (müvəqqəti açılma)";
 "action_trigger_schedule_button_mode" = "Düymə rejimi";
+"action_trigger_list_related_title" = "Əlaqəli düymələr";
 "action_trigger_schedule_default_temporary_unlock_duration" = "Standart";
 "action_trigger_schedule_other_temporary_unlock_duration" = "Fərdi";
 "action_trigger_temporary_unlocked" = "müvəqqəti olaraq kiliddən açılıb";

@@ -362,6 +362,7 @@
 "standard_detail_metrics_tab" = "Виміри";
 "standard_detail_history_tab" = "Історія";
 "standard_detail_list_tab" = "Список";
+"standard_detail_buttons_tab" = "Кнопки";
 "standard_detail_timer_tab" = "Timer";
 "standard_detail_settings_tab" = "Налаштування";
 "standard_detail_dimmer_tab" = "Диммер";
@@ -844,6 +845,7 @@
 "action_trigger_unlock_temporarily" = "Розблокувати тимчасово";
 "at_locked_temporary_unlock_allowed" = "Заблоковано (тимчасове розблокування)";
 "action_trigger_schedule_button_mode" = "Режим кнопки";
+"action_trigger_list_related_title" = "Пов’язані кнопки";
 "action_trigger_schedule_default_temporary_unlock_duration" = "За замовчуванням";
 "action_trigger_schedule_other_temporary_unlock_duration" = "Власний";
 "action_trigger_temporary_unlocked" = "тимчасово розблоковано";

@@ -17,6 +17,7 @@
  */
 
 import XCTest
+import SharedCore
 
 @testable import SUPLA
 
@@ -332,6 +333,101 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
             channel.flags = Int64(SUPLA_CHANNEL_FLAG_WEEKLY_SCHEDULE)
             return channel
         }
+    }
+
+    func test_actionTriggerListIsAddedToSwitchWithDirectDefaultRelation() {
+        let channel = SAChannel(testContext: nil)
+        channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
+
+        doTest(
+            expectedResult: .standardDetail(pages: [.switchGeneral, .actionTriggerList]),
+            channel: channel,
+            children: [makeActionTrigger(relationType: .default)]
+        )
+    }
+
+    func test_actionTriggerListIsAddedToShadingChannel() {
+        let channel = SAChannel(testContext: nil)
+        channel.func = SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
+
+        doTest(
+            expectedResult: .standardDetail(pages: [.rollerShutter, .actionTriggerList]),
+            channel: channel,
+            children: [makeActionTrigger(relationType: .default)]
+        )
+    }
+
+    func test_actionTriggerListIsAddedToDimmerAndKeepsSettingsPage() {
+        let channel = SAChannel(testContext: nil)
+        channel.func = SUPLA_CHANNELFNC_DIMMER
+        channel.manufacturer_id = Int16(SUPLA_MFR_ZAMEL)
+        channel.product_id = 2000
+
+        doTest(
+            expectedResult: .rgbwDetail(pages: [.dimmer, .actionTriggerList, .dimmerSettings]),
+            channel: channel,
+            children: [makeActionTrigger(relationType: .default)]
+        )
+    }
+
+    func test_actionTriggerListIsNotAddedForOtherRelationTypes() {
+        let channel = SAChannel(testContext: nil)
+        channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
+
+        doTest(
+            expectedResult: .standardDetail(pages: [.switchGeneral]),
+            channel: channel,
+            children: [makeActionTrigger(relationType: .meter)]
+        )
+    }
+
+    func test_nestedActionTriggerIsListedOnItsOwnParent() {
+        let root = SAChannel(testContext: nil)
+        root.func = SUPLA_CHANNELFNC_LIGHTSWITCH
+
+        let nestedParent = SAChannel(testContext: nil)
+        nestedParent.func = SUPLA_CHANNELFNC_POWERSWITCH
+        let nestedChild = ChannelChild(
+            channel: nestedParent,
+            relation: .mock(type: .default),
+            children: [makeActionTrigger(relationType: .default)]
+        )
+
+        doTest(
+            expectedResult: .standardDetail(pages: [.switchGeneral]),
+            channel: root,
+            children: [nestedChild]
+        )
+
+        XCTAssertEqual(
+            useCase.invoke(channelWithChildren: ChannelWithChildren(
+                channel: nestedParent,
+                children: nestedChild.children
+            )),
+            .standardDetail(pages: [.switchGeneral, .actionTriggerList])
+        )
+    }
+
+    func test_actionTriggerListIsNotAddedToStandaloneRgbLighting() {
+        let channel = SAChannel(testContext: nil)
+        channel.func = SUPLA_CHANNELFNC_RGBLIGHTING
+
+        doTest(
+            expectedResult: .rgbwDetail(pages: [.rgb]),
+            channel: channel,
+            children: [makeActionTrigger(relationType: .default)]
+        )
+    }
+
+    private func makeActionTrigger(relationType: ChannelRelationType) -> SUPLA.ChannelChild {
+        let channel = SAChannel(testContext: nil)
+        channel.func = SUPLA_CHANNELFNC_ACTIONTRIGGER
+        return ChannelChild(channel: channel, relation: .mock(type: relationType))
+    }
+
+    private func doTest(expectedResult: DetailType?, channel: SAChannel, children: [SUPLA.ChannelChild]) {
+        let type = useCase.invoke(channelWithChildren: ChannelWithChildren(channel: channel, children: children))
+        XCTAssertEqual(type, expectedResult)
     }
     
     private func doTest(expectedResult: DetailType?, provider: () -> SAChannel) {

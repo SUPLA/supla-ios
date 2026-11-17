@@ -297,7 +297,7 @@ extension GateGeneralFeature {
             icon: .originalSuplaIcon(name: "gate-open"),
             caption: "Gate",
             userCaption: "",
-            batteryIcon: nil,
+            iconsBlock: nil,
             showChannelStateIcon: true
         ),
         RelatedChannelData.visible(
@@ -306,7 +306,7 @@ extension GateGeneralFeature {
             icon: .originalSuplaIcon(name: "gate-closed"),
             caption: "Gate",
             userCaption: "",
-            batteryIcon: nil,
+            iconsBlock: nil,
             showChannelStateIcon: false
         ),
         RelatedChannelData.invisible(id: 3)

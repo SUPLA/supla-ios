@@ -56,7 +56,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (double) temperatureValue;
 - (double) humidityValue;
 - (double) doubleValue;
-- (TDSC_RollerShutterValue) rollerShutterValue;
 - (double) totalForwardActiveEnergy;
 - (double) impulseCounterCalculatedValue;
 - (double) presetTemperature;
