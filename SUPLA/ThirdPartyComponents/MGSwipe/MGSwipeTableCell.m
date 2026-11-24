@@ -541,7 +541,6 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
 
     MGSwipeTableInputOverlay * _tableInputOverlay;
     bool _overlayEnabled;
-    __weak UITableView * _cachedParentTable;
     UITableViewCellSelectionStyle _previusSelectionStyle;
     NSMutableSet * _previusHiddenViews;
     BOOL _triggerStateChanges;
@@ -760,9 +759,13 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
     }
     
     self.selectionStyle = _previusSelectionStyle;
-    NSArray * selectedRows = self.parentTable.indexPathsForSelectedRows;
-    if ([selectedRows containsObject:[self.parentTable indexPathForCell:self]]) {
-        self.selected = YES;
+    UITableView * table = self.parentTable;
+    if (table) {
+        NSArray * selectedRows = table.indexPathsForSelectedRows;
+        NSIndexPath * indexPath = [table indexPathForCell:self];
+        if (indexPath && [selectedRows containsObject:indexPath]) {
+            self.selected = YES;
+        }
     }
     [self setAccesoryViewsHidden:NO];
     
@@ -914,18 +917,14 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
 
 -(UITableView *) parentTable
 {
-    if (_cachedParentTable) {
-        return _cachedParentTable;
-    }
-    
     UIView * view = self.superview;
     while(view != nil) {
         if([view isKindOfClass:[UITableView class]]) {
-            _cachedParentTable = (UITableView*) view;
+            return (UITableView*) view;
         }
         view = view.superview;
     }
-    return _cachedParentTable;
+    return nil;
 }
 
 -(void) updateState: (MGSwipeState) newState;
