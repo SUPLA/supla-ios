@@ -101,5 +101,9 @@
 	<string>Location is required to get the SSID of the Wi-Fi you&apos;re currently connect to</string>
 	<key>NFCReaderUsageDescription</key>
 	<string>App uses NFC tags to perform actions. To make a tag usable, specific records are placed there by the app.</string>
+	<key>ITSEncryptionExportComplianceCode</key>
+	<string>539d62ed-e98f-418c-b342-df3716cd8a1e</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<string>YES</string>
 </dict>
 </plist>
