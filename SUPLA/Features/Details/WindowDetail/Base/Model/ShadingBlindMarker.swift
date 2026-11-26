@@ -18,5 +18,19 @@
 
 struct ShadingBlindMarker: Equatable {
     let position: CGFloat
-    let tilt: CGFloat
+    let tiltValue: CGFloat?
+    let tilt0Angle: CGFloat?
+    let tilt100Angle: CGFloat?
+
+    var tilt: CGFloat? {
+        guard let tiltValue, let tilt0Angle, let tilt100Angle else { return nil }
+        return tilt0Angle + (tilt100Angle - tilt0Angle) * tiltValue / 100
+    }
+
+    init(position: CGFloat, tiltValue: CGFloat?, tilt0Angle: CGFloat? = nil, tilt100Angle: CGFloat? = nil) {
+        self.position = position
+        self.tiltValue = tiltValue
+        self.tilt0Angle = tilt0Angle
+        self.tilt100Angle = tilt100Angle
+    }
 }

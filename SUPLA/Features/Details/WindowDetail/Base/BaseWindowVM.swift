@@ -27,7 +27,7 @@ class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent
     @Singleton<ExecuteSimpleAction.UseCase> private var executeSimpleActionUseCase
     @Singleton<CallSuplaClientOperationUseCase> private var callSuplaClientOperationUseCase
     @Singleton<ExecuteRollerShutterActionUseCase> private var executeRollerShutterActionUseCase
-    @Singleton<GetGroupOnlineSummaryUseCase> private var getGroupOnlineSummaryUseCase
+    @Singleton<GetGroupOnlineSummaryUseCase> var getGroupOnlineSummaryUseCase
     @Singleton<DateProvider> private var dateProvider
     @Singleton<AuthorizationCoordinator> private var authorizationCoordinator
     
@@ -134,7 +134,7 @@ class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent
         fatalError("handleChannel(channel:) needs to be implemented!")
     }
     
-    private func loadGroup(_ remoteId: Int32) {
+    func loadGroup(_ remoteId: Int32) {
         Observable.zip(
             readGroupByRemoteIdUseCase.invoke(remoteId: remoteId),
             getGroupOnlineSummaryUseCase.invoke(remoteId: remoteId)
@@ -195,7 +195,26 @@ class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent
         return state
     }
     
-    func getGroupPercentage<T>(_ values: [T], _ hadMarkers: Bool, _ extractor: ((T) -> CGFloat)? = nil) -> WindowGroupedValue {
+    enum GroupThreshold {
+        case standard
+        case slat
+        case exact
+
+        func value(hadMarkers: Bool) -> CGFloat {
+            return switch self {
+            case .standard: hadMarkers ? 3 : 5
+            case .slat: hadMarkers ? 50 : 60
+            case .exact: 1
+            }
+        }
+    }
+
+    func getGroupPercentage<T>(
+        _ values: [T],
+        _ hadMarkers: Bool,
+        threshold: GroupThreshold = .standard,
+        _ extractor: ((T) -> CGFloat)? = nil
+    ) -> WindowGroupedValue {
         var lastValue: CGFloat? = nil
         var minValue: CGFloat? = nil
         var maxValue: CGFloat? = nil
@@ -219,7 +238,7 @@ class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent
             return .invalid
         } else {
             if let min = minValue, let max = maxValue {
-                if ((hadMarkers && abs(min - max) > 3) || abs(min - max) > 5) {
+                if (abs(min - max) > threshold.value(hadMarkers: hadMarkers)) {
                     return .different(min: min, max: max)
                 }
             }

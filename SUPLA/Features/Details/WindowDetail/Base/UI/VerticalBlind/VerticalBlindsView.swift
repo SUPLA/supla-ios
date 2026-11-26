@@ -41,8 +41,6 @@ class VerticalBlindsView: BaseWallWindowView<VerticalBlindWindowState, VerticalB
     private var tiltChangeAllowed = false
     private var startTilt: CGFloat? = nil
     
-    private let markerPath: UIBezierPath = .init()
-    
     init() {
         super.init(VerticalBlindRuntimeDimens())
     }
@@ -54,7 +52,7 @@ class VerticalBlindsView: BaseWallWindowView<VerticalBlindWindowState, VerticalB
     
     override func drawShadowingElements(_ context: CGContext, _ dimens: VerticalBlindRuntimeDimens) {
         guard let position = windowState?.markers.isEmpty == true || isMoving ? windowState?.position.value : windowState?.markers.map({ $0.position }).max() else { return }
-        let tiltDegrees = windowState?.slatTiltDegrees ?? 0
+        let tiltDegrees = windowState?.windowTiltDegrees ?? 0
         
         let correctedTilt = tiltDegrees <= tiltHalfRangeDegrees ? tiltDegrees : tiltRangeDegrees - tiltDegrees
         let verticalSlatCorrection = ((maxTilt * correctedTilt / tiltHalfRangeDegrees / 2) + minTilt)
@@ -72,7 +70,7 @@ class VerticalBlindsView: BaseWallWindowView<VerticalBlindWindowState, VerticalB
         guard let point = event?.allTouches?.first?.location(in: self) else { return }
         
         if (isEnabled && touchRect.contains(point)) {
-            startTilt = windowState?.slatTilt?.value
+            startTilt = windowState?.windowTilt?.value(for: .window)
             tiltChangeAllowed = false
         }
     }
@@ -109,7 +107,7 @@ class VerticalBlindsView: BaseWallWindowView<VerticalBlindWindowState, VerticalB
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        if (startTilt != nil), let tiltPercentage = windowState?.slatTilt?.value {
+        if (startTilt != nil), let tiltPercentage = windowState?.windowTilt?.value {
             let position = windowState?.position.value ?? 0
             moveFinishedRelay.accept(CGPoint(x: tiltPercentage, y: position))
         }
@@ -124,11 +122,7 @@ class VerticalBlindsView: BaseWallWindowView<VerticalBlindWindowState, VerticalB
         let markers = windowState?.markers ?? []
         let markerDiameter = dimens.markerInfoRadius * 2
         
-        let tilt0 = windowState?.tilt0Angle ?? DEFAULT_TILT_0_ANGLE
-        let tilt100 = windowState?.tilt100Angle ?? DEFAULT_TILT_100_ANGLE
-        
         for marker in markers {
-            markerPath.removeAllPoints()
             let leftCorrection = marker.position * dimens.movementLimit / 100
             let markerRect = CGRect(
                 x: dimens.topLineRect.minX + leftCorrection + dimens.slatWidth - dimens.markerInfoRadius,
@@ -136,40 +130,15 @@ class VerticalBlindsView: BaseWallWindowView<VerticalBlindWindowState, VerticalB
                 width: markerDiameter,
                 height: markerDiameter
             )
-            markerPath.append(UIBezierPath(ovalIn: markerRect))
+            let circlePath = UIBezierPath(ovalIn: markerRect).cgPath
+            drawPath(context, fillColor: colors.slatBackground) { circlePath }
+            drawPath(context, strokeColor: colors.slatBorder) { circlePath }
             
-            let degrees = tilt0 + (tilt100 - tilt0) * marker.tilt / 100
-            let correctedDegree = SlatTiltSlider.trimAngle(Float(degrees))
-            let angle = CGFloat(correctedDegree) * .pi / 180
-            
-            let translationX = -markerRect.minX - dimens.markerInfoRadius
-            let translationY = -markerRect.minY - dimens.markerInfoRadius
-            let startPoint = CGPoint(x: -dimens.markerInfoRadius / 2, y: 0)
-            let endPoint = CGPoint(x: dimens.markerInfoRadius / 2, y: 0)
-            
-            markerPath.apply(CGAffineTransform(translationX: translationX, y: translationY))
-            markerPath.apply(CGAffineTransform(rotationAngle: -angle))
-            markerPath.move(to: startPoint)
-            markerPath.addLine(to: endPoint)
-            markerPath.apply(CGAffineTransform(rotationAngle: angle))
-            markerPath.apply(CGAffineTransform(translationX: -translationX, y: -translationY))
-            
-            markerPath.apply(CGAffineTransform(translationX: translationX, y: translationY - 3))
-            markerPath.apply(CGAffineTransform(rotationAngle: -angle))
-            markerPath.move(to: startPoint)
-            markerPath.addLine(to: endPoint)
-            markerPath.apply(CGAffineTransform(rotationAngle: angle))
-            markerPath.apply(CGAffineTransform(translationX: -translationX, y: -translationY + 3))
-            
-            markerPath.apply(CGAffineTransform(translationX: translationX, y: translationY + 3))
-            markerPath.apply(CGAffineTransform(rotationAngle: -angle))
-            markerPath.move(to: startPoint)
-            markerPath.addLine(to: endPoint)
-            markerPath.apply(CGAffineTransform(rotationAngle: angle))
-            markerPath.apply(CGAffineTransform(translationX: -translationX, y: -translationY - 3))
-            
-            drawPath(context, fillColor: colors.slatBackground) { markerPath.cgPath }
-            drawPath(context, strokeColor: colors.markerBorder) { markerPath.cgPath }
+            guard let degrees = marker.tilt else {
+                continue
+            }
+            let slatPath = BlindsMarkerPath.slats(in: markerRect, degrees: degrees)
+            drawPath(context, strokeColor: colors.markerBorder) { slatPath }
         }
     }
     

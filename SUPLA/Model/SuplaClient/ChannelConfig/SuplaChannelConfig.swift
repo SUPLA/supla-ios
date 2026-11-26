@@ -141,7 +141,7 @@ private extension TSCS_ChannelConfig {
     }
     
     func isFacadeBlindConfig() -> Bool {
-        Func == SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
+        (Func == SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND || Func == SUPLA_CHANNELFNC_VERTICAL_BLIND)
             && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
             && ConfigSize == MemoryLayout<TChannelConfig_FacadeBlind>.size
     }

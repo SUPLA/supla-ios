@@ -143,7 +143,7 @@ class BaseWindowVC<WS: WindowState, WV: BaseWindowView<WS>, S: BaseWindowViewSta
             guard let bundle = self?.itemBundle else { return }
             self?.viewModel.handleAction(.calibrate, remoteId: bundle.remoteId, type: bundle.subjectType)
         }
-        viewModel.bind(slatTiltSlider.rx.value) { [weak self] value in
+        viewModel.bind(slatTiltSlider.rx.valueChanged) { [weak self] value in
             guard let bundle = self?.itemBundle else { return }
             self?.viewModel.handleAction(.tiltTo(tilt: CGFloat(value)), remoteId: bundle.remoteId, type: bundle.subjectType)
         }

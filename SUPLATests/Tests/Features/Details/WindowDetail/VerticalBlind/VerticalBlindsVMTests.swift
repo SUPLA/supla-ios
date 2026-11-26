@@ -24,6 +24,8 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
     private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = ReadChannelByRemoteIdUseCaseMock()
     
     private lazy var readGroupByRemoteIdUseCase: ReadGroupByRemoteIdUseCaseMock! = ReadGroupByRemoteIdUseCaseMock()
+
+    private lazy var readGroupWithChannelsUseCase: ReadGroupWithChannelsUseCaseMock! = ReadGroupWithChannelsUseCaseMock()
     
     private lazy var getGroupOnlineSummaryUseCase: GetGroupOnlineSummaryUseCaseMock! = GetGroupOnlineSummaryUseCaseMock()
     
@@ -38,6 +40,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
     override func setUp() {
         DiContainer.register(ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
         DiContainer.register(ReadGroupByRemoteIdUseCase.self, readGroupByRemoteIdUseCase!)
+        DiContainer.register(ReadGroupWithChannels.UseCase.self, readGroupWithChannelsUseCase!)
         DiContainer.register(GetGroupOnlineSummaryUseCase.self, getGroupOnlineSummaryUseCase!)
         DiContainer.register(ChannelConfigEventsManager.self, channelConfigEventsManager!)
         DiContainer.register(ExecuteFacadeBlindActionUseCase.self, executeFacadeBlindActionUseCase!)
@@ -49,6 +52,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
         
         readChannelByRemoteIdUseCase = nil
         readGroupByRemoteIdUseCase = nil
+        readGroupWithChannelsUseCase = nil
         getGroupOnlineSummaryUseCase = nil
         channelConfigEventsManager = nil
         executeFacadeBlindActionUseCase = nil
@@ -80,7 +84,8 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
                 remoteId: 123,
                 verticalBlindWindowState: VerticalBlindWindowState(
                     position: .similar(50),
-                    slatTilt: .similar(70)
+                    windowTilt: .similar(70),
+                    sliderTilt: .similar(70)
                 ),
                 issues: [
                     ChannelIssueItem.Error(string: localizedString(id: LocalizedStringId.motorProblem))
@@ -106,7 +111,16 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
         ])
         
         settings.showOpeningPercentReturns = true
-        readGroupByRemoteIdUseCase.returns = .just(group)
+        let config = groupConfig()
+        let channels = [
+            groupChannel(position: 80, tiltValue: 20, flags: 0, config: config),
+            groupChannel(position: 50, tiltValue: 50, flags: SuplaShadingSystemFlag.tiltIsSet.value, config: config),
+            groupChannel(position: -1, tiltValue: 50, flags: SuplaShadingSystemFlag.tiltIsSet.value, config: config)
+        ]
+        readGroupWithChannelsUseCase.returns = .just(.init(
+            group: group,
+            channels: channels.map { .visible(channel: ChannelWithChildren(channel: $0)) }
+        ))
         getGroupOnlineSummaryUseCase.returns = .just(groupOnlineSummary)
         
         // when
@@ -117,15 +131,17 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
         assertStates(expected: [
             VerticalBlindsViewState(),
             VerticalBlindsViewState(
-                lastPosition: 0,
+                tiltControlType: .changesPositionWhileTilting,
+                lastPosition: 80,
                 remoteId: 234,
                 verticalBlindWindowState: VerticalBlindWindowState(
                     position: .different(min: 50, max: 80),
                     positionTextFormat: .openingPercentage,
-                    slatTilt: .similar(50),
+                    windowTilt: .similar(50),
+                    sliderTilt: .different(min: 20, max: 50),
                     markers: [
-                        ShadingBlindMarker(position: 50, tilt: 50),
-                        ShadingBlindMarker(position: 80, tilt: 20)
+                        ShadingBlindMarker(position: 50, tiltValue: 50, tilt0Angle: 10, tilt100Angle: 90),
+                        ShadingBlindMarker(position: 80, tiltValue: nil, tilt0Angle: 10, tilt100Angle: 90)
                     ]
                 ),
                 offline: false,
@@ -135,6 +151,33 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             )
         ])
     }
+
+    private func groupChannel(position: Int, tiltValue: Int, flags: Int32, config: SuplaChannelFacadeBlindConfig) -> SAChannel {
+        let channel = SAChannel(testContext: nil)
+        channel.func = SUPLA_CHANNELFNC_VERTICAL_BLIND
+        channel.value = SAChannelValue(testContext: nil)
+        channel.value?.value = NSData(data: FacadeBlindValue.mockData(position: position, tilt: tiltValue, flags: flags))
+        channel.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
+        channel.config = .mock(type: .facadeBlind, config: config.toJson())
+        return channel
+    }
+
+    private func groupConfig() -> SuplaChannelFacadeBlindConfig {
+        SuplaChannelFacadeBlindConfig(
+            remoteId: 0,
+            channelFunc: SUPLA_CHANNELFNC_VERTICAL_BLIND,
+            crc32: 0,
+            closingTimeMs: 0,
+            openingTimeMs: 0,
+            motorUpsideDown: false,
+            buttonUpsideDown: false,
+            timeMargin: 0,
+            tiltingTimeMs: 0,
+            tilt0Angle: 10,
+            tilt100Angle: 90,
+            type: .changesPositionWhileTilting
+        )
+    }
     
     func test_shouldLoadConfig() {
         // given
@@ -142,7 +185,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             result: .resultTrue,
             config: SuplaChannelFacadeBlindConfig(
                 remoteId: 123,
-                channelFunc: SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
+                channelFunc: SUPLA_CHANNELFNC_VERTICAL_BLIND,
                 crc32: 0,
                 closingTimeMs: 10000,
                 openingTimeMs: 10500,
@@ -189,7 +232,11 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             VerticalBlindsViewState(remoteId: 111),
             VerticalBlindsViewState(
                 remoteId: 111,
-                verticalBlindWindowState: VerticalBlindWindowState(position: .similar(0), slatTilt: .similar(10)),
+                verticalBlindWindowState: VerticalBlindWindowState(
+                    position: .similar(0),
+                    windowTilt: .similar(10),
+                    sliderTilt: .similar(10)
+                ),
                 manualMoving: true
             )
         ])
@@ -201,10 +248,10 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             remoteId: 111,
             verticalBlindWindowState: VerticalBlindWindowState(
                 position: .different(min: 10, max: 20),
-                slatTilt: .different(min: 40, max: 60),
+                windowTilt: .different(min: 40, max: 60),
                 markers: [
-                    ShadingBlindMarker(position: 10, tilt: 40),
-                    ShadingBlindMarker(position: 20, tilt: 60)
+                    ShadingBlindMarker(position: 10, tiltValue: 40),
+                    ShadingBlindMarker(position: 20, tiltValue: 60)
                 ]
             )
         )
@@ -221,10 +268,11 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
                 .changing(
                     path: \.verticalBlindWindowState,
                     to: initialState.verticalBlindWindowState
-                        .changing(path: \.slatTilt, to: .similar(50))
+                        .changing(path: \.windowTilt, to: .similar(50))
+                        .changing(path: \.sliderTilt, to: .similar(50))
                         .changing(path: \.markers, to: [
-                            ShadingBlindMarker(position: 10, tilt: 50),
-                            ShadingBlindMarker(position: 20, tilt: 50)
+                            ShadingBlindMarker(position: 10, tiltValue: 50),
+                            ShadingBlindMarker(position: 20, tiltValue: 50)
                         ])
                 )
                 .changing(path: \.manualMoving, to: true)
@@ -238,7 +286,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             remoteId: 111,
             verticalBlindWindowState: VerticalBlindWindowState(
                 position: .similar(50),
-                slatTilt: .similar(50)
+                windowTilt: .similar(50)
             )
         )
         viewModel.updateView { _ in initialState }
@@ -255,7 +303,8 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
                     path: \.verticalBlindWindowState,
                     to: initialState.verticalBlindWindowState
                         .changing(path: \.position, to: .similar(100))
-                        .changing(path: \.slatTilt, to: .similar(60))
+                        .changing(path: \.windowTilt, to: .similar(60))
+                        .changing(path: \.sliderTilt, to: .similar(60))
                 )
                 .changing(path: \.manualMoving, to: true)
         ])
@@ -288,7 +337,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             remoteId: 111,
             verticalBlindWindowState: VerticalBlindWindowState(
                 position: .similar(10),
-                slatTilt: .similar(50)
+                windowTilt: .similar(50)
             )
         )
         viewModel.updateView { _ in initialState }
@@ -305,7 +354,8 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
                     path: \.verticalBlindWindowState,
                     to: initialState.verticalBlindWindowState
                         .changing(path: \.position, to: .similar(20))
-                        .changing(path: \.slatTilt, to: .similar(90))
+                        .changing(path: \.windowTilt, to: .similar(90))
+                        .changing(path: \.sliderTilt, to: .similar(90))
                 )
                 .changing(path: \.manualMoving, to: true)
         ])
@@ -350,7 +400,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             remoteId: 111,
             verticalBlindWindowState: VerticalBlindWindowState(
                 position: .similar(10),
-                slatTilt: .similar(50)
+                windowTilt: .similar(50)
             )
         )
         viewModel.updateView { _ in initialState }
@@ -367,7 +417,8 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
                     path: \.verticalBlindWindowState,
                     to: initialState.verticalBlindWindowState
                         .changing(path: \.position, to: .similar(2.5))
-                        .changing(path: \.slatTilt, to: .similar(25))
+                        .changing(path: \.windowTilt, to: .similar(25))
+                        .changing(path: \.sliderTilt, to: .similar(25))
                 )
                 .changing(path: \.manualMoving, to: true)
         ])
@@ -384,7 +435,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             remoteId: 111,
             verticalBlindWindowState: VerticalBlindWindowState(
                 position: .similar(10),
-                slatTilt: .similar(50)
+                windowTilt: .similar(50)
             )
         )
         viewModel.updateView { _ in initialState }
@@ -401,7 +452,8 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
                     path: \.verticalBlindWindowState,
                     to: initialState.verticalBlindWindowState
                         .changing(path: \.position, to: .similar(95))
-                        .changing(path: \.slatTilt, to: .similar(50))
+                        .changing(path: \.windowTilt, to: .similar(50))
+                        .changing(path: \.sliderTilt, to: .similar(50))
                 )
                 .changing(path: \.manualMoving, to: true)
         ])
@@ -414,7 +466,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             remoteId: 111,
             verticalBlindWindowState: VerticalBlindWindowState(
                 position: .similar(10),
-                slatTilt: .similar(50)
+                windowTilt: .similar(50)
             ),
             manualMoving: true
         )
@@ -471,7 +523,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             remoteId: 111,
             verticalBlindWindowState: VerticalBlindWindowState(
                 position: .similar(10),
-                slatTilt: .similar(50)
+                windowTilt: .similar(50)
             )
         )
         viewModel.updateView { _ in initialState }
@@ -501,7 +553,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
             remoteId: 111,
             verticalBlindWindowState: VerticalBlindWindowState(
                 position: .similar(10),
-                slatTilt: .similar(50)
+                windowTilt: .similar(50)
             )
         )
         viewModel.updateView { _ in initialState }

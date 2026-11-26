@@ -22,15 +22,25 @@ enum WindowGroupedValueFormat: Equatable {
     case degree
 }
 
+enum WindowGroupedValueDestination: Equatable {
+    case window
+    case slider
+}
+
 enum WindowGroupedValue: Equatable {
     case invalid
     case similar(_ value: CGFloat)
     case different(min: CGFloat, max: CGFloat)
     
     var value: CGFloat {
+        value(for: .window) ?? 0
+    }
+
+    func value(for destination: WindowGroupedValueDestination) -> CGFloat? {
         switch (self) {
-        case .invalid, .different(_, _): 0
+        case .invalid: nil
         case .similar(let value): value
+        case .different(_, let max): destination == .window ? max : nil
         }
     }
     
@@ -43,11 +53,7 @@ enum WindowGroupedValue: Equatable {
     }
     
     func asAngle(_ value0: CGFloat, _ value100: CGFloat) -> CGFloat {
-        switch (self) {
-        case .invalid: valueToAngle(0, value0, value100)
-        case .similar(let position): valueToAngle(position, value0, value100)
-        case .different: valueToAngle(0, value0, value100)
-        }
+        valueToAngle(value(for: .window) ?? 0, value0, value100)
     }
     
     func isDifferent() -> Bool {

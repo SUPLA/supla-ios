@@ -24,6 +24,8 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
     private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = ReadChannelByRemoteIdUseCaseMock()
     
     private lazy var readGroupByRemoteIdUseCase: ReadGroupByRemoteIdUseCaseMock! = ReadGroupByRemoteIdUseCaseMock()
+
+    private lazy var readGroupWithChannelsUseCase: ReadGroupWithChannelsUseCaseMock! = ReadGroupWithChannelsUseCaseMock()
     
     private lazy var getGroupOnlineSummaryUseCase: GetGroupOnlineSummaryUseCaseMock! = GetGroupOnlineSummaryUseCaseMock()
     
@@ -42,6 +44,7 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
     override func setUp() {
         DiContainer.register(ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
         DiContainer.register(ReadGroupByRemoteIdUseCase.self, readGroupByRemoteIdUseCase!)
+        DiContainer.register(ReadGroupWithChannels.UseCase.self, readGroupWithChannelsUseCase!)
         DiContainer.register(GetGroupOnlineSummaryUseCase.self, getGroupOnlineSummaryUseCase!)
         DiContainer.register(ChannelConfigEventsManager.self, channelConfigEventsManager!)
         DiContainer.register(ExecuteFacadeBlindActionUseCase.self, executeFacadeBlindActionUseCase!)
@@ -55,6 +58,7 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
         
         readChannelByRemoteIdUseCase = nil
         readGroupByRemoteIdUseCase = nil
+        readGroupWithChannelsUseCase = nil
         getGroupOnlineSummaryUseCase = nil
         channelConfigEventsManager = nil
         executeFacadeBlindActionUseCase = nil
@@ -88,7 +92,8 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
                 remoteId: 123,
                 facadeBlindWindowState: FacadeBlindWindowState(
                     position: .similar(50),
-                    slatTilt: .similar(70)
+                    windowTilt: .similar(70),
+                    sliderTilt: .similar(70)
                 ),
                 issues: [
                     ChannelIssueItem.Warning(string: localizedString(id: LocalizedStringId.calibrationFailed))
@@ -114,7 +119,16 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
         ])
         
         settings.showOpeningPercentReturns = true
-        readGroupByRemoteIdUseCase.returns = .just(group)
+        let config = groupConfig()
+        let channels = [
+            groupChannel(position: 80, tiltValue: 20, flags: 0, config: config),
+            groupChannel(position: 50, tiltValue: 50, flags: SuplaShadingSystemFlag.tiltIsSet.value, config: config),
+            groupChannel(position: -1, tiltValue: 50, flags: SuplaShadingSystemFlag.tiltIsSet.value, config: config)
+        ]
+        readGroupWithChannelsUseCase.returns = .just(.init(
+            group: group,
+            channels: channels.map { .visible(channel: ChannelWithChildren(channel: $0)) }
+        ))
         getGroupOnlineSummaryUseCase.returns = .just(groupOnlineSummary)
         
         // when
@@ -125,15 +139,17 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
         assertStates(expected: [
             FacadeBlindsViewState(),
             FacadeBlindsViewState(
-                lastPosition: 0,
+                tiltControlType: .changesPositionWhileTilting,
+                lastPosition: 80,
                 remoteId: 234,
                 facadeBlindWindowState: FacadeBlindWindowState(
                     position: .different(min: 50, max: 80),
                     positionTextFormat: .openingPercentage,
-                    slatTilt: .similar(50),
+                    windowTilt: .similar(50),
+                    sliderTilt: .different(min: 20, max: 50),
                     markers: [
-                        ShadingBlindMarker(position: 50, tilt: 50),
-                        ShadingBlindMarker(position: 80, tilt: 20)
+                        ShadingBlindMarker(position: 50, tiltValue: 50, tilt0Angle: 10, tilt100Angle: 90),
+                        ShadingBlindMarker(position: 80, tiltValue: nil, tilt0Angle: 10, tilt100Angle: 90)
                     ]
                 ),
                 offline: false,
@@ -142,6 +158,96 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
                 onlineStatusString: "2/3"
             )
         ])
+    }
+
+    func test_shouldCalculateSliderTiltWhenGroupConfigsDiffer() {
+        let group = SAChannelGroup(testContext: nil)
+        group.remote_id = 345
+        group.online = 1
+        group.total_value = GroupTotalValue(values: [
+            ShadowingBlindGroupValue(position: 10, tilt: 40),
+            ShadowingBlindGroupValue(position: 12, tilt: 42)
+        ])
+        let channels = [
+            groupChannel(position: 10, tiltValue: 40, flags: SuplaShadingSystemFlag.tiltIsSet.value, config: groupConfig()),
+            groupChannel(position: 12, tiltValue: 42, flags: SuplaShadingSystemFlag.tiltIsSet.value, config: groupConfig(tilt100: 120))
+        ]
+        readGroupWithChannelsUseCase.returns = .just(.init(
+            group: group,
+            channels: channels.map { .visible(channel: ChannelWithChildren(channel: $0)) }
+        ))
+        getGroupOnlineSummaryUseCase.returns = .just(GroupOnlineSummary(onlineCount: 2, count: 2))
+
+        observe(viewModel)
+        viewModel.loadData(remoteId: 345, type: .group)
+
+        assertStates(expected: [
+            FacadeBlindsViewState(),
+            FacadeBlindsViewState(
+                lastPosition: 10,
+                remoteId: 345,
+                facadeBlindWindowState: FacadeBlindWindowState(
+                    position: .similar(10),
+                    windowTilt: .similar(40),
+                    sliderTilt: .different(min: 40, max: 42),
+                    markers: [
+                        ShadingBlindMarker(position: 10, tiltValue: 40, tilt0Angle: 10, tilt100Angle: 90),
+                        ShadingBlindMarker(position: 12, tiltValue: 42, tilt0Angle: 10, tilt100Angle: 120)
+                    ]
+                ),
+                offline: false,
+                isGroup: true,
+                onlineStatusString: "2/2"
+            )
+        ])
+    }
+
+    func test_shouldProvideSliderDegreesOnlyForAvailableSharedTiltAndAngles() {
+        let sharedTilt = FacadeBlindWindowState(
+            position: .similar(0),
+            windowTilt: .different(min: 30, max: 70),
+            sliderTilt: .similar(40),
+            tilt0Angle: 10,
+            tilt100Angle: 90
+        )
+        let differentTilt = sharedTilt.changing(path: \.sliderTilt, to: .different(min: 20, max: 50))
+        let missingAngles = FacadeBlindWindowState(
+            position: .similar(0),
+            windowTilt: .similar(40),
+            tilt0Angle: nil,
+            tilt100Angle: nil
+        )
+
+        XCTAssertEqual(sharedTilt.windowTiltDegrees, 66)
+        XCTAssertEqual(sharedTilt.sliderTiltDegrees, 42)
+        XCTAssertNil(differentTilt.sliderTiltDegrees)
+        XCTAssertNil(missingAngles.sliderTiltDegrees)
+    }
+
+    private func groupChannel(position: Int, tiltValue: Int, flags: Int32, config: SuplaChannelFacadeBlindConfig) -> SAChannel {
+        let channel = SAChannel(testContext: nil)
+        channel.value = SAChannelValue(testContext: nil)
+        channel.value?.value = NSData(data: FacadeBlindValue.mockData(position: position, tilt: tiltValue, flags: flags))
+        channel.value?.online = SUPLA_CHANNEL_ONLINE_FLAG_ONLINE
+        channel.config = .mock(type: .facadeBlind, config: config.toJson())
+        return channel
+    }
+
+    private func groupConfig(tilt100: UInt16 = 90) -> SuplaChannelFacadeBlindConfig {
+        SuplaChannelFacadeBlindConfig(
+            remoteId: 0,
+            channelFunc: SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
+            crc32: 0,
+            closingTimeMs: 0,
+            openingTimeMs: 0,
+            motorUpsideDown: false,
+            buttonUpsideDown: false,
+            timeMargin: 0,
+            tiltingTimeMs: 0,
+            tilt0Angle: 10,
+            tilt100Angle: tilt100,
+            type: .changesPositionWhileTilting
+        )
     }
     
     func test_shouldLoadConfig() {
@@ -230,7 +336,11 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
             FacadeBlindsViewState(remoteId: 111),
             FacadeBlindsViewState(
                 remoteId: 111,
-                facadeBlindWindowState: FacadeBlindWindowState(position: .similar(0), slatTilt: .similar(10)),
+                facadeBlindWindowState: FacadeBlindWindowState(
+                    position: .similar(0),
+                    windowTilt: .similar(10),
+                    sliderTilt: .similar(10)
+                ),
                 manualMoving: true
             )
         ])
@@ -242,10 +352,10 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
             remoteId: 111,
             facadeBlindWindowState: FacadeBlindWindowState(
                 position: .different(min: 10, max: 20),
-                slatTilt: .different(min: 40, max: 60),
+                windowTilt: .different(min: 40, max: 60),
                 markers: [
-                    ShadingBlindMarker(position: 10, tilt: 40),
-                    ShadingBlindMarker(position: 20, tilt: 60)
+                    ShadingBlindMarker(position: 10, tiltValue: 40),
+                    ShadingBlindMarker(position: 20, tiltValue: 60)
                 ]
             )
         )
@@ -262,10 +372,11 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
                 .changing(
                     path: \.facadeBlindWindowState,
                     to: initialState.facadeBlindWindowState
-                        .changing(path: \.slatTilt, to: .similar(50))
+                        .changing(path: \.windowTilt, to: .similar(50))
+                        .changing(path: \.sliderTilt, to: .similar(50))
                         .changing(path: \.markers, to: [
-                            ShadingBlindMarker(position: 10, tilt: 50),
-                            ShadingBlindMarker(position: 20, tilt: 50)
+                            ShadingBlindMarker(position: 10, tiltValue: 50),
+                            ShadingBlindMarker(position: 20, tiltValue: 50)
                         ])
                 )
                 .changing(path: \.manualMoving, to: true)
@@ -279,7 +390,7 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
             remoteId: 111,
             facadeBlindWindowState: FacadeBlindWindowState(
                 position: .similar(50),
-                slatTilt: .similar(50)
+                windowTilt: .similar(50)
             )
         )
         viewModel.updateView { _ in initialState }
@@ -296,7 +407,8 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
                     path: \.facadeBlindWindowState,
                     to: initialState.facadeBlindWindowState
                         .changing(path: \.position, to: .similar(100))
-                        .changing(path: \.slatTilt, to: .similar(60))
+                        .changing(path: \.windowTilt, to: .similar(60))
+                        .changing(path: \.sliderTilt, to: .similar(60))
                 )
                 .changing(path: \.manualMoving, to: true)
         ])
@@ -329,7 +441,7 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
             remoteId: 111,
             facadeBlindWindowState: FacadeBlindWindowState(
                 position: .similar(10),
-                slatTilt: .similar(50)
+                windowTilt: .similar(50)
             )
         )
         viewModel.updateView { _ in initialState }
@@ -346,7 +458,8 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
                     path: \.facadeBlindWindowState,
                     to: initialState.facadeBlindWindowState
                         .changing(path: \.position, to: .similar(20))
-                        .changing(path: \.slatTilt, to: .similar(90))
+                        .changing(path: \.windowTilt, to: .similar(90))
+                        .changing(path: \.sliderTilt, to: .similar(90))
                 )
                 .changing(path: \.manualMoving, to: true)
         ])
@@ -391,7 +504,7 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
             remoteId: 111,
             facadeBlindWindowState: FacadeBlindWindowState(
                 position: .similar(10),
-                slatTilt: .similar(50)
+                windowTilt: .similar(50)
             )
         )
         viewModel.updateView { _ in initialState }
@@ -408,7 +521,8 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
                     path: \.facadeBlindWindowState,
                     to: initialState.facadeBlindWindowState
                         .changing(path: \.position, to: .similar(2.5))
-                        .changing(path: \.slatTilt, to: .similar(25))
+                        .changing(path: \.windowTilt, to: .similar(25))
+                        .changing(path: \.sliderTilt, to: .similar(25))
                 )
                 .changing(path: \.manualMoving, to: true)
         ])
@@ -425,7 +539,7 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
             remoteId: 111,
             facadeBlindWindowState: FacadeBlindWindowState(
                 position: .similar(10),
-                slatTilt: .similar(50)
+                windowTilt: .similar(50)
             )
         )
         viewModel.updateView { _ in initialState }
@@ -442,7 +556,8 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
                     path: \.facadeBlindWindowState,
                     to: initialState.facadeBlindWindowState
                         .changing(path: \.position, to: .similar(95))
-                        .changing(path: \.slatTilt, to: .similar(50))
+                        .changing(path: \.windowTilt, to: .similar(50))
+                        .changing(path: \.sliderTilt, to: .similar(50))
                 )
                 .changing(path: \.manualMoving, to: true)
         ])
@@ -455,7 +570,7 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
             remoteId: 111,
             facadeBlindWindowState: FacadeBlindWindowState(
                 position: .similar(10),
-                slatTilt: .similar(50)
+                windowTilt: .similar(50)
             ),
             manualMoving: true
         )
@@ -512,7 +627,7 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
             remoteId: 111,
             facadeBlindWindowState: FacadeBlindWindowState(
                 position: .similar(10),
-                slatTilt: .similar(50)
+                windowTilt: .similar(50)
             )
         )
         viewModel.updateView { _ in initialState }
@@ -542,7 +657,7 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
             remoteId: 111,
             facadeBlindWindowState: FacadeBlindWindowState(
                 position: .similar(10),
-                slatTilt: .similar(50)
+                windowTilt: .similar(50)
             )
         )
         viewModel.updateView { _ in initialState }

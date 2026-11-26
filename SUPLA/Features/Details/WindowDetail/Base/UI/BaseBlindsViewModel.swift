@@ -23,8 +23,83 @@ class BaseBlindsViewModel<S: BaseBlindsViewState>: BaseWindowVM<S> {
     @Singleton<ChannelConfigEventsManager> private var channelConfigEventsManager
     @Singleton<ExecuteFacadeBlindActionUseCase> private var executeFacadeBlindActionUseCase
     @Singleton<ReadGroupTiltingDetailsUseCase> private var readGroupTiltingDetailsUseCase
+    @Singleton<ReadGroupWithChannels.UseCase> private var readGroupWithChannelsUseCase
     @Singleton<SuplaSchedulers> private var schedulers
-    
+
+    override func loadGroup(_ remoteId: Int32) {
+        Observable.zip(
+            readGroupWithChannelsUseCase.invoke(remoteId: remoteId),
+            getGroupOnlineSummaryUseCase.invoke(remoteId: remoteId)
+        ) { groupWithChannels, summary in (groupWithChannels, summary) }
+            .asDriverWithoutError()
+            .drive(onNext: { [weak self] groupWithChannels, summary in
+                let channels = groupWithChannels.channels.compactMap { item -> SAChannel? in
+                    guard case .visible(let channelWithChildren) = item else { return nil }
+                    return channelWithChildren.channel
+                }
+                
+                self?.handleGroup(
+                    groupWithChannels.group,
+                    summary,
+                    channels
+                )
+            })
+            .disposed(by: self)
+    }
+
+    func handleGroup(
+        _ group: SAChannelGroup,
+        _ onlineSummary: GroupOnlineSummary,
+        _ channels: [SAChannel],
+    ) {
+        fatalError("handleGroup(group:,onlineSummary:,channels:) needs to be implemented!")
+    }
+
+    func getGroupMarkers(_ channels: [SAChannel]) -> [ShadingBlindMarker] {
+        channels.compactMap { channel in
+            guard let value = channel.value?.asFacadeBlindValue(), value.hasValidPosition() else { return nil }
+
+            let tilt = value.hasValidTilt() && value.flags.contains(.tiltIsSet) ? CGFloat(value.tilt) : nil
+            let config = channel.config?.configAsSuplaConfig() as? SuplaChannelFacadeBlindConfig
+            return ShadingBlindMarker(
+                position: CGFloat(value.position),
+                tiltValue: tilt,
+                tilt0Angle: config.map { CGFloat($0.tilt0Angle) },
+                tilt100Angle: config.map { CGFloat($0.tilt100Angle) }
+            )
+        }
+        .sorted { $0.position < $1.position }
+    }
+
+    func getGroupTiltingDetails(_ channels: [SAChannel]) -> TiltingDetails {
+        return channels.reduce(nil as TiltingDetails?) { acc, channel in
+            let details = channel.toTiltingDetails()
+            
+            return if (acc == .unknown || details == nil) {
+                .unknown
+            } else if (acc == .different) {
+                .different
+            } else if (acc == nil) {
+                details
+            } else if (acc != details) {
+                .different
+            } else {
+                details
+            }
+        } ?? .unknown
+    }
+
+    func applying(_ details: TiltingDetails, to state: S) -> S {
+        switch details {
+        case .similar(let tilt0Angle, let tilt100Angle, let tiltControlType):
+            state.updateTiltAngles(tilt0: CGFloat(tilt0Angle), tilt100: CGFloat(tilt100Angle))
+                .changing(path: \.tiltControlType, to: tiltControlType)
+        case .different, .unknown:
+            state.updateTiltAngles(tilt0: nil, tilt100: nil)
+                .changing(path: \.tiltControlType, to: nil)
+        }
+    }
+
     func observeConfig(_ remoteId: Int32, _ type: SubjectType) {
         if (type == .channel) {
             channelConfigEventsManager.observeConfig(id: remoteId)
@@ -58,11 +133,22 @@ class BaseBlindsViewModel<S: BaseBlindsViewState>: BaseWindowVM<S> {
                     // When setting value observer to the slider initial 0 is emitted
                     return $0
                 }
-                
+
+                if !$0.manualMoving && $0.blindWindowState.windowTilt?.value(for: .window) == tilt {
+                    return $0
+                }
+
                 let markers: [ShadingBlindMarker] = if ($0.tiltControlType == .tiltsOnlyWhenFullyClosed) {
                     []
                 } else if ($0.windowState.position.isDifferent()) {
-                    $0.blindWindowState.markers.map { marker in ShadingBlindMarker(position: marker.position, tilt: tilt) }
+                    $0.blindWindowState.markers.map { marker in
+                        ShadingBlindMarker(
+                            position: marker.position,
+                            tiltValue: tilt,
+                            tilt0Angle: marker.tilt0Angle,
+                            tilt100Angle: marker.tilt100Angle
+                        )
+                    }
                 } else {
                     []
                 }
@@ -90,7 +176,7 @@ class BaseBlindsViewModel<S: BaseBlindsViewState>: BaseWindowVM<S> {
                 if ($0.calibrating) {
                     return $0
                 }
-                let tilt: CGFloat? = if ($0.blindWindowState.slatTilt == nil) {
+                let tilt: CGFloat? = if ($0.blindWindowState.windowTilt == nil) {
                     nil
                 } else if ($0.tiltControlType == .changesPositionWhileTilting) {
                     limitTilt(tilt: tilt, position: position, state: $0)
@@ -109,7 +195,7 @@ class BaseBlindsViewModel<S: BaseBlindsViewState>: BaseWindowVM<S> {
                 if ($0.calibrating) {
                     return $0
                 }
-                let tilt: CGFloat = if ($0.blindWindowState.slatTilt == nil) {
+                let tilt: CGFloat = if ($0.blindWindowState.windowTilt == nil) {
                     CGFloat(VALUE_IGNORE)
                 } else if ($0.tiltControlType == .changesPositionWhileTilting) {
                     limitTilt(tilt: tilt, position: position, state: $0)
@@ -172,15 +258,7 @@ class BaseBlindsViewModel<S: BaseBlindsViewState>: BaseWindowVM<S> {
     }
     
     private func handleTiltingDetails(_ details: TiltingDetails) {
-        switch (details) {
-        case .similar(let tilt0Angle, let tilt100Angle, let tiltControlType):
-            updateView {
-                $0.updateTiltAngles(tilt0: CGFloat(tilt0Angle), tilt100: CGFloat(tilt100Angle))
-                    .changing(path: \.tiltControlType, to: tiltControlType)
-            }
-        default:
-            SALog.info("Tilting details differs from Similar: \(details)")
-        }
+        updateView { applying(details, to: $0) }
     }
 }
 
@@ -192,6 +270,14 @@ private extension Completable {
     }
 }
 
+private extension SAChannel {
+    func toTiltingDetails() -> TiltingDetails? {
+        guard let config = (config?.configAsSuplaConfig() as? SuplaChannelFacadeBlindConfig) else { return nil }
+
+        return TiltingDetails.similar(tilt0Angle: config.tilt0Angle, tilt100Angle: config.tilt100Angle, tiltControlType: config.type)
+    }
+}
+
 protocol BaseBlindsViewState: BaseWindowViewState {
     var tiltControlType: SuplaTiltControlType? { get set }
     var tiltingTime: CGFloat? { get set }
@@ -200,7 +286,7 @@ protocol BaseBlindsViewState: BaseWindowViewState {
     var lastPosition: CGFloat? { get set }
     
     func updateWindowState(position: WindowGroupedValue, tilt: WindowGroupedValue?, markers: [ShadingBlindMarker]) -> Self
-    func updateTiltAngles(tilt0: CGFloat, tilt100: CGFloat) -> Self
-    
+    func updateTiltAngles(tilt0: CGFloat?, tilt100: CGFloat?) -> Self
+
     var blindWindowState: any ShadingBlindWindowState { get }
 }

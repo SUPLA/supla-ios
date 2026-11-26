@@ -36,13 +36,20 @@ final class VerticalBlindsVC: BaseWindowVC<VerticalBlindWindowState, VerticalBli
     override func handle(state: VerticalBlindsViewState) {
         windowView.windowState = state.verticalBlindWindowState
         
-        topView.valueBottom = state.verticalBlindWindowState.slatTiltText
+        topView.valueBottom = state.verticalBlindWindowState.windowTiltText
         
         slatTiltSlider.isHidden = false
-        slatTiltSlider.isEnabled = !state.offline && state.verticalBlindWindowState.slatTilt != nil
-        slatTiltSlider.value = Float(state.verticalBlindWindowState.slatTilt?.value ?? 0)
         slatTiltSlider.minDegree = state.verticalBlindWindowState.tilt0Angle?.float ?? SlatTiltSlider.defaultMinDegrees
         slatTiltSlider.maxDegree = state.verticalBlindWindowState.tilt100Angle?.float ?? SlatTiltSlider.defaultMaxDegrees
+        slatTiltSlider.setDisplayState(
+            value: state.verticalBlindWindowState.sliderTiltValue,
+            degrees: state.verticalBlindWindowState.sliderTiltDegrees,
+            markers: state.verticalBlindWindowState.markers.compactMap { marker in
+                guard let value = marker.tiltValue else { return nil }
+                return SlatTiltSliderMarker(value: value, tilt: marker.tilt)
+            }
+        )
+        slatTiltSlider.isEnabled = !state.offline && state.verticalBlindWindowState.windowTilt != nil
         
         super.handle(state: state)
     }

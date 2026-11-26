@@ -592,6 +592,7 @@
 		A55A8D7D2BA9A15200C540D4 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D7C2BA9A15200C540D4 /* UIImageView+Ext.swift */; };
 		A55A8D802BA9AD8000C540D4 /* RollerShutterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D7F2BA9AD8000C540D4 /* RollerShutterView.swift */; };
 		A55A8D822BA9B6B400C540D4 /* WindowColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D812BA9B6B400C540D4 /* WindowColors.swift */; };
+		B10200000000000000000001 /* BlindsMarkerPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10200000000000000000002 /* BlindsMarkerPath.swift */; };
 		A55A8D842BAAD06C00C540D4 /* UpDownControllButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D832BAAD06C00C540D4 /* UpDownControllButton.swift */; };
 		A55A8D862BAAF52500C540D4 /* IssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D852BAAF52500C540D4 /* IssueView.swift */; };
 		A55A8D8A2BAB06D600C540D4 /* WindowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A8D892BAB06D600C540D4 /* WindowState.swift */; };
@@ -2525,6 +2526,7 @@
 		A55A8D7C2BA9A15200C540D4 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		A55A8D7F2BA9AD8000C540D4 /* RollerShutterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerShutterView.swift; sourceTree = "<group>"; };
 		A55A8D812BA9B6B400C540D4 /* WindowColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowColors.swift; sourceTree = "<group>"; };
+		B10200000000000000000002 /* BlindsMarkerPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlindsMarkerPath.swift; sourceTree = "<group>"; };
 		A55A8D832BAAD06C00C540D4 /* UpDownControllButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpDownControllButton.swift; sourceTree = "<group>"; };
 		A55A8D852BAAF52500C540D4 /* IssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueView.swift; sourceTree = "<group>"; };
 		A55A8D892BAB06D600C540D4 /* WindowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowState.swift; sourceTree = "<group>"; };
@@ -4319,6 +4321,7 @@
 			isa = PBXGroup;
 			children = (
 				A55A8D812BA9B6B400C540D4 /* WindowColors.swift */,
+				B10200000000000000000002 /* BlindsMarkerPath.swift */,
 				A5B3A4B22BB552590001D006 /* BaseWindowView.swift */,
 				A5074BC42BCE66070081B6B1 /* DefaultWindowDimens.swift */,
 				A5074BC62BCE66930081B6B1 /* BaseWallWindowDimens.swift */,
@@ -9115,6 +9118,7 @@
 				A58472082C2ED60E00713D36 /* SuplaAppProvider.swift in Sources */,
 				A5E9CE242C32BB8700509702 /* LoginUseCase.swift in Sources */,
 				A55A8D822BA9B6B400C540D4 /* WindowColors.swift in Sources */,
+				B10200000000000000000001 /* BlindsMarkerPath.swift in Sources */,
 				A56364252EE1720900A702C0 /* RgbDetailViewState.swift in Sources */,
 				A563640A2EDF8F8A00A702C0 /* StandardDetailVM.swift in Sources */,
 				A5A15FE62C256F850049AA73 /* AppDelegate.swift in Sources */,

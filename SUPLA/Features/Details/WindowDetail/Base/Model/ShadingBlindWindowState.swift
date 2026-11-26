@@ -17,6 +17,25 @@
  */
 
 protocol ShadingBlindWindowState: WindowState {
-    var slatTilt: WindowGroupedValue? { get set }
+    var windowTilt: WindowGroupedValue? { get set }
+    var sliderTilt: WindowGroupedValue? { get set }
+    var tilt0Angle: CGFloat? { get set }
+    var tilt100Angle: CGFloat? { get set }
     var markers: [ShadingBlindMarker] { get set }
+}
+
+extension ShadingBlindWindowState {
+    var sliderTiltValue: CGFloat? {
+        (sliderTilt)?.value(for: .slider)
+    }
+
+    var sliderTiltDegrees: CGFloat? {
+        guard let tilt = sliderTilt ?? windowTilt,
+              let value = tilt.value(for: .slider),
+              let tilt0Angle,
+              let tilt100Angle
+        else { return nil }
+
+        return tilt0Angle + (tilt100Angle - tilt0Angle) * value / 100
+    }
 }

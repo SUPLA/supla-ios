@@ -63,6 +63,16 @@ final class ReadGroupByRemoteIdUseCaseMock: ReadGroupByRemoteIdUseCase {
     }
 }
 
+final class ReadGroupWithChannelsUseCaseMock: ReadGroupWithChannels.UseCase {
+    var returns: Observable<ReadGroupWithChannels.GroupWithChannels> = .empty()
+    var remoteIdArray: [Int32] = []
+
+    func invoke(remoteId: Int32) -> Observable<ReadGroupWithChannels.GroupWithChannels> {
+        remoteIdArray.append(remoteId)
+        return returns
+    }
+}
+
 final class GetGroupOnlineSummaryUseCaseMock: GetGroupOnlineSummaryUseCase {
     
     var returns: Observable<GroupOnlineSummary> = .empty()

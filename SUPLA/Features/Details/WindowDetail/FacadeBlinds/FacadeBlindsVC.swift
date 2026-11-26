@@ -36,13 +36,20 @@ final class FacadeBlindsVC: BaseWindowVC<FacadeBlindWindowState, FacadeBlindsVie
     override func handle(state: FacadeBlindsViewState) {
         windowView.windowState = state.facadeBlindWindowState
         
-        topView.valueBottom = state.facadeBlindWindowState.slatTiltText
+        topView.valueBottom = state.facadeBlindWindowState.windowTiltText
         
         slatTiltSlider.isHidden = false
-        slatTiltSlider.isEnabled = !state.offline && state.facadeBlindWindowState.slatTilt != nil
-        slatTiltSlider.value = Float(state.facadeBlindWindowState.slatTilt?.value ?? 0)
         slatTiltSlider.minDegree = state.facadeBlindWindowState.tilt0Angle?.float ?? SlatTiltSlider.defaultMinDegrees
         slatTiltSlider.maxDegree = state.facadeBlindWindowState.tilt100Angle?.float ?? SlatTiltSlider.defaultMaxDegrees
+        slatTiltSlider.setDisplayState(
+            value: state.facadeBlindWindowState.sliderTiltValue,
+            degrees: state.facadeBlindWindowState.sliderTiltDegrees,
+            markers: state.facadeBlindWindowState.markers.compactMap { marker in
+                guard let value = marker.tiltValue else { return nil }
+                return SlatTiltSliderMarker(value: value, tilt: marker.tilt)
+            }
+        )
+        slatTiltSlider.isEnabled = !state.offline && state.facadeBlindWindowState.windowTilt != nil
         
         super.handle(state: state)
     }

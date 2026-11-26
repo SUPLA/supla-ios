@@ -32,7 +32,9 @@ struct FacadeBlindWindowState: ShadingBlindWindowState, Equatable, Changeable {
     /**
      * Slat tilt as percentage - 0 up to 100
      */
-    var slatTilt: WindowGroupedValue? = nil
+    var windowTilt: WindowGroupedValue? = nil
+
+    var sliderTilt: WindowGroupedValue? = nil
     
     var tiltTextFormat: WindowGroupedValueFormat = .degree
     
@@ -42,13 +44,17 @@ struct FacadeBlindWindowState: ShadingBlindWindowState, Equatable, Changeable {
     
     var markers: [ShadingBlindMarker] = []
     
-    var slatTiltDegrees: CGFloat? {
-        guard let tilt = slatTilt else { return nil }
-        return tilt.asAngle(tilt0Angle ?? DEFAULT_TILT_0_ANGLE, tilt100Angle ?? DEFAULT_TILT_100_ANGLE)
+    var windowTiltDegrees: CGFloat? {
+        guard let tilt = windowTilt else { return nil }
+        guard let value = tilt.value(for: .window) else { return nil }
+        return value0Angle + (value100Angle - value0Angle) * value / 100
     }
+
+    private var value0Angle: CGFloat { tilt0Angle ?? DEFAULT_TILT_0_ANGLE }
+    private var value100Angle: CGFloat { tilt100Angle ?? DEFAULT_TILT_100_ANGLE }
     
-    var slatTiltText: String {
-        guard let tilt = slatTilt else { return Strings.FacadeBlindsDetail.noTilt }
+    var windowTiltText: String {
+        guard let tilt = windowTilt else { return Strings.FacadeBlindsDetail.noTilt }
         return tilt.asString(tiltTextFormat, value0: tilt0Angle, value100: tilt100Angle)
     }
 }

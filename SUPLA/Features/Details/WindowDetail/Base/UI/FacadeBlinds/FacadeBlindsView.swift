@@ -47,7 +47,7 @@ class FacadeBlindsView: BaseWallWindowView<FacadeBlindWindowState, FacadeBlindRu
     private var startTilt: CGFloat? = nil
     
     private lazy var markersLayers: [CAShapeLayer] = []
-    private lazy var markerPath: UIBezierPath = .init()
+    private lazy var markerTextLayers: [CATextLayer] = []
     
     init() {
         super.init(FacadeBlindRuntimeDimens())
@@ -63,7 +63,7 @@ class FacadeBlindsView: BaseWallWindowView<FacadeBlindWindowState, FacadeBlindRu
         else {
             return
         }
-        let tiltDegrees = windowState?.slatTiltDegrees ?? 0
+        let tiltDegrees = windowState?.windowTiltDegrees ?? 0
         
         let correctedTilt = tiltDegrees <= tiltHalfRangeDegrees ? tiltDegrees : tiltRangeDegrees - tiltDegrees
         let horizontalSlatCorrection = ((maxTilt * correctedTilt / tiltHalfRangeDegrees / 2) + minTilt)
@@ -100,7 +100,7 @@ class FacadeBlindsView: BaseWallWindowView<FacadeBlindWindowState, FacadeBlindRu
         guard let point = event?.allTouches?.first?.location(in: self) else { return }
         
         if (isEnabled && touchRect.contains(point)) {
-            startTilt = windowState?.slatTilt?.value
+            startTilt = windowState?.windowTilt?.value(for: .window)
             tiltChangeAllowed = false
         }
     }
@@ -132,61 +132,113 @@ class FacadeBlindsView: BaseWallWindowView<FacadeBlindWindowState, FacadeBlindRu
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        if (startTilt != nil), let tiltPercentage = windowState?.slatTilt?.value {
+        if (startTilt != nil), let tiltPercentage = windowState?.windowTilt?.value {
             let position = windowState?.position.value ?? 0
             moveFinishedRelay.accept(CGPoint(x: tiltPercentage, y: position))
         }
         startTilt = nil
     }
-    
+
     override func updateMarkersPositions() {
-        if (isMoving) {
-            markersLayers.forEach { $0.path = nil }
-        } else {
-            let markers = windowState?.markers ?? []
-            
-            for i in 0 ..< markers.count {
-                let topCorrection = (dimens.windowRect.height - dimens.topLineRect.height / 2) * markers[i].position / 100
-                let frame = dimens.markers[i].offsetBy(dx: 0, dy: topCorrection)
-                
-                let tilt0 = windowState?.tilt0Angle ?? DEFAULT_TILT_0_ANGLE
-                let tilt100 = windowState?.tilt100Angle ?? DEFAULT_TILT_100_ANGLE
-                let degrees = tilt0 + (tilt100 - tilt0) * markers[i].tilt / 100
-                let correctedDegree = SlatTiltSlider.trimAngle(Float(degrees))
-                let angle = CGFloat(correctedDegree) * .pi / 180
-                
-                markerPath.removeAllPoints()
-                markerPath.apply(CGAffineTransform(translationX: -dimens.markerInfoRadius, y: -dimens.markerInfoRadius))
-                markerPath.apply(CGAffineTransform(rotationAngle: -angle))
-                markerPath.move(to: CGPoint(x: -dimens.markerInfoRadius/2, y: 0))
-                markerPath.addLine(to: CGPoint(x: dimens.markerInfoRadius/2, y: 0))
-                markerPath.apply(CGAffineTransform(rotationAngle: angle))
-                markerPath.apply(CGAffineTransform(translationX: dimens.markerInfoRadius, y: dimens.markerInfoRadius))
-                
-                markerPath.apply(CGAffineTransform(translationX: -dimens.markerInfoRadius, y: -dimens.markerInfoRadius-3))
-                markerPath.apply(CGAffineTransform(rotationAngle: -angle))
-                markerPath.move(to: CGPoint(x: -dimens.markerInfoRadius/2, y: 0))
-                markerPath.addLine(to: CGPoint(x: dimens.markerInfoRadius/2, y: 0))
-                markerPath.apply(CGAffineTransform(rotationAngle: angle))
-                markerPath.apply(CGAffineTransform(translationX: dimens.markerInfoRadius, y: dimens.markerInfoRadius+3))
-                
-                markerPath.apply(CGAffineTransform(translationX: -dimens.markerInfoRadius, y: -dimens.markerInfoRadius+3))
-                markerPath.apply(CGAffineTransform(rotationAngle: -angle))
-                markerPath.move(to: CGPoint(x: -dimens.markerInfoRadius/2, y: 0))
-                markerPath.addLine(to: CGPoint(x: dimens.markerInfoRadius/2, y: 0))
-                markerPath.apply(CGAffineTransform(rotationAngle: angle))
-                markerPath.apply(CGAffineTransform(translationX: dimens.markerInfoRadius, y: dimens.markerInfoRadius-3))
-                
-                markersLayers[i].path = markerPath.cgPath
-                markersLayers[i].frame = frame
+        markersLayers.forEach { $0.cornerRadius = dimens.markerInfoRadius }
+
+        let markers = windowState?.markers ?? []
+        markersLayers.forEach { $0.isHidden = false }
+        markerTextLayers.forEach { $0.isHidden = true }
+
+        var cluster = FacadeBlindMarkerCluster()
+        var clusterStartIndex = 0
+
+        for (index, marker) in markers.enumerated() {
+            let topCorrection = (dimens.windowRect.height - dimens.topLineRect.height / 2) * marker.position / 100
+            let frame = dimens.markers[index].offsetBy(dx: 0, dy: topCorrection)
+
+            if cluster.y == nil {
+                cluster.first(y: frame.midY, marker: marker)
+                clusterStartIndex = index
+            } else if cluster.covers(y: frame.midY, radius: dimens.markerInfoRadius) {
+                cluster.append(marker)
+            } else {
+                drawMarkerCluster(cluster, startingAt: clusterStartIndex, centerY: cluster.safeY, isMoving: isMoving)
+                cluster.first(y: frame.midY, marker: marker)
+                clusterStartIndex = index
             }
         }
+
+        if cluster.y != nil {
+            drawMarkerCluster(cluster, startingAt: clusterStartIndex, centerY: cluster.safeY, isMoving: isMoving)
+        }
     }
-    
+
+    private func drawMarkerCluster(
+        _ cluster: FacadeBlindMarkerCluster,
+        startingAt index: Int,
+        centerY: CGFloat,
+        isMoving: Bool
+    ) {
+        let radius = dimens.markerInfoRadius
+        let diameter = radius * 2
+        let layer = markersLayers[index]
+        let textLayer = markerTextLayers[index]
+
+        if cluster.count > 1 && !cluster.shouldDrawAsSingleMarker {
+            let text = cluster.hasTilt ? cluster.tiltRangeText : cluster.percentageText
+            let font = UIFont.openSansSemiBold(style: .body, size: 10)
+            let textSize = (text as NSString).size(withAttributes: [.font: font])
+            let width = max(diameter, textSize.width + 8)
+            let frame = CGRect(x: dimens.windowRect.minX - radius, y: centerY - radius, width: width, height: diameter)
+
+            layer.frame = frame
+            layer.bounds = CGRect(origin: .zero, size: frame.size)
+            layer.cornerRadius = radius
+            layer.path = nil
+            textLayer.string = text
+            textLayer.font = font
+            textLayer.fontSize = font.pointSize
+            textLayer.frame = CGRect(x: 0, y: (diameter - font.lineHeight) / 2, width: width, height: font.lineHeight)
+            textLayer.isHidden = false
+
+            for mergedIndex in (index + 1)..<(index + cluster.count) {
+                markersLayers[mergedIndex].isHidden = true
+                markerTextLayers[mergedIndex].isHidden = true
+            }
+            return
+        }
+
+        let frame = dimens.markers[index].offsetBy(dx: 0, dy: centerY - dimens.markers[index].midY)
+        layer.frame = frame
+        layer.bounds = CGRect(origin: .zero, size: frame.size)
+        layer.cornerRadius = radius
+
+        if isMoving {
+            layer.path = nil
+            textLayer.isHidden = true
+            return
+        }
+
+        if let degrees = cluster.minTilt {
+            layer.path = BlindsMarkerPath.slats(
+                in: CGRect(origin: .zero, size: layer.bounds.size),
+                degrees: degrees
+            )
+            textLayer.isHidden = true
+        } else {
+            layer.path = nil
+            let text = cluster.minValue.map { getPercentageString(Double($0 / 100)) } ?? "?"
+            let font = UIFont.systemFont(ofSize: 8, weight: .semibold)
+            textLayer.string = text
+            textLayer.font = font
+            textLayer.fontSize = font.pointSize
+            textLayer.frame = CGRect(x: 0, y: (diameter - font.lineHeight) / 2, width: diameter, height: font.lineHeight)
+            textLayer.isHidden = false
+        }
+    }
+
     private func setupMarkers(_ count: Int) {
         if (!markersLayers.isEmpty) {
             markersLayers.forEach { $0.removeFromSuperlayer() }
             markersLayers.removeAll()
+            markerTextLayers.removeAll()
         }
     
         for _ in 0 ..< count {
@@ -196,10 +248,17 @@ class FacadeBlindsView: BaseWallWindowView<FacadeBlindWindowState, FacadeBlindRu
             markerLayer.borderWidth = 1
             markerLayer.cornerRadius = dimens.markerInfoRadius
             markerLayer.strokeColor = colors.markerBorder.cgColor
+
+            let textLayer = CATextLayer()
+            textLayer.alignmentMode = .center
+            textLayer.contentsScale = UIScreen.main.scale
+            textLayer.foregroundColor = colors.markerBorder.cgColor
+            markerLayer.addSublayer(textLayer)
     
             layer.addSublayer(markerLayer)
     
             markersLayers.append(markerLayer)
+            markerTextLayers.append(textLayer)
         }
     }
     
@@ -270,6 +329,7 @@ class FacadeBlindRuntimeDimens: BaseWallWindowDimens {
     
     func setMarkers(_ markersCount: Int) {
         markers = .init(repeating: .zero, count: markersCount)
+        createMarkersRects()
     }
     
     private func createSlatRects() {
@@ -299,5 +359,69 @@ class FacadeBlindRuntimeDimens: BaseWallWindowDimens {
                 height: markerDiameter
             )
         }
+    }
+}
+
+struct FacadeBlindMarkerCluster {
+    private(set) var y: CGFloat?
+    private(set) var minTilt: CGFloat?
+    private(set) var maxTilt: CGFloat?
+    private(set) var minValue: CGFloat?
+    private(set) var maxValue: CGFloat?
+    private(set) var count = 0
+
+    var safeY: CGFloat { y ?? 0 }
+    var hasTilt: Bool { minTilt != nil && maxTilt != nil }
+
+    var shouldDrawAsSingleMarker: Bool {
+        count == 1 ||
+        (hasTilt && minTilt?.roundToInt() == maxTilt?.roundToInt()) ||
+            (!hasTilt && minValue != nil && minValue?.roundToInt() == maxValue?.roundToInt())
+    }
+
+    var percentageText: String {
+        guard let minValue, let maxValue else { return "?" }
+        let minText = getPercentageString(Double(minValue / 100))
+        let maxText = getPercentageString(Double(maxValue / 100))
+        return minValue == maxValue ? minText : "\(minText) - \(maxText)"
+    }
+
+    var tiltRangeText: String {
+        guard let minTilt, let maxTilt else { return "?" }
+        return String(format: "%.0f° - %.0f°", minTilt, maxTilt)
+    }
+
+    mutating func first(y: CGFloat, marker: ShadingBlindMarker) {
+        self.y = y
+        minTilt = marker.tilt
+        maxTilt = marker.tilt
+        minValue = marker.tiltValue
+        maxValue = marker.tiltValue
+        count = 1
+    }
+
+    mutating func append(_ marker: ShadingBlindMarker) {
+        minTilt = minValueOf(minTilt, marker.tilt)
+        maxTilt = maxValueOf(maxTilt, marker.tilt)
+        minValue = minValueOf(minValue, marker.tiltValue)
+        maxValue = maxValueOf(maxValue, marker.tiltValue)
+        count += 1
+    }
+
+    func covers(y: CGFloat, radius: CGFloat) -> Bool {
+        guard let currentY = self.y else { return false }
+        return abs(y - currentY) < radius * 2
+    }
+
+    private func minValueOf(_ first: CGFloat?, _ second: CGFloat?) -> CGFloat? {
+        guard let first else { return second }
+        guard let second else { return first }
+        return min(first, second)
+    }
+
+    private func maxValueOf(_ first: CGFloat?, _ second: CGFloat?) -> CGFloat? {
+        guard let first else { return second }
+        guard let second else { return first }
+        return max(first, second)
     }
 }
