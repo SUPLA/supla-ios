@@ -77,50 +77,111 @@ extension RelayScheduleFeature {
         @ObservedObject var state: ProgramSettings
         let delegate: ViewDelegate?
 
+        @ObservedObject private var orientationObserver = OrientationObserver()
+
         var body: some SwiftUI.View {
             SuplaCore.Dialog.Base(onDismiss: { delegate?.onProgramSettingsDismiss() }, alignment: .leading) {
                 ScheduleProgramDialogHeader(program: state.program)
 
-                LabelText(text: Strings.RelaySchedule.operationType)
-                    .padding(.horizontal, Distance.default + Distance.small)
-                    .padding(.bottom, Distance.tiny)
-                SuplaCore.Picker(
-                    selected: Binding<RelayModePickerItem?>(
-                        get: { RelayModePickerItem(mode: state.mode) },
-                        set: { if let mode = $0 { delegate?.onProgramSettingsModeChange(mode.mode) } }
-                    ),
-                    items: state.availableModes.map { RelayModePickerItem(mode: $0) }
+                if orientationObserver.orientation.isLandscape {
+                    landscapeView()
+                } else {
+                    portraitView()
+                }
+            }
+        }
+
+        @ViewBuilder
+        private func portraitView() -> some SwiftUI.View {
+            LabelText(text: Strings.RelaySchedule.operationType)
+                .padding(.horizontal, Distance.default + Distance.small)
+                .padding(.bottom, Distance.tiny)
+            SuplaCore.Picker(
+                selected: Binding<RelayModePickerItem?>(
+                    get: { RelayModePickerItem(mode: state.mode) },
+                    set: { if let mode = $0 { delegate?.onProgramSettingsModeChange(mode.mode) } }
+                ),
+                items: state.availableModes.map { RelayModePickerItem(mode: $0) }
+            )
+            .style(.dialog)
+            .padding(.horizontal, Distance.default)
+            .padding(.bottom, Distance.small)
+
+            if state.showsDurations {
+                DurationControl(
+                    label: Strings.RelaySchedule.firstDuration.arguments(state.mode.relayStateLabel),
+                    value: state.duration,
+                    onChange: { delegate?.onProgramSettingsDurationChange($0) },
+                    onMinus: { delegate?.onProgramSettingsDurationMinus(.relayMode) },
+                    onPlus: { delegate?.onProgramSettingsDurationPlus(.relayMode) }
                 )
-                .style(.dialog)
                 .padding(.horizontal, Distance.default)
                 .padding(.bottom, Distance.small)
-
-                if state.showsDurations {
+                if state.showsOppositeDuration {
                     DurationControl(
-                        label: Strings.RelaySchedule.firstDuration.arguments(state.mode.relayStateLabel),
-                        value: state.duration,
-                        onChange: { delegate?.onProgramSettingsDurationChange($0) },
-                        onMinus: { delegate?.onProgramSettingsDurationMinus(.relayMode) },
-                        onPlus: { delegate?.onProgramSettingsDurationPlus(.relayMode) }
+                        label: Strings.RelaySchedule.secondDuration.arguments(state.mode.oppositeStateLabel),
+                        value: state.oppositeDuration,
+                        enabled: state.oppositeDurationEnabled,
+                        onChange: { delegate?.onProgramSettingsOppositeDurationChange($0) },
+                        onMinus: { delegate?.onProgramSettingsDurationMinus(.oppositeMode) },
+                        onPlus: { delegate?.onProgramSettingsDurationPlus(.oppositeMode) }
                     )
+                    .padding(.horizontal, Distance.default)
+                }
+            }
+
+            SuplaCore.Dialog.Buttons(
+                onSecondaryClick: { delegate?.onProgramSettingsDismiss() },
+                onPrimaryClick: { delegate?.onProgramSettingsSave() }
+            )
+        }
+
+        @ViewBuilder
+        private func landscapeView() -> some SwiftUI.View {
+            HStack(alignment: .top, spacing: Distance.default) {
+                VStack(alignment: .leading, spacing: 0) {
+                    LabelText(text: Strings.RelaySchedule.operationType)
+                        .padding(.bottom, Distance.tiny)
+                    SuplaCore.Picker(
+                        selected: Binding<RelayModePickerItem?>(
+                            get: { RelayModePickerItem(mode: state.mode) },
+                            set: { if let mode = $0 { delegate?.onProgramSettingsModeChange(mode.mode) } }
+                        ),
+                        items: state.availableModes.map { RelayModePickerItem(mode: $0) }
+                    )
+                    .style(.dialog)
                     .padding(.bottom, Distance.small)
-                    if state.showsOppositeDuration {
+                }.frame(maxWidth: .infinity)
+                VStack(alignment: .leading, spacing: 0) {
+                    if state.showsDurations {
                         DurationControl(
-                            label: Strings.RelaySchedule.secondDuration.arguments(state.mode.oppositeStateLabel),
-                            value: state.oppositeDuration,
-                            enabled: state.oppositeDurationEnabled,
-                            onChange: { delegate?.onProgramSettingsOppositeDurationChange($0) },
-                            onMinus: { delegate?.onProgramSettingsDurationMinus(.oppositeMode) },
-                            onPlus: { delegate?.onProgramSettingsDurationPlus(.oppositeMode) }
+                            label: Strings.RelaySchedule.firstDuration.arguments(state.mode.relayStateLabel),
+                            value: state.duration,
+                            onChange: { delegate?.onProgramSettingsDurationChange($0) },
+                            onMinus: { delegate?.onProgramSettingsDurationMinus(.relayMode) },
+                            onPlus: { delegate?.onProgramSettingsDurationPlus(.relayMode) }
                         )
+                        .padding(.bottom, Distance.small)
+                        if state.showsOppositeDuration {
+                            DurationControl(
+                                label: Strings.RelaySchedule.secondDuration.arguments(state.mode.oppositeStateLabel),
+                                value: state.oppositeDuration,
+                                enabled: state.oppositeDurationEnabled,
+                                onChange: { delegate?.onProgramSettingsOppositeDurationChange($0) },
+                                onMinus: { delegate?.onProgramSettingsDurationMinus(.oppositeMode) },
+                                onPlus: { delegate?.onProgramSettingsDurationPlus(.oppositeMode) }
+                            )
+                        }
                     }
                 }
-
-                SuplaCore.Dialog.Buttons(
-                    onSecondaryClick: { delegate?.onProgramSettingsDismiss() },
-                    onPrimaryClick: { delegate?.onProgramSettingsSave() }
-                )
+                .frame(maxWidth: .infinity)
             }
+            .padding(.horizontal, Distance.default)
+
+            SuplaCore.Dialog.Buttons(
+                onSecondaryClick: { delegate?.onProgramSettingsDismiss() },
+                onPrimaryClick: { delegate?.onProgramSettingsSave() }
+            )
         }
 
         private func DurationControl(
@@ -152,7 +213,6 @@ extension RelayScheduleFeature {
                         .clipShape(Circle())
                 }
             }
-            .padding(.horizontal, Distance.default)
         }
     }
 }
@@ -192,16 +252,16 @@ private func relaySchedulePreviewState() -> RelayScheduleFeature.ViewState {
 
 private let relaySchedulePreviewPrograms: [SuplaRelayWeeklyScheduleProgram] = [
     SuplaRelayWeeklyScheduleProgram(
-            program: .program1,
-            mode: .startOn,
-            modeDurationS: 20,
-            oppositeModeDurationS: 10
+        program: .program1,
+        mode: .startOn,
+        modeDurationS: 20,
+        oppositeModeDurationS: 10
     ),
     SuplaRelayWeeklyScheduleProgram(
-            program: .program2,
-            mode: .startOff,
-            modeDurationS: 60,
-            oppositeModeDurationS: 0
+        program: .program2,
+        mode: .startOff,
+        modeDurationS: 60,
+        oppositeModeDurationS: 0
     ),
     SuplaRelayWeeklyScheduleProgram(program: .program3, mode: .forcedOn, modeDurationS: 0, oppositeModeDurationS: 0)
 ]
@@ -209,7 +269,7 @@ private let relaySchedulePreviewPrograms: [SuplaRelayWeeklyScheduleProgram] = [
 private func relaySchedulePreviewSchedule() -> [ScheduleDetailBoxKey: WeeklyScheduleBoxValue] {
     var schedule: [ScheduleDetailBoxKey: WeeklyScheduleBoxValue] = [:]
     for day in DayOfWeek.allCases {
-        for hour in 0...23 {
+        for hour in 0 ... 23 {
             schedule[.init(dayOfWeek: day, hour: hour)] = .init(oneProgram: .off)
         }
     }
