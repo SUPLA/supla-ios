@@ -35,6 +35,7 @@ final class ThermostatGeneralVMTests: SuplaCore.ViewModelTest<ThermostatGeneralF
     private lazy var updateEventsManager = UpdateEventsManagerMock()
     private lazy var checkIsSlaveThermostatUseCase = CheckIsSlaveThermostatUseCaseMock()
     private lazy var groupSharedSettings = GroupShared.SettingsMock()
+    private lazy var getChannelBaseIconUseCase = GetChannelBaseIconUseCaseMock()
 
     override func setUp() {
         super.setUp()
@@ -47,7 +48,7 @@ final class ThermostatGeneralVMTests: SuplaCore.ViewModelTest<ThermostatGeneralF
         DiContainer.shared.register(type: DateProvider.self, dateProvider)
         DiContainer.shared.register(type: ValuesFormatter.self, ValuesFormatterMock())
         DiContainer.shared.register(type: LoadingTimeoutManager.self, producer: { self.loadingTimeoutManager })
-        DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, GetChannelBaseIconUseCaseMock())
+        DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, getChannelBaseIconUseCase)
         DiContainer.shared.register(type: CheckIsSlaveThermostat.UseCase.self, checkIsSlaveThermostatUseCase)
         DiContainer.shared.register(type: GroupShared.Settings.self, groupSharedSettings)
         DiContainer.shared.register(type: UpdateEventsManager.self, updateEventsManager)
@@ -99,6 +100,34 @@ final class ThermostatGeneralVMTests: SuplaCore.ViewModelTest<ThermostatGeneralF
         XCTAssertEqual(readChannelWithChildrenUseCase.parameters, [item.remoteId])
         XCTAssertEqual(getChannelConfigUseCase.parameters.count, 2)
     }
+
+    func test_showsPumpAndHeatSourceIconsWhenSlaveThermostatsShareSwitchRemoteIds() {
+        let icon = IconResult.suplaIcon(name: "test")
+        getChannelBaseIconUseCase.returns = icon
+        loadThermostatWithSlaveSwitches(pumpRemoteIds: [701, 701], heatSourceRemoteIds: [701, 701])
+
+        XCTAssertEqual(viewModel.state.pumpSwitchIcon, icon)
+        XCTAssertEqual(viewModel.state.heatOrColdSourceSwitchIcon, icon)
+    }
+
+    func test_showsPumpAndHeatSourceIconsWhenSlaveThermostatsHaveDifferentSwitchRemoteIds() {
+        let icon = IconResult.suplaIcon(name: "test")
+        getChannelBaseIconUseCase.returns = icon
+        loadThermostatWithSlaveSwitches(pumpRemoteIds: [701, 702], heatSourceRemoteIds: [801, 802])
+
+        XCTAssertEqual(viewModel.state.pumpSwitchIcon, icon)
+        XCTAssertEqual(viewModel.state.heatOrColdSourceSwitchIcon, icon)
+    }
+    
+    func test_showsPumpAndHeatSourceIconsWhenSlaveThermostatsHaveOneChildWithThem() {
+        let icon = IconResult.suplaIcon(name: "test")
+        getChannelBaseIconUseCase.returns = icon
+        loadThermostatWithSlaveSwitches(pumpRemoteIds: [701], heatSourceRemoteIds: [801])
+
+        XCTAssertEqual(viewModel.state.pumpSwitchIcon, icon)
+        XCTAssertEqual(viewModel.state.heatOrColdSourceSwitchIcon, icon)
+    }
+
 
     func test_setpointDragUpdatesPublishedFieldsAndEmitsAction() {
         viewModel.state.remoteId = item.remoteId
@@ -273,6 +302,45 @@ final class ThermostatGeneralVMTests: SuplaCore.ViewModelTest<ThermostatGeneralF
         channel.func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
         channel.value = channelValue
         return channel
+    }
+
+    private func loadThermostatWithSlaveSwitches(pumpRemoteIds: [Int32], heatSourceRemoteIds: [Int32]) {
+        var hvacValue = THVACValue(
+            IsOn: 1,
+            Mode: UInt8(SuplaHvacMode.heat.value),
+            SetpointTemperatureHeat: 2120,
+            SetpointTemperatureCool: 0,
+            Flags: UInt16(1 | (1 << 9))
+        )
+        let slaveThermostats = pumpRemoteIds.indices.map { index in
+            ChannelChild(
+                channel: SAChannel.mock(Int32(600 + index), function: SUPLA_CHANNELFNC_HVAC_THERMOSTAT),
+                relation: SAChannelRelation.mock(type: .masterThermostat),
+                children: [
+                    ChannelChild(
+                        channel: SAChannel.mock(pumpRemoteIds[index], function: SUPLA_CHANNELFNC_POWERSWITCH),
+                        relation: SAChannelRelation.mock(type: .pumpSwitch)
+                    ),
+                    ChannelChild(
+                        channel: SAChannel.mock(heatSourceRemoteIds[index], function: SUPLA_CHANNELFNC_POWERSWITCH),
+                        relation: SAChannelRelation.mock(type: .heatOrColdSourceSwitch)
+                    )
+                ]
+            )
+        }
+        let channel = makeChannel(remoteId: item.remoteId, value: &hvacValue)
+        readChannelWithChildrenUseCase.returns = .just(ChannelWithChildren(channel: channel, children: slaveThermostats))
+        createTemperaturesListUseCase.returns = []
+        channelConfigEventsManager.observeConfigReturns = [
+            .just(hvacConfigEvent(item.remoteId)),
+            .just(weeklyConfigEvent(item.remoteId))
+        ]
+        deviceConfigEventsManager.observeConfigReturns = .just(DeviceConfigEvent(result: .resultTrue, config: .mock()))
+        checkIsSlaveThermostatUseCase.mock.returns = .single(.just(false))
+
+        let stateChange = observe(viewModel.state.$pumpSwitchIcon, count: 1)
+        viewModel.onViewCreated()
+        wait(for: [stateChange.exp], timeout: 2)
     }
 
     private func hvacConfigEvent(_ remoteId: Int32) -> ChannelConfigEvent {

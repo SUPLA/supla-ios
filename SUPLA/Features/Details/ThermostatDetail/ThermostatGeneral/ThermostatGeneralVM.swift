@@ -456,14 +456,32 @@ extension ThermostatGeneralFeature {
 
         private func pumpSwitchIcon(_ channel: ChannelWithChildren) -> IconResult? {
             if let child = channel.pumpSwitchChild { return getChannelBaseIconUseCase.invoke(channel: child.channel) }
-            let values = channel.allDescendantFlat.filter { $0.relationType == .pumpSwitch }
-            return values.count == 1 ? getChannelBaseIconUseCase.invoke(channel: values[0].channel) : nil
+            let childrenPumps = channel.allDescendantFlat.filter { $0.relationType == .pumpSwitch }
+            
+            if let childWithPumpOn = childrenPumps.first(where: { $0.channel.value?.asRelayValue().on == true }) {
+                return getChannelBaseIconUseCase.invoke(channel: childWithPumpOn.channel)
+            }
+            
+            if let anyChildWithPump = childrenPumps.first {
+                return getChannelBaseIconUseCase.invoke(channel: anyChildWithPump.channel)
+            } else {
+                return nil
+            }
         }
 
         private func heatOrColdSourceSwitchIcon(_ channel: ChannelWithChildren) -> IconResult? {
             if let child = channel.heatOrColdSourceSwitchChild { return getChannelBaseIconUseCase.invoke(channel: child.channel) }
-            let values = channel.allDescendantFlat.filter { $0.relationType == .heatOrColdSourceSwitch }
-            return values.count == 1 ? getChannelBaseIconUseCase.invoke(channel: values[0].channel) : nil
+            let childrenSwitches = channel.allDescendantFlat.filter { $0.relationType == .heatOrColdSourceSwitch }
+            
+            if let childWithSwitchOn = childrenSwitches.first(where: { $0.channel.value?.asRelayValue().on == true }) {
+                return getChannelBaseIconUseCase.invoke(channel: childWithSwitchOn.channel)
+            }
+            
+            if let anyChildWithSwitch = childrenSwitches.first {
+                return getChannelBaseIconUseCase.invoke(channel: anyChildWithSwitch.channel)
+            } else {
+                return nil
+            }
         }
 
         private func thermostatAutoMode(function: Int32, value: ThermostatValue) -> ThermostatAutoMode? {
