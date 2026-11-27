@@ -91,6 +91,7 @@ extension ThermostatScheduleDetailFeature {
         func onShowProgramDialog(_ program: ScheduleDetailProgram) {
             guard let configMin = state.configMin,
                   let configMax = state.configMax,
+                  ThermostatTemperatureRange.isValid(minimum: configMin, maximum: configMax),
                   program.scheduleProgram.mode != .off
             else { return }
             
@@ -112,14 +113,20 @@ extension ThermostatScheduleDetailFeature {
                     value: state.temperatureString($0)
                 )
             }
-            let editProgramState = EditProgramState(
-                program: program.scheduleProgram.program,
-                modes: SelectableList(selected: program.scheduleProgram.mode, items: state.availableModes),
-                temperatureUnit: globalSettings.temperatureUnit,
-                heatSetpoint: heatSetpoint,
-                coolSetpoint: coolSetpoint
-            )
-            state.editProgramState = validateCoolTemperature(editProgramState)
+            
+            state.editProgramState =
+                EditProgramState(
+                    program: program.scheduleProgram.program,
+                    modes: SelectableList(selected: program.scheduleProgram.mode, items: state.availableModes),
+                    temperatureUnit: globalSettings.temperatureUnit,
+                    heatSetpoint: heatSetpoint,
+                    coolSetpoint: coolSetpoint,
+                    configMin: configMin,
+                    configMax: configMax,
+                    autoOffsetMin: state.autoOffsetMin,
+                    autoOffsetMax: state.autoOffsetMax
+                )
+                .validateCoolSetpointCorrectness()
         }
         
         func onProgramDialogDismiss() {
@@ -128,10 +135,12 @@ extension ThermostatScheduleDetailFeature {
         
         func onProgramDialogChange(_ setpointType: SetpointType, _ value: String) {
             guard let configMin = state.configMin,
-                  let configMax = state.configMax else { return }
+                  let configMax = state.configMax,
+                  ThermostatTemperatureRange.isValid(minimum: configMin, maximum: configMax)
+            else { return }
 
-            if (value.isEmpty) {
-                state.editProgramState = state.editProgramState?.copy(
+            if value.isEmpty {
+                state.editProgramState = state.editProgramState?.updateSetpointData(
                     setpointType: setpointType,
                     plusDisabled: false,
                     minusDisabled: true,
@@ -140,16 +149,16 @@ extension ThermostatScheduleDetailFeature {
                 )
             }
             
-            if let valueAsFloat = value.toFloat() {
-                state.editProgramState = state.editProgramState?.copy(
+            if let valueAsFloat = value.toFloat(), valueAsFloat.isFinite {
+                state.editProgramState = state.editProgramState?.updateSetpointData(
                     setpointType: setpointType,
-                    plusDisabled: valueAsFloat >= configMax,
-                    minusDisabled: valueAsFloat <= configMin,
-                    valueCorrect: valueAsFloat >= configMin && valueAsFloat <= configMax,
+                    plusDisabled: !ThermostatTemperatureRange.isAdjustable(minimum: configMin, maximum: configMax) || valueAsFloat >= configMax,
+                    minusDisabled: !ThermostatTemperatureRange.isAdjustable(minimum: configMin, maximum: configMax) || valueAsFloat <= configMin,
+                    valueCorrect: valueAsFloat.isInThermostatRange(minimum: configMin, maximum: configMax),
                     updateValue: value
                 )
             } else {
-                state.editProgramState = state.editProgramState?.copy(
+                state.editProgramState = state.editProgramState?.updateSetpointData(
                     setpointType: setpointType,
                     plusDisabled: true,
                     minusDisabled: true,
@@ -158,60 +167,26 @@ extension ThermostatScheduleDetailFeature {
                 )
             }
 
-            if let editProgramState = state.editProgramState {
-                state.editProgramState = validateCoolTemperature(editProgramState)
+            if setpointType == .heat {
+                state.editProgramState = state.editProgramState?.validateCoolSetpointCorrectness()
             }
         }
         
         func onProgramDialogModeChange(_ mode: SuplaHvacMode) {
-            guard let editProgramState = state.editProgramState else { return }
-
-            let updatedState = editProgramState.copy(
-                modes: editProgramState.modes.changing(path: \.selected, to: mode)
-            )
-            state.editProgramState = validateCoolTemperature(updatedState)
+            state.editProgramState = state.editProgramState?
+                .copy(modes: state.editProgramState?.modes.changing(path: \.selected, to: mode))
+                .validateCoolSetpointCorrectness()
         }
 
-        private func validateCoolTemperature(_ editProgramState: EditProgramState) -> EditProgramState {
-            guard let coolSetpoint = editProgramState.coolSetpoint,
-                  let coolTemperature = coolSetpoint.updateValue.toFloat() else {
-                return editProgramState.copy(setpointType: .cool, valueCorrect: false)
-            }
-
-            let isInRange: Bool
-            if let configMin = state.configMin, let configMax = state.configMax {
-                isInRange = coolTemperature >= configMin && coolTemperature <= configMax
-            } else {
-                isInRange = coolSetpoint.valueCorrect
-            }
-
-            let isGreaterThanHeatTemperature: Bool
-            if editProgramState.modes.selected == .heatCool {
-                isGreaterThanHeatTemperature = editProgramState.heatSetpoint?.updateValue.toFloat()
-                    .map { heatTemperature in
-                        let offset = coolTemperature - heatTemperature
-                        let aboveMinOffset = state.autoOffsetMin.map { offset >= $0 } ?? true
-                        let belowMaxOffset = state.autoOffsetMax.map { offset <= $0 } ?? true
-                        return offset > 0 && aboveMinOffset && belowMaxOffset
-                    } ?? false
-            } else {
-                isGreaterThanHeatTemperature = true
-            }
-
-            return editProgramState.copy(
-                setpointType: .cool,
-                valueCorrect: isInRange && isGreaterThanHeatTemperature
-            )
-        }
-        
         func onProgramDialogPlus(_ setpointType: SetpointType, _ value: String) {
             guard let configMin = state.configMin,
-                  let configMax = state.configMax
+                  let configMax = state.configMax,
+                  ThermostatTemperatureRange.isAdjustable(minimum: configMin, maximum: configMax)
             else { return }
             
-            if (value.isEmpty) {
+            if value.isEmpty {
                 let temperatureString = SharedCore.DefaultValueFormatter.format(configMin)
-                state.editProgramState = state.editProgramState?.copy(
+                state.editProgramState = state.editProgramState?.updateSetpointData(
                     setpointType: setpointType,
                     plusDisabled: configMin >= configMax,
                     minusDisabled: true,
@@ -222,7 +197,7 @@ extension ThermostatScheduleDetailFeature {
                 let temperature = (value.toFloat() ?? 0) + 0.1
                 let temperatureString = SharedCore.DefaultValueFormatter.format(temperature)
                 
-                state.editProgramState = state.editProgramState?.copy(
+                state.editProgramState = state.editProgramState?.updateSetpointData(
                     setpointType: setpointType,
                     plusDisabled: temperature >= configMax,
                     minusDisabled: temperature <= configMin,
@@ -231,19 +206,21 @@ extension ThermostatScheduleDetailFeature {
                 )
             }
 
-            if let editProgramState = state.editProgramState {
-                state.editProgramState = validateCoolTemperature(editProgramState)
+            if setpointType == .heat {
+                state.editProgramState = state.editProgramState?.validateCoolSetpointCorrectness()
             }
         }
         
         func onProgramDialogMinus(_ setpointType: SetpointType, _ value: String) {
             guard let configMin = state.configMin,
-                  let configMax = state.configMax else { return }
+                  let configMax = state.configMax,
+                  ThermostatTemperatureRange.isAdjustable(minimum: configMin, maximum: configMax)
+            else { return }
             
             let temperature = (value.toFloat() ?? 0) - 0.1
             let temperatureString = SharedCore.DefaultValueFormatter.format(temperature)
             
-            state.editProgramState = state.editProgramState?.copy(
+            state.editProgramState = state.editProgramState?.updateSetpointData(
                 setpointType: setpointType,
                 plusDisabled: temperature >= configMax,
                 minusDisabled: temperature <= configMin,
@@ -251,8 +228,8 @@ extension ThermostatScheduleDetailFeature {
                 updateValue: temperatureString
             )
 
-            if let editProgramState = state.editProgramState {
-                state.editProgramState = validateCoolTemperature(editProgramState)
+            if setpointType == .heat {
+                state.editProgramState = state.editProgramState?.validateCoolSetpointCorrectness()
             }
         }
         
@@ -262,7 +239,7 @@ extension ThermostatScheduleDetailFeature {
             else { return }
             
             let updatedProgram: SuplaHvacWeeklyScheduleProgram? =
-                switch (programState.modes.selected) {
+                switch programState.modes.selected {
                 case .heat:
                     program.scheduleProgram.copy(
                         mode: .heat,
@@ -284,7 +261,7 @@ extension ThermostatScheduleDetailFeature {
             
             if let updatedProgram {
                 state.programs = state.programs.map {
-                    if ($0.scheduleProgram.program == programState.program) {
+                    if $0.scheduleProgram.program == programState.program {
                         $0.changing(path: \.scheduleProgram, to: updatedProgram)
                     } else {
                         $0
@@ -372,7 +349,7 @@ extension ThermostatScheduleDetailFeature {
             let hvacConfig = configs.2
             let hvacResult = configs.3
             
-            if (weeklyScheduleResult != .resultTrue || hvacResult != .resultTrue) {
+            if weeklyScheduleResult != .resultTrue || hvacResult != .resultTrue {
                 SALog.info("Got unsuccessfull result (schedule: \(weeklyScheduleResult), hvac: \(hvacResult))")
                 return
             }
@@ -398,14 +375,14 @@ extension ThermostatScheduleDetailFeature {
             state.autoOffsetMax = hvacConfig.temperatures.autoOffsetMax?.fromSuplaTemperature()
             state.schedule = weeklyScheduleConfig.viewScheduleBoxes()
             
-            if (configs.4.isAutomaticTimeSyncDisabled() == false) {
+            if configs.4.isAutomaticTimeSyncDisabled() == false {
                 let date = dateProvider.currentDate()
                 let calendar = Calendar.current
                 state.currentDay = DayOfWeek.from(value: UInt8(calendar.component(.weekday, from: date) - 1))
                 state.currentHour = calendar.component(.hour, from: date)
             }
             
-            if (hvacConfig.subfunction == .notSet) {
+            if hvacConfig.subfunction == .notSet {
                 loadSubfunction(hvacConfig.remoteId)
             }
         }
@@ -431,12 +408,6 @@ extension ThermostatScheduleDetailFeature {
     }
 }
 
-private extension String {
-    func toFloat() -> Float? {
-        Float(replacingOccurrences(of: ",", with: "."))
-    }
-}
-
 struct ScheduleDetailProgram: Equatable, Changeable, Identifiable {
     var id: UInt8 { scheduleProgram.program.rawValue }
     
@@ -446,7 +417,7 @@ struct ScheduleDetailProgram: Equatable, Changeable, Identifiable {
     var text: String { scheduleProgram.description }
     
     func buttonState(_ activeProgram: SuplaScheduleProgram?) -> ScheduleProgramButtonState {
-        if (scheduleProgram.program == activeProgram) {
+        if scheduleProgram.program == activeProgram {
             .active(color: scheduleProgram.program.color, label: text, icon: icon)
         } else {
             .default(color: scheduleProgram.program.color, label: text, icon: icon)
@@ -480,7 +451,7 @@ private extension SuplaChannelWeeklyScheduleConfig {
             let key = ScheduleDetailBoxKey(dayOfWeek: entry.dayOfWeek, hour: Int(entry.hour))
             
             if var value = result[key] {
-                switch (entry.quarterOfHour) {
+                switch entry.quarterOfHour {
                 case .first: value.firstQuarterProgram = entry.program
                 case .second: value.secondQuarterProgram = entry.program
                 case .third: value.thirdQuarterProgram = entry.program
@@ -489,7 +460,7 @@ private extension SuplaChannelWeeklyScheduleConfig {
                 result[key] = value
             } else {
                 var value = ThermostatScheduleDetailBoxValue(oneProgram: .off)
-                switch (entry.quarterOfHour) {
+                switch entry.quarterOfHour {
                 case .first: value.firstQuarterProgram = entry.program
                 case .second: value.secondQuarterProgram = entry.program
                 case .third: value.thirdQuarterProgram = entry.program
@@ -503,7 +474,7 @@ private extension SuplaChannelWeeklyScheduleConfig {
     }
     
     private func getProgramIcon(_ program: SuplaHvacWeeklyScheduleProgram) -> String? {
-        if (channelFunc == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_HEAT_COOL) {
+        if channelFunc == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_HEAT_COOL {
             return program.mode.icon
         }
         

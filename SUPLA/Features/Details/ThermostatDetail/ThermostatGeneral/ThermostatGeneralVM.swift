@@ -195,11 +195,12 @@ extension ThermostatGeneralFeature {
         func onTemperatureChange(_ step: TemperatureChangeStep) {
             let old = state
             guard let remoteId = old.remoteId, let setpointType = old.activeSetpointType else { return }
-            let temperature = getNewTemperature(
+            guard old.temperatureRangeIsAdjustable else { return }
+            guard let temperature = getNewTemperature(
                 setpointType == .heat ? old.setpointHeat : old.setpointCool,
                 state: old,
                 step: step
-            )
+            ) else { return }
             delayedThermostatActionSubject.emit(data: ThermostatActionData(
                 remoteId: remoteId,
                 mode: old.weeklyScheduleActive ? .notSet : nil,
@@ -330,8 +331,13 @@ extension ThermostatGeneralFeature {
             let oldWeeklyScheduleActive = state.weeklyScheduleActive
             let oldSetpointHeat = state.setpointHeat
             let oldSetpointCool = state.setpointCool
-            guard let min = state.configMin, let max = state.configMax, let remoteId = state.remoteId else { return }
-            let temperature = (min + (max - min) * position).roundToTenths()
+            guard position.isFinite,
+                  let min = state.configMin,
+                  let max = state.configMax,
+                  ThermostatTemperatureRange.isAdjustable(minimum: min, maximum: max),
+                  let remoteId = state.remoteId,
+                  let temperature = position.thermostatTemperature(minimum: min, maximum: max)
+            else { return }
             delayedThermostatActionSubject.emit(data: ThermostatActionData(
                 remoteId: remoteId,
                 mode: oldWeeklyScheduleActive ? .notSet : nil,
@@ -352,9 +358,16 @@ extension ThermostatGeneralFeature {
         }
 
         private func getNewTemperature(_ temperature: Float?, state: ViewState, step: TemperatureChangeStep) -> Float? {
-            guard let minimum = state.configMin, let maximum = state.configMax else { return temperature }
+            guard let minimum = state.configMin, let maximum = state.configMax,
+                  ThermostatTemperatureRange.isValid(minimum: minimum, maximum: maximum)
+            else { return temperature }
+            guard ThermostatTemperatureRange.isAdjustable(minimum: minimum, maximum: maximum) else { return minimum }
             guard let temperature else { return step.rawValue }
-            return min(max(temperature + step.rawValue, minimum), maximum).roundToTenths()
+            guard temperature.isFinite else { return nil }
+            guard let clampedTemperature = (temperature + step.rawValue)
+                .hvacClamped(minimum: minimum, maximum: maximum)
+            else { return nil }
+            return clampedTemperature.roundToTenths()
         }
 
         private func getModeForOffChanges(
@@ -421,7 +434,7 @@ extension ThermostatGeneralFeature {
                   let max = state.configMax
             else { return nil }
 
-            return (Float(thermometer.channel.temperatureValue()) - min) / (max - min)
+            return Float(thermometer.channel.temperatureValue()).thermostatPosition(minimum: min, maximum: max)
         }
 
         private func handleFlags(channelWithChildren: ChannelWithChildren) {

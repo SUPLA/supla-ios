@@ -63,7 +63,8 @@ extension ThermostatTimerDetailFeature {
                         timerHours: $state.timerHours,
                         timerMinutes: $state.timerMinutes,
                         calendarDate: $state.calendarDate,
-                        delegate: delegate
+                        delegate: delegate,
+                        temperatureControlsDisabled: state.temperatureControlsDisabled
                     )
                 }
                 

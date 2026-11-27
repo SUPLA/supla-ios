@@ -107,36 +107,57 @@ extension ThermostatTimerDetailFeature {
                 state.setpointInChange = .cool
             default: break // nothing to do
             }
+            state.updateStepButtons()
         }
         
         func onHeatValueChange(_ value: CGFloat) {
+            guard value.isFinite,
+                  ThermostatTemperatureRange.isAdjustable(minimum: state.configMin, maximum: state.configMax),
+                  let temperature = Float(value).thermostatTemperature(
+                    minimum: state.configMin,
+                    maximum: state.configMax
+                  )
+            else { return }
+
             state.setpointInChange = .heat
-            state.heatSetpoint = ((state.configMax - state.configMin) * Float(value) + state.configMin).roundToTenths()
-            
-            state.minusDisabled = state.heatSetpoint <= state.configMin
-            state.plusDisabled = state.heatSetpoint >= state.configMax
+            state.heatSetpoint = temperature
+            state.updateStepButtons()
         }
         
         func onCoolValueChange(_ value: CGFloat) {
+            guard value.isFinite,
+                  ThermostatTemperatureRange.isAdjustable(minimum: state.configMin, maximum: state.configMax),
+                  let temperature = Float(value).thermostatTemperature(
+                    minimum: state.configMin,
+                    maximum: state.configMax
+                  )
+            else { return }
+
             state.setpointInChange = .cool
-            state.coolSetpoint = ((state.configMax - state.configMin) * Float(value) + state.configMin).roundToTenths()
-            
-            state.minusDisabled = state.coolSetpoint <= state.configMin
-            state.plusDisabled = state.coolSetpoint >= state.configMax
+            state.coolSetpoint = temperature
+            state.updateStepButtons()
         }
         
         func onSetpointChange(_ step: TemperatureChangeStep) {
+            guard ThermostatTemperatureRange.isAdjustable(minimum: state.configMin, maximum: state.configMax) else { return }
+
             switch (state.setpointInChange) {
             case .cool:
-                state.coolSetpoint += step.rawValue
-                
-                state.minusDisabled = state.coolSetpoint <= state.configMin
-                state.plusDisabled = state.coolSetpoint >= state.configMax
+                guard state.coolSetpoint.isFinite,
+                      let value = (state.coolSetpoint + step.rawValue).hvacClamped(
+                        minimum: state.configMin,
+                        maximum: state.configMax
+                      )
+                else { return }
+                state.coolSetpoint = value.roundToTenths()
             case .heat:
-                state.heatSetpoint += step.rawValue
-                
-                state.minusDisabled = state.heatSetpoint <= state.configMin
-                state.plusDisabled = state.heatSetpoint >= state.configMax
+                guard state.heatSetpoint.isFinite,
+                      let value = (state.heatSetpoint + step.rawValue).hvacClamped(
+                        minimum: state.configMin,
+                        maximum: state.configMax
+                      )
+                else { return }
+                state.heatSetpoint = value.roundToTenths()
             }
             state.updateValues()
         }
@@ -159,10 +180,29 @@ extension ThermostatTimerDetailFeature {
         }
         
         func onStart() {
+            state.updateValues()
             let duration = state.getTimerDuration(dateProvider.currentDate())
             if (duration <= 0) {
                 return
             }
+
+            guard state.selectedMode == .off || ThermostatTemperatureRange.isValid(
+                minimum: state.configMin,
+                maximum: state.configMax
+            ),
+                  state.selectedMode != .heating || state.heatSetpoint.hvacClamped(
+                    minimum: state.configMin,
+                    maximum: state.configMax
+                  ) != nil,
+                  state.selectedMode != .cooling || state.coolSetpoint.hvacClamped(
+                    minimum: state.configMin,
+                    maximum: state.configMax
+                  ) != nil,
+                  state.selectedMode != .auto || (
+                    state.heatSetpoint.hvacClamped(minimum: state.configMin, maximum: state.configMax) != nil &&
+                    state.coolSetpoint.hvacClamped(minimum: state.configMin, maximum: state.configMax) != nil
+                  )
+            else { return }
             
             state.loadingState = state.loadingState.copy(loading: true)
             state.isTimerEditing = false

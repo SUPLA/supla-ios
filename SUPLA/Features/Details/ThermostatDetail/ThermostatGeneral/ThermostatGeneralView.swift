@@ -337,7 +337,8 @@ extension ThermostatGeneralFeature {
 
         func updateUIView(_ view: ThermostatControlView, context: Context) {
             context.coordinator.onPositionEvent = onPositionEvent
-            if view.setpointToDrag == nil { view.setpointToDrag = state.activeSetpointType }
+            view.setpointToDrag = state.activeSetpointType
+            view.setpointInteractionEnabled = state.controlButtonsEnabled && state.temperatureRangeIsAdjustable
             view.minTemperatureText = state.configMin.toTemperatureString()
             view.maxTemperatureText = state.configMax.toTemperatureString()
             view.minMaxHidden = state.configMinMaxHidden

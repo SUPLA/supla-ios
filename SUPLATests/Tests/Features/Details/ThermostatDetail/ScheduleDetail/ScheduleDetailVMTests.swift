@@ -115,7 +115,9 @@ final class ScheduleDetailVMTests: SuplaCore.ViewModelTest<ThermostatScheduleDet
             modes: SelectableList(selected: .heat, items: [.heat]),
             temperatureUnit: .celsius,
             heatSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: decimalLocalized("22.0")),
-            coolSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: decimalLocalized("21.0"))
+            coolSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: decimalLocalized("21.0")),
+            configMin: 10,
+            configMax: 40
         ))
     }
 
@@ -148,7 +150,58 @@ final class ScheduleDetailVMTests: SuplaCore.ViewModelTest<ThermostatScheduleDet
             temperatureUnit: .celsius,
             heatSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: decimalLocalized("21.0")),
             coolSetpoint: ThermostatScheduleDetailFeature.SetpointData(plusDisabled: false, minusDisabled: false, valueCorrect: true, value: decimalLocalized("21.0")),
+            configMin: 10,
+            configMax: 40
         ))
+    }
+
+    func test_shouldAllowEqualHeatCoolSetpointsForCollapsedTemperatureRange() {
+        let program = ScheduleDetailProgram(
+            scheduleProgram: SuplaHvacWeeklyScheduleProgram(
+                program: .program2,
+                mode: .heatCool,
+                setpointTemperatureHeat: 0,
+                setpointTemperatureCool: 0
+            )
+        )
+        viewModel.state.channelFunction = SUPLA_CHANNELFNC_HVAC_THERMOSTAT_HEAT_COOL
+        viewModel.state.programs = [program]
+        viewModel.state.configMin = 0
+        viewModel.state.configMax = 0
+        settings.temperatureUnitMock.returns = .single(.celsius)
+
+        viewModel.onShowProgramDialog(program)
+
+        XCTAssertEqual(viewModel.state.editProgramState?.modes.selected, .heatCool)
+        XCTAssertTrue(viewModel.state.editProgramState?.modes.items.contains(.heatCool) == true)
+        XCTAssertFalse(viewModel.state.editProgramState?.saveDisabled ?? true)
+
+        viewModel.onProgramDialogSave("0.0", "0.0")
+
+        XCTAssertNil(viewModel.state.editProgramState)
+        XCTAssertEqual(viewModel.state.programs.first?.scheduleProgram.mode, .heatCool)
+        XCTAssertEqual(viewModel.state.programs.first?.scheduleProgram.setpointTemperatureHeat, 0)
+        XCTAssertEqual(viewModel.state.programs.first?.scheduleProgram.setpointTemperatureCool, 0)
+    }
+
+    func test_shouldNotOpenProgramEditorForInvalidTemperatureBounds() {
+        let program = ScheduleDetailProgram(
+            scheduleProgram: SuplaHvacWeeklyScheduleProgram(
+                program: .program2,
+                mode: .heat,
+                setpointTemperatureHeat: 2200,
+                setpointTemperatureCool: nil
+            )
+        )
+        viewModel.state.channelFunction = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
+        viewModel.state.thermostatSubfunction = .heat
+        viewModel.state.programs = [program]
+        viewModel.state.configMin = 40
+        viewModel.state.configMax = 10
+
+        viewModel.onShowProgramDialog(program)
+
+        XCTAssertNil(viewModel.state.editProgramState)
     }
 
     func test_shouldChangeBoxOnTap() {

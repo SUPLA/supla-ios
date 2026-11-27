@@ -139,6 +139,103 @@ final class ThermostatGeneralVMTests: SuplaCore.ViewModelTest<ThermostatGeneralF
         XCTAssertEqual(delayedThermostatActionSubject.emitParameters.last?.setpointHeat, 40)
     }
 
+    func test_equalTemperatureBoundsProduceZeroSetpointPercentages() {
+        let state = ThermostatGeneralFeature.ViewState()
+        state.configMin = 0
+        state.configMax = 0
+        state.setpointHeat = 0
+        state.setpointCool = 0
+        state.mode = .heatCool
+        state.offline = false
+
+        XCTAssertEqual(state.setpointHeatPercentage, 0)
+        XCTAssertEqual(state.setpointCoolPercentage, 0)
+    }
+
+    func test_nonFiniteSetpointPositionDoesNotChangeStateOrEmitAction() {
+        viewModel.state.remoteId = item.remoteId
+        viewModel.state.controlButtonsEnabled = true
+        viewModel.state.configMin = 10
+        viewModel.state.configMax = 40
+
+        viewModel.onPositionEvent(.mooving(setpointType: .heat, position: .nan))
+
+        XCTAssertNil(viewModel.state.setpointHeat)
+        XCTAssertFalse(viewModel.state.changing)
+        XCTAssertTrue(delayedThermostatActionSubject.emitParameters.isEmpty)
+    }
+
+    func test_equalTemperatureBoundsIgnoreSetpointPositionChanges() {
+        viewModel.state.remoteId = item.remoteId
+        viewModel.state.controlButtonsEnabled = true
+        viewModel.state.configMin = 0
+        viewModel.state.configMax = 0
+        viewModel.state.setpointHeat = 0
+
+        viewModel.onPositionEvent(.mooving(setpointType: .heat, position: 0.8))
+
+        XCTAssertEqual(viewModel.state.setpointHeat, 0)
+        XCTAssertFalse(viewModel.state.changing)
+        XCTAssertTrue(delayedThermostatActionSubject.emitParameters.isEmpty)
+    }
+
+    func test_invalidTemperatureBoundsIgnoreSetpointPositionChanges() {
+        viewModel.state.remoteId = item.remoteId
+        viewModel.state.controlButtonsEnabled = true
+        viewModel.state.configMin = 40
+        viewModel.state.configMax = 10
+        viewModel.state.setpointHeat = 20
+        viewModel.state.mode = .heat
+        viewModel.state.offline = false
+
+        viewModel.onPositionEvent(.mooving(setpointType: .heat, position: 0.5))
+
+        XCTAssertEqual(viewModel.state.setpointHeat, 20)
+        XCTAssertNil(viewModel.state.setpointHeatPercentage)
+        XCTAssertFalse(viewModel.state.changing)
+        XCTAssertTrue(delayedThermostatActionSubject.emitParameters.isEmpty)
+    }
+
+    func test_thermostatTemperatureRangeMapsCollapsedAndInvalidValuesSafely() {
+        XCTAssertEqual(Float(0).thermostatPosition(minimum: 0, maximum: 0), 0)
+        XCTAssertEqual(Float(0.7).thermostatTemperature(minimum: 0, maximum: 0), 0)
+        XCTAssertEqual(Float(0.5).thermostatTemperature(minimum: 10, maximum: 40), 25)
+        XCTAssertEqual(Float(45).hvacClamped(minimum: 10, maximum: 40), 40)
+        XCTAssertEqual(Float(7).hvacClamped(minimum: 0, maximum: 0), 0)
+        XCTAssertTrue(Float(0).isInThermostatRange(minimum: 0, maximum: 0))
+        XCTAssertFalse(Float(1).isInThermostatRange(minimum: 0, maximum: 0))
+        XCTAssertNil(Float.infinity.thermostatPosition(minimum: 0, maximum: 0))
+        XCTAssertFalse(ThermostatTemperatureRange.isValid(minimum: 40, maximum: 10))
+        XCTAssertNil(Float(20).thermostatPosition(minimum: 40, maximum: 10))
+        XCTAssertNil(Float(0.5).thermostatTemperature(minimum: 40, maximum: 10))
+        XCTAssertFalse(ThermostatTemperatureRange.isValid(
+            minimum: -.greatestFiniteMagnitude,
+            maximum: .greatestFiniteMagnitude
+        ))
+    }
+
+    func test_thermostatControlGeometryRejectsCenterPoint() {
+        let center = CGPoint(x: 140, y: 140)
+
+        XCTAssertNil(ThermostatControlGeometry.alignToCircle(point: center, center: center))
+        XCTAssertTrue(ThermostatControlGeometry.alignToCircle(
+            point: CGPoint(x: 140, y: 4),
+            center: center
+        )?.isFinite == true)
+    }
+
+    func test_controlViewDoesNotKeepNonFinitePercentages() {
+        let control = ThermostatControlView(frame: CGRect(x: 0, y: 0, width: 280, height: 280))
+
+        control.setpointHeatPercentage = .nan
+        control.setpointCoolPercentage = .infinity
+        control.temperaturePercentage = .nan
+
+        XCTAssertNil(control.setpointHeatPercentage)
+        XCTAssertNil(control.setpointCoolPercentage)
+        XCTAssertEqual(control.temperaturePercentage, 0)
+    }
+
     func test_powerButtonRequestsTurnOnAndUpdatesViewState() {
         viewModel.state.remoteId = item.remoteId
         viewModel.state.offline = false

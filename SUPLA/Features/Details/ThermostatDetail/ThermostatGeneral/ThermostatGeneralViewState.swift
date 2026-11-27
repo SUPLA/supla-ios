@@ -67,6 +67,14 @@ extension ThermostatGeneralFeature {
         }
 
         var off: Bool { offline || mode == .off || mode == .notSet }
+        var temperatureRangeIsValid: Bool {
+            guard let configMin, let configMax else { return false }
+            return ThermostatTemperatureRange.isValid(minimum: configMin, maximum: configMax)
+        }
+        var temperatureRangeIsAdjustable: Bool {
+            guard let configMin, let configMax else { return false }
+            return ThermostatTemperatureRange.isAdjustable(minimum: configMin, maximum: configMax)
+        }
         var setpointText: String? {
             if offline { return "offline" }
             if off { return "off" }
@@ -81,38 +89,42 @@ extension ThermostatGeneralFeature {
         }
         var setpointHeatPercentage: Float? {
             guard let min = configMin, let max = configMax, let current = setpointHeat, !off || weeklyScheduleActive else { return nil }
-            
+            guard current.isFinite else { return nil }
+
             return switch (mode) {
-            case .heat, .heatCool: (current - min) / (max - min)
+            case .heat, .heatCool: current.thermostatPosition(minimum: min, maximum: max)
             default: nil
             }
         }
         var setpointCoolPercentage: Float? {
             guard let min = configMin, let max = configMax, let current = setpointCool, !off || weeklyScheduleActive else { return nil }
-            
+            guard current.isFinite else { return nil }
+
             return switch (mode) {
-            case .cool, .heatCool: (current - min) / (max - min)
+            case .cool, .heatCool: current.thermostatPosition(minimum: min, maximum: max)
             default: nil
             }
         }
         var plusButtonEnabled: Bool {
             guard mode != .off || weeklyScheduleActive else { return false }
+            guard temperatureRangeIsAdjustable else { return false }
             switch activeSetpointType {
-            case .heat: return (setpointHeat ?? 0) < (configMax ?? 0)
-            case .cool: return (setpointCool ?? 0) < (configMax ?? 0)
+            case .heat: return setpointHeat.map { $0.isFinite && $0 < (configMax ?? 0) } ?? false
+            case .cool: return setpointCool.map { $0.isFinite && $0 < (configMax ?? 0) } ?? false
             default: return false
             }
         }
         var minusButtonEnabled: Bool {
             guard mode != .off || weeklyScheduleActive else { return false }
+            guard temperatureRangeIsAdjustable else { return false }
             switch activeSetpointType {
-            case .heat: return (setpointHeat ?? 0) > (configMin ?? 0)
-            case .cool: return (setpointCool ?? 0) > (configMin ?? 0)
+            case .heat: return setpointHeat.map { $0.isFinite && $0 > (configMin ?? 0) } ?? false
+            case .cool: return setpointCool.map { $0.isFinite && $0 > (configMin ?? 0) } ?? false
             default: return false
             }
         }
         var powerIconColor: UIColor { ((off && !weeklyScheduleActive) || offline) ? .red : .primary }
-        var configMinMaxHidden: Bool { offline }
+        var configMinMaxHidden: Bool { offline || !temperatureRangeIsValid }
         var grayOutSetpoints: Bool { !offline && off && weeklyScheduleActive }
         var timerInfoHidden: Bool {
             sensorIssue != nil || timerEndDate == nil || timerEndDate!.timeIntervalSince1970 < Date().timeIntervalSince1970

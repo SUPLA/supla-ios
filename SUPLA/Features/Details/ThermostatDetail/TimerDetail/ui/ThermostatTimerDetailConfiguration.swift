@@ -28,6 +28,7 @@ extension ThermostatTimerDetailFeature {
         let startDisabled: Bool
         let minusDisabled: Bool
         let plusDisabled: Bool
+        let temperatureControlsDisabled: Bool
         let setpointInChange: SetpointType
         let setpointValue: String
         
@@ -61,7 +62,7 @@ extension ThermostatTimerDetailFeature {
             timerMinutes: Binding<NumberPickerItem>,
             calendarDate: Binding<Date>,
             delegate: ViewDelegate?,
-            orientationObserver: OrientationObserver = OrientationObserver()
+            temperatureControlsDisabled: Bool = false
         ) {
             self.selectedMode = selectedMode
             self.availableModes = availableModes
@@ -71,6 +72,7 @@ extension ThermostatTimerDetailFeature {
             self.startDisabled = startDisabled
             self.minusDisabled = minusDisabled
             self.plusDisabled = plusDisabled
+            self.temperatureControlsDisabled = temperatureControlsDisabled
             self.setpointInChange = setpointInChange
             self.setpointValue = setpointValue
             self.heatingValue = heatingValue
@@ -80,7 +82,6 @@ extension ThermostatTimerDetailFeature {
             self.timerMinutes = timerMinutes
             self.calendarDate = calendarDate
             self.delegate = delegate
-            self.orientationObserver = orientationObserver
         }
         
         var body: some SwiftUI.View {
@@ -178,7 +179,7 @@ extension ThermostatTimerDetailFeature {
                         }
                         CorrectionButton(.Icons.plus) { delegate?.onSetpointChange(.smallUp) }
                             .disabled(plusDisabled)
-                    }
+                    }.disabled(temperatureControlsDisabled)
                 }.padding(.top, Distance.small)
             }
         }

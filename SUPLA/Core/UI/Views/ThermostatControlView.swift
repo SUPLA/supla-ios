@@ -37,8 +37,8 @@ final class ThermostatControlView: UIView {
     var setpointHeatPercentage: CGFloat? {
         get { setpointHeat }
         set {
-            setpointHeat = newValue?.limit()
-            setpointHeatPoint.isHidden = newValue == nil
+            setpointHeat = newValue.flatMap { $0.isFinite ? $0.limit() : nil }
+            setpointHeatPoint.isHidden = setpointHeat == nil
             setNeedsDisplay()
         }
     }
@@ -46,8 +46,8 @@ final class ThermostatControlView: UIView {
     var setpointCoolPercentage: CGFloat? {
         get { setpointCool }
         set {
-            setpointCool = newValue?.limit()
-            setpointCoolPoint.isHidden = newValue == nil
+            setpointCool = newValue.flatMap { $0.isFinite ? $0.limit() : nil }
+            setpointCoolPoint.isHidden = setpointCool == nil
             updateSetpointRange()
             setNeedsDisplay()
         }
@@ -56,8 +56,8 @@ final class ThermostatControlView: UIView {
     var temperaturePercentage: CGFloat? {
         get { temperature }
         set {
-            temperature = newValue?.limit() ?? 0
-            currentTemperaturePoint.isHidden = newValue == nil
+            temperature = newValue.flatMap { $0.isFinite ? $0.limit() : nil } ?? 0
+            currentTemperaturePoint.isHidden = newValue?.isFinite != true
             updateSetpointRange()
             setNeedsDisplay()
         }
@@ -104,6 +104,15 @@ final class ThermostatControlView: UIView {
     }
     
     var setpointToDrag: SetpointType? = nil
+
+    var setpointInteractionEnabled = true {
+        didSet {
+            if !setpointInteractionEnabled {
+                isDragging = false
+                activeSetpointToDrag = nil
+            }
+        }
+    }
     
     var operationalMode: ThermostatOperationalMode = .offline {
         didSet {
@@ -147,6 +156,7 @@ final class ThermostatControlView: UIView {
     private var setpointCool: CGFloat? = 0
     private var temperature: CGFloat = 0.2
     private var isDragging: Bool = false
+    private var activeSetpointToDrag: SetpointType? = nil
     private var positionRelay: PublishRelay<SetpointEvent> = PublishRelay()
     
     private lazy var temperatureCircleShape: TemperatureCircleLayer = .init()
@@ -277,7 +287,14 @@ final class ThermostatControlView: UIView {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        isDragging = false
+        activeSetpointToDrag = nil
         guard let point = event?.allTouches?.first?.location(in: self) else { return }
+        guard setpointInteractionEnabled else {
+            isDragging = false
+            activeSetpointToDrag = nil
+            return
+        }
         
         let centerX = frame.width / 2
         let centerY = frame.height / 2
@@ -289,10 +306,12 @@ final class ThermostatControlView: UIView {
             isDragging = true
         }
         
-        if (point.inside(point: setpointHeatPoint.position)) {
-            setpointToDrag = .heat
-        } else if (point.inside(point: setpointCoolPoint.position)) {
-            setpointToDrag = .cool
+        if point.inside(point: setpointHeatPoint.position) {
+            activeSetpointToDrag = .heat
+        } else if point.inside(point: setpointCoolPoint.position) {
+            activeSetpointToDrag = .cool
+        } else {
+            activeSetpointToDrag = setpointToDrag
         }
         
         if (isDragging) {
@@ -309,11 +328,13 @@ final class ThermostatControlView: UIView {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         positionRelay.accept(.finished)
         isDragging = false
+        activeSetpointToDrag = nil
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         positionRelay.accept(.finished)
         isDragging = false
+        activeSetpointToDrag = nil
     }
     
     private func setupView() {
@@ -339,11 +360,18 @@ final class ThermostatControlView: UIView {
     }
     
     private func moveActiveSetpointTo(point: CGPoint) {
-        switch (setpointToDrag) {
+        guard setpointInteractionEnabled,
+              let position = ThermostatControlGeometry.alignToCircle(
+                point: point,
+                center: CGPoint(x: frame.width / 2, y: frame.height / 2)
+              )
+        else { return }
+
+        switch (activeSetpointToDrag) {
         case .heat:
-            positionRelay.accept(.mooving(setpointType: .heat, position: alignToCircle(point: point)))
+            positionRelay.accept(.mooving(setpointType: .heat, position: position))
         case .cool:
-            positionRelay.accept(.mooving(setpointType: .cool, position: alignToCircle(point: point)))
+            positionRelay.accept(.mooving(setpointType: .cool, position: position))
         default: break
         }
     }
@@ -376,35 +404,6 @@ final class ThermostatControlView: UIView {
         let y = setpointRadius * sin(alpha) + frame.height / 2
         
         currentTemperaturePoint.move(to: CGPoint(x: x, y: y))
-    }
-    
-    private func alignToCircle(point: CGPoint) -> CGFloat {
-        let circleCenter = CGPoint(x: frame.width / 2, y: frame.height / 2)
-        
-        // Move circle center to 0,0
-        let correctedPoint = point.insetBy(x: -circleCenter.x, y: -circleCenter.y)
-        
-        // Get sin(alpha) for the touch point
-        let touchPointRadius = sqrt((correctedPoint.x * correctedPoint.x) + (correctedPoint.y * correctedPoint.y))
-        let sinAlpha = correctedPoint.y / touchPointRadius
-        
-        let alpha = getAlphaValue(radians: asin(sinAlpha), point: correctedPoint)
-        if (alpha < 60) {
-            return 0
-        } else if (alpha > 300) {
-            return 1
-        } else {
-            return (alpha - 60) / 240
-        }
-    }
-    
-    private func getAlphaValue(radians: CGFloat, point: CGPoint) -> CGFloat {
-        let alpha = radians * 180 / .pi
-        if (point.x < 0) {
-            return 90 - alpha
-        } else {
-            return 270 + alpha
-        }
     }
     
     private func updateSetpointRange() {
@@ -781,6 +780,7 @@ private class SetpointLayers: LayerGroup {
     }
     
     func move(to position: CGPoint) {
+        guard position.x.isFinite, position.y.isFinite else { return }
         currentPosition = position
         
         backgroundShape.path = UIBezierPath(
@@ -805,6 +805,35 @@ private class SetpointLayers: LayerGroup {
     
     func sublayers() -> [CALayer] {
         [shadowShape, backgroundShape, iconShape]
+    }
+}
+
+enum ThermostatControlGeometry {
+    static func alignToCircle(point: CGPoint, center: CGPoint) -> CGFloat? {
+        guard point.x.isFinite, point.y.isFinite,
+              center.x.isFinite, center.y.isFinite
+        else { return nil }
+
+        let correctedPoint = point.insetBy(x: -center.x, y: -center.y)
+        let touchPointRadius = sqrt(correctedPoint.x * correctedPoint.x + correctedPoint.y * correctedPoint.y)
+        guard touchPointRadius.isFinite, touchPointRadius > 0 else { return nil }
+
+        let sinAlpha = correctedPoint.y / touchPointRadius
+        guard sinAlpha.isFinite else { return nil }
+
+        let alpha = asin(sinAlpha) * 180 / .pi
+        let angle = correctedPoint.x < 0 ? 90 - alpha : 270 + alpha
+        guard angle.isFinite else { return nil }
+
+        let position: CGFloat
+        if angle < 60 {
+            position = 0
+        } else if angle > 300 {
+            position = 1
+        } else {
+            position = (angle - 60) / 240
+        }
+        return position.isFinite ? position : nil
     }
 }
 

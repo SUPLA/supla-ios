@@ -66,15 +66,41 @@ extension ThermostatScheduleDetailFeature {
         let heatSetpoint: SetpointData?
         let coolSetpoint: SetpointData?
 
+        let configMin: Float
+        let configMax: Float
+        let autoOffsetMin: Float?
+        let autoOffsetMax: Float?
+
         var saveDisabled: Bool {
-            if let heatSetpoint, let coolSetpoint {
-                !heatSetpoint.valueCorrect || !coolSetpoint.valueCorrect
-            } else if let heatSetpoint {
-                !heatSetpoint.valueCorrect
-            } else if let coolSetpoint {
-                !coolSetpoint.valueCorrect
-            } else {
-                true
+            guard ThermostatTemperatureRange.isValid(minimum: configMin, maximum: configMax)
+            else { return true }
+
+            switch modes.selected {
+            case .heat:
+                guard let heat = heatSetpoint?.updateValue.toFloat(), heat.isFinite else { return true }
+                return !heat.isInThermostatRange(minimum: configMin, maximum: configMax)
+            case .cool:
+                guard let cool = coolSetpoint?.updateValue.toFloat(), cool.isFinite else { return true }
+                return !cool.isInThermostatRange(minimum: configMin, maximum: configMax)
+            case .heatCool:
+                guard
+                    let heat = heatSetpoint?.updateValue.toFloat(),
+                    let cool = coolSetpoint?.updateValue.toFloat(),
+                    heat.isFinite,
+                    cool.isFinite,
+                    heat.isInThermostatRange(minimum: configMin, maximum: configMax),
+                    cool.isInThermostatRange(minimum: configMin, maximum: configMax)
+                else { return true }
+
+                let offset = cool - heat
+                guard offset.isFinite, offset >= 0 else { return true }
+
+                let aboveMinimum = autoOffsetMin.map { $0.isFinite && offset >= $0 } ?? true
+                let belowMaximum = autoOffsetMax.map { $0.isFinite && offset <= $0 } ?? true
+                return !aboveMinimum || !belowMaximum
+
+            default:
+                return true
             }
         }
 
@@ -83,13 +109,21 @@ extension ThermostatScheduleDetailFeature {
             modes: SelectableList<SuplaHvacMode>,
             temperatureUnit: TemperatureUnit,
             heatSetpoint: SetpointData?,
-            coolSetpoint: SetpointData?
+            coolSetpoint: SetpointData?,
+            configMin: Float,
+            configMax: Float,
+            autoOffsetMin: Float? = nil,
+            autoOffsetMax: Float? = nil
         ) {
             self.program = program
             self.modes = modes
             self.temperatureUnit = temperatureUnit
             self.heatSetpoint = heatSetpoint
             self.coolSetpoint = coolSetpoint
+            self.configMin = configMin
+            self.configMax = configMax
+            self.autoOffsetMin = autoOffsetMin
+            self.autoOffsetMax = autoOffsetMax
         }
 
         func copy(
@@ -105,10 +139,14 @@ extension ThermostatScheduleDetailFeature {
                 temperatureUnit: temperatureUnit ?? self.temperatureUnit,
                 heatSetpoint: heatSetpoint ?? self.heatSetpoint,
                 coolSetpoint: coolSetpoint ?? self.coolSetpoint,
+                configMin: configMin,
+                configMax: configMax,
+                autoOffsetMin: autoOffsetMin,
+                autoOffsetMax: autoOffsetMax
             )
         }
 
-        func copy(
+        func updateSetpointData(
             setpointType: SetpointType,
             plusDisabled: Bool? = nil,
             minusDisabled: Bool? = nil,
@@ -135,6 +173,13 @@ extension ThermostatScheduleDetailFeature {
                     )
                 )
             }
+        }
+
+        func validateCoolSetpointCorrectness() -> Self {
+            updateSetpointData(
+                setpointType: .cool,
+                valueCorrect: saveDisabled == false,
+            )
         }
     }
 
@@ -345,14 +390,16 @@ private extension SetpointType {
                     plusDisabled: false,
                     minusDisabled: false,
                     valueCorrect: true,
-                    value: "22,0",
+                    value: "22,0"
                 ),
                 coolSetpoint: ThermostatScheduleDetailFeature.SetpointData(
                     plusDisabled: false,
                     minusDisabled: false,
                     valueCorrect: true,
                     value: "23,0"
-                )
+                ),
+                configMin: 5,
+                configMax: 40
             ),
             onDismiss: {},
             onChange: { _, _ in },

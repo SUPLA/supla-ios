@@ -39,7 +39,7 @@ extension ThermostatScheduleDetailFeature {
         
         @Published var editProgramState: EditProgramState? = nil
         @Published var editQuartersState: QuartersSelectionData? = nil
-        
+
         var suplaPrograms: [SuplaHvacWeeklyScheduleProgram] {
             programs.filter { $0.scheduleProgram.program != .off }
                 .map { $0.scheduleProgram }
@@ -106,13 +106,10 @@ extension ThermostatScheduleDetailFeature {
         
         func alignTemperature(_ temperature: Float?) -> Float {
             let defaultTemperature = isHotWater ? DEFAULT_WATER_TEMPERATURE : DEFAULT_HEAT_TEMPERATURE
-            let temperatureToAlign = temperature ?? defaultTemperature
-            
-            if let configMin, let configMax {
-                return temperatureToAlign.clamped(to: configMin ... configMax)
-            } else {
-                return temperatureToAlign
-            }
+            let temperatureToAlign = temperature.flatMap { $0.isFinite ? $0 : nil } ?? defaultTemperature
+
+            guard let configMin, let configMax else { return temperatureToAlign }
+            return temperatureToAlign.hvacClamped(minimum: configMin, maximum: configMax) ?? defaultTemperature
         }
     }
 }

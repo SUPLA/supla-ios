@@ -124,6 +124,10 @@ extension String {
         return first.uppercased() + dropFirst()
     }
     
+    func toFloat() -> Float? {
+        Float(replacingOccurrences(of: ",", with: "."))
+    }
+    
     static func fromC<T>(_ address: T) -> String {
         return withUnsafePointer(to: address) {
             $0.withMemoryRebound(to: UInt8.self, capacity: MemoryLayout.size(ofValue: $0)) {

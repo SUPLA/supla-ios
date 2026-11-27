@@ -99,6 +99,56 @@ final class ThermostatTimerDetailVMTests: SuplaCore.ViewModelTest<ThermostatTime
         XCTAssertEqual(viewModel.state.heatSetpoint, 25.0)
         XCTAssertEqual(viewModel.state.setpointInChange, .heat)
     }
+
+    func test_equalTemperatureBoundsKeepSlidersAtZeroAndDisableAdjustments() {
+        viewModel.state.configMin = 0
+        viewModel.state.configMax = 0
+        viewModel.state.heatSetpoint = 0
+        viewModel.state.coolSetpoint = 0
+
+        viewModel.state.updateValues()
+
+        XCTAssertEqual(viewModel.state.heatValue, 0)
+        XCTAssertEqual(viewModel.state.coolValue, 0)
+        XCTAssertTrue(viewModel.state.temperatureControlsDisabled)
+        XCTAssertTrue(viewModel.state.minusDisabled)
+        XCTAssertTrue(viewModel.state.plusDisabled)
+    }
+
+    func test_equalTemperatureBoundsIgnoreSliderAndStepChanges() {
+        viewModel.state.configMin = 0
+        viewModel.state.configMax = 0
+        viewModel.state.heatSetpoint = 0
+        viewModel.state.setpointInChange = .heat
+
+        viewModel.onHeatValueChange(0.8)
+        viewModel.onSetpointChange(.smallUp)
+
+        XCTAssertEqual(viewModel.state.heatSetpoint, 0)
+        XCTAssertEqual(viewModel.state.heatValue, 0)
+    }
+
+    func test_nonFiniteSliderPositionDoesNotChangeSetpoint() {
+        viewModel.state.configMin = 10
+        viewModel.state.configMax = 40
+        viewModel.state.heatSetpoint = 22
+
+        viewModel.onHeatValueChange(.nan)
+
+        XCTAssertEqual(viewModel.state.heatSetpoint, 22)
+        XCTAssertFalse(viewModel.state.temperatureControlsDisabled)
+    }
+
+    func test_invalidTemperatureBoundsDoNotStartTemperatureTimer() {
+        viewModel.state.configMin = 30
+        viewModel.state.configMax = 10
+        viewModel.state.selectedMode = .heating
+        viewModel.state.heatSetpoint = 20
+
+        viewModel.onStart()
+
+        XCTAssertTrue(executeThermostatActionUseCase.parameters.isEmpty)
+    }
     
     func test_shouldChangeCoolTemperatureByStep() {
         // given
@@ -168,6 +218,8 @@ final class ThermostatTimerDetailVMTests: SuplaCore.ViewModelTest<ThermostatTime
         viewModel.state.timeSelectionMode = .calendar
         viewModel.state.calendarDate = endDate
         viewModel.state.selectedMode = .heating
+        viewModel.state.configMin = 10
+        viewModel.state.configMax = 40
         viewModel.state.heatSetpoint = 14.5
         dateProvider.currentTimestampReturns = .single(0)
         dateProvider.currentDateReturns = currentDate

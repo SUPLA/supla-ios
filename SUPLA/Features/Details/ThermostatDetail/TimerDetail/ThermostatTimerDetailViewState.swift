@@ -47,6 +47,10 @@ extension ThermostatTimerDetailFeature {
         var configMax: Float = 0
         var heatSetpoint: Float = 0
         var coolSetpoint: Float = 0
+
+        var temperatureControlsDisabled: Bool {
+            !ThermostatTemperatureRange.isAdjustable(minimum: configMin, maximum: configMax)
+        }
         
         init(
             isTimersRunning: Bool = false,
@@ -92,7 +96,20 @@ extension ThermostatTimerDetailFeature {
             }
         }
         
-        var startDisabled: Bool { offline || getTimerDuration() <= 0 }
+        var startDisabled: Bool {
+            offline || getTimerDuration() <= 0 || !setpointsValidForSelectedMode
+        }
+
+        private var setpointsValidForSelectedMode: Bool {
+            switch selectedMode {
+            case .off: true
+            case .heating: heatSetpoint.isInThermostatRange(minimum: configMin, maximum: configMax)
+            case .cooling: coolSetpoint.isInThermostatRange(minimum: configMin, maximum: configMax)
+            case .auto:
+                heatSetpoint.isInThermostatRange(minimum: configMin, maximum: configMax) &&
+                    coolSetpoint.isInThermostatRange(minimum: configMin, maximum: configMax)
+            }
+        }
         
         var timerInfoText: String {
             let timeDiff = getTimerDuration()
@@ -134,8 +151,41 @@ extension ThermostatTimerDetailFeature {
         }
         
         func updateValues() {
-            heatValue = CGFloat((heatSetpoint - configMin) / (configMax - configMin)).clamped(to: 0...1)
-            coolValue = CGFloat((coolSetpoint - configMin) / (configMax - configMin)).clamped(to: 0...1)
+            guard ThermostatTemperatureRange.isValid(minimum: configMin, maximum: configMax) else {
+                heatValue = 0
+                coolValue = 0
+                minusDisabled = true
+                plusDisabled = true
+                return
+            }
+
+            if ThermostatTemperatureRange.isCollapsed(minimum: configMin, maximum: configMax) {
+                heatSetpoint = configMin
+                coolSetpoint = configMin
+                heatValue = 0
+                coolValue = 0
+                minusDisabled = true
+                plusDisabled = true
+                return
+            }
+
+            heatSetpoint = heatSetpoint.hvacClamped(minimum: configMin, maximum: configMax) ?? configMin
+            coolSetpoint = coolSetpoint.hvacClamped(minimum: configMin, maximum: configMax) ?? configMin
+            heatValue = CGFloat(heatSetpoint.thermostatPosition(minimum: configMin, maximum: configMax) ?? 0).clamped(to: 0...1)
+            coolValue = CGFloat(coolSetpoint.thermostatPosition(minimum: configMin, maximum: configMax) ?? 0).clamped(to: 0...1)
+            updateStepButtons()
+        }
+
+        func updateStepButtons() {
+            guard ThermostatTemperatureRange.isAdjustable(minimum: configMin, maximum: configMax) else {
+                minusDisabled = true
+                plusDisabled = true
+                return
+            }
+
+            let value = setpointInChange == .heat ? heatSetpoint : coolSetpoint
+            minusDisabled = !value.isFinite || value <= configMin
+            plusDisabled = !value.isFinite || value >= configMax
         }
         
         func getTimerDuration(_ date: Date? = nil) -> Int {
