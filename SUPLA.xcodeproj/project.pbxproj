@@ -1012,6 +1012,7 @@
 		A5ABE5BB2ABC292400FFA50B /* DelayedWeeklyScheduleConfigSubjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5BA2ABC292400FFA50B /* DelayedWeeklyScheduleConfigSubjectMock.swift */; };
 		A5ABE5BD2ABC5EAB00FFA50B /* ValuesFormatterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5BC2ABC5EAB00FFA50B /* ValuesFormatterMock.swift */; };
 		A5ABE5C72ABCD52500FFA50B /* ThermostatGeneralVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5C62ABCD52500FFA50B /* ThermostatGeneralVMTests.swift */; };
+		C0DE20261127000100000001 /* ThermostatSlavesVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE20261127000100000002 /* ThermostatSlavesVMTests.swift */; };
 		A5ABE5C92ABCD76300FFA50B /* ThermostatUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5C82ABCD76300FFA50B /* ThermostatUseCasesMocks.swift */; };
 		A5ABE5CB2ABCD80300FFA50B /* DelayedThermostatActionSubjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5CA2ABCD80300FFA50B /* DelayedThermostatActionSubjectMock.swift */; };
 		A5ABE5CD2ABCD89400FFA50B /* LoadingTimoutManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5CC2ABCD89400FFA50B /* LoadingTimoutManagerMock.swift */; };
@@ -2954,6 +2955,7 @@
 		A5ABE5BA2ABC292400FFA50B /* DelayedWeeklyScheduleConfigSubjectMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedWeeklyScheduleConfigSubjectMock.swift; sourceTree = "<group>"; };
 		A5ABE5BC2ABC5EAB00FFA50B /* ValuesFormatterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuesFormatterMock.swift; sourceTree = "<group>"; };
 		A5ABE5C62ABCD52500FFA50B /* ThermostatGeneralVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatGeneralVMTests.swift; sourceTree = "<group>"; };
+		C0DE20261127000100000002 /* ThermostatSlavesVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatSlavesVMTests.swift; sourceTree = "<group>"; };
 		A5ABE5C82ABCD76300FFA50B /* ThermostatUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatUseCasesMocks.swift; sourceTree = "<group>"; };
 		A5ABE5CA2ABCD80300FFA50B /* DelayedThermostatActionSubjectMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedThermostatActionSubjectMock.swift; sourceTree = "<group>"; };
 		A5ABE5CC2ABCD89400FFA50B /* LoadingTimoutManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTimoutManagerMock.swift; sourceTree = "<group>"; };
@@ -6847,6 +6849,7 @@
 			isa = PBXGroup;
 			children = (
 				A5ABE5C62ABCD52500FFA50B /* ThermostatGeneralVMTests.swift */,
+				C0DE20261127000100000002 /* ThermostatSlavesVMTests.swift */,
 				A57C88362ACB49C5000B0F10 /* ThermostatProgramInfoTests.swift */,
 			);
 			path = ThermostatGeneral;
@@ -10252,6 +10255,7 @@
 				A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */,
 				A57C88372ACB49C5000B0F10 /* ThermostatProgramInfoTests.swift in Sources */,
 				A5ABE5C72ABCD52500FFA50B /* ThermostatGeneralVMTests.swift in Sources */,
+				C0DE20261127000100000001 /* ThermostatSlavesVMTests.swift in Sources */,
 				C0DE20261109000100000011 /* ActionTriggerGeneralVMTests.swift in Sources */,
 				C0DE20261109000200000001 /* ActionTriggerScheduleVMTests.swift in Sources */,
 				A5E40B532B85F31100DB6ABE /* SuplaChannelGeneralPurposeMeterConfig+Mock.swift in Sources */,

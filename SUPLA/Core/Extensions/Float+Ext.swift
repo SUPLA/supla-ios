@@ -37,6 +37,10 @@ extension Float: ScopeFunctions {
         return self + other
     }
     
+    func div(_ other: Float) -> Float {
+        return self / other
+    }
+    
     func toSuplaTemperature() -> Int16 {
         return Int16((self * 10).rounded()) * 10
     }
